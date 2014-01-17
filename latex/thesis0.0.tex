@@ -339,7 +339,7 @@ For convenience in later calculations the last was added again with a the sum  o
  n_{\sigma} &=&  \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma} \rangle %\nonumber \\
 	    &=&  \frac1{N} \sum_{\vec{p}} \left( 1- G_{\vec{p},\sigma}(0) \right) \\
 m_{s,\sigma} &=& \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} \rangle %\nonumber \\
-	   &=-&  \frac1{N} \sum_{\vec{p}} F_{\vec{p},\sigma}(0)
+	   &=-&  \frac1{N} \sum_{\vec{p}} F_{\vec{p},\sigma}(0) \label{Def_ms}
 \end{IEEEeqnarray}
 The coefficient $n_{\sigma}$ counts the amount of up spins, relative to the number of sites $N$. 
 The expression for $m_{s,\sigma}$ is related to the staggered magnetization $m_s$ through
@@ -419,18 +419,65 @@ The poles are located at
 Note that $E_{\vec{p},\sigma}^{\pm}=E_{\vec{p}+\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec{p}+2\vec{Q}}=\varepsilon_{\vec{p}}$.
 With this, we can write the propagators as
 \begin{IEEEeqnarray}{rCl}
-  G_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ u_{\vec{p}        ,\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^+) }
-			+ \frac{ u_{\vec{p}+\vec{Q},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^-) } \\
-  F_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ \tilde{u}_{\vec{p},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^+) }
-			- \frac{ \tilde{u}_{\vec{p},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^-) }
+ G_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec{p}+\vec{Q}} +\mu -Un_{-\sigma} }
+					    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-) }
+\\
+ F_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma} }
+					    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-)}
 \end{IEEEeqnarray}
-where $u$ and $\tilde{u}$ are given by
-\begin{IEEEeqnarray}{rCl}
-u_{\vec{p},\sigma} &=& \frac{E_{\vec{p},\sigma}^+ - \varepsilon_{\vec{p}+\vec{Q}} +\mu -Un_{-\sigma} }{E_{\vec{p},\sigma}^+ -E_{\vec{p},\sigma}^-} \\
-\tilde{u}_{\vec{p},\sigma} &=& \frac{Um_{s,-\sigma}}{E_{\vec{p},\sigma}^+ -E_{\vec{p},\sigma}^-}.
-\end{IEEEeqnarray}
-\todo{connection to diagrammatic approach, resolve $1-n_{-\sigma} \stackrel{?}{=} n_{-\sigma}$ issue.} 
-\todo{ How to draw nice diagrams in \LaTeX?}
+
+
+%\begin{IEEEeqnarray}{rCl}
+%  G_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ u_{\vec{p}        ,\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^+) }
+%			+ \frac{ u_{\vec{p}+\vec{Q},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^-) } \\
+%  F_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ \tilde{u}_{\vec{p},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^+) }
+%			- \frac{ \tilde{u}_{\vec{p},\sigma }}{ (\im \omega_n - E_{\vec{p},\sigma}^-) }
+%\end{IEEEeqnarray}
+%where $u$ and $\tilde{u}$ are given by
+% \begin{IEEEeqnarray}{rCl}
+% u_{\vec{p},\sigma} &=& \frac{E_{\vec{p},\sigma}^+ - \varepsilon_{\vec{p}+\vec{Q}} +\mu -Un_{-\sigma} }{E_{\vec{p},\sigma}^+ -E_{\vec{p},\sigma}^-} \\
+% \tilde{u}_{\vec{p},\sigma} &=& \frac{Um_{s,-\sigma}}{E_{\vec{p},\sigma}^+ -E_{\vec{p},\sigma}^-}.
+% \end{IEEEeqnarray}
+% \todo{connection to diagrammatic approach, resolve $1-n_{-\sigma} \stackrel{?}{=} n_{-\sigma}$ issue.} 
+% \todo{ How to draw nice diagrams in \LaTeX?}
+
+
+
+
+\subsection{Half-Filling}
+
+The materials investigated in this work are half-filled and have a spin independent Hamiltonian.
+Therefore we can assume symmetry between up and down states, and get as a result
+$n=n_{\uparrow}+n_{\downarrow}=2\cdot n_{\uparrow}= 2\cdot n_{\downarrow} = 1$.
+
+This corresponds to a chemical potential of 
+\todo{explain the connection between half filling and $U$}
+$\mu=\frac{U}2$.
+We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$. 
+The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
+This relation does not hold in general, since double occupied states give a symmetric contribution to $m_{s,\sigma}$ rather than a asymmetric one.
+However, in an otherwise asymetric large system these contributions are expected to vanish, since they might be distributed evenly on even and odd sites 
+and therefore cancel each other in the sum over all sites.
+
+In order to calculate $m_ {s,\sigma}$ we solve equation \ref{Def_ms}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
+This decouples the two equations for $\uparrow$ and $\downarrow$ and by using the definition we end up with
+\begin{equation}
+ m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
+							      \frac { Um_{s,\sigma} }
+								    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-)}.
+\end{equation}
+The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $m_{s,\sigma}$.
+%
+\newline
+  \newline
+TO DO
+\begin{itemize}
+  \item describe how this is solved using Cauchys integral theorem, a weighting function and so on
+ \item check that $n_{\sigma}=\sum_{\vec{p}} G_{\vec{p},-\sigma}(0)$ holds, even when $n_{\sigma}=\frac12$ fixed.
+ \item $T=0$;
+ \item Results, inkl. plot
+\end{itemize}
+
 
 
 
