@@ -3,7 +3,7 @@
 //              Proceeds in calculating \Xi^{+-}(q,\omega) (later \Xi^{zz} as well)
 //              and writes the result in a file.
 
-// test comment
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -143,13 +143,15 @@ int main()
         }
 
 
-        cout<<"m="<<m<<endl;
+        //cout<<"m="<<m<<endl;
 
 //------------------------- end of optimization of m --------------------------------------------------------
 
 
-
-
+        // open result file
+        ofstream results;
+        results.open(parameters->lookup("chi"));
+        results<<"U= "<<U<<"\tT= "<<T<<"\tn= "<<n_u+n_d<<"\tm= "<<m<<"\tN= "<<N<<endl;
 
         // calculate mean-field band energies
         double E_p [N_xh][N_yh];
@@ -164,24 +166,26 @@ int main()
 
                     E_p[i][j] = E_Sh+E_Sd;
                     E_m[i][j] = E_Sh-E_Sd;
-                    // cout<<"E_p="<<E_p[i][j]<<"\tE_m="<<E_m[i][j]<<endl;
                 }
             }
 
-
+        // write "t   q_x   q_y   w   x   xb   y   z1   z2" to the file
+        results<<"t\tq_x\tq_y\tw\tx\txb\ty\tz1\tz2"<<endl;
 
         // set q ( from (0,0) to (N_x,N_y) corresponding to to be in (-\pi,\pi)\times (-\pi,\pi)
         // and w, which should be choose in a clever way to give a meaningful result
+        // so far it is only a diagonal straight line through the Brillouin zone.
+        // only use existing values for (q_x,q_y) (according to discrete momenta)
             int q_x,q_y;
-            int t_steps=100;
-            for (int t =0;t<t_steps;t++)
+            for (int t =0;t<N_x;t++)
             {
-                for(double w=0.0;w<50.0;w+=1.0)
+                for(double w=0.0;w<10.0;w+=0.2) // what is a reasonable range in natural units?
                 {
-                    q_x = N_x*t/t_steps;
-                    q_y = N_y*t/t_steps;
+                    q_x = t;
+                    q_y = t;
 
                     double x=0.0,xb=0.0, y=0.0, z1=0.0, z2=0.0;
+                    double ResEpp,ResEpm,ResEpqp,ResEpqm;
 
                     // calculate x(q,\omega), y, z_1,z_2 (\bar{x}(q,\omega) = x(q,\omega)
                     if (T!=0.0)
@@ -189,60 +193,178 @@ int main()
                         for (int i=0;i<N_xh;i++)
                         {
                             for (int j=0;j<N_yh;j++)
-                            {
+                            {   // calculate the corresponding denominators
+                                ResEpp = (E_p[i][j]-E_m[i][j])
+                                        *(E_p[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
+                                        *(E_p[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh])
+                                        *(1+exp(beta*E_p[i][j]));
+
+                                ResEpm = (E_m[i][j]-E_p[i][j])
+                                        *(E_m[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
+                                        *(E_m[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh])
+                                        *(1+exp(beta*E_m[i][j]));
+
+                                ResEpqp = ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
+                                        *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
+                                        *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] )
+                                        *( 1 + exp(beta* E_p[(i+q_x)%N_xh][(j+q_y)%N_yh]-w ));
+
+                                ResEpqm = ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
+                                        *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
+                                        *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] )
+                                        *( 1 + exp(beta* E_m[(i+q_x)%N_xh][(j+q_y)%N_yh]-w ));
+
+                                // add up the terms for x and xbar…
                                 x +=     (E_p[i][j]-epsilon[i+N_xh][j+N_yh])
                                         *(E_p[i][j]+w-epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])
-                                        /(E_p[i][j]-E_m[i][j])
-                                        /(E_p[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
-                                        /(E_p[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh])
-                                        /(1+exp(beta*E_p[i][j]));
+                                        /ResEpp;
 
                                 x+=      (E_m[i][j]-epsilon[i+N_xh][j+N_yh])
                                         *(E_m[i][j]+w-epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])
-                                        /(E_m[i][j]-E_p[i][j])
-                                        /(E_m[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
-                                        /(E_m[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh])
-                                        /(1+exp(beta*E_m[i][j]));
+                                        /ResEpm;
 
                                 x+=      ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
                                         *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
-                                        /( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
-                                        /( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
-                                        /( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] )
-                                        /( 1 + exp(beta* E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] ));
+                                        /ResEpqp;
 
                                 x+=      ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
                                         *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] )
-                                        /( 1 + exp(beta* E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] ));
+                                        /ResEpqm;
 
+                                xb+=    (E_p[i][j]-epsilon[i+N_xh][j+N_yh])
+                                       *(E_p[i][j]+w-epsilon[(i+q_x)%N_x][(j+q_y)%N_y])
+                                        /ResEpp;
+
+                                xb+=    (E_m[i][j]-epsilon[i+N_xh][j+N_yh])
+                                       *(E_m[i][j]+w-epsilon[(i+q_x)%N_x][(j+q_y)%N_y])
+                                        /ResEpm;
+
+                                xb+=    ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
+                                       *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x)%N_x][(j+q_y)%N_y] )
+                                        /ResEpqp;
+
+                                xb+=    ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
+                                       *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x)%N_x][(j+q_y)%N_y] )
+                                        /ResEpqm;
+
+
+                                // …and y (overall factors (U*m)^2 taken care of later)
+                                y+=     1/ResEpp +1/ResEpm +1/ResEpqp +1/ResEpqm;
+
+                                // and z_1 and z_2
+                                z1+=     ( E_p[i][j]                          -epsilon[i+N_xh][j+N_yh] ) /ResEpp
+                                        +( E_m[i][j]                          -epsilon[i+N_xh][j+N_yh] ) /ResEpm
+                                        +( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] ) /ResEpqp
+                                        +( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] ) /ResEpqm;
+
+                                z2+= (E_p[i][j]                          -epsilon[ i+N_xh         ][ j+N_yh         ])/ResEpp
+                                    +(E_m[i][j]                          -epsilon[ i+N_xh         ][ j+N_yh         ])/ResEpm
+                                    +(E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])/ResEpqp
+                                    +(E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])/ResEpqm;
                             }
                         }
                     }
                     else
                     {
-                        // same but for T=0, e.g. sharp fermionic distribution (yaigh, only half the terms)
+                        // same but for T=0, e.g. sharp fermionic distribution (wohoo, almost only half the terms)
                         for (int i=0;i<N_xh;i++)
                         {
                             for (int j=0;j<N_yh;j++)
                             {
+                                // calculate the corresponding denominators
+                                ResEpm = (E_m[i][j]-E_p[i][j])
+                                        *(E_m[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
+                                        *(E_m[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh]);
+
+
+
+
+
+                                // calculate x, xb,y,z1,z2
                                 x+=      (E_m[i][j]-epsilon[i+N_xh][j+N_yh])
                                         *(E_m[i][j]+w-epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])
-                                        /(E_m[i][j]-E_p[i][j])
-                                        /(E_m[i][j]+w-E_p[(i+q_x)%N_xh][(j+q_y)%N_yh])
-                                        /(E_m[i][j]+w-E_m[(i+q_x)%N_xh][(j+q_y)%N_yh]);
+                                        /ResEpm;
 
-                                x+=      ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
-                                        *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
-                                        /( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] );
+                                xb+=    (E_m[i][j]-epsilon[i+N_xh][j+N_yh])
+                                       *(E_m[i][j]+w-epsilon[(i+q_x)%N_x][(j+q_y)%N_y])
+                                        /ResEpm;
+
+                                y+=     1/ResEpm;
+
+                                z1+= (E_m[i][j] -epsilon[i+N_xh][j+N_yh] ) /ResEpm;
+
+                                z2+= (E_m[i][j] -epsilon[i+N_xh][j+N_yh] ) /ResEpm;
+
+
+
+                                // check if E_{p+q}^+ -w >0
+                                if( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh]-w > 0)
+                                {
+                                    // check if E_{p+q}^- -w >0
+                                    if (E_m[(i+q_x)%N_xh][(j+q_y)%N_yh]-w > 0)
+                                    {
+                                        // add nothing
+                                    }
+
+                                    else
+                                    {   // add term corresponding E_{p+q}^-
+                                        ResEpqm = ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
+                                                *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
+                                                *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] );
+
+                                        x+=      ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
+                                                *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
+                                                /ResEpqm;
+
+                                        y+= 1/ResEpqm;
+
+                                        z1 += (E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] ) /ResEpqm;
+
+                                        z2 += (E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])/ResEpqm;
+
+
+
+                                    }
+                                }
+                                else
+                                {   // add both terms
+                                    ResEpqp = ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
+                                            *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
+                                            *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] );
+
+                                    ResEpqm = ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_p[i][j] )
+                                            *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -E_m[i][j] )
+                                            *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] );
+
+                                    x+=      ( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
+                                            *( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
+                                            /ResEpqm;
+
+                                    x+=      ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] )
+                                            *( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y] )
+                                            /ResEpqp;
+
+                                    y += 1/ResEpqm + 1/ResEpqp;
+
+                                    z1+= ( E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] ) /ResEpqp
+                                        +( E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[i+N_xh][j+N_yh] ) /ResEpqm;
+
+                                    z2+= (E_p[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])/ResEpqp
+                                        +(E_m[(i+q_x)%N_xh][(j+q_y)%N_yh] -w -epsilon[(i+q_x+N_xh)%N_x][(j+q_y+N_yh)%N_y])/ResEpqm;
+                                }
+
                             }
                         }
                     }
-                    cout <<"q=("<<q_x*2*PI/N_x-PI<<","<<q_y*2*PI/N_y-PI<<")\tw="<<w<<"\tx="<<x<<endl;
+
+                    // overall factors for y
+                    y *= U*U*m*m;
+                    z1*= U*m;
+                    z2*= U*m;
+
+
+                    results<<t<<"\t"<<q_x*2*PI/N_x-PI<<"\t"<<q_y*2*PI/N_y-PI<<"\t"<<w
+                           <<"\t"<<x<<"\t"<<xb<<"\t"<<y<<"\t"<<z1<<"\t"<<z2<<endl;
 
                 }
             }
