@@ -1,7 +1,7 @@
 # python script for plotting results from Susceptibility
 # call with data file as argument
 import  numpy
-from pylab import *
+import pylab
 from subprocess import call
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -9,8 +9,8 @@ import array
 import os
 
 # load data from file, using the first argument as filename.
-filename = sys.argv[1]
-A=loadtxt(filename, skiprows=2)
+filename = pylab.sys.argv[1]
+A=pylab.loadtxt(filename, skiprows=2)
 
 # get max coordinates (q,w)
 # (might need modification for offset, e.g. not starting with w=0.)
@@ -52,7 +52,7 @@ for t in range (0,tmax):
 	# calculate denominator of chi
 	#Val[t,w]=(1+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1+lmb*(A[t*n_w+w,xb]*A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z1])**2
 	# calculate chi
-	Val[t,w]=log((-(A[t*n_w+w, x]+A[t*n_w+w, y])*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))+lmb*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2)
+	Val[t,w]=((-(A[t*n_w+w, x]+A[t*n_w+w, y])*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))+lmb*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2)
 		/((1.0+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1.0+lmb*(A[t*n_w+w,xb]*A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z1])**2))
 
     Qx.append(A[t*n_w,1])
@@ -78,6 +78,6 @@ p=ad.plot(Qx,Qy)
 ad.set_xlim(-numpy.pi,numpy.pi)
 ad.set_ylim(-numpy.pi,numpy.pi)
 
-show(block=True)
+pylab.show(block=True)
 
 quit()
