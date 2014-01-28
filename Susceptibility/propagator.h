@@ -1,7 +1,10 @@
 #ifndef PROPAGATOR_H
 #define PROPAGATOR_H
 
-#include libconfig.h++
+#include <libconfig.h++>
+#include <vector>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 using namespace libconfig;
@@ -32,9 +35,9 @@ int N_x,N_y,N,N_xh,N_yh;
 // filling, n \in [0,2]; n_u,n_d \in [0,1]
 double n_u,n_d,n;
 
-vector< vector <double> > epsilon;
-vector< vector <double> > Ep;
-vector< vector <double> > Em;
+vector< vector <double> > epsilon; // defined over the whole Brillouine zone, (0,N_x) x (0,N_y) corresponding (-pi,pi)x(-pi,pi)
+vector< vector <double> > Ep; // defined over the reduced Brillouine zone, (0,N_x) x (0,N_y/2) corresponding (-pi,pi)x(-pi,0)
+vector< vector <double> > Em; // defined over the reduced Brillouine zone
 
 
 public:
@@ -50,7 +53,13 @@ public:
     double get_beta();
 
     double get_m();
-    double calc_m();
+    void calc_m();
+
+    int get_N_x();
+    int get_N_y();
+    int get_N();
+
+    double get_n();
 
     double get_Ep(int x, int y);
     double get_Em(int x, int y);

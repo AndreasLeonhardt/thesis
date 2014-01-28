@@ -15,6 +15,7 @@ propagator::propagator()
 
     n_u=0.5;
     n_d=0.5;
+    n = n_u+n_d;
 
     U=2.0;
     mu=U/2;
@@ -23,15 +24,16 @@ propagator::propagator()
     T=0.0;
     beta=1.0/0.0;
 
-    epsilon.resize(N_x);
     Ep.resize(N_x);
     Em.resize(N_x);
+    epsilon.resize(N_x);
     for (int i=0;i<N_x;i++)
     {
-        epsilon[i].resize(N_y);
         Ep[i].resize(N_y);
         Em[i].resize(N_y);
+        epsilon[i].resize(N_y);
     }
+
     set_epsilon();
     set_E();
     calc_m();
@@ -53,30 +55,22 @@ propagator::propagator(Config * parameters)
     m = parameters->lookup("m_initial"); // default .45
     n_u= parameters->lookup("n_u"); // default .5
     n_d= parameters->lookup("n_d"); // default .5
+    n = n_u + n_d;
     mu = parameters->lookup("mu"); // default .5*U
 
     T = parameters->lookup("T");
-    beta = -1.0; // to be set below
-    if (T==0.0)
-    {
-        // proceed differently, e.g. don't use beta
-        //(maybe it can be set to 1.0/0.0 as well, see other constructor)
-    }
-    else
-    {
-        beta = 1.0/T;
-    }
+    beta = 1.0/T;
 
-    epsilon.resize(N_x);
+
     Ep.resize(N_x);
     Em.resize(N_x);
+    epsilon.resize(N_x);
     for (int i=0;i<N_x;i++)
     {
-        epsilon[i].resize(N_y);
-        Ep[i].resize(N_y);
+        Ep[i].resize(N_y); // extend to reduced BZ
         Em[i].resize(N_y);
+        epsilon[i].resize(N_y); // extend to full BZ
     }
-
 
     set_epsilon();
     set_E();
@@ -95,19 +89,21 @@ double propagator::ResG(int x, int y, int pm)
 {
     double res = 0.0;
     switch(pm)
+    {
     case 1:
-    {
-        res = (Ep[x%N_xh][y%N_yh]-epsilon[(x+N_xh)%N_x][(y+N_yh)%N_y]+mu-U*.5*n)
-                /(Ep[x%N_xh][y%N_yh]-Em[x%N_xh][y%N_yh]);
+        res = (Ep[x%N_x][y%N_y]-epsilon[(x+N_xh)%N_x][(y+N_yh)%N_y]+mu-U*.5*n)
+                /(Ep[x%N_x][y%N_y]-Em[x%N_x][y%N_y]);
         break;
-    }
-    case -1:
-    {
-        res = (Em[x%N_xh][y%N_yh]-epsilon[(x+N_xh)%N_x][(y+N_yh)%N_y]+mu-U*.5*n)
-                /(Em[x%N_xh][y%N_yh]-Ep[x%N_xh][y%N_yh]);
-        break;
-    }
 
+    case -1:
+        res = (Em[x%N_x][y%N_y]-epsilon[(x+N_xh)%N_x][(y+N_yh)%N_y]+mu-U*.5*n)
+                /(Em[x%N_x][y%N_y]-Ep[x%N_x][y%N_y]);
+        break;
+
+    default:
+        cout<<"pm must be +1 or -1"<<endl;
+
+    }
     return res;
 }
 
@@ -120,28 +116,28 @@ double propagator::F(int x, int y, double w)
 
 double propagator::ResF(int x, int y, int pm)
 {
-    return pm*U*m/(Ep[x%N_xh][y%N_yh]-Em[x%n_xh][y%N_yh]);
+    return pm*U*m/(Ep[x%N_x][y%N_y]-Em[x%N_x][y%N_y]);
 }
 
 
 
 double propagator::get_Ep(int x, int y)
 {
-    return Ep[x][y];
+    return Ep[x%N_x][y%N_y];
 }
 
 double propagator::get_Em(int x, int y)
 {
-    return Em[x][y];
+    return Em[x%N_x][y%N_y];
 }
 
 double propagator::get_epsilon(int x, int y)
 {
-    return epsilon[x][y];
+    return epsilon[x%N_x][y%N_y];
 }
 
 
-double propagator::calc_m() // using Newton-Raphson
+void propagator::calc_m() // using Newton-Raphson
 {
     double fm;
     double dfdm;
@@ -156,33 +152,37 @@ double propagator::calc_m() // using Newton-Raphson
         fm=0.0;
         dfdm=0.0;
 
-        if (T=0.0)
+        if (T==0.0)
         {
-            for (int i=0;i<N_xh;i++)
+            for (int i=0;i<N_x;i++)
             {
-                for (int j=0;j<N_yh;j++)
+                for (int j=0;j<N_y;j++)
                 {
                     if (Em[i][j]<0.0 && Ep[i][j]>0.0)
                     {
                         fm+=1.0/(Ep[i][j]-Em[i][j]);
-                        dfdm+=1.0/pow(Ep[i][j]-Em[i][j],3);
+                        dfdm-=2.0/(pow(Ep[i][j]-Em[i][j],3));
+                    }
+                    else
+                    {
+                        // skip corresponding momentum
                     }
 
                 }
             }
         }
-        else
+        else // T!=0
         {
-            for (int i=0;i<N_xh;i++)
+            for (int i=0;i<N_x;i++)
             {
-                for (int j=0;j<N_yh;j++)
+                for (int j=0;j<N_y;j++)
                 {
                     fm+= 1.0/(Ep[i][j]-Em[i][j])*
-                            (  1.0/(1+exp(beta*Ep[i][j]))
-                              -1.0/(1+exp(beta*Em[i][j]))
+                            ( -1.0/(1+exp(beta*Ep[i][j]))
+                              +1.0/(1+exp(beta*Em[i][j]))
                              );
 
-                    dfdm+= 1.0/pow(Ep[i][j]-Em[i][j],3)
+                    dfdm+= 2.0/pow(Ep[i][j]-Em[i][j],3)
                           *(
                                 1.0/( 1.0+exp(beta*Ep[i][j]) ) -1.0/( 1+exp(beta*Em[i][j]) )
                             )
@@ -195,17 +195,18 @@ double propagator::calc_m() // using Newton-Raphson
         }
 
         // calculate new m
-        fm   *= 2.0*U/N;
-        dfdm *= -4.0*U*U*U*m/N;
-
+        fm   *= U/(double)N;
+        dfdm *= 2.0*U*U*U*m/(double)N;
 
         // next m with Newton-Raphson
         // check difference, with infinite recursive filter, to not only rely on a single lucky jump
         mdiff=0.1*mdiff+abs((fm-1)/dfdm);
         // set new m, weighted with A/(A+abort) to avoid jumping forth and back
-        m-=(fm-1)/dfdm*1.0e4/(1.0e4+abort);
+        m-=(fm-1)/dfdm*1.0e4/(1.0e4+(double)abort);
+        set_E();
+
         // check m for a start (remove later).
-        cout<<m<<endl;
+        //cout<<m<<endl;
 
         // break loop after a maximum limit of iterations
         abort++;
@@ -218,7 +219,6 @@ double propagator::calc_m() // using Newton-Raphson
         {
             // continue
         }
-
 
 
 }
@@ -241,12 +241,12 @@ void propagator::set_E()
 {
     double E_Sh, E_Sd;
 
-        for (int i=0;i<N_xh;i++)
+        for (int i=0;i<N_x;i++)
         {
-            for (int j=0;j<N_yh;j++)
+            for (int j=0;j<N_y;j++)
             {
-                E_Sh = .5*(epsilon[i][j]+epsilon[(i+N_xh)][(j+N_yh)]) -mu +U*n_u;
-                E_Sd = sqrt( .25*pow((epsilon[i][j]-epsilon[i+N_xh][j+N_yh]),2) + U*U*m*m );
+                E_Sh = .5*(epsilon[i][j]+epsilon[(i+N_xh)%N_x][(j+N_yh)%N_y]) -mu +U*n_u;
+                E_Sd = sqrt( .25*pow((epsilon[i][j]-epsilon[(i+N_xh)%N_x][(j+N_yh)%N_y]),2) + U*U*m*m );
 
                 Ep[i][j] = E_Sh+E_Sd;
                 Em[i][j] = E_Sh-E_Sd;
@@ -281,6 +281,7 @@ double propagator::get_U()
 void propagator::set_T(double newT)
 {
     T=newT;
+    beta=1.0/T;
     calc_m();
 
 }
@@ -297,5 +298,23 @@ double propagator::get_beta()
 }
 
 
+int propagator::get_N_x()
+{
+    return N_x;
+}
 
 
+int propagator::get_N_y()
+{
+    return N_y;
+}
+
+int propagator::get_N()
+{
+    return N;
+}
+
+double propagator::get_n()
+{
+    return n;
+}
