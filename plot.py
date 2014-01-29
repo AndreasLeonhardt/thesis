@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import array
 import os
 
-call("./StaggeredMagnetization-build-Desktop_Qt_5_0_0_GCC_64bit_SDK-Release/StaggeredMagnetization")
 
 filename = sys.argv[1]
 A=loadtxt(filename, skiprows=0)

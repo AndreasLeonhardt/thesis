@@ -2,18 +2,20 @@
 #define PROPAGATOR_H
 
 #include <libconfig.h++>
-#include <vector>
 #include <cmath>
 #include <iostream>
+#include "armadillo"
 
 using namespace std;
 using namespace libconfig;
+using namespace arma;
 
 class propagator
 {
 protected:
 
 double PI;
+int ndim;
 
 // initial value for up-/down- part of the staggered magnetization m_{s,\sigma}, here m,
 // without distinguishing the up and down case, e.g. m_u = m_d = m = \frac12 m_{\mathrm{s}}
@@ -30,14 +32,15 @@ double beta;
 
 // sites in one dimension (2D square grid)
 // number of sites must be even
-int N_x,N_y,N,N_xh,N_yh;
+int N,N_x,N_xh,N_y,N_yh;
+
 
 // filling, n \in [0,2]; n_u,n_d \in [0,1]
 double n_u,n_d,n;
 
-vector< vector <double> > epsilon; // defined over the whole Brillouine zone, (0,N_x) x (0,N_y) corresponding (-pi,pi)x(-pi,pi)
-vector< vector <double> > Ep; // defined over the reduced Brillouine zone, (0,N_x) x (0,N_y/2) corresponding (-pi,pi)x(-pi,0)
-vector< vector <double> > Em; // defined over the reduced Brillouine zone
+mat epsilon; // defined over the whole Brillouine zone, (0,N_x) x (0,N_y) corresponding (-pi,pi)x(-pi,pi)
+mat Ep; // defined over the reduced Brillouine zone, (0,N_x) x (0,N_y/2) corresponding (-pi,pi)x(-pi,0)
+mat Em; // defined over the reduced Brillouine zone
 
 
 public:
@@ -45,6 +48,7 @@ public:
     propagator(Config *parameters);
 
     void set_U(double newU);
+    void set_U(double newU,double new_mu);
     double get_U(); // updates Ep,Em and m.
 
     void set_T(double newT); // updates m
@@ -54,24 +58,25 @@ public:
 
     double get_m();
     void calc_m();
+    double calc_n();
 
-    int get_N_x();
-    int get_N_y();
+
+    int get_N(int i);
     int get_N();
 
     double get_n();
 
-    double get_Ep(int x, int y);
-    double get_Em(int x, int y);
+    double get_Ep(Col<int> p);
+    double get_Em(Col<int> p);
     void set_E();
-    double get_epsilon(int x, int y);
+    double get_epsilon(Col<int>p);
     void set_epsilon();
 
-    double G(int x, int y, double w);
-    double F(int x, int y, double w);
+    double G(Col<int> p, double w);
+    double F(Col<int> p, int sigma, double w);
 
-    double ResG(int x, int y, int pm);
-    double ResF(int x, int y, int pm);
+    double ResG(Col<int> p, int pm);
+    double ResF(Col<int> p,int sigma, int pm);
 
 
 

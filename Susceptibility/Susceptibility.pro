@@ -4,11 +4,13 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    propagator.cpp
+    propagator.cpp \
+    momentum.cpp
 
 LIBS += -lconfig++
 
 HEADERS += \
-    propagator.h
+    propagator.h \
+    momentum.h
 
 
