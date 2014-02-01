@@ -22,6 +22,9 @@ using namespace std;
 using namespace libconfig;
 using namespace arma;
 
+
+bool is_same(double a, double b);
+
 int main()
 {
 
@@ -64,7 +67,7 @@ int main()
 
     for (int t =0;t<7*Q[0]/4;t++)
     {
-        for(double w=0.0;w<5.0;w+=0.05) // in units of t
+        for(double w=0.0;w<2.0;w+=0.05) // in units of t
         {
             double x=0.0,xb=0.0, y=0.0, z1=0.0, z2=0.0;
             Col<int> p(ndim);
@@ -84,38 +87,57 @@ int main()
                         Eppq = prop->get_Ep(p+q);
                         Empq = prop->get_Em(p+q);
 
+                        if (is_same(Epp,Eppq-w))
+                        {
+                            // double pole at Epp
+                            // insert corresponding formulas here (just writing down the expressions, maybe later
+                            // including it into the class (if possible))
+                        }
+                        else
+                        {
+                            // single poles at Epp, Eppq-w
+                            x += prop->ResG(p  ,+1)*prop->G(p+q,Epp +w)/(1+exp(beta*Epp ));
+                            x += prop->ResG(p+q,+1)*prop->G(p  ,Eppq-w)/(1+exp(beta*(Eppq-w)));
 
-                        x +=     prop->ResG(p  ,+1)*prop->G(p+q,Epp +w)/(1+exp(beta*Epp ))
-                                +prop->ResG(p  ,-1)*prop->G(p+q,Emp +w)/(1+exp(beta*Emp ))
-                                +prop->ResG(p+q,+1)*prop->G(p  ,Eppq-w)/(1+exp(beta*(Eppq-w)))
-                                +prop->ResG(p+q,-1)*prop->G(p  ,Empq-w)/(1+exp(beta*(Empq-w)));
+                            xb+= prop->ResG(p    ,+1)*prop->G(p+q+Q,Epp +w)/(1+exp(beta*Epp ));
+                            xb+= prop->ResG(p+q+Q,+1)*prop->G(p    ,Eppq-w)/(1+exp(beta*(Eppq-w)));
 
-                        xb+=     prop->ResG(p    ,+1)*prop->G(p+q+Q,Epp +w)/(1+exp(beta*Epp ))
-                                +prop->ResG(p    ,-1)*prop->G(p+q+Q,Emp +w)/(1+exp(beta*Emp ))
-                                +prop->ResG(p+q+Q,+1)*prop->G(p    ,Eppq-w)/(1+exp(beta*(Eppq-w)))
-                                +prop->ResG(p+q+Q,-1)*prop->G(p    ,Empq-w)/(1+exp(beta*(Empq-w)));
+                            y += prop->ResF(p  ,-1,+1)*prop->F(p+q,+1,Epp +w)/(1+exp(beta*Epp ));
+                            y += prop->ResF(p+q,+1,+1)*prop->F(p  ,-1,Eppq-w)/(1+exp(beta*(Eppq-w)));
 
+                            z1+= prop->ResG(p  ,+1)*prop->F(p+q,+1,Epp +w)/(1+exp(beta*Epp ));
+                            z1+= prop->ResF(p+q,+1,+1)*prop->G(p   ,Eppq-w)/(1+exp(beta*(Eppq-w)));
 
-                        // …and y
-                        y +=     prop->ResF(p  ,-1,+1)*prop->F(p+q,+1,Epp +w)/(1+exp(beta*Epp ))
-                                +prop->ResF(p  ,-1,-1)*prop->F(p+q,+1,Emp +w)/(1+exp(beta*Emp ))
-                                +prop->ResF(p+q,+1,+1)*prop->F(p  ,-1,Eppq-w)/(1+exp(beta*(Eppq-w)))
-                                +prop->ResF(p+q,+1,-1)*prop->F(p  ,-1,Empq-w)/(1+exp(beta*(Empq-w)));
+                            z2+= prop->ResF(p  ,-1,+1)*prop->G(p+q,Epp +w)/(1+exp(beta*Epp ));
+                            z2+= prop->ResG(p+q,+1)*prop->F(p   ,-1,Eppq-w)/(1+exp(beta*(Eppq-w)));
+                        }
+                        if (is_same(Emp,Empq-w))
+                        {
+                            // double pole at Emp
+                            // inser formulas here (first hand written, maybe in an elegant way later
+                        }
+                        else
+                        {
+                            // single poles at Emp, Empq-w
+                            x += prop->ResG(p  ,-1)*prop->G(p+q,Emp +w)/(1+exp(beta*Emp ));
+                            x += prop->ResG(p+q,-1)*prop->G(p  ,Empq-w)/(1+exp(beta*(Empq-w)));
 
-                        // and z_1 and z_2
-                        z1+=     prop->ResG(p  ,+1)*prop->F(p+q,+1,Epp +w)/(1+exp(beta*Epp ))
-                                +prop->ResG(p  ,-1)*prop->F(p+q,+1,Emp +w)/(1+exp(beta*Emp ))
-                                +prop->ResF(p+q,+1,+1)*prop->G(p   ,Eppq-w)/(1+exp(beta*(Eppq-w)))
-                                +prop->ResF(p+q,+1,-1)*prop->G(p   ,Empq-w)/(1+exp(beta*(Empq-w)));
+                            xb+= prop->ResG(p    ,-1)*prop->G(p+q+Q,Emp +w)/(1+exp(beta*Emp ));
+                            xb+= prop->ResG(p+q+Q,-1)*prop->G(p    ,Empq-w)/(1+exp(beta*(Empq-w)));
 
-                        z2+=     prop->ResF(p  ,-1,+1)*prop->G(p+q,Epp +w)/(1+exp(beta*Epp ))
-                                +prop->ResF(p  ,-1,-1)*prop->G(p+q,Emp +w)/(1+exp(beta*Emp ))
-                                +prop->ResG(p+q,+1)*prop->F(p   ,-1,Eppq-w)/(1+exp(beta*(Eppq-w)))
-                                +prop->ResG(p+q,-1)*prop->F(p   ,-1,Empq-w)/(1+exp(beta*(Empq-w)));
+                            y += prop->ResF(p  ,-1,-1)*prop->F(p+q,+1,Emp +w)/(1+exp(beta*Emp ));
+                            y += prop->ResF(p+q,+1,-1)*prop->F(p  ,-1,Empq-w)/(1+exp(beta*(Empq-w)));
+
+                            z1+= prop->ResG(p  ,-1)*prop->F(p+q,+1,Emp +w)/(1+exp(beta*Emp ));
+                            z1+= prop->ResF(p+q,+1,-1)*prop->G(p   ,Empq-w)/(1+exp(beta*(Empq-w)));
+
+                            z2+= prop->ResF(p  ,-1,-1)*prop->G(p+q,Emp +w)/(1+exp(beta*Emp ));
+                            z2+= prop->ResG(p+q,-1)*prop->F(p   ,-1,Empq-w)/(1+exp(beta*(Empq-w)));
+                        }
                     }
                 }
             }
-            else
+            else // T=0 IS NOT UPDATED TO THE PROPER TREATMENT OF SECOND ORDER POLES. SEE ABOVE FOR PROPER TREATMENT.
             {
                 // same but for T=0, e.g. sharp fermionic distribution (wohoo, almost only half the terms)
                 for (int px=0;px<Q[0];px++)
@@ -205,3 +227,19 @@ int main()
     return 0;
 }
 
+
+
+
+bool is_same(double a, double b)
+{
+    double eps = numeric_limits<double>::epsilon();
+    double diff = abs(a-b);
+    a=abs(a);
+    b=abs(b);
+    double max = (a>b) ? a : b;
+
+    if( diff<max*eps)
+        return true;
+
+    return false;
+}

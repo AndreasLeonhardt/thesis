@@ -3,7 +3,10 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+                ../Susceptibility/propagator.cpp
 
 LIBS += -lconfig++
+
+HEADERS+= ../Susceptibility/propagator.h
 
