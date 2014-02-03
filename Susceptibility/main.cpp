@@ -22,7 +22,7 @@ using namespace std;
 using namespace libconfig;
 using namespace arma;
 
-
+// compare to doubles in a meaningful way.
 bool is_same(double a, double b);
 
 int main()
@@ -58,7 +58,6 @@ int main()
     Q(0)=prop->get_N(0); // this is not ready for flexibel dimensions
     Q(1)=prop->get_N(1);
 
-    double Epp,Emp,Eppq,Empq;
     double beta = prop->get_beta();
 
     // set q to start values
@@ -82,13 +81,50 @@ int main()
                     {
                         p[1]=py;
 
-                        Epp = prop->get_Ep(p);
-                        Emp = prop->get_Em(p);
-                        Eppq = prop->get_Ep(p+q);
-                        Empq = prop->get_Em(p+q);
+//                        // variables of often used values to speed up the following calculations
+//                        double Epp = prop->get_Ep(p);
+//                        double Emp = prop->get_Em(p);
+//                        double Eppq = prop->get_Ep(p+q);
+//                        double Empq = prop->get_Em(p+q);
+
+//                        double ResGpp = prop->ResG(p,+1);
+//                        double ResGppq= prop->ResG(p+q,+1);
+//                        double ResGmp = prop->ResG(p,-1);
+//                        double ResGmpq= prop->ResG(p+q,-1);
+
+//                        double ResFpp = prop->ResF(p,+1,+1);
+//                        double ResFppq= prop->ResF(p+q,+1,+1);
+//                        double ResFmp = prop->ResF(p,+1,-1);
+//                        double ResFmpq= prop->ResF(p+q,+1,-1);
+
+//                        double BoltzP = 1/(1+exp(beta*Epp));
+//                        double BoltzM = 1/(1+exp(beta*Epp));
+
+                        // check order of poles (single poles, double poles)
+                        // ASSUMING THAT 0 <= w < U*m, therefore we have ALWAYS Epp > Empq-w; Eppq-w > Emp and Emp > Epp.
+                        // leaving us to check that Epp != Eppq-w and Emp != Empq-w.
 
                         if (is_same(Epp,Eppq-w))
                         {
+                            x += (prop->dwResG(p,+1)*prop->ResG(p+q,+1)
+                                  +prop->ResG(p,+1)*prop->dwResG(p+q,+1))/(1+exp(beta*Epp))
+                                    + prop->ResG(p,+1)*prop->ResG(p+q,+1)*(-beta)/(2*cosh(beta*Epp));
+
+                            xb+= (prop->dwResG(p,+1)*prop->ResG(p+q+Q,+1)
+                                  +prop->ResG(p,+1)*prop->dwResG(p+q+Q,+1))/(1+exp(beta*Epp))
+                                    + prop->ResG(p,+1)*prop->ResG(p+q+Q,+1)*(-beta)/(2*cosh(beta*Epp));
+
+                            y += (prop->dwResF(p,-1,+1)*prop->ResF(p+q,+1,+1)
+                                  +prop->ResF(p,-1,+1)*prop->dwResF(p+q,+1,+1))/(1+exp(beta*Epp))
+                                    + prop->ResF(p,-1,+1)*prop->ResF(p+q,+1,+1)*(-beta)/(2*cosh(beta*Epp));
+
+                            z1 += (prop->dwResG(p,+1)*prop->ResF(p+q,+1,+1)
+                                   +prop->ResG(p,+1)*prop->dwResF(p+q,+1,+1))/(1+exp(beta*Epp))
+                                    + prop->ResG(p,+1)*prop->ResF(p+q,+1,+1)*(-beta)/(2*cosh(beta*Epp));
+
+                            z2 += (prop->dwResF(p,-1,+1)*prop->ResG(p+q,+1)
+                                   +prop->ResF(p,-1,+1)*prop->dwResG(p+q,+1))/(1+exp(beta*Epp))
+                                    + prop->ResF(p,-1,+1)*prop->ResG(p+q,+1)*(-beta)/(2*cosh(beta*Epp));
                             // double pole at Epp
                             // insert corresponding formulas here (just writing down the expressions, maybe later
                             // including it into the class (if possible))
@@ -113,8 +149,26 @@ int main()
                         }
                         if (is_same(Emp,Empq-w))
                         {
-                            // double pole at Emp
-                            // inser formulas here (first hand written, maybe in an elegant way later
+                            // pole of second order at w=Emp
+                            x += (prop->dwResG(p,-1)*prop->ResG(p+q,-1)
+                                  +prop->ResG(p,-1)*prop->dwResG(p+q,-1))/(1+exp(beta*Emp))
+                                    + prop->ResG(p,-1)*prop->ResG(p+q,-1)*(-beta)/(2*cosh(beta*Emp));
+
+                            xb+= (prop->dwResG(p,-1)*prop->ResG(p+q+Q,-1)
+                                  +prop->ResG(p,-1)*prop->dwResG(p+q+Q,-1))/(1+exp(beta*Emp))
+                                    + prop->ResG(p,-1)*prop->ResG(p+q+Q,-1)*(-beta)/(2*cosh(beta*Emp));
+
+                            y += (prop->dwResF(p,-1,-1)*prop->ResF(p+q,+1,-1)
+                                  +prop->ResF(p,-1,-1)*prop->dwResF(p+q,+1,-1))/(1+exp(beta*Emp))
+                                    + prop->ResF(p,-1,-1)*prop->ResF(p+q,+1,-1)*(-beta)/(2*cosh(beta*Emp));
+
+                            z1 += (prop->dwResG(p,-1)*prop->ResF(p+q,+1,-1)
+                                   +prop->ResG(p,-1)*prop->dwResF(p+q,+1,-1))/(1+exp(beta*Emp))
+                                    + prop->ResG(p,-1)*prop->ResF(p+q,+1,-1)*(-beta)/(2*cosh(beta*Emp));
+
+                            z2 += (prop->dwResF(p,-1,-1)*prop->ResG(p+q,-1)
+                                   +prop->ResF(p,-1,-1)*prop->dwResG(p+q,-1))/(1+exp(beta*Emp))
+                                    + prop->ResF(p,-1,-1)*prop->ResG(p+q,-1)*(-beta)/(2*cosh(beta*Emp));
                         }
                         else
                         {
@@ -229,17 +283,26 @@ int main()
 
 
 
-
+// This function compares two doubles in a meaningful way by
+// comparing the differnce of a and b to the smallest notable difference
+// between max(a,b) and the next bigger number.
+// note: could be enhanced using the integer representation.
+//          or simplified by fixing epsilon, since we have a quite limited data range.
 bool is_same(double a, double b)
 {
-    double eps = numeric_limits<double>::epsilon();
+    // get difference between 1.0 and next bigger value
+    double eps = numeric_limits<double>::epsilon()*10.0;
+    // absolut value of difference between input numbers
     double diff = abs(a-b);
+    // choose number with bigger absolut value
     a=abs(a);
     b=abs(b);
     double max = (a>b) ? a : b;
 
+    // compare difference to scaled epsilon
     if( diff<max*eps)
         return true;
 
+    // if it fails, they are unequal.
     return false;
 }

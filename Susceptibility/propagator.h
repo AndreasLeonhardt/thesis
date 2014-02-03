@@ -39,8 +39,8 @@ int N,N_x,N_xh,N_y,N_yh;
 double n_u,n_d,n;
 
 mat epsilon; // defined over the whole Brillouine zone, (0,N_x) x (0,N_y) corresponding (-pi,pi)x(-pi,pi)
-mat Ep; // defined over the reduced Brillouine zone, (0,N_x) x (0,N_y/2) corresponding (-pi,pi)x(-pi,0)
-mat Em; // defined over the reduced Brillouine zone
+mat Ep;
+mat Em;
 
 
 public:
@@ -76,7 +76,10 @@ public:
     double F(Col<int> p, int sigma, double w);
 
     double ResG(Col<int> p, int pm);
-    double ResF(Col<int> p,int sigma, int pm);
+    double ResF(Col<int> p, int sigma, int pm);
+
+    double dwResG(Col<int> p, int pm);
+    double dwResF(Col<int> p, int sigma, int pm);
 
 
 

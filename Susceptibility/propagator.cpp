@@ -98,6 +98,12 @@ double propagator::ResG(Col<int> p, int pm)
     return res;
 }
 
+double propagator::dwResG(Col<int> p, int pm)
+{
+    double res = pm*(1-ResG(p,pm))/(Ep(p(0)%N_x,p(1)%N_y)-Em(p(0)%N_x,p(1)%N_y));
+    return res;
+}
+
 
 double propagator::F(Col<int> p, int sigma, double w)
 {
@@ -110,7 +116,10 @@ double propagator::ResF(Col<int> p, int sigma, int pm)
     return -sigma*pm*U*m/(Ep(p(0)%N_x, p(1)%N_y)-Em(p(0)%N_x, p(1)%N_y));
 }
 
-
+double propagator::dwResF(Col<int> p, int sigma, int pm)
+{
+    return -pm*ResF(p,sigma,pm)/(Ep(p(0)%N_x, p(1)%N_y)-Em(p(0)%N_x, p(1)%N_y));
+}
 
 double propagator::get_Ep(Col<int> p)
 {
