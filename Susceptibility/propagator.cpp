@@ -118,7 +118,7 @@ double propagator::ResF(Col<int> p, int sigma, int pm)
 
 double propagator::dwResF(Col<int> p, int sigma, int pm)
 {
-    return -pm*ResF(p,sigma,pm)/(Ep(p(0)%N_x, p(1)%N_y)-Em(p(0)%N_x, p(1)%N_y));
+    return sigma*U*m/(pow(Ep(p(0)%N_x,p(1)%N_y)-Em(p(0)%N_x,p(1)%N_y),2));
 }
 
 double propagator::get_Ep(Col<int> p)

@@ -51,20 +51,20 @@ int main()
 
     // set q ( from (0,0) to (N_x,N_y) corresponding to to be in (-\pi,\pi)\times (-\pi,\pi)
     // and w, which should be choose in a clever way to give a meaningful result
-    // so far it is only a diagonal straight line through the Brillouin zone.
+    // following a path through the Brillouin zone
     // only use existing values for (q_x,q_y) (according to discrete momenta)
     Col<int> q(ndim);
     Col<int> Q(ndim);
-    Q(0)=prop->get_N(0); // this is not ready for flexibel dimensions
-    Q(1)=prop->get_N(1);
+    Q(0)=prop->get_N(0)/2; // this is not ready for flexibel dimensions
+    Q(1)=prop->get_N(1)/2;
 
     double beta = prop->get_beta();
 
     // set q to start values
-    q[0]=Q[0]/4;
-    q[1]=3*Q[1]/4;
+    q[0]=Q[0]/2;
+    q[1]=3*Q[1]/2;
 
-    for (int t =0;t<7*Q[0]/4;t++)
+    for (int t =0;t<7*Q[0]/2;t++)
     {
         for(double w=0.0;w<2.0;w+=0.05) // in units of t
         {
@@ -74,18 +74,18 @@ int main()
             // calculate x(q,\omega), y, z_1,z_2 (\bar{x}(q,\omega) = x(q+Q,\omega)
             if (prop->get_T()!=0.0)
             {
-                for (int px=0;px<Q[0];px++)
+                for (int px=0;px<2*Q[0];px++)
                 {
                     p[0]=px;
-                    for (int py=0;py<Q[1];py++)
+                    for (int py=0;py<2*Q[1];py++)
                     {
                         p[1]=py;
 
-//                        // variables of often used values to speed up the following calculations
-//                        double Epp = prop->get_Ep(p);
-//                        double Emp = prop->get_Em(p);
-//                        double Eppq = prop->get_Ep(p+q);
-//                        double Empq = prop->get_Em(p+q);
+                        // variables of often used values to speed up the following calculations
+                        double Epp = prop->get_Ep(p);
+                        double Emp = prop->get_Em(p);
+                        double Eppq = prop->get_Ep(p+q);
+                        double Empq = prop->get_Em(p+q);
 
 //                        double ResGpp = prop->ResG(p,+1);
 //                        double ResGppq= prop->ResG(p+q,+1);
@@ -106,6 +106,7 @@ int main()
 
                         if (is_same(Epp,Eppq-w))
                         {
+                            // double pole at Epp
                             x += (prop->dwResG(p,+1)*prop->ResG(p+q,+1)
                                   +prop->ResG(p,+1)*prop->dwResG(p+q,+1))/(1+exp(beta*Epp))
                                     + prop->ResG(p,+1)*prop->ResG(p+q,+1)*(-beta)/(2*cosh(beta*Epp));
@@ -125,9 +126,6 @@ int main()
                             z2 += (prop->dwResF(p,-1,+1)*prop->ResG(p+q,+1)
                                    +prop->ResF(p,-1,+1)*prop->dwResG(p+q,+1))/(1+exp(beta*Epp))
                                     + prop->ResF(p,-1,+1)*prop->ResG(p+q,+1)*(-beta)/(2*cosh(beta*Epp));
-                            // double pole at Epp
-                            // insert corresponding formulas here (just writing down the expressions, maybe later
-                            // including it into the class (if possible))
                         }
                         else
                         {
@@ -201,10 +199,10 @@ int main()
                     {
                         p[1]=py;
 
-                        Epp = prop->get_Ep(p);
-                        Emp = prop->get_Em(p);
-                        Eppq = prop->get_Ep(p+q);
-                        Empq = prop->get_Em(p+q);
+                        double Epp = prop->get_Ep(p);
+                        double Emp = prop->get_Em(p);
+                        double Eppq = prop->get_Ep(p+q);
+                        double Empq = prop->get_Em(p+q);
 
                         if (Epp<0.0)
                         {
@@ -251,26 +249,26 @@ int main()
         }
 
         // move to next position in q, depending on the path.
-        if (t<Q[0]/4)
+        if (t<Q[0]/2)
         {
             q[0] -=1;
             q[1] +=1;
         }
-        else if (t<3*Q[0]/4)
+        else if (t<3*Q[0]/2)
         {
             q[1]-=1;
         }
-        else if (t<Q[0])
+        else if (t<2*Q[0])
         {
             q[0]+=1;
             q[1]+=1;
         }
-        else if (t<5*Q[0]/4)
+        else if (t<5*Q[0]/2)
         {
             q[0]+=1;
             q[1]-=1;
         }
-        else if(t<7*Q[0]/4)
+        else if(t<7*Q[0]/2)
         {
             q[0]-=1;
         }
@@ -291,7 +289,7 @@ int main()
 bool is_same(double a, double b)
 {
     // get difference between 1.0 and next bigger value
-    double eps = numeric_limits<double>::epsilon()*10.0;
+    double eps = numeric_limits<double>::epsilon()*2.0;
     // absolut value of difference between input numbers
     double diff = abs(a-b);
     // choose number with bigger absolut value

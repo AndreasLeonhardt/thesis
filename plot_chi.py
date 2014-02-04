@@ -44,23 +44,26 @@ Qy=[]
 
 # fill with corresponding coordinates/values
 for t in range (0,tmax):
-    T[t]=A[t*n_w,0]
+	T[t]=A[t*n_w,0]
 # plotted values are selected (x,xb,y,z1,z2) /calculated (chi, denominator of chi) here.
-    for w in range(0,n_w):
-        # choose x,xb,y,z1 or z2
-	#Val[t,w]=A[t*n_w+w,z2]
-	# calculate denominator of chi
-	Val[t,w]=(1+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2
-	# calculate chi
-	#Val[t,w]=((-(A[t*n_w+w, x]+A[t*n_w+w, y])*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))+lmb*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2)
-	#	/((1.0+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2))
+	for w in range(0,n_w):
+        	# choose x,xb,y,z1 or z2
+		#Val[t,w]=A[t*n_w+w,z2]
+		# calculate denominator of chi
+		#Val[t,w]=(1+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2
+        	# calculate chi
+        	Val[t,w]=((-(A[t*n_w+w, x]+A[t*n_w+w, y])*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))+lmb*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2)
+		         /((1.0+lmb*(A[t*n_w+w, x]+A[t*n_w+w, y]))*(1.0+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2))
+		# calculate the parts of the denominator	
+		#Val[t,w]=-lmb**2*(A[t*n_w+w,z1]+A[t*n_w+w,z2])**2
+		#Val[t,w]= (1+lmb*(A[t*n_w+w,xb]+A[t*n_w+w, y]))
 
-    Qx.append(A[t*n_w,1])
-    Qy.append(A[t*n_w,2])
+	Qx.append(A[t*n_w,1])
+	Qy.append(A[t*n_w,2])
 
 
 for w in range(n_w):
-    W[w]=float(A[w,3])
+	W[w]=float(A[w,3])
     
 # create 2D arrays for plot function using meshgrid (see doc)
 W,T=numpy.meshgrid(W,T)
@@ -68,15 +71,15 @@ W,T=numpy.meshgrid(W,T)
 
 # create figure, subfigure and plot finally
 fig = plt.figure()
-#ad = fig.add_subplot(1,1,1,projection='3d')
-ad = fig.add_subplot(1,1,1)
+ad = fig.add_subplot(1,1,1,projection='3d')
+#ad = fig.add_subplot(1,1,1)
 
-#p= ad.plot_wireframe(T,W,Val)
-p= ad.contour(T,W,Val)
-cb = fig.colorbar(p,ax=ad)
+p= ad.plot_wireframe(T,W,Val)
+#p= ad.contour(T,W,Val)
+#cb = fig.colorbar(p,ax=ad)
 
 # limit z axis, since results may diverge
-#ad.set_zlim3d(-500,500)
+ad.set_zlim3d(-5000,5000)
 
 # plot path through Brillouin zone
 #ad= fig.add_subplot(3,3,3)
