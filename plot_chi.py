@@ -80,27 +80,29 @@ for t in range (0,tmax):
 		# calculate denominator of chi
 		#Val[t,w]=(1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b)
 		
-		# calculate chi
+		# calculate chi (imaginary part of the susceptibility
 		
+		# transversal (+-)
 		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+yb))+lmb*(z1+z2)*(z1b+z2b))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b))).imag
 		
+		# longotudinal (zz)
 		# define X,Xb,Y,Z1u,Z2u,Z1d,Z2d for usage below, spin is differentiated by u and d only when it matters.
 		K = +x-y
 		Kb= +xb-yb
-		N = +z1-z2
-		Nb= +z1b-z2b
+		N = -z1+z2
+		Nb= -z1b+z2b
 
-		# chi^zz (denominator fist, then the whole expression, using the denominator (comment carefully))
-		#Val[t,w]= ((1.0+lmb**2*(-K**2+N**2))*(1.0+lmb**2*(-Kb**2+N**2))+lmb**4*(K*N-N*Kb))
-		# calculate enumerator, dividing by the previous expression. 
-		#Val[t,w]=2*((1+lmb**2*(N**2-Kb**2))*(K-lmb*K**2)-lmb**2*(K-Kb)*(N**2-lmb*K*N**2)-lmb**3*K*(K-Kb)*N**2-lmb*N**2*(1+lmb**2*(N**2-K**2)))/Val[t,w]
+		# calculate imaginary part of longitudinal retarted susceptibility. Factor of 2 because of spin (change up and down)
+		#Val[t,w]=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
 	
 	Qx.append(A[t*n_w,1])
 	Qy.append(A[t*n_w,2])
 
 
 for w in range(n_w):
-	W[w]=float(A[w,3])
+	# scale frequency to Heisenberg model predictions, that is with 4t^2/U 
+	#(since w is in units of t or t=1, that would be divided by U/t, which is U here)
+	W[w]=float(A[w,3])/4*U
     
 # create 2D arrays for plot function using meshgrid (see doc)
 W,T=numpy.meshgrid(W,T)
@@ -113,7 +115,7 @@ ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
 p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'RdBu')
-p.set_clim(-50000,50000)
+p.set_clim(-500,500)
 #p= ad.contour(T,W,Val)
 cb = fig.colorbar(p,ax=ad)
 
