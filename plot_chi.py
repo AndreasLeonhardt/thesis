@@ -18,14 +18,23 @@ tmax=int(A[-1,0])+1
 n_w =int(len(A[:,0])/(tmax))
 
 # specifier for type of plot, as written from Susceptibility.
-x=4
-xb=5
-y=6
-yb=7
-z1=8
-z1b=9
-z2=10
-z2b=11
+# where b indicates a bar (q+Q) and r and i the real and imaginary parts respectiviely
+n_xr=4
+n_xi=5
+n_xbr=6
+n_xbi=7
+n_yr=8
+n_yi=9
+n_ybr=10
+n_ybi=11
+n_z1r=12
+n_z1i=13
+n_z1br=14
+n_z1bi=15
+n_z2r=16
+n_z2i=17
+n_z2br=18
+n_z2bi=19
 
 
 # values for old files, 
@@ -59,23 +68,27 @@ for t in range (0,tmax):
 # plotted values are selected (x,xb,y,z1,z2) /calculated (chi, denominator of chi) here.
 	for w in range(0,n_w):
 		tw=t*n_w+w
-		
-		# choose x,xb,y,z1 or z2
-		#Val[t,w]=A[tw,z2]
-		
+		x=complex(A[tw,n_xr],A[tw,n_xi])
+		xb=complex(A[tw,n_xbr],A[tw,n_xbi])
+		y=complex(A[tw,n_yr],A[tw,n_yi])
+		yb=complex(A[tw,n_ybr],A[tw,n_ybi])
+		z1=complex(A[tw,n_z1r],A[tw,n_z1i])
+		z1b=complex(A[tw,n_z1br],A[tw,n_z1bi])
+		z2=complex(A[tw,n_z2r],A[tw,n_z2i])
+		z2b=complex(A[tw,n_z2br],A[tw,n_z2bi])
+
 		# calculate denominator of chi
-		#Val[t,w]=(1.0+lmb*(A[tw, x]+A[tw, y]))*(1.0+lmb*(A[tw,xb]+A[tw,yb]))-lmb**2*(A[tw,z1]+A[tw,z2])*(A[tw,z1b]+A[tw,z2b])
+		#Val[t,w]=(1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b)
 		
 		# calculate chi
 		
-		Val[t,w]=((-(A[tw, x]+A[tw, y])*(1.0+lmb*(A[tw,xb]+A[tw,yb]))+lmb*(A[tw,z1]+A[tw,z2])*(A[tw,z1b]+A[tw,z2b]))
-		/((1.0+lmb*(A[tw, x]+A[tw, y]))*(1.0+lmb*(A[tw,xb]+A[tw,yb]))-lmb**2*(A[tw,z1]+A[tw,z2])*(A[tw,z1b]+A[tw,z2b])))
+		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+yb))+lmb*(z1+z2)*(z1b+z2b))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b))).imag
 		
 		# define X,Xb,Y,Z1u,Z2u,Z1d,Z2d for usage below, spin is differentiated by u and d only when it matters.
-		K = +A[tw, x] -A[tw, y]
-		Kb= +A[tw,xb] -A[tw,yb]
-		N = +A[tw,z1] -A[tw,z2] 
-		Nb= +A[tw,z1b] -A[tw,z2b]
+		K = +x-y
+		Kb= +xb-yb
+		N = +z1-z2
+		Nb= +z1b-z2b
 
 		# chi^zz (denominator fist, then the whole expression, using the denominator (comment carefully))
 		#Val[t,w]= ((1.0+lmb**2*(-K**2+N**2))*(1.0+lmb**2*(-Kb**2+N**2))+lmb**4*(K*N-N*Kb))
@@ -100,7 +113,7 @@ ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
 p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'RdBu')
-p.set_clim(-100000,100000)
+p.set_clim(-50000,50000)
 #p= ad.contour(T,W,Val)
 cb = fig.colorbar(p,ax=ad)
 

@@ -3,6 +3,7 @@
 
 #include <libconfig.h++>
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include "armadillo"
 
@@ -72,8 +73,8 @@ public:
     double get_epsilon(Col<int>p);
     void set_epsilon();
 
-    double G(Col<int> p, double w);
-    double F(Col<int> p, int sigma, double w);
+    complex<double> G(Col<int> p, complex<double> w);
+    complex<double> F(Col<int> p, int sigma, complex<double> w);
 
     double ResG(Col<int> p, int pm);
     double ResF(Col<int> p, int sigma, int pm);

@@ -70,7 +70,7 @@ propagator::propagator(Config * parameters)
 
 
 
-double propagator::G(Col<int> p, double w)
+complex<double> propagator::G(Col<int> p, complex<double> w)
 {
     return (w-epsilon((p(0)+N_xh)%N_x,(p(1)+N_yh)%N_y)+mu-U*.5*n) // no difference between up/down, assuming n_u=n_d=n/2
             /((w- Ep(p(0)%N_x, p(1)%N_y) )*(w-Em(p(0)%N_x,p(1)%N_y)));
@@ -105,7 +105,7 @@ double propagator::dwResG(Col<int> p, int pm)
 }
 
 
-double propagator::F(Col<int> p, int sigma, double w)
+complex<double> propagator::F(Col<int> p, int sigma, complex<double> w)
 {
     return -sigma*U*m/((w-Ep(p(0)%N_x, p(1)%N_y))*(w-Em(p(0)%N_x, p(1)%N_y)));
 }
