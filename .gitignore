@@ -1,0 +1,26 @@
+*.png
+chi_q_w*
+Chi_q_q*
+Susceptibility-*
+StaggeredMagnetization-*
+latex/Unbenanntes Dokument
+latex/masterthesis.bib.backup
+latex/masterthesis.bib~
+latex/masterthesis.log
+latex/test.cfg
+latex/test.cfg~
+latex/thesis.0.0.aux
+latex/thesis.0.0.bbl
+latex/thesis.0.0.blg
+latex/thesis.0.0.log
+latex/thesis.0.0.out
+latex/thesis.0.0.pdf
+latex/thesis.tex.backup
+latex/thesis.tex~
+latex/thesis.0.0.toc
+reading_material/
+stagmagn.txt
+
+
+
+
