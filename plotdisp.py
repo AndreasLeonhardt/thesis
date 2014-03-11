@@ -8,33 +8,36 @@ import os;
 filename = sys.argv[1];
 A=loadtxt(filename, skiprows=0);
 
-begin=0;
-n=50;
-treshold=1*n*n
+nx=int(A[-1,0])
+ny=int(A[-1,0])
 
-X=zeros((n,n));
-Y=zeros((n,n));
-Em=zeros((n,n));
-Ep=zeros((n,n));
+X=zeros((nx,ny));
+Y=zeros((nx,ny));
+Em=zeros((nx,ny));
+Ep=zeros((nx,ny))
+eps=zeros((nx,ny))
 
-
-for i in range(0,n):
-	for j in range (0,n):
-		X[i,j]=(A[i+j*n+treshold,1]);
-		Y[i,j]=(A[i+j*n+treshold,2]);
-		Em[i,j]=(A[i+j*n+treshold,3]);
-		Ep[i,j]=(A[i+j*n+treshold,4]);
-
+for i in range(nx):
+	for j in range(ny):
+		X[i,j]=(A[i*(ny+1),2]);
+		Y[i,j]=(A[j,3]);
+		Em[i,j]=(A[i+j*(nx+1),5]);
+		Ep[i,j]=(A[i+j*(nx+1),6]);
+		eps[i,j]=A[i+j*(nx+1),4]
 
 
 
 
 
 f = figure();
-ad = f.add_subplot(111,projection='3d');
 
+ad = f.add_subplot(111,projection='3d');
 ad.plot_wireframe(X,Y,Em)
 ad.plot_wireframe(X,Y,Ep,color='red')
+
+#ad = f.add_subplot(111)
+#p=ad.contour(X,Y,eps)
+#cb=f.colorbar(p,ax=ad)
 
 #xlabel('j');
 #ylabel('E');

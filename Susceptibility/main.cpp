@@ -76,7 +76,7 @@ int main()
     {
         for(double w=w_min;w<=w_max+w_step;w+=w_step) // in units of t
         {
-            complex<double> cw(w,eta);
+            complex<double> cw(w,eta); // complex w, that is cw = w + i\eta
             complex<double> x[2], y[2], z1[2], z2[2];
             Col<int> p(ndim);
 
@@ -270,10 +270,13 @@ int main()
         {
             q[0]-=1;
         }
+        cout<<"\r"<<100*t/(7*Q[0]/2)<<"%"<<flush;
+        //printf("%2i%%\n",100*t/(7*Q[0]/2)); // show progress
+
     }
 
 
-
+    results.close();
     return 0;
 }
 

@@ -114,10 +114,12 @@ fig = plt.figure()
 ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
-p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'RdBu')
-p.set_clim(-500,500)
+#p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'RdBu') # RdBu, Blue
+#p.set_clim(-5000,5000)
 #p= ad.contour(T,W,Val)
-cb = fig.colorbar(p,ax=ad)
+#cb = fig.colorbar(p,ax=ad)
+
+p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
 # limit z axis, since results may diverge
 #ad.set_zlim3d(-5000,5000)

@@ -235,12 +235,18 @@ In certain situations the Heisenberg model can be derived from the Hubbard model
 
 The Hubbard model is defined by the Hamiltonian
 \begin{equation}
- \hat{H} = - t \sum_{<i,j>,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
+ \hat{H} = - t \sum_{<i,j>,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 
 	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
 	   + U \sum_i c^{\dagger}_{i,\uparrow}c_{i,\uparrow} c^{\dagger}_{i,\downarrow}c_{i,\downarrow} 
 	    . \label{Hubbard_space}
 \end{equation}
 where the sum runs over all pairs $<i,j>$.
+The first term is the band-structure Hamiltonian, while the second term models the electron-electron interaction such that only repulsion on the same site is taken into account. 
+U characterizes the strength in this interaction and will be treated as an tunable parameter. 
+\todo{digg into the band structure, different examples, expecially the $t-t^{\prime}-t^{\prime\prime}$ model}
+
+
+
 In order to get the Hamiltonian in momentum space we make use of the relation between creation and annihilation operators in space and momentum space
 \begin{equation}
  c^{\dagger}_i=N^{-\frac12} \sum_k \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_k, \qquad c_i=\sum_k N^{-\frac12}\euler^{\im \vec{k}\vec{R}_i } c_k.
@@ -294,12 +300,13 @@ The propagators are defined by
  G_{\vec p}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec{p}        ,\sigma}(\tau)  c^{\dagger}_{\vec{p},\sigma}(0) \rangle \\
  F_{\vec p}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec{p}+\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec{p},\sigma}(0) \rangle \\ \label{Def_Propagator}
 \end{IEEEeqnarray}
-with the time ordering operator $\mathcal{T}_{\tau}$, acting on a pair of fermion operators according to
+with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair of fermion operators according to
 \begin{equation}
  \mathcal{T}_{\tau} \hat{A}(\tau_1) \hat{B}(\tau_2) = -\Theta(\tau_1-\tau_2)\hat{A}(\tau_1) \hat{B}(\tau_2) + \Theta(\tau_2-\tau_1)\hat{B}(\tau_2) \hat{A}(\tau_1).
 \end{equation}
 
-where $\vec{Q}=(\pi,\pi)$ is a nesting vector in the Brillouin zone.
+where $\vec{Q}=(\pi,\pi)$ is a nesting vector in the Brillouin zone, 
+which means that the fermi surface is in great parts symmetric under translations of the nesting vector.
 We now calculate the expressions for the propagators in the mean field aproach.
 We can rewrite every product of two operators $\hat{A}\cdot\hat{B}$ as
 \begin{IEEEeqnarray}{rCl}
@@ -309,7 +316,7 @@ We can rewrite every product of two operators $\hat{A}\cdot\hat{B}$ as
 			 +\langle \hat B \rangle \hat A
 			 - \langle \hat A \rangle \langle \hat B \rangle
 \end{IEEEeqnarray}
-In the mean field approach we neglect the product of fluctuations of both operators. 
+In the mean field approach we neglect the first factor – the product of fluctuations – leaving us with
 \begin{equation}
   \hat{A}\cdot\hat{B} 
 		   \stackrel{\mathrm{mf}}{ \approx }
@@ -317,7 +324,8 @@ In the mean field approach we neglect the product of fluctuations of both operat
 			 +\langle \hat B \rangle \hat A 
 			 - \langle \hat A \rangle \langle \hat B \rangle
 \end{equation}
-We use this relation on the Hubbard term in the Hamiltonian. By dropping the constant term, since this doesn't change our system, we end up with
+We use this relation on the number operators $n_{\sigma}$ in the Hubbard term of the Hamiltonian. 
+By dropping the constant term corresponding to $\langle \hat A \rangle \langle \hat B \rangle$, since this doesn't change our system, we end up with
 \begin{equation}
  H_U \stackrel{\mathrm{mf}}{\approx}  \frac{U}{N}
  \sum_{\vec{q}} \sum_{\sigma} 
@@ -334,14 +342,15 @@ The sum over $\vec q$ reduces then to
 			      \sum_{\vec p} \left(  c^{\dagger}_{\vec{p}+\vec Q, \sigma} c_{\vec p, \sigma} 
 	                                          + c^{\dagger}_{\vec{p}       , \sigma} c_{\vec p+ \vec Q, \sigma} \right) \right)
 \end{equation}
-For convenience in later calculations the last was added again with a the sum  over $\vec{p}$ shifted by $\vec Q$, compensationg with a factor of $\frac12$.
+For later convenience the last term was added again with the sum  over $\vec{p}$ shifted by $\vec Q$, compensationg with a factor of $\frac12$.
 \begin{IEEEeqnarray}{rClLl}
  n_{\sigma} &=&  \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma} \rangle %\nonumber \\
 	    &=&  \frac1{N} \sum_{\vec{p}} \left( 1- G_{\vec{p},\sigma}(0) \right) \\
 m_{s,\sigma} &=& \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} \rangle %\nonumber \\
 	   &=-&  \frac1{N} \sum_{\vec{p}} F_{\vec{p},\sigma}(0) \label{Def_ms}
 \end{IEEEeqnarray}
-The coefficient $n_{\sigma}$ counts the amount of up spins, relative to the number of sites $N$. 
+The coefficient $n_{\sigma}$ counts the amount of up spins, relative to the number of sites $N$, 
+that is the filling factor for spin particles taking values in between 0 and 1 and $n_\sigma =\frac12$ for half-filling.
 The expression for $m_{s,\sigma}$ is related to the staggered magnetization $m_s$ through
 \begin{IEEEeqnarray}{rCl}
  m_s 	&=& \frac1N \sum_{i} \mathrm{sgn}(i) \left( c^{\dagger}_{i,\uparrow}c_{i,\uparrow} - c^{\dagger}_{i,\downarrow}c_{i,\downarrow} \right) \nonumber \\
@@ -457,23 +466,74 @@ We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$.
 The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
 This relation does not hold in general, since double occupied states give a symmetric contribution to $m_{s,\sigma}$ rather than a asymmetric one.
 However, in an otherwise asymetric large system these contributions are expected to vanish, since they might be distributed evenly on even and odd sites 
-and therefore cancel in the sum over all sites.
+and therefore cancel on average.
 
 In order to calculate $m_ {s,\sigma}$ we solve equation \ref{Def_ms}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
-This decouples the two equations for $\uparrow$ and $\downarrow$ and by using the definition we end up with
+We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, since they depend only on $m_{\sigma}^2$.  
+This decouples the two equations for $\uparrow$ and $\downarrow$ and by using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we end up with
 \begin{equation}
  m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
 							      \frac { Um_{s,\sigma} }
-								    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-)}.
+								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
 \end{equation}
 The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $m_{s,\sigma}$.
-%
-\newline
-  \newline
+To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as descriped in \ref{MFS}.
+The resulting equation
+\begin{equation}
+ 1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
+\end{equation}
+is solved using the Newton-Raphson method.
+In the case of a square lattice with only nearest neighbour hopping terms the staggered magnetization as a function of the dimensionless parameter $\frac{U}{t}$ is shown in figure
+\ref{ms_nn}.
+
+\begin{figure}
+ \label{ms_nn}
+ \includegraphics[width=.9\textwidth]{../stagmag_T10.png}
+ \caption{staggered magnetization as function of $\frac Ut$}
+ 
+\end{figure}
+
+
+
+We get an expression for $n_{\sigma}$ in a similiar way summing up $G_{\vec p,\sigma}$. 
+Since the number of particles is fixed by the chemical potential, and it can be shown that half filling, $n_{\uparrow}=n_{\downarrow}=\frac12$ occurs at $\mu=\frac U2$ 
+this has only been done to show self consistency.
+
+\section{Calculating the magnetic response function}
+
+diagrams, approximations: non-crossing, restricting to ladder diagrams (using the mean-field props), summing up, using matrices and geometric sum.
+Retarded response function, Wick rotation. 
+$\chi^{+-},\chi^{zz}$
+evaluating infinite frequency sums. 
+
+$A=\Im(C^+)$
+
+
+\section{Results}
+Temperature: atm T=10K. Why, what changes?
+
+
+
+shows dispersion along the zone boundary,
+difference in (pi,0) compared to (pi/2,pi/2)
+compare to heisenberg, show limit
+continuum
+
+
+\subsection{t-U-Model}
+compare to measurements
+\subsection{t-t'-t''-U-Model}
+explain wher t-t'-t'' is from. reference
+show energy dispersion
+explain features from that (e.g. form of continuum boundary)
+compare to measurements: extract measurement data, choose same path, set atop each other, find perfect U. Interpretation? Continuum?
+compare to J-J'-J'' Heisenberg. Can this explain those features? Advantage of this method
+
+broadness of peaks, smearing through $\eta$, getting a better continuum?
+\newpage
+
 TO DO
 \begin{itemize}
-  \item describe how this is solved using Cauchys integral theorem, a weighting function and so on
- \item check that $n_{\sigma}=\sum_{\vec{p}} G_{\vec{p},-\sigma}(0)$ holds, even when $n_{\sigma}=\frac12$ fixed.
  \item $T=0$;
  \item Results, inkl. plot
 \end{itemize}
@@ -486,7 +546,31 @@ TO DO
 
 
 
+\appendix
 
+\chapter{Mathematical techniques}
+
+\section{Matsubara Frequency Summation} \label{MFS}
+
+In the calculations above we encounter frequently functions of the type 
+$ \sum_{n \in \mathbb{Z}} f(\im \omega_n)$.
+
+In order to deal with these infinite sums over Matsubara frequencies, we make use of Cauchys integral theorem twice.
+Fermionic Matsubara frequencies are given by $\frac{\pi}{\beta}(2n+1)$ for $n \in \mathbb{Z}$.
+Those are also the roots of $h(z) = \frac{\beta}{\euler^{\beta z}+1}$.
+If $f(z)$ doesn't have any poles on the imaginary axis, we can therefore rewrite the sum as an integral, 
+with an contour that encloses the imaginary axis tightly and cloeses at infinity.\todo{as shown in figure}
+The functions used here usually have poles on the real axis. 
+With choosing the contour close enough to the imaginary axis we keep those outside of the enclosed area.
+For functions falling off faster than $\frac{1}{|z|^{1+\delta}}$ $(\delta>0)$ as $|z|\rightarrow \infty$ we can blow up the contour to a
+circle with infinite radius. The integral will vanish, but we pick up residuals for every pole of $f$.
+In total we get
+\begin{equation}
+ \sum_{n\in\mathbb{Z}} f(\im \omega_n) = \frac{1}{2\pi \im} \int_0 \dint z f(z)\frac{\beta}{1+\euler^{\beta z }} 
+ = \sum_{\mathrm{Res}_f} \left. \frac{f(z)\beta}{1+\euler^{\beta z }}\right|_{z=z_{\mathrm{Res}_f}}
+\end{equation}
+
+\section{Wick Rotation}
 
 
 

@@ -42,7 +42,7 @@ double n_u,n_d,n;
 mat epsilon; // defined over the whole Brillouine zone, (0,N_x) x (0,N_y) corresponding (-pi,pi)x(-pi,pi)
 mat Ep;
 mat Em;
-
+Col<double> t;
 
 public:
     propagator();

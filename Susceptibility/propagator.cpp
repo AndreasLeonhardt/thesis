@@ -27,6 +27,10 @@ propagator::propagator()
     Ep.set_size(N_x,N_y);
     Em.set_size(N_x,N_y);
     epsilon.set_size(N_x,N_y);
+    t.set_size(3);
+    t(0)=1.0;
+    t(1)=.2326;
+    t(2)=.1163;
 
 
     set_epsilon();
@@ -63,9 +67,27 @@ propagator::propagator(Config * parameters)
     Em.set_size(N_x,N_y);
     epsilon.set_size(N_x,N_y);
 
+
+    t.set_size(3);
+    t(0)=parameters->lookup("t")[0];
+    t(1)=parameters->lookup("t")[1];
+    t(2)=parameters->lookup("t")[2];
+
     set_epsilon();
     set_E();
     calc_m();
+
+    // write the energie dispersion as well as E^{\pm}
+    ofstream Epm;
+    Epm.open("energies.txt");
+    for (int i=0;i<N_x;i++)
+    {
+        for (int j =0;j<N_y;j++)
+        {
+            Epm<<i<<"\t"<<j<<"\t"<<2*PI*(double(i)/N_x-.5)<<"\t"<<2*PI*(double(j)/N_y-.5)<<"\t"<<epsilon(i,j)<<"\t"<<Ep(i,j)<<"\t"<<Em(i,j)<<endl;
+        }
+    }
+    Epm.close();
 }
 
 
@@ -115,7 +137,6 @@ double propagator::ResF(Col<int> p, int sigma, int pm)
 {
     return -sigma*pm*U*m/(Ep(p(0)%N_x, p(1)%N_y)-Em(p(0)%N_x, p(1)%N_y));
 }
-
 double propagator::dwResF(Col<int> p, int sigma, int pm)
 {
     return sigma*U*m/(pow(Ep(p(0)%N_x,p(1)%N_y)-Em(p(0)%N_x,p(1)%N_y),2));
@@ -262,6 +283,7 @@ double propagator::calc_n()
 }
 
 
+// energy dispersion is defined here
 void propagator::set_epsilon()
 {
     // calculate energies \varepsilon_{\vec{k}} of the unpertubed system
@@ -269,7 +291,10 @@ void propagator::set_epsilon()
     {
         for(int j=0;j<N_y;j++)
         {
-            epsilon(i,j)= -2*cos(2*PI* (double(i)/N_x-.5))-2*cos(2*PI* (double(j)/N_y-.5));
+            // t-t'-t"
+            epsilon(i,j) =  -2*t(0)*( cos(2*PI*(double(i)/N_x-.5))+cos(2*PI*(double(j)/N_y-.5)) )
+                            -2*t(1)*( cos(4*PI*(double(i)/N_x-.5))+cos(4*PI*(double(j)/N_y-.5)) )
+                            -4*t(2)*  cos(2*PI*(double(i)/N_x-.5))*cos(2*PI*(double(j)/N_y-.5)) ;
         }
     }
 }
