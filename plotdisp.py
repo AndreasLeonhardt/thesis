@@ -32,8 +32,8 @@ for i in range(nx):
 f = figure();
 
 ad = f.add_subplot(111,projection='3d');
-ad.plot_wireframe(X,Y,Em)
-ad.plot_wireframe(X,Y,Ep,color='red')
+ad.plot_wireframe(X,Y,eps)
+#ad.plot_wireframe(X,Y,Ep,color='red')
 
 #ad = f.add_subplot(111)
 #p=ad.contour(X,Y,eps)

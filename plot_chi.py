@@ -95,14 +95,14 @@ for t in range (0,tmax):
 		# calculate imaginary part of longitudinal retarted susceptibility. Factor of 2 because of spin (change up and down)
 		#Val[t,w]=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
 	
-	Qx.append(A[t*n_w,1])
-	Qy.append(A[t*n_w,2])
+	Qx.append(A[t*n_w,1]/numpy.pi)
+	Qy.append(A[t*n_w,2]/numpy.pi)
 
 
 for w in range(n_w):
 	# scale frequency to Heisenberg model predictions, that is with 4t^2/U 
 	#(since w is in units of t or t=1, that would be divided by U/t, which is U here)
-	W[w]=float(A[w,3])/4*U
+	W[w]=float(A[w,3])*0.258#eV    , HB: /4*U
     
 # create 2D arrays for plot function using meshgrid (see doc)
 W,T=numpy.meshgrid(W,T)
@@ -114,12 +114,12 @@ fig = plt.figure()
 ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
-#p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'RdBu') # RdBu, Blue
-#p.set_clim(-5000,5000)
+p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues') # RdBu, Blues
+p.set_clim(-000,50000)
 #p= ad.contour(T,W,Val)
-#cb = fig.colorbar(p,ax=ad)
+cb = fig.colorbar(p,ax=ad)
 
-p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
+#p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
 # limit z axis, since results may diverge
 #ad.set_zlim3d(-5000,5000)

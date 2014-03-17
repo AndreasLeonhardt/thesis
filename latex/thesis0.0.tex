@@ -292,7 +292,7 @@ The $U$-term translates to
 
 \section{Mean Field Equations}
 
-We treat the Hubbard modell in a pertubative approach, where the pertubation is given by the Hubbard interaction $H_U$ defined above.
+We treat the Hubbard model in a pertubative approach, where the pertubation is given by the Hubbard interaction $H_U$ defined above.
 We expect a symmetry breaking ground state \todo{why do we expect SB?}. 
 We can describe such a ground state by introducing a off-diagonal propagator in addition to the usual one.
 The propagators are defined by
@@ -469,7 +469,7 @@ However, in an otherwise asymetric large system these contributions are expected
 and therefore cancel on average.
 
 In order to calculate $m_ {s,\sigma}$ we solve equation \ref{Def_ms}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
-We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, since they depend only on $m_{\sigma}^2$.  
+We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, since they depend only on $m_{\sigma}^2$ and because of the above symmetry between $n_{\uparrow}$ and $n_{\downarrow}$.
 This decouples the two equations for $\uparrow$ and $\downarrow$ and by using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we end up with
 \begin{equation}
  m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
@@ -493,23 +493,108 @@ In the case of a square lattice with only nearest neighbour hopping terms the st
  
 \end{figure}
 
-
-
-We get an expression for $n_{\sigma}$ in a similiar way summing up $G_{\vec p,\sigma}$. 
-Since the number of particles is fixed by the chemical potential, and it can be shown that half filling, $n_{\uparrow}=n_{\downarrow}=\frac12$ occurs at $\mu=\frac U2$ 
-this has only been done to show self consistency.
+The number of particles per site is fixed by the chemical potential. It can be calculated in a similar way, summing up the diagonal propagator $G_{\vec{p}, \sigma}$. 
+However, in the materials we are looking at we have half-filling for spin up and down respectively, i.e. $n_{\uparrow}=n_{\downarrow}=\frac12$.
+It can be shown from particle-hole symmetrie that half filling occurs at $\mu=\frac U2$.\todo{include proof for $\mu=\frac U2 \Rightarrow n=1$}
+However, the sum has been calculated and found to be self-consistent.
 
 \section{Calculating the magnetic response function}
+
+In order to compare the model to experiment we need to calculate observable quantities.
+In experiment one usually measures response functions. 
+In X-Ray or neutron scattering experiments the obeservable quantity is the scattering cross section, which is related to the dynamic magnetic susceptibility via
+\begin{equation}
+\frac{\dint^2 \sigma}{\dint \Omega \dint \omega} = -2\Im \left(\chi(\omega,\vec q)\right)
+\end{equation}
+
+\todo{derivation from Fermis Golden Rule}
+
+The dynamical spin susceptibility can be expressed as
+\begin{equation}
+ \chi_{J}^{ab} = \delta_{ab} \langle \mathbf{J}(\vec q,\tau)\cdot \mathbf{J}(-\vec q,) \rangle
+\end{equation}
+with the components 
+\begin{equation}
+\mathbf{ J}^{a}(\vec q) = \sum_{\vec p} \sum_{\alpha,\beta} c^{\dagger}_{\vec p ,\alpha} \left(\sigma^a \right)_{\alpha\beta} c_{\vec p+\vec q,\beta}
+\end{equation}
+
+
+
+\begin{equation}
+ \chi_J(\vec q,\omega)  = \chi_J^{+-}(\vec q,\omega) + \chi_J^{-+}(\vec q,\omega) + \chi_J^{zz}(\vec q,\omega)
+\end{equation}
+
+
+
+
+%The components of the magnetic susceptibility are defined by
+%\begin{equation}
+% \chi^{ab}(\tau - \tau^{\prime}) = \sum_{\vec{p}} \left( \sum_{\alpha, \beta} c^{\dagger}_{\vec p, \alpha }(\tau) \left(\sigma^{a}\right)_{\alpha \beta} c_{\vec p , \beta}(\tau)  \right)
+%			    \cdot \left(  \sum_{\gamma, \delta} c^{\dagger}_{\vec p, \gamma }(\tau^{\prime}) \left(\sigma^{b}\right)_{\gamma \delta} c_{\vec p , \delta}(\tau^{\prime}) \right)  
+%\end{equation}
+
+
+Expressing $\chi_J^{+-}$ and $\chi_J^{-+}$ in creation and destruction operators gives then
+\begin{IEEEeqnarray}{rCl}
+ \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
+			  &=&  \sum_{\vec p \vec{p}^{\prime}} \langle c^{\dagger}_{\vec p,\downarrow}(\tau) c_{\vec{p}+\vec q, \uparrow}(\tau) 
+								    c^{\dagger}_{\vec{p}^{\prime}+\vec q,\downarrow}(0) c_{\vec{p}^{\prime},\uparrow}(0) \rangle
+\end{IEEEeqnarray}
+
+\begin{IEEEeqnarray}{rCl}
+ \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
+			  &=&  \sum_{\vec p \vec{p}^{\prime}} \langle c^{\dagger}_{\vec p,\downarrow}(\tau) c_{\vec{p}+\vec q, \uparrow}(\tau) 
+								    c^{\dagger}_{\vec{p}^{\prime}+\vec q,\downarrow}(0) c_{\vec{p}^{\prime},\uparrow}(0) \rangle
+\end{IEEEeqnarray}
+
+can be expressed in terms of the above Greens functions.
 
 diagrams, approximations: non-crossing, restricting to ladder diagrams (using the mean-field props), summing up, using matrices and geometric sum.
 Retarded response function, Wick rotation. 
 $\chi^{+-},\chi^{zz}$
 evaluating infinite frequency sums. 
 
-$A=\Im(C^+)$
+%$A=\Im(C^+)$
 
 
 \section{Results}
+
+The calculations were performed with parameters for $\mathrm{Sr}_2 \mathrm{Ir} \mathrm{O}_4$.
+As a layered Pervoskite, it is effectively two-dimensional.
+Taken only nearest neighbours into account for the band structure did not provided the obeserved characteristics of the material.
+However, adding next-to-nearest and next-to-next-to nearest neighbours showed to be provide the features one gets from measurements.
+
+The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from LDA+SO calculations \todo{reference}.
+Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
+its only free parameter $U$ is treated as a adjustable parameter, without an expected value from other calculations or measurements.
+For this reason the Hubbard model cannot be seen as a first-principle method \todo{link to paper on Hubbard model and its limitations}
+and the interpretation of the final $U$ does not relate directly to an observable physical quantity.
+
+We have chosen a widely used path for in the Brillouin zone $\vec q$ that covers the main features of these systems\todo{references to papers using the path}.
+
+Desctiption of path. 
+
+Possible excitations are given as the poles of $\chi(\vec q,\omega)$. 
+Following these poles give us the spin-wave dispersion $\omega(\vec q)$ and a continuum at higher energies $\omega$.
+
+From the energy dispersion \todo{show energie dispersion for different models} we expect that $\omega( (0,0) ) = \omega(( \pi,\pi )) = 0$\todo{why?}.
+In the limit $U\rightarrow \infty$ we arrive at the Heisenberg model. 
+With only nearest neighbour interactions we get from the Heisenberg model
+$\omega( (\frac{\pi}{2}, \frac{\pi}2 )) = \omega(( \pi,0))$.
+For large $U$ the model agrees with the Heisenberg nearest neighbour coupling $J=4\frac{U}{t^2}$ \todo{plot of infinite U limit}.
+
+The main feature is the dispersion along the boundary of the reduced Brillouin zone, that is for example along $(\frac{\pi}2,\frac{\pi}2) \rightarrow (\pi,0)$.
+$\omega(\vec q)$ increases, a feature not present in the nearest neighbour Heisenberg model. 
+The differnce of $\omega(\frac{\pi}2,\frac{\pi}2)$ and $\omega(\pi,0)$ decreases for larger U as one would expect.
+However, a Hubbard model based on nearest neighbour hopping only is not capable of explaining the measured gap.
+The $t-t^{\prime}-t^{\prime \prime}-$Hubbard model, 
+i.e. based on a bandstructure with next, next-to-next and third neighbour hopping terms 
+matches the observations to a high degree. 
+Differences occur at $\vec q = (\pi,0)$, where our models predicts lower energies compared to the measured values.
+
+
+
+
 Temperature: atm T=10K. Why, what changes?
 
 

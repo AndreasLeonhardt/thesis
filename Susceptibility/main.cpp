@@ -45,7 +45,8 @@ int main()
     // open result file and write overall parameters
     ofstream results;
     results.open(parameters->lookup("chi"));
-    results<<"U= "<<prop->get_U()<<"\tT= "<<prop->get_T()<<"\tn= "<<prop->get_n()<<"\tm= "<<prop->get_m()<<"\tN= "<<prop->get_N()<<endl;
+    results<<"U= "<<prop->get_U()<<"\tT= "<<prop->get_T()<<"\tn= "<<prop->get_n()<<"\tm= "<<prop->get_m()
+           <<"\tN= "<<prop->get_N()<<"\teta="<<eta<<endl;
     results.precision(17);
 
     // write column title "t q_x q_y w   Re(x)   Im(x)   Re(xb)  Im(xb)  Re(y)   Im(y)   Re(yb)  Im(yb)  Re(z1)  Im(z1)  Re(z1b) Im(z1b) Re(z2)  Im(z2)  Re(z2b) Im(z2b)" to the file
@@ -69,7 +70,13 @@ int main()
     double beta = prop->get_beta();
 
     // set q to start values
+
+    // old path starting value
     q[0]=Q[0]/2;
+    q[1]=3*Q[1]/2;
+
+    // new path starting value
+    q[0]=3*Q[0]/2;
     q[1]=3*Q[1]/2;
 
     for (int t=0;t<=7*Q[0]/2;t++)
@@ -247,31 +254,54 @@ int main()
 
 
         // move to next position in q, depending on the path.
-        if (t<Q[0]/2)
-        {
-            q[0] -=1;
-            q[1] +=1;
-        }
-        else if (t<3*Q[0]/2)
-        {
-            q[1]-=1;
-        }
-        else if (t<4*Q[0]/2)
-        {
-            q[0]+=1;
-            q[1]+=1;
-        }
-        else if (t<5*Q[0]/2)
-        {
-            q[0]+=1;
-            q[1]-=1;
-        }
-        else if(t<=7*Q[0]/2)
-        {
-            q[0]-=1;
-        }
+
+//        old path (as in La_2CuO4 paper)
+//        if (t<Q[0]/2)
+//        {
+//            q[0] -=1;
+//            q[1] +=1;
+//        }
+//        else if (t<3*Q[0]/2)
+//        {
+//            q[1]-=1;
+//        }
+//        else if (t<4*Q[0]/2)
+//        {
+//            q[0]+=1;
+//            q[1]+=1;
+//        }
+//        else if (t<5*Q[0]/2)
+//        {
+//            q[0]+=1;
+//            q[1]-=1;
+//        }
+//        else if(t<=7*Q[0]/2)
+//        {
+//            q[0]-=1;
+//        }
+
+                if (t<Q[0]/2)
+                {
+                    q[0] +=1;
+                    q[1] -=1;
+                }
+                else if (t<3*Q[0]/2)
+                {
+                    q[1]+=1;
+                }
+                else if (t<5*Q[0]/2)
+                {
+                    q[0]-=1;
+                    q[1]-=1;
+                }
+                else if(t<=7*Q[0]/2)
+                {
+                    q[0]+=1;
+                }
+
+        // print progress (only dependent on t, e.g. the q in the walk through the BZ
         cout<<"\r"<<100*t/(7*Q[0]/2)<<"%"<<flush;
-        //printf("%2i%%\n",100*t/(7*Q[0]/2)); // show progress
+
 
     }
 
