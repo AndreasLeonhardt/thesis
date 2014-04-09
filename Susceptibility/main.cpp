@@ -305,7 +305,7 @@ int main()
 
     }
 
-
+    cout<<endl;
     results.close();
     return 0;
 }

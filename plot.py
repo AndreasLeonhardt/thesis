@@ -1,5 +1,5 @@
 
-from numpy import *
+import numpy as np
 from pylab import *
 from subprocess import call
 import matplotlib.pyplot as plt

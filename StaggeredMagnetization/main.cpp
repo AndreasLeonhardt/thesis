@@ -32,14 +32,18 @@ int main()
         ofstream stagmag;
         stagmag.open(parameters->lookup("stag"));
 
+        double U_start=parameters->lookup("U_start");
+        double U_end=parameters->lookup("U_end");
+        double U_step=parameters->lookup("U_step");
 
         // loop over different U
-        for(double U=10.0;U>=0.0;U-=.1)
+        for(double U=U_start;U>=U_end;U+=U_step)
         {
             prop->set_U(U,U/2.0);
 
             // write results
             stagmag<<U<<"\t"<<prop->get_m()<<"\t"<<"\t"<<prop->calc_n()<<endl;
+            cout<<"U="<<U<<endl;
 
         }
 

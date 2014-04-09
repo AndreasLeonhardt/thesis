@@ -20,11 +20,12 @@
 \section{Towards A Spin Hamiltonian}
 
 \subsection{Iridium And Compounds}
-Iridium is a transition metal, i.e. it has a only partially filled $d$ shell, the shell structure of atomar Ir is given by $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
+Iridium is a transition metal, i.e. it has a only partially filled $d$ shell.  
+The shell structure of atomar Ir is given by $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
 % ${\mathrm{Sr}}_{2}{\mathrm{IrO}}_{4}$
 In the compounds treated in this thesis Iridium is oxidized to $\mathrm{Ir}^{4+}$ 
 removing the $6s^2$ electrons as well as two electrons from the $5d$ shell. 
-the ion has therefore $5d^5$ as the outermost and active shell ~\cite{Abragam70}.
+The ion has therefore $5d^5$ as the outermost and active shell ~\cite{Abragam70}.
 
 %(the ion shell structure does not follow the Aufbau principle. 
 %Therefore has $\mathrm{Ir}^{4+}$ a different shell structure than Tantalum, even though they have the same number of electrons. 
@@ -36,9 +37,9 @@ the same holds for $\mathrm{Sr}^{2+}$ with the electron configuration of $\mathr
 
 \subsection{Ligand Field}
 
-Embedded in the crystal of the compound, total rotational symmetry is broken and reduces to discrete symmetries about certain axes. 
+Embedded in the crystal of the compound, total rotational symmetry is broken and reduced to discrete symmetries about certain axes. 
 This splits up the former degenerate $5d$ levels. 
-In all of the compunds lookes at here, the $\mathrm{Ir}$ atoms are surrounded by octahedral of double negatively charged oxygen ions, the so calles ligands. 
+In all of the compunds lookes at here, the $\mathrm{Ir}$ atoms are surrounded by octahedral of double negatively charged oxygen ions, the so called ligands. 
 Those octahedra might share corners or even edges, while the latter one simply means they share two edges. 
 %
 % In ${\mathrm{Sr}}_{2}{\mathrm{IrO}}_{4}$ the $\mathrm{Ir}^{4+}$ is surrounded by 8 $\mathrm{O}^{2-}$, building a octaeder with shared corners.
@@ -101,7 +102,7 @@ Using a Fourier transform on the Bloch states of different bands $n$, we get the
 Those are no longer eigenstates of the Hamiltonian, but still orthonormal, since the transformation is unitarian. 
 Furthermore they are localized around the positions $\vec{R}_i$.
 Instead of the eigenfunctions of the single particle Hamiltonian, we can use linear combinations of them. 
-This gives us a different set if Wannier functions, that are related to the ones previously defined by an unitary transformation.
+This gives us a different set of Wannier functions, that are related to the ones previously defined by another unitary transformation.
 The additional degrees of freedom can be used to optimize the Wannier functions according to certain criteria.
 The most common ones are maximal localization or symmetries of the crystal or the atomic orbitals.
 
@@ -170,15 +171,26 @@ where the matrix elements $U_{ijkl}$ are given by
 \begin{equation}
  U_{ijkl} = \int \!  \dint^3 r \, \dint^3 r^{\prime} \,  \Psi_i^*(\vec{r}) \Psi_j^*(\vec{r}^{\prime}) V(\vec{r}-\vec{r}^{\prime} ) \Psi_k(\vec{r}) \Psi_l(\vec{r}) 
 \end{equation}
-Due to the small overlap of different states, usually only a few matrix elements are of relevant magnitude.
-The diagonal matrix elements $U_{iii} = U$ account for the repulsion between electrons on the same site. 
-Because of the Pauli principle they have to have opposite spins. This is guaranteed by the anticommutation relation of creation and annihilation operators.
+Due to the small overlap of different states, usually only a few matrix elements are of relevant magnitude, a long range interaction is however possible.
+The diagonal matrix elements $U_{iii} = U$ account for the repulsion between electrons on the same site and are certainly the most important contribution.
+Because of the Pauli principle they have to have opposite spins. 
+This is guaranteed by the anticommutation relation of creation and annihilation operators.
 Including spin notation in the creation and annihilation operators, we can simplify the interaction contribution to 
 \begin{equation}
  H_{\text{int}} = U \sum_i n_{i,\uparrow} n_{i,\downarrow},
 \end{equation}
 using the number operator $n_{i,\sigma} = a^{\dagger}_{i,\sigma} a_{i,\sigma}$.
 This is the only term taken into account for the Hubbard model.
+However, reducing an interaction that is not necessarily local to only on-site interactions is a grave simplification, 
+neglecting the vast amount of parameters in the interaction matrix $U_{ijkl}$ and therefore long range repulsion.
+The interaction seems to be lower than what you would expect from an correlation integral of the corresponding orbitals.
+\todo{only when supportable with citation. Article about Hubbard in general?}
+It is not possible to link the parameter $U$ to a physical quantity directly
+and the Hubbard model is therefore not a first principle model. $U$ has to be seen as an effective parameter, that has to be adjusted according to experiments or calculations using
+other methods.
+The single particle part of the Hamiltonian however can be taken from first principle methods such as density funcitonal calculations\todo{DFT here?}.
+
+
 % other interactions 
 % U_{ijji}, Heisenberg
 % U_{iijj}, density fluctuations
@@ -235,17 +247,27 @@ In certain situations the Heisenberg model can be derived from the Hubbard model
 
 The Hubbard model is defined by the Hamiltonian
 \begin{equation}
- \hat{H} = - t \sum_{<i,j>,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 
-	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
+ \hat{H} = \hat{H}_0
 	   + U \sum_i c^{\dagger}_{i,\uparrow}c_{i,\uparrow} c^{\dagger}_{i,\downarrow}c_{i,\downarrow} 
 	    . \label{Hubbard_space}
 \end{equation}
-where the sum runs over all pairs $<i,j>$.
-The first term is the band-structure Hamiltonian, while the second term models the electron-electron interaction such that only repulsion on the same site is taken into account. 
-U characterizes the strength in this interaction and will be treated as an tunable parameter. 
+with a band structure single particle Hamiltonian $\hat{H}_0$.
+In the most simple only nearest neighbour hoppings are taken into account and we have \todo{with or without hermitian conjugate?}
+\begin{equation}
+ \hat{H}_0 = - t \sum_{<i,j>,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
+\end{equation}
+where the sum runs over all pairs $<i,j>$, counting each pair only once. 
+In an more elaborate approach we might add second and third neighbour hoppings and extend the band structure to
+\begin{equation}
+ \hat{H}_0 = - t \sum_{\langle i,j \rangle,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma}  - t^{\prime} \sum_{\langle \langle i,j \rangle \rangle ,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 
+ - t^{\dagger} \sum_{\langle \langle \langle i,j \rangle \rangle \rangle ,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma}  	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
+\end{equation}
+Double and triple brackets denote second and third neighbour terms respectively. 
+In the finite systems used for calculations we choose periodic boundary conditions.
+
 \todo{digg into the band structure, different examples, expecially the $t-t^{\prime}-t^{\prime\prime}$ model}
 
-
+s
 
 In order to get the Hamiltonian in momentum space we make use of the relation between creation and annihilation operators in space and momentum space
 \begin{equation}
@@ -266,7 +288,7 @@ We can now reparametrize the sum over nearest neighbours, namely
  \sum_{<i,j>} = \sum_i \sum_d \quad, \quad \vec{R}_j = \vec{R}_i + \vec{T}_d
 \end{equation}
 with $\vec{T}_d=R_i-R_j$ for different types of nearest neighbours. In a two dimensional square lattice with lattice constant $a$ we hould have 
-$\vec{T}_d \in \{a\cdot\vec{e}_x,a\cdot\vec{e}_y\}$.
+$\vec{T}_d \in \{a\cdot\vec{e}_x,a\cdot\vec{e}_y\}$. In all calculations $a$ is set to 1.
 We can therefore write \ref{ham_pspace} as
 \begin{IEEEeqnarray}{Cl}
  & -\frac{t}{N} \sum_{\vec{k},\vec{l},\sigma} \sum_{i} \euler^{-\im \left(\vec{k}-\vec{l} \right)\vec{R}_i } 
@@ -274,6 +296,8 @@ We can therefore write \ref{ham_pspace} as
     c^{\dagger}_{\vec{k},\sigma}c_{\vec{l},\sigma} \nonumber \\
     =& \sum_{\vec{k},\sigma}  c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma}  \underbrace{\sum_d -2t \cos( \vec{k} \vec{T}_d ) }_{\varepsilon(\vec{k}) }
 \end{IEEEeqnarray}
+with the special case of the 2D square lattice, where $\sum_d -2t \cos(\vec k \vec{T}_d)=$ \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}. 
+In the same manner we get the terms for higher order neighbours \todo{scheme of neighbourhood geometry and its resulting band structure}
 The $U$-term translates to
 \begin{IEEEeqnarray}{rl}
  &\frac{U}{N^2} \sum_{\vec{k}\vec{l}\vec{m}\vec{n}} \sum_i \euler^{-\im (\vec{k}-\vec{l}+\vec{m}-\vec{n})\vec{R}_i } 
@@ -456,7 +480,12 @@ With this, we can write the propagators as
 \subsection{Half-Filling}
 
 The materials investigated in this work are half-filled and have a spin independent Hamiltonian.
-Therefore we can assume symmetry between up and down states, and get as a result
+% Antiferromagnetic symmetry breaking, that's why.
+
+Therefore we can assume symmetry between up and down states, and get as a result.
+
+
+
 $n=n_{\uparrow}+n_{\downarrow}=2\cdot n_{\uparrow}= 2\cdot n_{\downarrow} = 1$.
 
 This corresponds to a chemical potential of 
@@ -564,10 +593,25 @@ As a layered Pervoskite, it is effectively two-dimensional.
 Taken only nearest neighbours into account for the band structure did not provided the obeserved characteristics of the material.
 However, adding next-to-nearest and next-to-next-to nearest neighbours showed to be provide the features one gets from measurements.
 
-The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from LDA+SO calculations \todo{reference}.
+The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from 
+\cite{PhysRevLett.106.136402}, based on fits to LDA+SO calculations of a tight binding model, projected to a spin $\frac12$ subspace. 
+This results in a one-band model for the single particle Hamiltonian.
+The values used in this thesis were \newline
+\begin{tabular}{|r@{=}l|r@{=}l|r@{=}l|}
+\hline
+$t$ & 0.258eV &
+$t^{\prime}$ & 0.06eV &
+$t^{\prime \prime}$ & 0.03eV \\
+\hline
+\end{tabular}
+\newline
+
+
+
+
 Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
-its only free parameter $U$ is treated as a adjustable parameter, without an expected value from other calculations or measurements.
-For this reason the Hubbard model cannot be seen as a first-principle method \todo{link to paper on Hubbard model and its limitations}
+its only free parameter $U$ is treated as an adjustable parameter, without an external reference value from other calculations or measurements.	
+For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34}.
 and the interpretation of the final $U$ does not relate directly to an observable physical quantity.
 
 We have chosen a widely used path for in the Brillouin zone $\vec q$ that covers the main features of these systems\todo{references to papers using the path}.
@@ -585,17 +629,49 @@ For large $U$ the model agrees with the Heisenberg nearest neighbour coupling $J
 
 The main feature is the dispersion along the boundary of the reduced Brillouin zone, that is for example along $(\frac{\pi}2,\frac{\pi}2) \rightarrow (\pi,0)$.
 $\omega(\vec q)$ increases, a feature not present in the nearest neighbour Heisenberg model. 
-The differnce of $\omega(\frac{\pi}2,\frac{\pi}2)$ and $\omega(\pi,0)$ decreases for larger U as one would expect.
-However, a Hubbard model based on nearest neighbour hopping only is not capable of explaining the measured gap.
+The difference of $\omega(\frac{\pi}2,\frac{\pi}2)$ and $\omega(\pi,0)$ decreases for larger U as one would expect approaching the Heisenberg limit.
+However, a Hubbard model based on nearest neighbour hopping only is not capable of explaining the dispersion observed in experiments.
+
 The $t-t^{\prime}-t^{\prime \prime}-$Hubbard model, 
 i.e. based on a bandstructure with next, next-to-next and third neighbour hopping terms 
-matches the observations to a high degree. 
+matches the observed shape of the dispersion relation. 
+Absolute values however are globally underestimated.
+
+The simplification of a mean-field Hamiltonian rules out quantum fluctuations.
+However, they can be reintroduced by a renormalization procedure.
+It is well known\todo{show that it is well known and where to find it} 
+that the spin wave velocity in a linear spin wave approach needs to be corrected for self interactions.
+
+In the large $U$ limit this correction is the same as in the Heisenberg model, which is usually set to be $Z_c=1.18$ globally~\cite{PhysRevLett.86.5377}, 
+since it depends only weakly on moementum.
+
+Taking into account first order corrections to the mean field propagators \todo{show loops} in the Hubbard model as in \cite{PhysRevB.43.3617} 
+reproduces exactly the $\frac1S$ correction of the Heisenberg model with $Z_c=1.158$.
+Further corrections enhance this number to the above mentioned value.
+
+\begin{itemize}
+\item elaborate on normalization group scheme? Salmhofer et.al.\cite{RevModPhys.84.299}?
+\item show diagrams?
+\item even do some calculations?
+\end{itemize}
+
+
+
+\todo{dependence on $\vec q$?}
+%---relate to paper: http://www.theophys.kth.se/~wallin/publications/spin_wave_velocity.pdf (Heisenberg, see printout)
+% AUSBLICK
+
+
+
+
 Differences occur at $\vec q = (\pi,0)$, where our models predicts lower energies compared to the measured values.
+\todo{explanation, images}.
 
 
 
 
-Temperature: atm T=10K. Why, what changes?
+
+Temperature: atm T=10K. Why, what changes? Temperature dependence, zero temperatur limit.
 
 
 
@@ -607,6 +683,37 @@ continuum
 
 \subsection{t-U-Model}
 compare to measurements
+
+\subsubsection{Large U limit}
+
+In the limit $\frac{t}{U}\rightarrow 0$, that is increasing the energy needed to fill the same state, we arrive in a Heisenberg like system. 
+Taking only nearest neighbour interactions into account, the parameters of the two models are in the limit of large U related through
+\begin{equation}
+ J=4\frac{t^2}{U}
+\end{equation}
+Terms proportional to to $\frac tU$ are neglegible in this limit. 
+Expanding our expression for the susceptibility we get, in agreement with linear spin wave theory\todo{explain LSW?},
+the dispersion
+\begin{equation}
+ \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2} \label{DispULimit}
+\end{equation}\todo{calculation or reference}
+From this we see imediatly, that $\omega(\frac{\pi}2 , \frac{\pi}2) = \omega{\pi,0}$.
+The result agrees with calculations performed with large U.
+
+
+It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} plays the role of this renormalization factor \cite{PhysRevB.65.132404}
+However, we see from \ref{m_svsU} that $m_s$ tends to 1 for large $\frac Ut$ and is unable to provide such corrections for large U.
+In the region comparable to measurements on $\text{Sr}_2\text{IrO}_4$ have get a smaller $U$ than in cuprates and $\frac{1}{m_s}$ is not close to $Z_c$. 
+
+\begin{itemize}
+ \item $m$ as renormalization factor? $\leftarrow$ seems ad hoc and works only for $U\approx 8$
+ \item $m\rightarrow 1 (U\rightarrow\infty)$, so no effect there
+ \item $Z_c$ still needed? Inludes quantum fluctuations, exactly what we dismissed by mean-field
+\end{itemize}
+
+
+
+
 \subsection{t-t'-t''-U-Model}
 explain wher t-t'-t'' is from. reference
 show energy dispersion

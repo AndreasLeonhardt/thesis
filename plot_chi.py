@@ -1,6 +1,6 @@
 # python script for plotting results from Susceptibility
 # call with data file as argument
-import  numpy
+import  numpy as np
 import pylab
 from subprocess import call
 import matplotlib.pyplot as plt
@@ -19,6 +19,9 @@ n_w =int(len(A[:,0])/(tmax))
 
 # specifier for type of plot, as written from Susceptibility.
 # where b indicates a bar (q+Q) and r and i the real and imaginary parts respectiviely
+
+qx=1
+qy=2
 n_xr=4
 n_xi=5
 n_xbr=6
@@ -53,14 +56,17 @@ params=paramstext.split()
 U=float(params[1])
 N=float(params[9])
 lmb=U/N
+m=float(params[7])
 
-
-# create numpy arrays for coordinates and values
-Val=numpy.ndarray((tmax,n_w))          
-T=numpy.array(range(tmax)).astype(float)
-W=numpy.array(range(n_w )).astype(float)
+# create np arrays for coordinates and values
+Val=np.ndarray((tmax,n_w))          
+T=np.array(range(tmax)).astype(float)
+W=np.array(range(n_w )).astype(float)
 Qx=[]
 Qy=[]
+Heis=[]
+
+theta = .191986 # =11 degree, angle of octahedral rotations (e.g. they are rotated \pm\theta, their relative angle is  2*theta)
 
 # fill with corresponding coordinates/values
 for t in range (0,tmax):
@@ -83,7 +89,8 @@ for t in range (0,tmax):
 		# calculate chi (imaginary part of the susceptibility
 		
 		# transversal (+-)
-		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+yb))+lmb*(z1+z2)*(z1b+z2b))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b))).imag
+		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+yb))+lmb*(z1+z2)*(z1b+z2b))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b))*(np.cos(theta))**2
+		+(-(xb+yb)*(1.0+lmb*(x+y))+lmb*(z1b+z2b)*(z1+z2))/((1.0+lmb*(xb+yb))*(1.0+lmb*(x+y))-lmb**2*(z1b+z2b)*(z1+z2))*(np.sin(theta)**2) ).imag*2
 		
 		# longotudinal (zz)
 		# define X,Xb,Y,Z1u,Z2u,Z1d,Z2d for usage below, spin is differentiated by u and d only when it matters.
@@ -95,17 +102,17 @@ for t in range (0,tmax):
 		# calculate imaginary part of longitudinal retarted susceptibility. Factor of 2 because of spin (change up and down)
 		#Val[t,w]=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
 	
-	Qx.append(A[t*n_w,1]/numpy.pi)
-	Qy.append(A[t*n_w,2]/numpy.pi)
-
+	Qx.append(A[t*n_w,1]/np.pi)
+	Qy.append(A[t*n_w,2]/np.pi)
+	Heis.append(4.0/(float(U*2*m))*np.sqrt(4.0-(np.cos(A[t*n_w,1])+np.cos(A[t*n_w,2]))**2)*0.258)
 
 for w in range(n_w):
 	# scale frequency to Heisenberg model predictions, that is with 4t^2/U 
 	#(since w is in units of t or t=1, that would be divided by U/t, which is U here)
-	W[w]=float(A[w,3])*0.258#eV    , HB: /4*U
+	W[w]=1.18/2.0*float(A[w,3])*0.258#eV    , HB: /4*U
     
 # create 2D arrays for plot function using meshgrid (see doc)
-W,T=numpy.meshgrid(W,T)
+W,T=np.meshgrid(W,T)
 
 
 # create figure, subfigure and plot finally
@@ -115,9 +122,12 @@ ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
 p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues') # RdBu, Blues
-p.set_clim(-000,50000)
+p.set_clim(-000,1000000)
 #p= ad.contour(T,W,Val)
 cb = fig.colorbar(p,ax=ad)
+
+#p=ad.plot(T,Heis)
+
 
 #p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
@@ -127,8 +137,8 @@ cb = fig.colorbar(p,ax=ad)
 # plot path through Brillouin zone
 #ad= fig.add_subplot(1,1,1)
 #p=ad.plot(Qx,Qy)
-#ad.set_xlim(-numpy.pi,numpy.pi)
-#ad.set_ylim(-numpy.pi,numpy.pi)
+#ad.set_xlim(-np.pi,np.pi)
+#ad.set_ylim(-np.pi,np.pi)
 
 pylab.show(block=True)
 
