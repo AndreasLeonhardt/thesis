@@ -244,6 +244,7 @@ In certain situations the Heisenberg model can be derived from the Hubbard model
 % Insulator (band splitup using U)
 % How U changes the picture
 
+\subsection{Momentum Space}
 
 The Hubbard model is defined by the Hamiltonian
 \begin{equation}
@@ -252,43 +253,43 @@ The Hubbard model is defined by the Hamiltonian
 	    . \label{Hubbard_space}
 \end{equation}
 with a band structure single particle Hamiltonian $\hat{H}_0$.
-In the most simple only nearest neighbour hoppings are taken into account and we have \todo{with or without hermitian conjugate?}
-\begin{equation}
- \hat{H}_0 = - t \sum_{<i,j>,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
-\end{equation}
-where the sum runs over all pairs $<i,j>$, counting each pair only once. 
-In an more elaborate approach we might add second and third neighbour hoppings and extend the band structure to
-\begin{equation}
- \hat{H}_0 = - t \sum_{\langle i,j \rangle,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma}  - t^{\prime} \sum_{\langle \langle i,j \rangle \rangle ,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} 
- - t^{\dagger} \sum_{\langle \langle \langle i,j \rangle \rangle \rangle ,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma}  	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
-\end{equation}
-Double and triple brackets denote second and third neighbour terms respectively. 
-In the finite systems used for calculations we choose periodic boundary conditions.
 
-\todo{digg into the band structure, different examples, expecially the $t-t^{\prime}-t^{\prime\prime}$ model}
 
-s
-
-In order to get the Hamiltonian in momentum space we make use of the relation between creation and annihilation operators in space and momentum space
+In the simplemost version only nearest neighbour hoppings are taken into account,
 \begin{equation}
- c^{\dagger}_i=N^{-\frac12} \sum_k \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_k, \qquad c_i=\sum_k N^{-\frac12}\euler^{\im \vec{k}\vec{R}_i } c_k.
+ \hat{H}_0 = - t \sum_{\langle i,j \rangle,\sigma} \left (c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) 	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
 \end{equation}
-The second term in \ref{Hubbard_space} is the most straightforward one. Since \mbox{$\sum_i \euler^{(\vec{k}-\vec{l})\vec{R}_i } = N\delta_{\vec{k}\vec{l}}$} we
-get by simply inserting the above relations
+where $\langle i,j \rangle$ denotes a sum over pairs of nearest neighbours, counting each pair only once.
+The first term in $\hat{H}_0$represents the kinetic energy of particles, hopping from one site to a neighbouring site.
+The chemical potential is represented in the second term, showing the energetic cost to add a particle to the system.
+As an external parameter it can be used to control the particle density $n$, that is the number of particles per site.
+% \mu = \frac{U}{2} is explained later, when dealing with half filling in greater detail
+
+
+In order to represent the Hamiltonian in momentum space we use the relation between the representation of creation and annihilation operators in real space and momentum space,
+\begin{equation}
+ c^{\dagger}_i=N^{-\frac12} \sum_k \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_k, \qquad c_i= N^{-\frac12} \sum_k \euler^{\im \vec{k}\vec{R}_i } c_k.
+\end{equation}
+Inserting this relation and using 
+\mbox{$\sum_i \euler^{(\vec{k}-\vec{l})\vec{R}_i } = N\delta_{\vec{k}\vec{l}}$} 
+the chemical potential term translates to
 \begin{equation}
  -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma} = 	-\mu \sum_{\vec{k},\sigma} c^{\dagger}_{\vec{k},\sigma}c_{\vec{k}\sigma}
 \end{equation}
-In a similar manner the first term turns into	
+In a similar manner the first term in $\hat{H}_0$ turns into	
 \begin{IEEEeqnarray}{c}
  -\frac{t}{N} \sum_{\vec k \vec l ,\sigma} \sum_{<i,j>} 
-	      \left( \euler^{-\im \left(  \vec{k}\vec{R}_i - \vec{l}\vec{R}_j\right)} + \euler^{-\im \left(  \vec{k}\vec{R}_j - \vec{l}\vec{R}_i \right)}\right)    \label{ham_pspace}
+	      \left( 
+	      \euler^{-\im \left(  \vec{k}\vec{R}_i - \vec{l}\vec{R}_j\right)} c^{\dagger}_{\vec{k},\sigma} c_{\vec l, \sigma}  
+	      + \euler^{-\im \left(  \vec{k}\vec{R}_j - \vec{l}\vec{R}_i \right)} c^{\dagger}_{\vec{k},\sigma} c_{\vec l, \sigma} 
+	      \right)	      
+	      \label{ham_pspace}
 \end{IEEEeqnarray}
-We can now reparametrize the sum over nearest neighbours, namely
+We can now reparametrize the sum over nearest neighbours, using the translation vectors $\vec{T}_d$ between nearest neighbours,
 \begin{equation}
- \sum_{<i,j>} = \sum_i \sum_d \quad, \quad \vec{R}_j = \vec{R}_i + \vec{T}_d
+ \sum_{\langle i,j \rangle} = \sum_i \sum_d \quad; \quad \vec{R}_j = \vec{R}_i + \vec{T}_d
 \end{equation}
-with $\vec{T}_d=R_i-R_j$ for different types of nearest neighbours. In a two dimensional square lattice with lattice constant $a$ we hould have 
-$\vec{T}_d \in \{a\cdot\vec{e}_x,a\cdot\vec{e}_y\}$. In all calculations $a$ is set to 1.
+
 We can therefore write \ref{ham_pspace} as
 \begin{IEEEeqnarray}{Cl}
  & -\frac{t}{N} \sum_{\vec{k},\vec{l},\sigma} \sum_{i} \euler^{-\im \left(\vec{k}-\vec{l} \right)\vec{R}_i } 
@@ -296,9 +297,54 @@ We can therefore write \ref{ham_pspace} as
     c^{\dagger}_{\vec{k},\sigma}c_{\vec{l},\sigma} \nonumber \\
     =& \sum_{\vec{k},\sigma}  c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma}  \underbrace{\sum_d -2t \cos( \vec{k} \vec{T}_d ) }_{\varepsilon(\vec{k}) }
 \end{IEEEeqnarray}
-with the special case of the 2D square lattice, where $\sum_d -2t \cos(\vec k \vec{T}_d)=$ \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}. 
-In the same manner we get the terms for higher order neighbours \todo{scheme of neighbourhood geometry and its resulting band structure}
-The $U$-term translates to
+which shows that the single-particle Hamiltonian  is  diagonal in momentum space.
+
+In the case of a two dimensional square lattice, the translational vectors of nearest neighbours are given by the lattice constant $a$ times the unit vectors in 
+$x$- and $y$-direction, $T_d = a\cdot \vec{e}_d$, $ d \in \{x,y\}$ as shown in figure \ref{2d_square}.
+Using $a$ as the basic length unit, that is $a=1$, 
+and normalizing therefore the momentum to the intervall $[-\pi,\pi]\times [-\pi,\pi]$ 
+we get in this case
+$\varepsilon(\vec{k}) = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$. 
+
+\begin{figure}
+\begin{center}
+ \begin{tikzpicture}[scale=1.5]
+ \foreach \x in {1,...,4}
+ \foreach \y in {1,...,4}
+ \filldraw  (\x,\y) circle (2pt);
+ \draw[->,red  ,thick] (2.01,2) -- (2.01,4) node[anchor=north east] {$2\vec e_y$};
+ \draw[->,red  ,thick] (2,2.01) -- (4,2.01) node[anchor=north east] {$2\vec e_y$};
+ \draw[->,green,thick] (1.99,2) -- (1.99,3) node[anchor=north east] {$\vec e_y$};
+ \draw[->,green,thick] (2,1.99) -- (3,1.99) node[anchor=north east] {$\vec e_x$};
+ \draw[->,blue ,thick] (2,2) -- (3,3) node[anchor= south] {$\vec e_x+ \vec e_y$};
+ \draw[->,blue ,thick] (2,2) -- (3,1) node[anchor=north ] {$\vec e_x- \vec e_y$}; 
+ \end{tikzpicture}
+\end{center}
+ \label{2d_square}
+\caption{translation vectors $\vec T_d$ in a two dimensional square grid with first (green), second (blue) and third (red) neighbour interactions}
+\end{figure}
+
+In an more elaborate approach we might add second and third neighbour hoppings. 
+They can be treated in the same manner as nearest neighbours, simply by including the corresponding vectors $\vec T_d$ with their respective couplings.
+The vectors up to third neighbour interactions are shown in figure \ref{2d_square}. 
+We extend the single-particle Hamiltonian in real space to
+\begin{IEEEeqnarray}{rCl}
+ \hat{H}_0 &=& 
+ - t \sum_{\langle i,j \rangle,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
+ - t^{\prime} \sum_{\langle \langle i,j \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} +c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) \nonumber \\ &&
+ - t^{\prime \prime} \sum_{\langle \langle \langle i,j \rangle \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma}   + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
+ -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
+\end{IEEEeqnarray}
+Double and triple brackets denote second- and third-neighbour pairs respectively and again, the sum counts each pair only once.
+The resulting expression for the energy dispersion reads
+\begin{equation}
+ \varepsilon (\vec k ) = -2t \left(\cos k_x + \cos k_y \right) -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
+\end{equation}
+
+
+
+
+The interaction term translates to
 \begin{IEEEeqnarray}{rl}
  &\frac{U}{N^2} \sum_{\vec{k}\vec{l}\vec{m}\vec{n}} \sum_i \euler^{-\im (\vec{k}-\vec{l}+\vec{m}-\vec{n})\vec{R}_i } 
     c^{\dagger}_{\vec{k},\uparrow}c_{\vec{l},\uparrow} c^{\dagger}_{\vec{m},\downarrow}c_{\vec{n},\downarrow} \nonumber \\
@@ -307,12 +353,13 @@ The $U$-term translates to
     =& \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
  \end{IEEEeqnarray}
- and the total expression reads now
+ This is non-diagonal term, but it ensures momentum conversation at each vertex.
+
+The total expression for the Hamiltonian in momentum space reads
  \begin{equation}
   \hat{H} = \sum_{\vec{k},\sigma} \left(\varepsilon(\vec{k}) - \mu\right) c^{\dagger}_{\vec{k},\sigma}c_{\vec{k}\sigma} + \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
- \end{equation}
-
+ \end{equation} 
 
 \section{Mean Field Equations}
 
@@ -508,7 +555,7 @@ This decouples the two equations for $\uparrow$ and $\downarrow$ and by using th
 The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $m_{s,\sigma}$.
 To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as descriped in \ref{MFS}.
 The resulting equation
-\begin{equation}
+\begin{equation}x
  1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
 \end{equation}
 is solved using the Newton-Raphson method.
@@ -605,8 +652,7 @@ $t^{\prime \prime}$ & 0.03eV \\
 \hline
 \end{tabular}
 \newline
-
-
+\todo{ratios of t's, how it is measured, what does the sign imply, zone boundary dispersion}
 
 
 Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
