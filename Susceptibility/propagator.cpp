@@ -80,6 +80,7 @@ propagator::propagator(Config * parameters)
     // write the energie dispersion as well as E^{\pm}
     ofstream Epm;
     Epm.open("energies.txt");
+    Epm.precision(17);
     for (int i=0;i<N_x;i++)
     {
         for (int j =0;j<N_y;j++)

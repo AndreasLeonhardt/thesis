@@ -295,7 +295,7 @@ We can therefore write \ref{ham_pspace} as
  & -\frac{t}{N} \sum_{\vec{k},\vec{l},\sigma} \sum_{i} \euler^{-\im \left(\vec{k}-\vec{l} \right)\vec{R}_i } 
     \sum_d \left(\euler^{-\im \vec{k}\vec{T}_d} + \euler^{\im  \vec{l} \vec{T}_d} \right) 
     c^{\dagger}_{\vec{k},\sigma}c_{\vec{l},\sigma} \nonumber \\
-    =& \sum_{\vec{k},\sigma}  c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma}  \underbrace{\sum_d -2t \cos( \vec{k} \vec{T}_d ) }_{\varepsilon(\vec{k}) }
+    =& \sum_{\vec{k},\sigma}  c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma}  \underbrace{\sum_d -2t \cos( \vec{k} \vec{T}_d ) }_{\varepsilon_{\vec k} }
 \end{IEEEeqnarray}
 which shows that the single-particle Hamiltonian  is  diagonal in momentum space.
 
@@ -304,7 +304,7 @@ $x$- and $y$-direction, $T_d = a\cdot \vec{e}_d$, $ d \in \{x,y\}$ as shown in f
 Using $a$ as the basic length unit, that is $a=1$, 
 and normalizing therefore the momentum to the intervall $[-\pi,\pi]\times [-\pi,\pi]$ 
 we get in this case
-$\varepsilon(\vec{k}) = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$. 
+$\varepsilon_{\vec k} = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$. 
 
 \begin{figure}
 \begin{center}
@@ -320,8 +320,8 @@ $\varepsilon(\vec{k}) = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$.
  \draw[->,blue ,thick] (2,2) -- (3,1) node[anchor=north ] {$\vec e_x- \vec e_y$}; 
  \end{tikzpicture}
 \end{center}
- \label{2d_square}
 \caption{translation vectors $\vec T_d$ in a two dimensional square grid with first (green), second (blue) and third (red) neighbour interactions}
+\label{2d_square}
 \end{figure}
 
 In an more elaborate approach we might add second and third neighbour hoppings. 
@@ -338,7 +338,7 @@ We extend the single-particle Hamiltonian in real space to
 Double and triple brackets denote second- and third-neighbour pairs respectively and again, the sum counts each pair only once.
 The resulting expression for the energy dispersion reads
 \begin{equation}
- \varepsilon (\vec k ) = -2t \left(\cos k_x + \cos k_y \right) -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
+ \varepsilon_{\vec k } = -2t \left(\cos k_x + \cos k_y \right) -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
 \end{equation}
 
 
@@ -353,33 +353,23 @@ The interaction term translates to
     =& \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
  \end{IEEEeqnarray}
- This is non-diagonal term, but it ensures momentum conversation at each vertex.
+where we choose a convenient parametrization for the sum over the momenta in the last line.
+This term is non-diagonal, but it ensures momentum conversation at each vertex.
 
 The total expression for the Hamiltonian in momentum space reads
  \begin{equation}
-  \hat{H} = \sum_{\vec{k},\sigma} \left(\varepsilon(\vec{k}) - \mu\right) c^{\dagger}_{\vec{k},\sigma}c_{\vec{k}\sigma} + \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
+  \hat{H} = \sum_{\vec{k},\sigma} \left(\varepsilon_{\vec k} - \mu\right) c^{\dagger}_{\vec{k},\sigma}c_{\vec{k}\sigma} + \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
  \end{equation} 
 
 \section{Mean Field Equations}
 
-We treat the Hubbard model in a pertubative approach, where the pertubation is given by the Hubbard interaction $H_U$ defined above.
-We expect a symmetry breaking ground state \todo{why do we expect SB?}. 
-We can describe such a ground state by introducing a off-diagonal propagator in addition to the usual one.
-The propagators are defined by
-\begin{IEEEeqnarray}{rCl}
- G_{\vec p}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec{p}        ,\sigma}(\tau)  c^{\dagger}_{\vec{p},\sigma}(0) \rangle \\
- F_{\vec p}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec{p}+\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec{p},\sigma}(0) \rangle \\ \label{Def_Propagator}
-\end{IEEEeqnarray}
-with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair of fermion operators according to
-\begin{equation}
- \mathcal{T}_{\tau} \hat{A}(\tau_1) \hat{B}(\tau_2) = -\Theta(\tau_1-\tau_2)\hat{A}(\tau_1) \hat{B}(\tau_2) + \Theta(\tau_2-\tau_1)\hat{B}(\tau_2) \hat{A}(\tau_1).
-\end{equation}
+\subsubsection{The Mean-Field Hamiltonian}
 
-where $\vec{Q}=(\pi,\pi)$ is a nesting vector in the Brillouin zone, 
-which means that the fermi surface is in great parts symmetric under translations of the nesting vector.
-We now calculate the expressions for the propagators in the mean field aproach.
-We can rewrite every product of two operators $\hat{A}\cdot\hat{B}$ as
+We treat the Hubbard model in a pertubative approach at the mean-field level.
+The Hubbard term  $H_U$ acts as the pertubation.
+As a two-particle operator it can be read as a product of two single particle opearators.
+We can rewrite any product of two operators $\hat{A}$ and $\hat{B}$ as
 \begin{IEEEeqnarray}{rCl}
  \hat{A}\cdot\hat{B} 
 		    &=&	 \left(\hat A - \langle \hat A \rangle \right) \left( \hat B -\langle \hat B \rangle \right)
@@ -387,123 +377,206 @@ We can rewrite every product of two operators $\hat{A}\cdot\hat{B}$ as
 			 +\langle \hat B \rangle \hat A
 			 - \langle \hat A \rangle \langle \hat B \rangle
 \end{IEEEeqnarray}
-In the mean field approach we neglect the first factor – the product of fluctuations – leaving us with
+In the mean field approach we neglect the first term on the right hand side –the product of fluctuations around their expectation value– leaving us with
 \begin{equation}
   \hat{A}\cdot\hat{B} 
-		   \stackrel{\mathrm{mf}}{ \approx }
+		   \approx 
 			 \langle \hat A \rangle \hat B
 			 +\langle \hat B \rangle \hat A 
 			 - \langle \hat A \rangle \langle \hat B \rangle
 \end{equation}
-We use this relation on the number operators $n_{\sigma}$ in the Hubbard term of the Hamiltonian. 
-By dropping the constant term corresponding to $\langle \hat A \rangle \langle \hat B \rangle$, since this doesn't change our system, we end up with
+% RPA has nothing to do with this I think…
+%
+We use this relation on the single particle oparators 
+$c^{\dagger}_{\vec k,\uparrow}c_{\vec k - \vec q,\uparrow}$
+and 
+$c^{\dagger}_{\vec k,\downarrow}c_{\vec k + \vec q,\downarrow}$
+in the Hubbard term of the Hamiltonian. 
+Furthermore, we drop the constant term corresponding to $\langle \hat A \rangle \langle \hat B \rangle$, since a constant in the Hamiltonian will not have any
+influence on the dynamic of the system. 
+The mean-field approxiamtion of the Hubbard term reads
 \begin{equation}
  H_U \stackrel{\mathrm{mf}}{\approx}  \frac{U}{N}
  \sum_{\vec{q}} \sum_{\sigma} 
  \left( \sum_{\vec{p}^{\prime}} \langle c^{\dagger}_{\vec{p}^{\prime},-\sigma} c_{\vec{p}^{\prime}+\vec{q},-\sigma} \rangle \right)
-	\sum_{\vec p}  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}-\vec{q},\sigma}
+	\sum_{\vec p}  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}-\vec{q},\sigma}. \label{Hubbard_mean_field}
 \end{equation}
-From our assumption of having only two non-zero propagators we see that we are left with only two non-vanishing contributions from 
-$\langle c^{\dagger}_{\vec{p}^{\prime},-\sigma} c_{\vec{p}^{\prime}+\vec{q},-\sigma} \rangle$,
-namely for $\vec{q}=0$ and $\vec q = \vec  Q$.
-The sum over $\vec q$ reduces then to
+The expectation value for the one particle operator is different from zero for only two values of $\vec q$.
+First, for $\vec q = 0$ we get the number density of particles with the corresponding spin $\sigma$,
 \begin{equation}
- H_U \approx \sum_{\sigma} \left( U n_{-\sigma} \sum_{\vec{p}} c^{\dagger}_{\vec{p}, \sigma} c_{\vec p, \sigma} 
-	      + \frac{ U m_{s,-\sigma}}2
-			      \sum_{\vec p} \left(  c^{\dagger}_{\vec{p}+\vec Q, \sigma} c_{\vec p, \sigma} 
-	                                          + c^{\dagger}_{\vec{p}       , \sigma} c_{\vec p+ \vec Q, \sigma} \right) \right)
+ n_{\sigma} = \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k, \sigma} \rangle.
 \end{equation}
-For later convenience the last term was added again with the sum  over $\vec{p}$ shifted by $\vec Q$, compensationg with a factor of $\frac12$.
-\begin{IEEEeqnarray}{rClLl}
- n_{\sigma} &=&  \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma} \rangle %\nonumber \\
-	    &=&  \frac1{N} \sum_{\vec{p}} \left( 1- G_{\vec{p},\sigma}(0) \right) \\
-m_{s,\sigma} &=& \frac1{N} \sum_{\vec{p}} \langle c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} \rangle %\nonumber \\
-	   &=-&  \frac1{N} \sum_{\vec{p}} F_{\vec{p},\sigma}(0) \label{Def_ms}
+
+
+% elaborat on the meaning of n_\sigma here, bzw. at half filling osv.
+
+%
+%
+% meaning of mean-field
+%
+% symmetry bracking, antiferromagnetic ground state
+%
+%propagators: diagonal, offdiagonal
+%
+% validity range of the above assumptions: symmetrie, metal insulator transition; limits and corrections
+%
+%RPA
+%
+%
+The second contribution comes from $\vec q = (\frac12, \frac12)$.
+This vector acts as a nesting vector for the Fermi surface of the band structure. 
+A square lattice with only nearest-neighbour interactions can be divided into two sublattices. 
+Hoppings occur only from one sublattice to the other and as a result we get a perfectly nested energy dispersion,
+that is
+$\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ with the nesting vector $\vec Q = (\frac12,\frac12)$.
+The Fermi surface in this case is therefore a perfect square. 
+Introducing higher order hopping terms deforms it, but nesting with $\vec Q$ holds on a approximate level for small $t^{\prime}$ and $t^{\prime \prime}$.
+The Fermi surfaces with nesting vector $\vec Q$ for two different sets of parameters are shown in \ref{fig:energie_dispersion}.
+%
+%
+\begin{figure} \centering
+\begin{subfigure}{0.49\linewidth} \centering
+ \includegraphics[width=\textwidth]{../bandstructure_t.pdf}
+ \caption{$ t^{\prime}=t^{\prime \prime} =0$ }
+ \label{fig:dispt}
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+  \includegraphics[width=\textwidth]{../bandstructure_ttt.pdf}
+  \caption{ $t^{\prime}= 0.2326t$, $t^{\prime \prime} = 0.1163t$}
+  \label{fig:dispttt}
+\end{subfigure}
+\caption{single particle energy dispersion in units of t, momenta in units of $2\pi$. Shows the nesting vector }
+\label{fig:energie_dispersion}
+\end{figure}
+%
+%$\vec Q$ is the basis vector for antiferromagnetic ordering. 
+%This is observed in these materials \todo{how general, which ones} and expected % for what reason?
+Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a symmetrie broken ground state with an antiferromagnetic moment. 
+\todo{why do we expect SB? How does this arise from a nested Fermi surface?}. 
+The expectation value of the staggered magnetization, given by
+\begin{IEEEeqnarray}{lCl}
+ m_{s} &=& m_{s, \uparrow} - m_{s, \downarrow}, \\
+ m_{s, \sigma} &=& \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k , \sigma} c_{\vec k + \vec Q, \sigma} \rangle,
 \end{IEEEeqnarray}
-The coefficient $n_{\sigma}$ counts the amount of up spins, relative to the number of sites $N$, 
-that is the filling factor for spin particles taking values in between 0 and 1 and $n_\sigma =\frac12$ for half-filling.
-The expression for $m_{s,\sigma}$ is related to the staggered magnetization $m_s$ through
+is therefore non-zero. 
+
+In terms of the above defined parameters equation \ref{Hubbard_mean_field} simplifies finally to
+\begin{equation}
+ \hat H = \sum_{\vec k, \sigma} \left( \varepsilon_{\vec k } - \mu + U n_{-\sigma} \right) c^{\dagger}_{\vec k, \sigma} c_{\vec k ,\sigma}
+	  + U m_{s,-\sigma} \sum_{\vec k, \sigma} c^{\dagger}_{\vec k + \vec Q, \sigma} c_{\vec k, \sigma}.
+\end{equation}
+%
+%\begin{equation}
+% H_U \approx \sum_{\sigma} \left( U n_{-\sigma} \sum_{\vec{p}} c^{\dagger}_{\vec{p}, \sigma} c_{\vec p, \sigma} 
+%	      + \frac{ U m_{s,-\sigma}}2
+%			      \sum_{\vec p} \left(  c^{\dagger}_{\vec{p}+\vec Q, \sigma} c_{\vec p, \sigma} 
+%	                                          + c^{\dagger}_{\vec{p}       , \sigma} c_{\vec p+ \vec Q, \sigma} \right) \right)
+%\end{equation}
+%
+%\begin{IEEEeqnarray}{rCl}
+% H_{\mathrm{mf}} &=
+%		\sum_{\vec{p},\sigma} &
+%				      \left( \varepsilon_k - \mu + U n_{-\sigma} \right) 
+%					  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma}
+%				      +\frac{U}2  m_{s,-\sigma}	 
+%					  \left( c^{\dagger}_{\vec{p}+\vec{Q},\sigma} c_{\vec{p},\sigma} +\mathrm{h.c.} %c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} 
+%					  \right)					 
+%\end{IEEEeqnarray}
+%
+One can clearly see the mean repulsion proportional to the number density of particles with opposite spin due to the nature of the interaction,
+as well as the staggered field from the ground state. 
+
+\subsubsection{Mean-Field Propagators}
+
+The mean-field Hamiltonian gives rise to two different propagators.
+First we get the diagonal contribution, second an off-diagonal one from the staggered component. 
+The propagators are defined by
 \begin{IEEEeqnarray}{rCl}
- m_s 	&=& \frac1N \sum_{i} \mathrm{sgn}(i) \left( c^{\dagger}_{i,\uparrow}c_{i,\uparrow} - c^{\dagger}_{i,\downarrow}c_{i,\downarrow} \right) \nonumber \\
-	&=& m_{s,\uparrow}-m_{s,\downarrow}
+ G_{\vec k}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec k         ,\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \\
+ F_{\vec k}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec k +\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \\ \label{Def_Propagator}
 \end{IEEEeqnarray}
-\todo{more on the meaning of m and n? or later?}
-Together we have the total mean-field hamiltonian
+with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair of fermion operators according to
 \begin{IEEEeqnarray}{rCl}
- H_{\mathrm{mf}} &=
-		\sum_{\vec{p},\sigma} &
-				      \left( \varepsilon_k - \mu + U n_{-\sigma} \right) 
-					  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma}
-				      +\frac{U}2  m_{s,-\sigma}	 
-					  \left( c^{\dagger}_{\vec{p}+\vec{Q},\sigma} c_{\vec{p},\sigma} +\mathrm{h.c.} %c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} 
-					  \right)					 
+ \mathcal{T}_{\tau} \hat{A}(\tau_1) \hat{B}(\tau_2) &=&
+ -\Theta(\tau_1-\tau_2)\hat{A}(\tau_1) \hat{B}(\tau_2) + \Theta(\tau_2-\tau_1)\hat{B}(\tau_2) \hat{A}(\tau_1) \nonumber \\
+ &=& \left\{ \begin{array}{r@{\text{ for }}l} -\hat{A}(\tau_1) \hat{B}(\tau_2) & \tau_1 \ge \tau_2 \\ \hat{B}(\tau_2) \hat{A}(\tau_1) & \tau_1 < \tau_2 \end{array} \right.
 \end{IEEEeqnarray}
-From the definition of the propagtors in \ref{Def_Propagator} we get the equation of motion for them by calculating the imaginary time derivative.
-Using the equation of motion for operators, $\frac{\dint}{\dint \tau} \hat{A} = [H,\hat{A}] + \frac{\partial}{\partial_{\tau}} \hat{A}$,  this leads to
+For the behaviour at $\tau=0$ as shown in the last line, we need the convetion of $\Theta(0)=\frac12$.
+From this definition follows that $n_\sigma$ and $m_{s,\sigma}$ can be expressed in terms of propagators, namely through
+\begin{IEEEeqnarray}{lCl}
+ n_{\sigma} &=& \frac1N \sum_{\vec k} \left( 1-G_{\vec k, -\sigma}(0) \right) \label{n_DEF}\\
+ m_{s,\sigma} &=& -\frac1N \sum_{\vec k} F_{\vec k, -\sigma}(0)		\label{m_DEF}
+\end{IEEEeqnarray}
+
+
+From the definition of the propagtors in \ref{Def_Propagator} and the equation of motion for operators, 
+$\frac{\dint}{\dint \tau} \hat{A} = [H,\hat{A}] + \frac{\partial}{\partial_{\tau}} \hat{A}$,
+we get the differential equation
 \begin{IEEEeqnarray}{rCl}
- \partial_{\tau} G_{\vec{p},\sigma}(\tau) 
+ \partial_{\tau} G_{\vec k ,\sigma}(\tau) 
  &=&
- \delta(\tau) \langle c_{\vec{p},\sigma}(\tau) c^{\dagger}_{\vec{p},\sigma}(0) + c^{\dagger}_{\vec{p},\sigma}(0) c_{\vec{p},\sigma}(\tau) \rangle \nonumber \\&&
- + \Theta(\tau) \langle [H_{\mathrm{mf}},c_{\vec{p},\sigma}(\tau)] c^{\dagger}_{ \vec{p},\sigma}(0) \rangle		\nonumber \\ &&
- -  \Theta(-\tau) \langle c^{\dagger}_{ \vec{p},\sigma}(0) [H_{\mathrm{mf}},c_{\vec{p},\sigma}(\tau)]  \rangle \label{EOM_G}
+ \delta(\tau) \langle c_{\vec k ,\sigma}(\tau) c^{\dagger}_{\vec k ,\sigma}(0) + c^{\dagger}_{\vec k ,\sigma}(0) c_{\vec k ,\sigma}(\tau) \rangle \nonumber \\&&
+ + \Theta(\tau) \langle [\hat H , c_{\vec k ,\sigma}(\tau)] c^{\dagger}_{ \vec k ,\sigma}(0) \rangle		\nonumber \\ &&
+ -  \Theta(-\tau) \langle c^{\dagger}_{ \vec k ,\sigma}(0) [\hat H , c_{\vec k ,\sigma}(\tau)]  \rangle \label{EOM_G}
 \end{IEEEeqnarray}
-The commutator can be evaluated using the identity $[AB,C] = A\{B,C\} - \{A,C\}B$
+Here we used $\partial_{\tau} \Theta(\tau) = \delta(\tau)$.
+The commutators can be evaluated using the identity $[AB,C] = A\{B,C\} - \{A,C\}B$ and the anticommutation rules for the creation and annihilation operators.
 \todo{give fermion commutation rules somewhere earlier}
-, leaving us with
+This leaves us with
 \begin{equation}
- [H,c_{\vec{p},\sigma}(\tau)]=-\left(\varepsilon(\vec{p})-\mu + Un_{-\sigma} \right) c_{\vec{p},\sigma}(\tau) - Um_{s,-\sigma} c_{\vec{p}+\vec{Q},\sigma}(\tau)
+ [H,c_{\vec k ,\sigma}(\tau)]=-\left(\varepsilon_{\vec k}-\mu + Un_{-\sigma} \right) c_{\vec k ,\sigma}(\tau) - Um_{s,-\sigma} c_{\vec k +\vec{Q},\sigma}(\tau)
 \end{equation}
 Putting this back in \ref{EOM_G} together with the definitions for $G$ and $F$, we get
 \begin{IEEEeqnarray}{rCl}
-  \partial_{\tau} G_{\vec{p},\sigma}(\tau) 
+  \partial_{\tau} G_{\vec k ,\sigma}(\tau) 
 &=&
-\delta(\tau)\langle \{c_{\vec{p},\sigma}(\tau),c^{\dagger}_{\vec{p},\sigma}(0)\} \rangle
-- \left( \varepsilon_{\vec{p}}-\mu+ Un_{-\sigma} \right) G_{\vec{p},\sigma}(\tau)  \nonumber \\ &&
- -Um_{s,-\sigma} F_{\vec{p},\sigma}(\tau) \label{EOM_G_II}
+\delta(\tau)\langle \{c_{\vec k ,\sigma}(\tau),c^{\dagger}_{\vec k ,\sigma}(0)\} \rangle
+- \left( \varepsilon_{\vec k }-\mu+ Un_{-\sigma} \right) G_{\vec k ,\sigma}(\tau)  \nonumber \\ &&
+ -Um_{s,-\sigma} F_{\vec k ,\sigma}(\tau) \label{EOM_G_II}
 \end{IEEEeqnarray}
 In a next step we want to take the Fourier transform of this equation. 
 The Fourier transformed propagator is related to the propagator in imaginary time through
 \begin{IEEEeqnarray}{rCl}
- G_{\vec{p},\sigma}(\tau) &=& \frac{1}{\beta} \sum_n \euler^{-\im \omega_n \tau} G_{\vec{p},\sigma}(\im \omega_n) \\
- G_{\vec{p},\sigma}(\im \omega_n) &=& \int_0^{\beta} \! \!\dint  \tau \: \euler^{\im \omega_n \tau} G_{\vec{p},\sigma}(\tau)
+ G_{\vec k ,\sigma}(\tau) &=& \frac{1}{\beta} \sum_n \euler^{-\im \omega_n \tau} G_{\vec k ,\sigma}(\im \omega_n) \\
+ G_{\vec k ,\sigma}(\im \omega_n) &=& \int_0^{\beta} \! \!\dint  \tau \: \euler^{\im \omega_n \tau} G_{\vec k ,\sigma}(\tau)
 \end{IEEEeqnarray}
 The so called Matsubara frequencies $\omega_n$ are given by $\omega_n = \frac{\pi}{\beta}(2n+1), \; n \! \in \! \mathbb{Z}$.
 This ensures the anti-periodicity of fermionic Greensfunctions, $G(\tau+\beta) = -G(\tau)$.
 Transforming equation \ref{EOM_G_II} to momentum space we get
 \begin{IEEEeqnarray}{rCl}
- \left( \im \omega_n -\varepsilon_{\vec{p}} +\mu - Un_{-\sigma} \right) G_{\vec{p},\sigma}(\im \omega_n) = 1 +Um_{s,-\sigma} F_{\vec{p},\sigma}(\im \omega_n)
+ \left( \im \omega_n -\varepsilon_{\vec k } +\mu - Un_{-\sigma} \right) G_{\vec k ,\sigma}(\im \omega_n) = 1 +Um_{s,-\sigma} F_{\vec k ,\sigma}(\im \omega_n)
 \end{IEEEeqnarray}
-In the same way, starting from $\frac{\dint}{\dint \tau} F_{\vec{p},\sigma}(\tau)$ we get for the off-diagonal propagator
+In the same way, starting from $\frac{\dint}{\dint \tau} F_{\vec k ,\sigma}(\tau)$ we get for the off-diagonal propagator
 \begin{IEEEeqnarray}{rCl}
- \left( \im \omega_n -\varepsilon_{\vec{p}+\vec{Q}} +\mu - Un_{-\sigma} \right) F_{\vec{p},\sigma}(\im \omega_n) = Um_{s,-\sigma} G_{\vec{p},\sigma}(\im \omega_n)
+ \left( \im \omega_n -\varepsilon_{\vec k +\vec{Q}} +\mu - Un_{-\sigma} \right) F_{\vec k ,\sigma}(\im \omega_n) = Um_{s,-\sigma} G_{\vec k ,\sigma}(\im \omega_n)
 \end{IEEEeqnarray}
 There is no constant term, since the anticommutator in \ref{EOM_G_II} is zero for off-diagonal momenta. 
 Putting the last two equations together we get the expressions for the propagators
 \begin{IEEEeqnarray}{rCl}
- G_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ ( \im \omega_n - \varepsilon_{\vec{p}+\vec{Q}} + \mu -Un_{-\sigma} )}
-			      { ( \im \omega_n - \varepsilon_{\vec{p}+\vec{Q}} + \mu -Un_{-\sigma} )
-			        ( \im \omega_n - \varepsilon_{\vec{p}}         + \mu -Un_{-\sigma} )
+ G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )}
+			      { ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )
+			        ( \im \omega_n - \varepsilon_{\vec k }         + \mu -Un_{-\sigma} )
 			      - U^2m_{s,-\sigma}^2 } \nonumber \\
- F_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma}}
-			    { ( \im \omega_n - \varepsilon_{\vec{p}+\vec{Q}} + \mu -Un_{-\sigma} )
-			      ( \im \omega_n - \varepsilon_{\vec{p}}         + \mu -Un_{-\sigma} )
+ F_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma}}
+			    { ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )
+			      ( \im \omega_n - \varepsilon_{\vec k }         + \mu -Un_{-\sigma} )
 			      - U^2m_{s,-\sigma}^2 }			      
 \end{IEEEeqnarray}
 We can rewrite this in a more appealing way by factorizing the denominator of both propagators. 
 The poles are located at
 \begin{equation}
- E_{\vec{p},\sigma}^{\pm}
+ E_{\vec k ,\sigma}^{\pm}
  =
- \frac{\varepsilon_{\vec{p}}+\varepsilon_{\vec{p}+\vec{Q}}}2 -\mu + Un_{-\sigma}  \pm \sqrt{ \left(\frac{\varepsilon_{\vec{p}}-\varepsilon_{\vec{p}+\vec{Q}}}2\right)^2 + U^2m_{s,-\sigma}^2 }
+ \frac{\varepsilon_{\vec k }+\varepsilon_{\vec k +\vec{Q}}}2 -\mu + Un_{-\sigma}  \pm \sqrt{ \left(\frac{\varepsilon_{\vec k }-\varepsilon_{\vec k +\vec{Q}}}2\right)^2 + U^2m_{s,-\sigma}^2 }
 \end{equation}
-Note that $E_{\vec{p},\sigma}^{\pm}=E_{\vec{p}+\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec{p}+2\vec{Q}}=\varepsilon_{\vec{p}}$.
+Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
 With this, we can write the propagators as
 \begin{IEEEeqnarray}{rCl}
- G_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec{p}+\vec{Q}} +\mu -Un_{-\sigma} }
-					    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-) }
+ G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec k +\vec{Q}} +\mu -Un_{-\sigma} }
+					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-) }
 \\
- F_{\vec{p},\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma} }
-					    { (\im \omega_n - E_{\vec{p},\sigma}^+) (\im \omega_n - E_{\vec{p},\sigma}^-)}
+ F_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma} }
+					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-)}
 \end{IEEEeqnarray}
 
 
@@ -521,7 +594,68 @@ With this, we can write the propagators as
 % \todo{connection to diagrammatic approach, resolve $1-n_{-\sigma} \stackrel{?}{=} n_{-\sigma}$ issue.} 
 % \todo{ How to draw nice diagrams in \LaTeX?}
 
+There is an alternative approach from a diagrammatic point of view, that gives the same differential equation for the propagators.
+The diagrams for a self-consistent mean-field approximation are shown in figure \ref{Diagr_Props}.
+We denote the bare propagator $G_0$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
+The off-diagonal propagator $F_{\vec k ,\sigma}$ is marked with an doubled arrow head.
+Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}^{-1}=\im \omega_n +\varepsilon_{\vec k} - \mu$ as well as equations \ref{n_DEF} and \ref{m_DEF}
+reproduces the above expressions for $G_{\vec k, \sigma}$ and $F_{\vec k ,\sigma}$.
 
+\begin{fmffile}{prop}
+
+\fmfcmd{%
+style_def dbl_plain_dbl_arrow expr p =
+draw_double p;
+shrink(1.5);
+cfill (harrow (p, 0.8));
+cfill (harrow (p, 0.7));
+endshrink;
+enddef;}
+
+\begin{figure}
+ \centering
+\begin{IEEEeqnarray}{rCl}
+ \parbox{20mm}{
+	      \begin{fmfgraph}(20mm,30mm)
+		\fmfleft{i1}
+		\fmfright{o1}
+		\fmf{dbl_plain_arrow}{i1,o1}
+	      \end{fmfgraph}
+	      }
+&=& \parbox{15mm}{\begin{fmfgraph}(15mm,30mm) \fmfleft{i} \fmfright{o} \fmf{plain_arrow}{i,o} \end{fmfgraph}} 
+   + \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_dbl_arrow}{v1,o1}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2}
+                \end{fmfgraph} }
+	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2} \end{fmfgraph} }
+\end{IEEEeqnarray}
+ \begin{IEEEeqnarray}{rCl}
+ \parbox{20mm}{
+	      \begin{fmfgraph}(20mm,30mm)
+		\fmfleft{i1}
+		\fmfright{o1}
+		\fmf{dbl_plain_dbl_arrow}{i1,o1}
+	      \end{fmfgraph}
+	      }
+&=& \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{dbl_plain_dbl_arrow}{i1,v1} \fmf{plain_arrow}{v1,o1}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2}
+                \end{fmfgraph} }
+	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2} \end{fmfgraph} }
+\end{IEEEeqnarray} 
+\label{Diagr_Props}
+\caption{Self consistent mean-field equations for $G_{\vec k, \sigma}$ and $F_{\vec k, \sigma}$.}
+\end{figure} 
+ 
+
+
+\subsubsection{Validity of Mean-Field Description}
+% This should maybe be the first point in the mean-field section
+In order to treat the Hubbard model in the mean-field approach we rely on assumptions. that limit this approach to a certain set of parameters.
+% Antiferromagnetic groundstate – low T
+% low fluctuations
+% Mott insulator
+% effect of quantum fluctuations
 
 
 \subsection{Half-Filling}
@@ -576,13 +710,15 @@ However, the sum has been calculated and found to be self-consistent.
 
 \section{Calculating the magnetic response function}
 
-In order to compare the model to experiment we need to calculate observable quantities.
-In experiment one usually measures response functions. 
-In X-Ray or neutron scattering experiments the obeservable quantity is the scattering cross section, which is related to the dynamic magnetic susceptibility via
+In experiments revealing the properties of those materials, one usually measures response functions. 
+They describe the reaction of the material to a external parameter like a electromagnetic field.
+For sufficient weak fields the response will be linear.
+A linear response function can be expressed in term of four-point Greens functions.
+
+In X-Ray or neutron scattering experiments the obeservable quantity is the differential scattering cross section, which is related to the dynamic magnetic susceptibility via
 \begin{equation}
 \frac{\dint^2 \sigma}{\dint \Omega \dint \omega} = -2\Im \left(\chi(\omega,\vec q)\right)
 \end{equation}
-
 \todo{derivation from Fermis Golden Rule}
 
 The dynamical spin susceptibility can be expressed as
@@ -591,7 +727,7 @@ The dynamical spin susceptibility can be expressed as
 \end{equation}
 with the components 
 \begin{equation}
-\mathbf{ J}^{a}(\vec q) = \sum_{\vec p} \sum_{\alpha,\beta} c^{\dagger}_{\vec p ,\alpha} \left(\sigma^a \right)_{\alpha\beta} c_{\vec p+\vec q,\beta}
+\mathbf{ J}^{a}(\vec q) = \sum_{\vec k} \sum_{\alpha,\beta} c^{\dagger}_{\vec k ,\alpha} \left(\sigma^a \right)_{\alpha\beta} c_{\vec k+\vec q,\beta}
 \end{equation}
 
 
@@ -605,27 +741,135 @@ with the components
 
 %The components of the magnetic susceptibility are defined by
 %\begin{equation}
-% \chi^{ab}(\tau - \tau^{\prime}) = \sum_{\vec{p}} \left( \sum_{\alpha, \beta} c^{\dagger}_{\vec p, \alpha }(\tau) \left(\sigma^{a}\right)_{\alpha \beta} c_{\vec p , \beta}(\tau)  \right)
-%			    \cdot \left(  \sum_{\gamma, \delta} c^{\dagger}_{\vec p, \gamma }(\tau^{\prime}) \left(\sigma^{b}\right)_{\gamma \delta} c_{\vec p , \delta}(\tau^{\prime}) \right)  
+% \chi^{ab}(\tau - \tau^{\prime}) = \sum_{\vec{p}} \left( \sum_{\alpha, \beta} c^{\dagger}_{\vec k, \alpha }(\tau) \left(\sigma^{a}\right)_{\alpha \beta} c_{\vec k , \beta}(\tau)  \right)
+%			    \cdot \left(  \sum_{\gamma, \delta} c^{\dagger}_{\vec k, \gamma }(\tau^{\prime}) \left(\sigma^{b}\right)_{\gamma \delta} c_{\vec k , \delta}(\tau^{\prime}) \right)  
 %\end{equation}
 
 
 Expressing $\chi_J^{+-}$ and $\chi_J^{-+}$ in creation and destruction operators gives then
 \begin{IEEEeqnarray}{rCl}
  \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
-			  &=&  \sum_{\vec p \vec{p}^{\prime}} \langle c^{\dagger}_{\vec p,\downarrow}(\tau) c_{\vec{p}+\vec q, \uparrow}(\tau) 
-								    c^{\dagger}_{\vec{p}^{\prime}+\vec q,\downarrow}(0) c_{\vec{p}^{\prime},\uparrow}(0) \rangle
+			  &=&  \sum_{\vec k \vec k^{\prime}} \langle c^{\dagger}_{\vec k,\downarrow}(\tau) c_{\vec k+\vec q, \uparrow}(\tau) 
+								    c^{\dagger}_{\vec k^{\prime}+\vec q,\downarrow}(0) c_{\vec k^{\prime},\uparrow}(0) \rangle
 \end{IEEEeqnarray}
 
 \begin{IEEEeqnarray}{rCl}
  \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
-			  &=&  \sum_{\vec p \vec{p}^{\prime}} \langle c^{\dagger}_{\vec p,\downarrow}(\tau) c_{\vec{p}+\vec q, \uparrow}(\tau) 
-								    c^{\dagger}_{\vec{p}^{\prime}+\vec q,\downarrow}(0) c_{\vec{p}^{\prime},\uparrow}(0) \rangle
+			  &=&  \sum_{\vec k \vec{p}^{\prime}} \langle c^{\dagger}_{\vec k,\downarrow}(\tau) c_{\vec k+\vec q, \uparrow}(\tau) 
+								    c^{\dagger}_{\vec k^{\prime}+\vec q,\downarrow}(0) c_{\vec k^{\prime},\uparrow}(0) \rangle
 \end{IEEEeqnarray}
 
 can be expressed in terms of the above Greens functions.
+We expand the expression in terms of ladder diagrams.
+The first order bubble diagrams are shown in figure \ref{bubbles}.
 
-diagrams, approximations: non-crossing, restricting to ladder diagrams (using the mean-field props), summing up, using matrices and geometric sum.
+
+\begin{figure}
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ \label{bubbles}
+ \caption{first order diagrams contributing to $\chi^{+-}(\vec q, \im \omega_n)$.}
+\end{figure}
+
+
+Taking only ladder and bubble diagrams into account is known as the random phase approximation (RPA) which once again neglects quantum fluctuations. 
+The contribution from these fluctuations vanish in the large $N$ limit.
+\todo{non-crossing approximation}
+The building blocks of each step in the ladder consists of a product of two propagators. 
+Momentum conversation limits the sum over momenta in each block to $\vec k^{\prime} = \vec k + \vec q$
+The building blocks for the ladder diagrams are listed in table \ref{blocks}.
+
+\begin{table}
+\centering
+\begin{tabular}{|c|V|c|}
+\hline
+ $\lambda$ &  
+ \begin{fmfgraph}(60,35)
+  \fmfleft{i1,i2} \fmfright{o1,o2}  \fmf{dashes,tension=0}{i1,i2} \fmf{phantom}{i1,o1} \fmf{phantom}{i2,o2}
+ \end{fmfgraph}
+ & $\frac UN$  \\[.8cm]
+ %
+ $\lambda x$ & 
+\begin{fmfgraph*}(60,35)
+  \fmfleft{i1,i2} \fmfright{o1,o2}  \fmf{dashes,tension=0}{i1,i2} \fmf{dbl_plain_arrow}{o1,i1} \fmf{dbl_plain_arrow}{i2,o2}
+  \fmfv{l=$\uparrow$,l.a=25,l.d=1}{o1}
+  \fmfv{l=$\downarrow$,l.a=-25,l.d=1}{o2}
+ \end{fmfgraph*}
+ & $\frac UN\sum_{\vec k,n^{\prime}} G_{\vec k, \downarrow}(\im \omega_{n^{\prime}}) G_{\vec k +\vec q,\uparrow }(\im \omega_{n^{\prime}} + \im \omega_n)$ \\[.8cm]
+ %
+ $\lambda y$ &
+\begin{fmfgraph*}(60,35)
+  \fmfleft{i1,i2} \fmfright{o1,o2}  \fmf{dashes,tension=0}{i1,i2} \fmf{dbl_plain_dbl_arrow}{o1,i1} \fmf{dbl_plain_dbl_arrow}{i2,o2}
+  \fmfv{l=$\uparrow$,l.a=25,l.d=1}{o1}
+  \fmfv{l=$\downarrow$,l.a=-25,l.d=1}{o2}
+ \end{fmfgraph*} 
+ & $\frac UN\sum_{\vec k,n^{\prime}} F_{\vec k, \downarrow}(\im \omega_{n^{\prime}}) F_{\vec k +\vec q,\uparrow }(\im \omega_{n^{\prime}} + \im \omega_n)$ \\[.8cm]
+ %
+ $\lambda z_1$ &
+ \begin{fmfgraph*}(60,35)
+  \fmfleft{i1,i2} \fmfright{o1,o2}  \fmf{dashes,tension=0}{i1,i2} \fmf{dbl_plain_dbl_arrow}{o1,i1} \fmf{dbl_plain_arrow}{i2,o2}
+    \fmfv{l=$\uparrow$,l.a=25,l.d=1}{o1}
+  \fmfv{l=$\downarrow$,l.a=-25,l.d=1}{o2}
+ \end{fmfgraph*}
+ &  $\frac UN\sum_{\vec k,n^{\prime}} G_{\vec k, \downarrow}(\im \omega_{n^{\prime}}) F_{\vec k +\vec q,\uparrow }(\im \omega_{n^{\prime}} + \im \omega_n)$ \\[.8cm]
+ %
+ $\lambda z_2$ &
+ \begin{fmfgraph*}(60,35)
+  \fmfleft{i1,i2} \fmfright{o1,o2}  \fmf{dashes,tension=0}{i1,i2} \fmf{dbl_plain_arrow}{o1,i1} \fmf{dbl_plain_dbl_arrow}{i2,o2}
+   \fmfv{l=$\uparrow$,l.a=25,l.d=1}{o1}
+  \fmfv{l=$\downarrow$,l.a=-25,l.d=1}{o2}
+ \end{fmfgraph*}
+ &  $\frac UN\sum_{\vec k,n^{\prime}} F_{\vec k, \downarrow}(\im \omega_{n^{\prime}}) G_{\vec k +\vec q,\uparrow }(\im \omega_{n^{\prime}} + \im \omega_n)$ \\
+ \hline
+\end{tabular}
+\label{blocks}
+\caption{building blocks of ladder diagrams in the context of an external momentum $\vec q$.}
+\end{table}
+
+
+The off-diagonal propagator adds $\vec Q$, therefore we can have factors where $\vec k^{\prime} = \vec k + \vec q + \vec Q$ in some intermediate steps.
+This blocks are the same as the listed ones, except for the transition $\vec q \rightarrow \vec q + \vec Q$.
+They are denoted by a bar, that is $\bar x, \bar y, \bar z_1$ and $\bar z_2$.
+With the perfect nesting conditon $\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ we have $E^{\pm}_{\vec k} = E^{\pm}_{\vec k + \vec Q}$ and only $G_{\vec k, \sigma}$ depends on $\varepsilon_{\vec k}$ explicitly.
+In this special situation we have $\bar y = y$ and $\bar z_i = z_i$, since we can shift the sum over $\vec k$.
+
+The infinite sum of bubble diagrams builds a geometric series and has an analytical expression.
+In order to deal with the right momenta between upper and lower propagator we rewrite it as a $ \times 2$ matrix equation and pick the value that 
+corresponds to having $\vec q$ as the external momentum on both sides of the diagram.
+The upper component corresponds to $\vec k - \vec k^{\prime} = \vec q$, while the lower one corresponds to $\vec k -\vec k^{\prime} = \vec q + \vec Q$.
+The full equation reads then
+\begin{equation}
+ \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
+ \left( \begin{array}{cc} x+y & z_1+z_2 \end{array} \right) \cdot \sum_{m=0}^{\infty} (-\lambda M)^m \cdot \left( \begin{array}{c} 1 \\ 0 \end{array} \right)
+\end{equation}
+with the matrix $M$ combining all the possibilities for one new step in the ladder for each order $m$,
+\begin{equation}
+M =  \left( \begin{array}{cc} x+y & z_1+z_2 \\
+			    \bar z_1+ \bar z_2 & \bar x + \bar y  \end{array} \right)
+\end{equation}
+The last vector makes sure we end up with the right external momentum. 
+Using the expression for geometric sums we can express the infinte sum through
+\begin{IEEEeqnarray}{l}
+ \sum_{m=0}^{\infty} (-\lambda M)^m = \left( \mathbf{1} + \lambda M \right)^{-1}  
+ %\\ = \left[ \left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + \bar y)\right) - (z_1 +z_2)(\bar z_1 + \bar z_2) \right]^{-1} \left(\begin{array}{cc} 1+\lambda(\bar x+\bar y) & -(\bar z_1 + \bar z_2) \\ -(z_1 + z_2) & 1+\lambda(x+y) \end{array} \right) \nonumber
+\end{IEEEeqnarray}
+The whole expression reads then
+\begin{equation}
+ \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
+ \frac{ -(x+y)\left(1+\lambda(\bar x+ \bar y) \right) +(z_1 + z_2)(\bar z_1+\bar z_2) }
+ {\left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + \bar y)\right) - (z_1 +z_2)(\bar z_1 + \bar z_2)}
+\end{equation}
+
+
+
+
+
+
+ \end{fmffile}
+
 Retarded response function, Wick rotation. 
 $\chi^{+-},\chi^{zz}$
 evaluating infinite frequency sums. 

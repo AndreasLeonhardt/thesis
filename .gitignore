@@ -24,6 +24,8 @@ latex/thesis0.0.pdf
 latex/thesis0.0.tex.backup
 latex/thesis0.0.tex~
 latex/thesis0.0.toc
+latex/prop*
+bandstructure_t*
 reading_material/
 stagmagn.txt
 edispersion.txt
