@@ -4,20 +4,145 @@
 
 
 %opening
-\title{Magnetic Excitations In Iridiates}
+\title{Magnetic Excitations In Iridates}
 \author{Andreas Karl Leonhardt}
 
 \begin{document}
 
 %\maketitle
 
-%\begin{abstract}
+\begin{abstract}
+In this thesis we investigate magnetic properties of Iridates, 
+compounds that contain orthorombic Iridium and can be described by the Hubbard model for effective spins.
+We use a mean-field approach to calculate the dynaimc magnetic susceptibility for certain components.
+They are compared to measurements and other models, mainly Heisenberg models. 
 
-%\end{abstract}
+We found the Hubbard model with up to third-neighbour interactions to provide results that agree well with experiment.
+% U as only free parameter
+%quantum corrections
+\end{abstract}
+
+% ABSTRACT IN NORWEGIAN??? 
+
 \tableofcontents
 
 \chapter{Introduction}
-\section{Towards A Spin Hamiltonian}
+
+% remember: there will be an abstract, that contains some introdcutory blabla.
+Iridates is the name for a group of anorganical chemical compounds that contain oxydized Iridium.
+
+% interesting examples here
+These materials gained a lot of attention in the last decade due to their variety of interesting configurations.
+Due to their configuration of an Iridium ion surround by several oxygen anions, they can be described as effective spin systems.
+Therefore they are a realization of interesting theretical models such as the Hubbard and the Heisenberg model.
+Some of the compounds have a layered structure, leading to low-dimensional systems.
+
+Iridium and Copper have similar chemical properties. Iridates are therefore quite similar to Cuprates. 
+The later one are intensively investigated ever since high temperature superconductivity was first realized in doped cuprates in 1986 \cite{}.
+Both are strongly interacting, which makes them a Mott-insulator at half filling.
+Since Iridium is a heavier element some of the parameters are different for Iridates. 
+Due to the larger charge of the nucleus, spin-orbit coupling (SOC) is enhanced in Iridates compared to cuprates.
+This creates new effects and changes the macroscopic behaviour. 
+We find Iridates that behave like soin$\frac12$ systems with half filled bands. 
+
+
+%They are promising candidates to provide a realization of theoretical models.
+
+The term was coined in resemblance of cuprates, a similar group of materials with Copper instead of Iridium.
+% However, both terms are not strictly defined and may include some exceptions with non-ionic bounds.
+Cuprates are intensively investigated since the 1980s, when high temperature superconductivity was first realized in Cuprates.
+
+
+Here we refer to a certain subclass of these materials, where ions of Iridium and Copper respectively are embedded in an octahedral of oxygen ions.
+Depending on their geometries, these materials show a wide range of interesting effects.
+They provide a realization of two-dimensional spin systems with strong interactions. 
+
+% some words on cuprates and high temperature superconductivity
+% similarity to Iridates
+% differences in Iridates
+% first experimental realization of Iridates. 
+% Further specialization on materials investigated here.
+We find realizations of low-dimensional spin systems
+
+The research on Iridates, both experimentally and theoretically, became an area of intesiv research in the recent years. 
+Their share a lot of features with the Cuprates, since Iridium and Copper are almost identical in their chemical properties. 
+
+However, since Iridium is a heavier element, its compounds show new features that differ from the ones known from cuprates.
+The most interesting effect is the enhanced spin-orbit coupling due to the heavier nucleus.
+By this, the replacement of Copper by Iridium might have drastic on the macroscopic behaviour. 
+One example is a transition from the conductor to an Mott-insulator in Sr$_2$XO$_4$, 
+
+Depending on the orientation of these octahedrals, the number of oxygen ions shared between two octahedrals varies for different materials. 
+
+
+
+
+
+\section{Motivation}
+
+% Why are Iridates interesting
+% - similar to Cuprates, and they pffer a variety of materials with interesting properties, such as HTSC. 
+% - - similar chemical configuration, but higher Z lead to :
+% - - stronger Spin-Orbit coupling might introduce new effects.
+% - geometric structure: layered and therefore effective 2D systems
+% -- pervoskite structure and SOC create effective spin-$\frac12$ systems
+% -- different geometries of spin sites: rectangular, triangular, realization of Kitaev Model.
+% -outline doping?
+% theoretical point of view: Playground for Hubbard model
+
+
+% approach outline: 
+% -Describe as spin system
+% -treat in mean-field approach (taken from cuprates)
+% -calculate observables and compare to experiment for specific material(s)
+% -determine parameters of model (basically U)
+% - show that this is a reasonable approach worth for further usage.
+% -compare models: Hubbard vs. Heisenberg, 
+%  -or since Hubbard $\stackrel{U\rightarrow }infty}{\longrightarrow}$ Heisenberg, is Heisenberg sufficient, valid, good?
+% - find ground state: Mott insulator vs … ? 
+
+% What could be done with that? 
+% engineering of Kitaev model & other stuff?
+% HTSC for doped Iridates?
+
+% controversy about:
+% -Mott insulator (paper) (see above)
+% -parameters, especially U
+% -if HTSC is possible
+% need better unterstanding in general blabla.
+
+
+
+\section{Outline \& Goals}
+
+First the characteristic configuration of the crystal is  investigated.
+We will see, how Iridium embedded in an octahedral of oxygen ions  with strong  SOC
+creates states with an effective total angular momentum of $J=\frac32$ and $J=\frac12$.
+The later ones are two-fold degenerate and will be half filled without further doping.
+They form the active band, which allows us in a tight binding approximation to proceed to a pure spin model. 
+We use the Hubbard model, to describe our system, since we have a strongly correlated system.
+The Hubbard model is the easiest way of including these interactions in a spin system.
+% $t-U$ and $t-t^{\prime}-t^{\prime \prime}-U$
+
+
+We solve the Hubbard model in the mean-field approach.
+The goal is to calculate the dynamical magnetic susceptibility.
+From this we can extract the spin wave dispersion, which 
+can be directly compared to results from neutron and X-Ray scattering experiments.
+We follow the calculation scheme by XXYY \ref{cuprate paper} that was used for the cuprate LaCuO in 19XX.\todo{name, reference, material and year}
+
+The actual calculations will be performed in the large U limit and compared to the Heisenberg model.
+Since the Heisenberg model can be dervied from the Hubbard model in this limit, we can use this to validate the calculations.
+Furthermore, we use parameters  for Sr$_2$IrO$_4$ and compare the results to measurements on this material. 
+We use two sets of parameters with different degrees of nearest neighbour interactions.
+We want to show that the approach outlined above provides results that agree well with measurements and is capable of reproducing the main features of the dispersion. 
+%
+% necessity of t-t'-t''?
+
+
+  
+
+\chapter{Towards A Spin Hamiltonian}
 
 \subsection{Iridium And Compounds}
 Iridium is a transition metal, i.e. it has a only partially filled $d$ shell.  
@@ -46,10 +171,10 @@ Those octahedra might share corners or even edges, while the latter one simply m
 %
 The field generated by those ligands split up the $5d$ levels in the threefold $t_{2g}$ and the twofold $e_g$ states. 
 Since the ligand field is quite strong
-\todo{quote, strong compared to what, Hund's rule and why it is violated}
+\todo{quote, strong compared to what? Hund's rule and why it is violated}
 only the $t_{2g}$ levels are populated in the ground state, leaving one hole in this band. 
 The $e_g$ orbitals are not occupied in the ground state, since the crystal field splitting is stronger than the repulsion of electrons beeing in the same orbital. 
-This leads to the so calles low-spin state, in contrast to a weak crystal field, 
+This leads to the so called low-spin state, in contrast to a weak crystal field, 
 where it would be more favourable to follow Hund's rules, 
 i.e. filling up the $t_{2g}$ and the $e_g$ orbitals with electrons of the same spin, before putting to electrons with opposite spin into an orbital.
 The $t_{2g}$ levels build an \emph{effective} $L=1$ system, since it is threefold degenerate.
@@ -81,7 +206,7 @@ where $+\sigma = \uparrow, -\sigma = \downarrow$. The moelcular orbits are given
 
 \todo{transformation properties of the ground state}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Spin System And The Hubbard Model}
 
 \subsubsection{Tight Binding Model} % in second quantization
@@ -202,10 +327,6 @@ The single particle part of the Hamiltonian however can be taken from first prin
 
 
 
-
-
-
-
 \subsubsection{Relative Orientation Of Octahedra}
 
 % rotation by 11° in Sr$_2$IrO$_4$, corner sharing
@@ -239,9 +360,14 @@ and the corresponding annihilation operator.
  this kind of creation operator phase correction is only needed when derived from the Heisenberg model, see Quantum Many Particle Systems by Negele
 In certain situations the Heisenberg model can be derived from the Hubbard model. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \section{Band Structure}
 
-% Insulator (band splitup using U)
+% Mott Insulator (band splitup using U)
 % How U changes the picture
 
 \subsection{Momentum Space}
@@ -428,7 +554,7 @@ This vector acts as a nesting vector for the Fermi surface of the band structure
 A square lattice with only nearest-neighbour interactions can be divided into two sublattices. 
 Hoppings occur only from one sublattice to the other and as a result we get a perfectly nested energy dispersion,
 that is
-$\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ with the nesting vector $\vec Q = (\frac12,\frac12)$.
+$\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ with the nesting vector $\vec Q = (\frac12,\frac12)$ in units of $2\pi$.
 The Fermi surface in this case is therefore a perfect square. 
 Introducing higher order hopping terms deforms it, but nesting with $\vec Q$ holds on a approximate level for small $t^{\prime}$ and $t^{\prime \prime}$.
 The Fermi surfaces with nesting vector $\vec Q$ for two different sets of parameters are shown in \ref{fig:energie_dispersion}.
@@ -445,7 +571,7 @@ The Fermi surfaces with nesting vector $\vec Q$ for two different sets of parame
   \caption{ $t^{\prime}= 0.2326t$, $t^{\prime \prime} = 0.1163t$}
   \label{fig:dispttt}
 \end{subfigure}
-\caption{single particle energy dispersion in units of t, momenta in units of $2\pi$. Shows the nesting vector }
+\caption{single particle energy dispersion in units of t with nesting vector $\vec Q$. }
 \label{fig:energie_dispersion}
 \end{figure}
 %
@@ -483,8 +609,8 @@ In terms of the above defined parameters equation \ref{Hubbard_mean_field} simpl
 %					  \right)					 
 %\end{IEEEeqnarray}
 %
-One can clearly see the mean repulsion proportional to the number density of particles with opposite spin due to the nature of the interaction,
-as well as the staggered field from the ground state. 
+The first term represents the mean repulsion proportional to the number density of particles with opposite spin due to the nature of the interaction.
+The second term corresponds to the coupling of a staggered field $Um_s$. 
 
 \subsubsection{Mean-Field Propagators}
 
@@ -534,7 +660,7 @@ Putting this back in \ref{EOM_G} together with the definitions for $G$ and $F$, 
 - \left( \varepsilon_{\vec k }-\mu+ Un_{-\sigma} \right) G_{\vec k ,\sigma}(\tau)  \nonumber \\ &&
  -Um_{s,-\sigma} F_{\vec k ,\sigma}(\tau) \label{EOM_G_II}
 \end{IEEEeqnarray}
-In a next step we want to take the Fourier transform of this equation. 
+In a next step we take the Fourier transform of this equation. 
 The Fourier transformed propagator is related to the propagator in imaginary time through
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\tau) &=& \frac{1}{\beta} \sum_n \euler^{-\im \omega_n \tau} G_{\vec k ,\sigma}(\im \omega_n) \\
@@ -569,8 +695,9 @@ The poles are located at
  =
  \frac{\varepsilon_{\vec k }+\varepsilon_{\vec k +\vec{Q}}}2 -\mu + Un_{-\sigma}  \pm \sqrt{ \left(\frac{\varepsilon_{\vec k }-\varepsilon_{\vec k +\vec{Q}}}2\right)^2 + U^2m_{s,-\sigma}^2 }
 \end{equation}
-Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
-With this, we can write the propagators as
+Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, when $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
+In this case we can reduce our expressions to the magnetic Brillouin zone, which is only half of the Brillouin zone. 
+Using these expressions the propagators can be expressed as
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec k +\vec{Q}} +\mu -Un_{-\sigma} }
 					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-) }
@@ -596,7 +723,7 @@ With this, we can write the propagators as
 
 There is an alternative approach from a diagrammatic point of view, that gives the same differential equation for the propagators.
 The diagrams for a self-consistent mean-field approximation are shown in figure \ref{Diagr_Props}.
-We denote the bare propagator $G_0$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
+Following the notation of \ref{PhysRevB.65.132404}, we denote the bare propagator $G_0$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
 The off-diagonal propagator $F_{\vec k ,\sigma}$ is marked with an doubled arrow head.
 Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}^{-1}=\im \omega_n +\varepsilon_{\vec k} - \mu$ as well as equations \ref{n_DEF} and \ref{m_DEF}
 reproduces the above expressions for $G_{\vec k, \sigma}$ and $F_{\vec k ,\sigma}$.
@@ -651,7 +778,7 @@ enddef;}
 
 \subsubsection{Validity of Mean-Field Description}
 % This should maybe be the first point in the mean-field section
-In order to treat the Hubbard model in the mean-field approach we rely on assumptions. that limit this approach to a certain set of parameters.
+%In order to treat the Hubbard model in the mean-field approach we rely on assumptions. that limit this approach to a certain set of parameters.
 % Antiferromagnetic groundstate – low T
 % low fluctuations
 % Mott insulator
@@ -687,9 +814,9 @@ This decouples the two equations for $\uparrow$ and $\downarrow$ and by using th
 								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
 \end{equation}
 The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $m_{s,\sigma}$.
-To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as descriped in \ref{MFS}.
+To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as described in \ref{MFS}.
 The resulting equation
-\begin{equation}x
+\begin{equation}
  1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
 \end{equation}
 is solved using the Newton-Raphson method.
@@ -708,7 +835,13 @@ However, in the materials we are looking at we have half-filling for spin up and
 It can be shown from particle-hole symmetrie that half filling occurs at $\mu=\frac U2$.\todo{include proof for $\mu=\frac U2 \Rightarrow n=1$}
 However, the sum has been calculated and found to be self-consistent.
 
-\section{Calculating the magnetic response function}
+\section{Observables}
+
+\subsection{Response Functions}
+
+\subsection{X-Ray and Neutron Scattering Experiments}
+
+\subsection{Calculating the Dynamic Magnetic Susceptibility}
 
 In experiments revealing the properties of those materials, one usually measures response functions. 
 They describe the reaction of the material to a external parameter like a electromagnetic field.
@@ -719,7 +852,10 @@ In X-Ray or neutron scattering experiments the obeservable quantity is the diffe
 \begin{equation}
 \frac{\dint^2 \sigma}{\dint \Omega \dint \omega} = -2\Im \left(\chi(\omega,\vec q)\right)
 \end{equation}
-\todo{derivation from Fermis Golden Rule}
+\todo{derivation from Fermis Golden Rule in Appendix}
+
+
+
 
 The dynamical spin susceptibility can be expressed as
 \begin{equation}
@@ -765,11 +901,55 @@ The first order bubble diagrams are shown in figure \ref{bubbles}.
 
 
 \begin{figure}
+\begin{tabular}{ccc}
  \begin{fmfgraph*}(120,45)
   \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
   \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
   \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
  \end{fmfgraph*}
+ &
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ &
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ \\
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_dbl_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_dbl_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ &
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ &
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2} \fmf{dbl_plain_dbl_arrow,left=.35}{v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3} \fmf{dbl_plain_dbl_arrow,left=.35}{v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ \\
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_dbl_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*}
+ &
+ \begin{fmfgraph*}(120,45)
+  \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_dbl_arrow,left=.35}{v1,v2,v4} 
+  \fmf{dbl_plain_arrow,left=.35}{v4,v3,v1} \fmf{dots_arrow,tension=2,label=$\vec q$}{v4,o1}
+  \fmfforce{.5w,h}{v2} \fmfforce{.5w,0}{v3} \fmf{dashes,tension=0}{v2,v3}
+ \end{fmfgraph*} &
+ \end{tabular}
  \label{bubbles}
  \caption{first order diagrams contributing to $\chi^{+-}(\vec q, \im \omega_n)$.}
 \end{figure}
@@ -843,14 +1023,14 @@ The upper component corresponds to $\vec k - \vec k^{\prime} = \vec q$, while th
 The full equation reads then
 \begin{equation}
  \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
- \left( \begin{array}{cc} x+y & z_1+z_2 \end{array} \right) \cdot \sum_{m=0}^{\infty} (-\lambda M)^m \cdot \left( \begin{array}{c} 1 \\ 0 \end{array} \right)
+ \left( \begin{array}{cc} x+y & z_1+z_2 \end{array} \right) \cdot \sum_{m=0}^{\infty} (-\lambda M)^m \cdot \left( \begin{array}{c} -1 \\ 0 \end{array} \right)
 \end{equation}
 with the matrix $M$ combining all the possibilities for one new step in the ladder for each order $m$,
 \begin{equation}
 M =  \left( \begin{array}{cc} x+y & z_1+z_2 \\
 			    \bar z_1+ \bar z_2 & \bar x + \bar y  \end{array} \right)
 \end{equation}
-The last vector makes sure we end up with the right external momentum. 
+The last vector makes sure we end up with the right external momentum and takes care of the minus sign, arising from the loop. 
 Using the expression for geometric sums we can express the infinte sum through
 \begin{IEEEeqnarray}{l}
  \sum_{m=0}^{\infty} (-\lambda M)^m = \left( \mathbf{1} + \lambda M \right)^{-1}  
@@ -860,34 +1040,92 @@ The whole expression reads then
 \begin{equation}
  \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
  \frac{ -(x+y)\left(1+\lambda(\bar x+ \bar y) \right) +(z_1 + z_2)(\bar z_1+\bar z_2) }
- {\left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + \bar y)\right) - (z_1 +z_2)(\bar z_1 + \bar z_2)}
+ {\left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + \bar y)\right) - (z_1 +z_2)(\bar z_1 + \bar z_2)} \label{ladder_sum}
 \end{equation}
+To deal with the infinite Matsubara frequency summation we use the procedure from Appendix \ref{MFS},
+as we did for finding $m_s$.
+The remaining expression depends then only on $\im \omega_n$.
+We are interested in the dependence on real frequencies $\omega$. 
+Expression \ref{ladder_sum} posesses poles on the real axis, making a simple replacement of $\im \omega_ n$ with $\omega \in \mathbb{R}$ impossible. 
+We perform the analytical continuation $\im \omega_n \rightarrow \omega + \im \eta$ with $\omega, \eta \in \mathbb{R}$ and for a small $\eta >0$.
+By choosing $\eta$ to be positive we get the retarded response function. \todo{elaborate on that?}
+The expression can then be evaluated by carrying out the sum over the momenta using a small numerical value for $\eta$.
+This allows us not only to calculate the imaginary part, a finite value of $\eta$ smoothes the resulting response function.
+In general, for a function of the type $(\omega+\im \eta - E)^{-1}$, the imaginary part is 
+$\frac{-\im \eta}{\eta^2 + (\omega-E)^2} \stackrel{\eta \rightarrow 0}{\longrightarrow} \pi \delta(\omega -E)$.
+In the actual limit of vanishing $\eta$ we expect a delta function, whose poles might not match the discretized momenta of the grid exactly.
+Broadening the delta function ensures to not miss momenta due to a finite sized grid and yields a result closer to actual measurements, 
+where the response function also shows a finite line width. 
+
+The position of the poles finally yields the spin-wave dispersion relation $\omega(\vec q)$.
+Furthermore, we expect a continuum at higher energies. 
 
 
-
-
-
-
- \end{fmffile}
-
-Retarded response function, Wick rotation. 
-$\chi^{+-},\chi^{zz}$
-evaluating infinite frequency sums. 
+% meaning of poles: (position and) width
+%Retarded response function, Wick rotation. 
+%$\chi^{+-},\chi^{zz}$, why is %\chi^{zz} not important?
+%evaluating infinite frequency sums -> appendix. 
 
 %$A=\Im(C^+)$
 
+\end{fmffile}
+ 
+ \subsection{Corrections due to Quantum Fluctuations}
+ 
+ 
 
-\section{Results}
+ 
+ 
+\chapter{Results}
+
+\subsection{Specifications} %of the Calculation}
+
+\subsection{Magnetization} % And Filling Factor
+
+\subsection{Large U Limit}
+
+In the limit $\frac{t}{U}\rightarrow 0$, that is increasing the energy needed to fill the same state, we arrive in a Heisenberg like system. 
+Taking only nearest neighbour interactions into account, the parameters of the two models are in the limit of large U related through
+\begin{equation}
+ J=4\frac{t^2}{U}
+\end{equation}
+Terms proportional to to $\frac tU$ are neglegible in this limit. 
+Expanding our expression for the susceptibility we get, in agreement with linear spin wave theory\todo{explain LSW?},
+the dispersion
+\begin{equation}
+ \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2} \label{DispULimit}
+\end{equation}\todo{calculation or reference}
+From this we see imediatly, that $\omega(\frac{\pi}2 , \frac{\pi}2) = \omega{\pi,0}$.
+The result agrees with calculations performed with large U.
+
+
+It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} plays the role of this renormalization factor \cite{PhysRevB.65.132404}
+However, we see from \ref{m_svsU} that $m_s$ tends to 1 for large $\frac Ut$ and is unable to provide such corrections for large U.
+In the region comparable to measurements on $\text{Sr}_2\text{IrO}_4$ have get a smaller $U$ than in cuprates and $\frac{1}{m_s}$ is not close to $Z_c$. 
+
+\begin{itemize}
+ \item $m$ as renormalization factor? $\leftarrow$ seems ad hoc and works only for $U\approx 8$
+ \item $m\rightarrow 1 (U\rightarrow\infty)$, so no effect there
+ \item $Z_c$ still needed? Inludes quantum fluctuations, exactly what we dismissed by mean-field
+\end{itemize}
+
+
+
+\subsection{$t$-$U$-Model}
+
+\subsection{$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
 
 The calculations were performed with parameters for $\mathrm{Sr}_2 \mathrm{Ir} \mathrm{O}_4$.
 As a layered Pervoskite, it is effectively two-dimensional.
-Taken only nearest neighbours into account for the band structure did not provided the obeserved characteristics of the material.
-However, adding next-to-nearest and next-to-next-to nearest neighbours showed to be provide the features one gets from measurements.
+Taken only nearest neighbour interactions into account, the model does not provide all the obeserved features of measurements on this material.
+However, further interactions up to third neighbours showed to be suffcient to describe the system. 
 
 The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from 
-\cite{PhysRevLett.106.136402}, based on fits to LDA+SO calculations of a tight binding model, projected to a spin $\frac12$ subspace. 
-This results in a one-band model for the single particle Hamiltonian.
-The values used in this thesis were \newline
+\cite{PhysRevLett.106.136402}, based on fits to LDA+SO calculations of a tight binding model, that is then projected to a spin $\frac12$ subspace. 
+This results in a one-band model for the single particle Hamiltonian, based only on the effective $spin-\frac12$ states.
+The values used in this thesis were 
+
+\begin{center}{
 \begin{tabular}{|r@{=}l|r@{=}l|r@{=}l|}
 \hline
 $t$ & 0.258eV &
@@ -895,8 +1133,12 @@ $t^{\prime}$ & 0.06eV &
 $t^{\prime \prime}$ & 0.03eV \\
 \hline
 \end{tabular}
-\newline
-\todo{ratios of t's, how it is measured, what does the sign imply, zone boundary dispersion}
+}\end{center} 
+Without second and third neighbour interactions the same value for $t$ was used with $t^{\prime} = t^{\prime \prime} = 0$. 
+Calculations were the always performed with a dimensionless Hamiltonian by expressing all quantities in units of $t$.
+This does not only reduce the number of parameters, the ratio of neighbour interactions can be measured to a high precission, while 
+their absolute value has some uncertainty.\todo{where from?}
+\todo{how it is measured, zone boundary dispersion}
 
 
 Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
@@ -904,11 +1146,11 @@ its only free parameter $U$ is treated as an adjustable parameter, without an ex
 For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34}.
 and the interpretation of the final $U$ does not relate directly to an observable physical quantity.
 
-We have chosen a widely used path for in the Brillouin zone $\vec q$ that covers the main features of these systems\todo{references to papers using the path}.
+We have chosen a widely used path for in the Brillouin zone $\vec q$ that covers the main features of these systems\todo{references to papers using the path and desctiption of path. 
+}.
 
-Desctiption of path. 
 
-Possible excitations are given as the poles of $\chi(\vec q,\omega)$. 
+Excitations are given as the poles of $\chi(\vec q,\omega)$. 
 Following these poles give us the spin-wave dispersion $\omega(\vec q)$ and a continuum at higher energies $\omega$.
 
 From the energy dispersion \todo{show energie dispersion for different models} we expect that $\omega( (0,0) ) = \omega(( \pi,\pi )) = 0$\todo{why?}.
@@ -971,41 +1213,9 @@ compare to heisenberg, show limit
 continuum
 
 
-\subsection{t-U-Model}
-compare to measurements
-
-\subsubsection{Large U limit}
-
-In the limit $\frac{t}{U}\rightarrow 0$, that is increasing the energy needed to fill the same state, we arrive in a Heisenberg like system. 
-Taking only nearest neighbour interactions into account, the parameters of the two models are in the limit of large U related through
-\begin{equation}
- J=4\frac{t^2}{U}
-\end{equation}
-Terms proportional to to $\frac tU$ are neglegible in this limit. 
-Expanding our expression for the susceptibility we get, in agreement with linear spin wave theory\todo{explain LSW?},
-the dispersion
-\begin{equation}
- \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2} \label{DispULimit}
-\end{equation}\todo{calculation or reference}
-From this we see imediatly, that $\omega(\frac{\pi}2 , \frac{\pi}2) = \omega{\pi,0}$.
-The result agrees with calculations performed with large U.
 
 
-It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} plays the role of this renormalization factor \cite{PhysRevB.65.132404}
-However, we see from \ref{m_svsU} that $m_s$ tends to 1 for large $\frac Ut$ and is unable to provide such corrections for large U.
-In the region comparable to measurements on $\text{Sr}_2\text{IrO}_4$ have get a smaller $U$ than in cuprates and $\frac{1}{m_s}$ is not close to $Z_c$. 
-
-\begin{itemize}
- \item $m$ as renormalization factor? $\leftarrow$ seems ad hoc and works only for $U\approx 8$
- \item $m\rightarrow 1 (U\rightarrow\infty)$, so no effect there
- \item $Z_c$ still needed? Inludes quantum fluctuations, exactly what we dismissed by mean-field
-\end{itemize}
-
-
-
-
-\subsection{t-t'-t''-U-Model}
-explain wher t-t'-t'' is from. reference
+ explain wher t-t'-t'' is from. reference
 show energy dispersion
 explain features from that (e.g. form of continuum boundary)
 compare to measurements: extract measurement data, choose same path, set atop each other, find perfect U. Interpretation? Continuum?
@@ -1028,20 +1238,44 @@ TO DO
 
 
 
+
 \appendix
 
 \chapter{Mathematical techniques}
 
 \section{Matsubara Frequency Summation} \label{MFS}
 
-In the calculations above we encounter frequently functions of the type 
+In the calculations above we encounter functions of the type 
 $ \sum_{n \in \mathbb{Z}} f(\im \omega_n)$.
+$f$ is usually a propagator or a function of propagators. 
+We require $F$ to vanish fast at infinity, that is $|f(z)|< \frac1z\rightarrow 0$ for $|z|\rightarrow \infty$ 
+The Matsubara frequencies can be fermionic or bosonic, depending on the type of operator they describe.
+For $n \in \mathbb{Z}$ they are given by
+\begin{equation}
+ \im \omega_n = \left\{ \begin{array}{l @{\quad}c} (2n+1)\im \frac{\pi }{\beta} & \text{(fermionic)} \\ 2n\im\frac{ \pi}{\beta} & \text{(bosonic)} \end{array} \right.
+\end{equation}
+The Matsubara frequencies are the poles of the function
+\begin{equation}
+h(z) = \frac{\beta}{\euler^{\beta z} \pm 1} 
+\end{equation}
+with the positive sign for fermions and the negative one for bosonic frequencies. 
+Using Cauchys integral theorem, we can express the sum over the frequencies as an integral. 
+We choose a contour $\gamma_1$ that encloses the imaginary axis counterclockwise in a way, that it avoids any other poles not on the axis.
+This means running paralell to the axis on a very small distance and closing it at infinity.
+% reference to picture. green?
+We can now blow up this countour to a circel with inifinite radius which we shall call $\gamma_2$.
+Since the function vanishes fast, the integral will be 0, but we have to pick up the Residual of every pole we encounter in deforming the countour. 
+The poles will be encircled clockwise, which gives rise to a minus sign.
+% reference to the blown up contour. blue?
+In doing so, we get the relation
+\begin{IEEEeqnarray}{rCl}
+ \sum_{n \in \mathbb Z} f(\im \omega_n) &=& \frac1{2\pi\im} \oint_{\gamma_1} \!\!\dint z \: f(z)\cdot h(z) \nonumber \\
+ &=&  \frac1{2\pi\im}\underbrace{\oint_{\gamma_2} \!\! \dint z \: f(z)\cdot h(z)}_{=0} -\sum_{i} f(z_i)\cdot h(z_i) 	\\ 
+ && \text{for }i \in \{z\in \mathbb{C} | z\text{ pole of} f\} \nonumber
+\end{IEEEeqnarray}
 
-In order to deal with these infinite sums over Matsubara frequencies, we make use of Cauchys integral theorem twice.
-Fermionic Matsubara frequencies are given by $\frac{\pi}{\beta}(2n+1)$ for $n \in \mathbb{Z}$.
-Those are also the roots of $h(z) = \frac{\beta}{\euler^{\beta z}+1}$.
-If $f(z)$ doesn't have any poles on the imaginary axis, we can therefore rewrite the sum as an integral, 
-with an contour that encloses the imaginary axis tightly and cloeses at infinity.\todo{as shown in figure}
+
+
 The functions used here usually have poles on the real axis. 
 With choosing the contour close enough to the imaginary axis we keep those outside of the enclosed area.
 For functions falling off faster than $\frac{1}{|z|^{1+\delta}}$ $(\delta>0)$ as $|z|\rightarrow \infty$ we can blow up the contour to a
@@ -1054,8 +1288,14 @@ In total we get
 
 \section{Wick Rotation}
 
+\section{Relation between Differential Cross Section and Spectral Density Function}
 
+% follows Altland and Simons p 388-389
 
+Starting from Fermi's Golden Rule, the scattering rate is given by 
+\begin{equation} \label{FGR}
+ \frac{\dint^2 \sigma}{\dint \Omega \dint \omega}(\vec q, \omega) = 2\pi \sum_{\beta} \left| \bra{\beta} \hat \rho(\vec q) \ket{0}\right|^2 \delta(\omega - E_{\beta}+E_0).
+\end{equation}
 
 \bibliographystyle{plain}
 \bibliography{masterthesis}
