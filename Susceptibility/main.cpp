@@ -50,7 +50,7 @@ int main()
     results.precision(17);
 
     // write column title "t q_x q_y w   Re(x)   Im(x)   Re(xb)  Im(xb)  Re(y)   Im(y)   Re(yb)  Im(yb)  Re(z1)  Im(z1)  Re(z1b) Im(z1b) Re(z2)  Im(z2)  Re(z2b) Im(z2b)" to the file
-    results<<"t\tq_x\tq_y\tw\tRe(x)\tIm(x)\tRe(xb)\tIm(xb)\tRe(y)\tIm(y)\tRe(yb)\tIm(yb)\tRe(z1)\tIm(z1)\tRe(z1b)\tIm(z1b)\tRe(z2)\tIm(z2b)\tRe(z2b)\tIm(z2b)"<<endl;
+    results<<"t\tq_x\tq_y\tw\tRe(x)\tIm(x)\tRe(xb)\tIm(xb)\tRe(y)\tIm(y)\tRe(yb)\tIm(yb)\tRe(z1)\tIm(z1)\tRe(z1b)\tIm(z1b)\tRe(z2)\tIm(z2)\tRe(z2b)\tIm(z2b)"<<endl;
 
     // set q ( from (0,0) to (N_x,N_y) corresponding to to be in (-\pi,\pi)\times (-\pi,\pi)
     // and w, which should be choose in a clever way to give a meaningful result
@@ -71,7 +71,7 @@ int main()
 
     // set q to start values
 
-    // old path starting value
+    // old path starting valuehttp://spiegeloffline.de/
     q[0]=Q[0]/2;
     q[1]=3*Q[1]/2;
 
@@ -84,7 +84,7 @@ int main()
         for(double w=w_min;w<=w_max+w_step;w+=w_step) // in units of t
         {
             complex<double> cw(w,eta); // complex w, that is cw = w + i\eta
-            complex<double> x[2], y[2], z1[2], z2[2];
+            complex<double> x[2], y[2], z1[2], z2[2]; // complex initializes to zero.
             Col<int> p(ndim);
 
             // calculate x(q,\omega), y, z_1,z_2 (\bar{x}(q,\omega) = x(q+Q,\omega)

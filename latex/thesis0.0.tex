@@ -118,14 +118,14 @@ Depending on the orientation of these octahedrals, the number of oxygen ions sha
 First the characteristic configuration of the crystal is  investigated.
 We will see, how Iridium embedded in an octahedral of oxygen ions  with strong  SOC
 creates states with an effective total angular momentum of $J=\frac32$ and $J=\frac12$.
-The later ones are two-fold degenerate and will be half filled without further doping.
+While all $j=\frac32$- states are occupied, the later ones are half filled in the case of an undoped material.
 They form the active band, which allows us in a tight binding approximation to proceed to a pure spin model. 
-We use the Hubbard model, to describe our system, since we have a strongly correlated system.
-The Hubbard model is the easiest way of including these interactions in a spin system.
+As a strongly correlated system it can be described with the Hubbard model. 
+This is the easiest way of including interactions in a spin system.
 % $t-U$ and $t-t^{\prime}-t^{\prime \prime}-U$
 
 
-We solve the Hubbard model in the mean-field approach.
+We then solve the Hubbard model in the mean-field approach.
 The goal is to calculate the dynamical magnetic susceptibility.
 From this we can extract the spin wave dispersion, which 
 can be directly compared to results from neutron and X-Ray scattering experiments.
@@ -133,8 +133,9 @@ We follow the calculation scheme by XXYY \ref{cuprate paper} that was used for t
 
 The actual calculations will be performed in the large U limit and compared to the Heisenberg model.
 Since the Heisenberg model can be dervied from the Hubbard model in this limit, we can use this to validate the calculations.
-Furthermore, we use parameters  for Sr$_2$IrO$_4$ and compare the results to measurements on this material. 
-We use two sets of parameters with different degrees of nearest neighbour interactions.
+We calculate the dispersion with parameters from Sr$_2$IrO$_4$ for different band structures.
+The results were compared to measurements on this material. 
+The interaction parameter $U$ is the only adjustable parameter and will be fitted to give the best match to observations.
 We want to show that the approach outlined above provides results that agree well with measurements and is capable of reproducing the main features of the dispersion. 
 %
 % necessity of t-t'-t''?
@@ -144,7 +145,7 @@ We want to show that the approach outlined above provides results that agree wel
 
 \chapter{Towards A Spin Hamiltonian}
 
-\subsection{Iridium And Compounds}
+\subsection{Iridium And Iridates}
 Iridium is a transition metal, i.e. it has a only partially filled $d$ shell.  
 The shell structure of atomar Ir is given by $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
 % ${\mathrm{Sr}}_{2}{\mathrm{IrO}}_{4}$
@@ -609,8 +610,14 @@ In terms of the above defined parameters equation \ref{Hubbard_mean_field} simpl
 %					  \right)					 
 %\end{IEEEeqnarray}
 %
-The first term represents the mean repulsion proportional to the number density of particles with opposite spin due to the nature of the interaction.
-The second term corresponds to the coupling of a staggered field $Um_s$. 
+We are left with a Hamilton operator consisting only of single particle operators. 
+That shows the idea of the mean-field approach, describing non-interacting particles that are exposed to an averaged field.
+This averaged field is the result off these particles in the system. It's value will therefore be influenced by the particles itself.
+As a result we have to solve the equations for the fields self-consistently, which will be done in the next section. 
+The first term in the above mean-field Hamiltonian represents the mean repulsion due to the equal charge of the electrons.
+It is proportional to the number density of particles with opposite spin due to the on-site interaction, that is only possible for particles with opposite spin.
+The second term corresponds to the coupling to a staggered magnetic field, that is a magnetic field with an alternating orientation on each site. 
+The field strength is proportional to the magentization of the ground state and given by $Um_s$.
 
 \subsubsection{Mean-Field Propagators}
 
@@ -1006,7 +1013,7 @@ The building blocks for the ladder diagrams are listed in table \ref{blocks}.
  \hline
 \end{tabular}
 \label{blocks}
-\caption{building blocks of ladder diagrams in the context of an external momentum $\vec q$.}
+\caption{building blocks of ladder diagrams for $\chi^{+-}(\vec q, \im \omega_n)$}
 \end{table}
 
 
@@ -1023,7 +1030,7 @@ The upper component corresponds to $\vec k - \vec k^{\prime} = \vec q$, while th
 The full equation reads then
 \begin{equation}
  \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
- \left( \begin{array}{cc} x+y & z_1+z_2 \end{array} \right) \cdot \sum_{m=0}^{\infty} (-\lambda M)^m \cdot \left( \begin{array}{c} -1 \\ 0 \end{array} \right)
+ \left( \begin{array}{cc} x+y & z_1+z_2 \end{array} \right) \cdot \sum_{m=0}^{\infty} (-\lambda M)^m \cdot \left( \begin{array}{c} -1 \\  \: 0 \end{array} \right)
 \end{equation}
 with the matrix $M$ combining all the possibilities for one new step in the ladder for each order $m$,
 \begin{equation}
@@ -1052,7 +1059,7 @@ By choosing $\eta$ to be positive we get the retarded response function. \todo{e
 The expression can then be evaluated by carrying out the sum over the momenta using a small numerical value for $\eta$.
 This allows us not only to calculate the imaginary part, a finite value of $\eta$ smoothes the resulting response function.
 In general, for a function of the type $(\omega+\im \eta - E)^{-1}$, the imaginary part is 
-$\frac{-\im \eta}{\eta^2 + (\omega-E)^2} \stackrel{\eta \rightarrow 0}{\longrightarrow} \pi \delta(\omega -E)$.
+$\frac{- \eta}{\eta^2 + (\omega-E)^2} \stackrel{\eta \rightarrow 0}{\longrightarrow} \pi \delta(\omega -E)$.
 In the actual limit of vanishing $\eta$ we expect a delta function, whose poles might not match the discretized momenta of the grid exactly.
 Broadening the delta function ensures to not miss momenta due to a finite sized grid and yields a result closer to actual measurements, 
 where the response function also shows a finite line width. 
@@ -1061,10 +1068,13 @@ The position of the poles finally yields the spin-wave dispersion relation $\ome
 Furthermore, we expect a continuum at higher energies. 
 
 
-% meaning of poles: (position and) width
-%Retarded response function, Wick rotation. 
-%$\chi^{+-},\chi^{zz}$, why is %\chi^{zz} not important?
-%evaluating infinite frequency sums -> appendix. 
+% $\chi^{+-},\chi^{zz}$, why is %\chi^{zz} not important?
+%
+% expectation from the formula: \omega(0,0) = 0 , \omega(\frac12,\frac12) = 0 etc.
+% for perfect nesting it a short calculation that shows why this is the case. (1+\lambda(x+y)) and (z_1 + z_2) will be zero independently.
+% without perfect nesting it should hold as well, but is not that easy to see.
+% 
+% what about the continuum.
 
 %$A=\Im(C^+)$
 
