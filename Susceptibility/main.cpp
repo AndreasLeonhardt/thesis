@@ -49,8 +49,8 @@ int main()
            <<"\tN= "<<prop->get_N()<<"\teta="<<eta<<endl;
     results.precision(17);
 
-    // write column title "t q_x q_y w   Re(x)   Im(x)   Re(xb)  Im(xb)  Re(y)   Im(y)   Re(yb)  Im(yb)  Re(z1)  Im(z1)  Re(z1b) Im(z1b) Re(z2)  Im(z2)  Re(z2b) Im(z2b)" to the file
-    results<<"t\tq_x\tq_y\tw\tRe(x)\tIm(x)\tRe(xb)\tIm(xb)\tRe(y)\tIm(y)\tRe(yb)\tIm(yb)\tRe(z1)\tIm(z1)\tRe(z1b)\tIm(z1b)\tRe(z2)\tIm(z2)\tRe(z2b)\tIm(z2b)"<<endl;
+    // write column title "t q_x q_y w   Re(x)   Im(x)   Re(xb)  Im(xb)  Re(y)   Im(y)  Re(z1)  Im(z1)  Re(z2)  Im(z2)" to the file
+    results<<"t\tq_x\tq_y\tw\tRe(x)\tIm(x)\tRe(xb)\tIm(xb)\tRe(y)\tIm(y)\tRe(z1)\tIm(z1)\tRe(z2)\tIm(z2)"<<endl;
 
     // set q ( from (0,0) to (N_x,N_y) corresponding to to be in (-\pi,\pi)\times (-\pi,\pi)
     // and w, which should be choose in a clever way to give a meaningful result
@@ -68,10 +68,9 @@ int main()
     w_step=parameters->lookup("w_step");
 
     double beta = prop->get_beta();
-
     // set q to start values
 
-    // old path starting valuehttp://spiegeloffline.de/
+    // old path starting value
     q[0]=Q[0]/2;
     q[1]=3*Q[1]/2;
 
@@ -84,7 +83,7 @@ int main()
         for(double w=w_min;w<=w_max+w_step;w+=w_step) // in units of t
         {
             complex<double> cw(w,eta); // complex w, that is cw = w + i\eta
-            complex<double> x[2], y[2], z1[2], z2[2]; // complex initializes to zero.
+            complex<double> x, xb, y, z1, z2; // complex initializes to zero.
             Col<int> p(ndim);
 
             // calculate x(q,\omega), y, z_1,z_2 (\bar{x}(q,\omega) = x(q+Q,\omega)
@@ -97,16 +96,11 @@ int main()
                     {
                         p[1]=py;
 
-                        // do the same calculation for q and q+Q, getting the bared values in the later one
-                        // e.g. xb,yb,z1b,z2b, where in a dispersion with E^{\pm}(p+Q)=E^{\pm}(p) only xb differs from the unbared value
-                        for (int v=0;v<2;v++) //only one version with or without Q needed
-                        {
-
                             // variables of often used values to speed up the following calculations
                             double Epp = prop->get_Ep(p);
                             double Emp = prop->get_Em(p);
-                            double Eppq = prop->get_Ep(p+q+v*Q);
-                            double Empq = prop->get_Em(p+q+v*Q);
+                            double Eppq = prop->get_Ep(p+q);
+                            double Empq = prop->get_Em(p+q);
 
                          /*   // check order of poles (single poles, double poles)
                             // ASSUMING THAT 0 <= w < U*m, therefore we have ALWAYS Epp > Empq-w; Eppq-w > Emp and Emp > Epp.
@@ -135,17 +129,20 @@ int main()
                             else
                             {*/
                                 // single poles at Epp, Eppq-w
-                                x[v] += prop->ResG(p  ,+1)*prop->G(p+q+v*Q,Epp +cw)/(1+exp(beta*Epp ));
-                                x[v] += prop->ResG(p+q+v*Q,+1)*prop->G(p  ,Eppq-cw)/(1+exp(beta*(Eppq)));
+                                x += prop->ResG(p  ,+1)*prop->G(p+q,Epp +cw)/(1+exp(beta*Epp ));
+                                x += prop->ResG(p+q,+1)*prop->G(p  ,Eppq-cw)/(1+exp(beta*(Eppq)));
 
-                                y[v] += prop->ResF(p  ,-1,+1)*prop->F(p+q+v*Q,+1,Epp +cw)/(1+exp(beta*Epp ));
-                                y[v] += prop->ResF(p+q+v*Q,+1,+1)*prop->F(p  ,-1,Eppq-cw)/(1+exp(beta*(Eppq)));
+                                xb+= prop->ResG(p  ,+1)*prop->G(p+q+Q,Epp +cw)/(1+exp(beta*Epp ));
+                                xb+= prop->ResG(p+q+Q,+1)*prop->G(p  ,Eppq-cw)/(1+exp(beta*(Eppq)));
 
-                                z1[v]+= prop->ResG(p  ,+1)*prop->F(p+q+v*Q,+1,Epp +cw)/(1+exp(beta*Epp ));
-                                z1[v]+= prop->ResF(p+q+v*Q,+1,+1)*prop->G(p   ,Eppq-cw)/(1+exp(beta*(Eppq)));
+                                y += prop->ResF(p  ,-1,+1)*prop->F(p+q,+1,Epp +cw)/(1+exp(beta*Epp ));
+                                y += prop->ResF(p+q,+1,+1)*prop->F(p  ,-1,Eppq-cw)/(1+exp(beta*(Eppq)));
 
-                                z2[v]+= prop->ResF(p  ,-1,+1)*prop->G(p+q+v*Q,Epp +cw)/(1+exp(beta*Epp ));
-                                z2[v]+= prop->ResG(p+q+v*Q,+1)*prop->F(p   ,-1,Eppq-cw)/(1+exp(beta*(Eppq)));
+                                z1 += prop->ResG(p  ,+1)*prop->F(p+q,+1,Epp +cw)/(1+exp(beta*Epp ));
+                                z1 += prop->ResF(p+q,+1,+1)*prop->G(p   ,Eppq-cw)/(1+exp(beta*(Eppq)));
+
+                                z2 += prop->ResF(p  ,-1,+1)*prop->G(p+q,Epp +cw)/(1+exp(beta*Epp ));
+                                z2 += prop->ResG(p+q,+1)*prop->F(p   ,-1,Eppq-cw)/(1+exp(beta*(Eppq)));
                            /* }
 
                             if (is_same(Emp,Empq-w))
@@ -171,19 +168,22 @@ int main()
                             else
                             {*/
                                 // single poles at Emp, Empq-w
-                                x[v] += prop->ResG(p  ,-1)*prop->G(p+q+v*Q,Emp +cw)/(1+exp(beta*Emp ));
-                                x[v] += prop->ResG(p+q+v*Q,-1)*prop->G(p  ,Empq-cw)/(1+exp(beta*(Empq)));
+                                x += prop->ResG(p  ,-1)*prop->G(p+q,Emp +cw)/(1+exp(beta*Emp ));
+                                x += prop->ResG(p+q,-1)*prop->G(p  ,Empq-cw)/(1+exp(beta*(Empq)));
 
-                                y[v] += prop->ResF(p  ,-1,-1)*prop->F(p+q+v*Q,+1,Emp +cw)/(1+exp(beta*Emp ));
-                                y[v] += prop->ResF(p+q+v*Q,+1,-1)*prop->F(p  ,-1,Empq-cw)/(1+exp(beta*(Empq)));
+                                xb+= prop->ResG(p  ,-1)*prop->G(p+q+Q,Emp +cw)/(1+exp(beta*Emp ));
+                                xb+= prop->ResG(p+q+Q,-1)*prop->G(p  ,Empq-cw)/(1+exp(beta*(Empq)));
 
-                                z1[v]+= prop->ResG(p  ,-1)*prop->F(p+q+v*Q,+1,Emp +cw)/(1+exp(beta*Emp ));
-                                z1[v]+= prop->ResF(p+q+v*Q,+1,-1)*prop->G(p   ,Empq-cw)/(1+exp(beta*(Empq)));
+                                y += prop->ResF(p  ,-1,-1)*prop->F(p+q,+1,Emp +cw)/(1+exp(beta*Emp ));
+                                y += prop->ResF(p+q,+1,-1)*prop->F(p  ,-1,Empq-cw)/(1+exp(beta*(Empq)));
 
-                                z2[v]+= prop->ResF(p  ,-1,-1)*prop->G(p+q+v*Q,Emp +cw)/(1+exp(beta*Emp ));
-                                z2[v]+= prop->ResG(p+q+v*Q,-1)*prop->F(p   ,-1,Empq-cw)/(1+exp(beta*(Empq)));
+                                z1+= prop->ResG(p  ,-1)*prop->F(p+q,+1,Emp +cw)/(1+exp(beta*Emp ));
+                                z1+= prop->ResF(p+q,+1,-1)*prop->G(p   ,Empq-cw)/(1+exp(beta*(Empq)));
+
+                                z2+= prop->ResF(p  ,-1,-1)*prop->G(p+q,Emp +cw)/(1+exp(beta*Emp ));
+                                z2+= prop->ResG(p+q,-1)*prop->F(p   ,-1,Empq-cw)/(1+exp(beta*(Empq)));
                             //}
-                        }
+
                     }
                 }
             }
@@ -208,34 +208,34 @@ int main()
 
                                 if (Epp<0.0)
                                 {
-                                    x[v] +=  prop->ResG(p,+1)*prop->G(p+q,Epp +w);
-                                    y[v] +=  prop->ResF(p,-1,+1)*prop->F(p+q,+1,Epp +w);
-                                    z1[v]+=  prop->ResG(p,+1)*prop->F(p+q,+1,Epp +w);
-                                    z2[v]+=  prop->ResF(p,-1,+1)*prop->G(p+q,Epp +w);
+                                    x +=  prop->ResG(p,+1)*prop->G(p+q,Epp +cw);
+                                    y +=  prop->ResF(p,-1,+1)*prop->F(p+q,+1,Epp +cw);
+                                    z1+=  prop->ResG(p,+1)*prop->F(p+q,+1,Epp +cw);
+                                    z2+=  prop->ResF(p,-1,+1)*prop->G(p+q,Epp +cw);
                                 }
 
                                 if(Emp<0.0)
                                 {
-                                    x[v] += prop->ResG(p,-1)*prop->G(p+q,Emp +w);
-                                    y[v] += prop->ResF(p,-1,-1)*prop->F(p+q,+1,Emp +w);
-                                    z1[v]+= prop->ResG(p,-1)*prop->F(p+q,+1,Emp +w);
-                                    z2[v]+= prop->ResF(p,-1,-1)*prop->G(p+q,Emp +w);
+                                    x += prop->ResG(p,-1)*prop->G(p+q,Emp +cw);
+                                    y += prop->ResF(p,-1,-1)*prop->F(p+q,+1,Emp +cw);
+                                    z1+= prop->ResG(p,-1)*prop->F(p+q,+1,Emp +cw);
+                                    z2+= prop->ResF(p,-1,-1)*prop->G(p+q,Emp +cw);
                                 }
 
-                                if(Eppq-w<0.0)
+                                if(Eppq<0.0)
                                 {
-                                    x[v] +=prop->ResG(p+q,+1)*prop->G(p   ,Eppq-w);
-                                    y[v] +=prop->ResF(p+q,+1,+1)*prop->F(p   ,-1,Eppq-w);
-                                    z1[v]+=prop->ResF(p+q,+1,+1)*prop->G(p   ,Eppq-w);
-                                    z2[v]+=prop->ResG(p+q,+1)*prop->F(p   ,-1,Eppq-w);
+                                    x +=prop->ResG(p+q,+1)*prop->G(p   ,Eppq-cw);
+                                    y +=prop->ResF(p+q,+1,+1)*prop->F(p   ,-1,Eppq-cw);
+                                    z1+=prop->ResF(p+q,+1,+1)*prop->G(p   ,Eppq-cw);
+                                    z2+=prop->ResG(p+q,+1)*prop->F(p   ,-1,Eppq-cw);
                                 }
 
-                                if(Empq-w<0.0)
+                                if(Empq<0.0)
                                 {
-                                    x[v] +=prop->ResG(p+q,-1)*prop->G(p   ,Empq-w);
-                                    y[v] +=prop->ResF(p+q,+1,-1)*prop->F(p   ,-1,Empq-w);
-                                    z1[v]+=prop->ResF(p+q,+1,-1)*prop->G(p   ,Empq-w);
-                                    z2[v]+=prop->ResG(p+q,-1)*prop->F(p   ,-1,Empq-w);
+                                    x +=prop->ResG(p+q,-1)*prop->G(p   ,Empq-cw);
+                                    y +=prop->ResF(p+q,+1,-1)*prop->F(p   ,-1,Empq-cw);
+                                    z1+=prop->ResF(p+q,+1,-1)*prop->G(p   ,Empq-cw);
+                                    z2+=prop->ResG(p+q,-1)*prop->F(p   ,-1,Empq-cw);
                                 }
                             }
                         }
@@ -245,10 +245,11 @@ int main()
 
 
             results<<t<<"\t"<<q[0]*2*PI/prop->get_N(0)-PI<<"\t"<<q[1]*2*PI/prop->get_N(1)-PI<<"\t"<<w<<"\t"
-                   <<real( x[0])<<"\t"<<imag( x[0])<<"\t"<<real( x[1])<<"\t"<<imag( x[1])<<"\t"
-                   <<real( y[0])<<"\t"<<imag( y[0])<<"\t"<<real( y[1])<<"\t"<<imag(y[1])<<"\t"
-                   <<real(z1[0])<<"\t"<<imag(z1[0])<<"\t"<<real(z1[1])<<"\t"<<imag(z1[1])<<"\t"
-                   <<real(z2[0])<<"\t"<<imag(z2[0])<<"\t"<<real(z2[1])<<"\t"<<imag(z2[1])<<endl;
+                   <<real( x)<<"\t"<<imag( x)<<"\t"
+                   <<real(xb)<<"\t"<<imag(xb)<<"\t"
+                   <<real( y)<<"\t"<<imag( y)<<"\t"
+                   <<real(z1)<<"\t"<<imag(z1)<<"\t"
+                   <<real(z2)<<"\t"<<imag(z2)<<"\t"<<endl;
         }
 
 

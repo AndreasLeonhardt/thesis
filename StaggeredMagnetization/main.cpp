@@ -39,11 +39,13 @@ int main()
         // loop over different U
         for(double U=U_start;U>=U_end;U+=U_step)
         {
+            cout<<"U="<<U<<endl;
+
             prop->set_U(U,U/2.0);
 
             // write results
+
             stagmag<<U<<"\t"<<prop->get_m()<<"\t"<<"\t"<<prop->calc_n()<<endl;
-            cout<<"U="<<U<<endl;
 
         }
 

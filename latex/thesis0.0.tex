@@ -37,7 +37,19 @@ Due to their configuration of an Iridium ion surround by several oxygen anions, 
 Therefore they are a realization of interesting theretical models such as the Hubbard and the Heisenberg model.
 Some of the compounds have a layered structure, leading to low-dimensional systems.
 
-Iridium and Copper have similar chemical properties. Iridates are therefore quite similar to Cuprates. 
+
+Iridates share a lot of properties with the cuprates. 
+Ever since high temperature superconductivity (HTSC) was discovered in cuprates, 
+they were intensively investigated. 
+Due to the chemical similarity of irdium to copper, it is possible to create materials that share the same geometry as the ones known from cuprates.
+Replacing copper with irdium yields interesting effects due to their physical differneces.
+The higher charge of the iridium nucleus for example enhances the spin-orbit coupling in the active orbitals.
+This creates interesting new effects when embedded in a pervoskite structure, as it is the case in the iridates.
+%
+% same shit, different try
+%
+Iridium and Copper have similar chemical properties. 
+Iridates are therefore quite similar to Cuprates. 
 The later one are intensively investigated ever since high temperature superconductivity was first realized in doped cuprates in 1986 \cite{}.
 Both are strongly interacting, which makes them a Mott-insulator at half filling.
 Since Iridium is a heavier element some of the parameters are different for Iridates. 
@@ -83,8 +95,8 @@ Depending on the orientation of these octahedrals, the number of oxygen ions sha
 % Why are Iridates interesting
 % - similar to Cuprates, and they pffer a variety of materials with interesting properties, such as HTSC. 
 % - - similar chemical configuration, but higher Z lead to :
-% - - stronger Spin-Orbit coupling might introduce new effects.
-% - geometric structure: layered and therefore effective 2D systems
+% - - stronger Spin-Orbit coupling might introduce new effects. (\lambda \propto Z^4)
+% - geometric structure: layered and therefore effective 2D systems (pervoskite)
 % -- pervoskite structure and SOC create effective spin-$\frac12$ systems
 % -- different geometries of spin sites: rectangular, triangular, realization of Kitaev Model.
 % -outline doping?
@@ -392,7 +404,6 @@ The chemical potential is represented in the second term, showing the energetic 
 As an external parameter it can be used to control the particle density $n$, that is the number of particles per site.
 % \mu = \frac{U}{2} is explained later, when dealing with half filling in greater detail
 
-
 In order to represent the Hamiltonian in momentum space we use the relation between the representation of creation and annihilation operators in real space and momentum space,
 \begin{equation}
  c^{\dagger}_i=N^{-\frac12} \sum_k \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_k, \qquad c_i= N^{-\frac12} \sum_k \euler^{\im \vec{k}\vec{R}_i } c_k.
@@ -529,13 +540,13 @@ The mean-field approxiamtion of the Hubbard term reads
 	\sum_{\vec p}  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}-\vec{q},\sigma}. \label{Hubbard_mean_field}
 \end{equation}
 The expectation value for the one particle operator is different from zero for only two values of $\vec q$.
-First, for $\vec q = 0$ we get the number density of particles with the corresponding spin $\sigma$,
+First, for $\vec q = 0$ the expression yields the spin dependent filling factor, i.e. the number of particles with spin $\sigma$ in relation to the total number of sites $N$.
 \begin{equation}
  n_{\sigma} = \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k, \sigma} \rangle.
 \end{equation}
-
-
-% elaborat on the meaning of n_\sigma here, bzw. at half filling osv.
+Due to the Pauli principle we can have only one particle with a certain spin at each site. This value is therefore restricted to the range $[0,1]$.
+The total number density is simply the sum of both spin dependent number densites, $n=n_{\uparrow}+n_{\downarrow}$ 
+and ranges from 0 for the empty case to 2, corresponding to a situation where each sites is occupied by two particles with opposite spin.
 
 %
 %
@@ -579,7 +590,13 @@ The Fermi surfaces with nesting vector $\vec Q$ for two different sets of parame
 %$\vec Q$ is the basis vector for antiferromagnetic ordering. 
 %This is observed in these materials \todo{how general, which ones} and expected % for what reason?
 Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a symmetrie broken ground state with an antiferromagnetic moment. 
-\todo{why do we expect SB? How does this arise from a nested Fermi surface?}. 
+\todo{why do we expect SB? How does this arise from a nested Fermi surface?}
+
+
+reference for AF GS:
+\cite{PhysRevLett.62.591}
+
+
 The expectation value of the staggered magnetization, given by
 \begin{IEEEeqnarray}{lCl}
  m_{s} &=& m_{s, \uparrow} - m_{s, \downarrow}, \\
@@ -603,7 +620,7 @@ In terms of the above defined parameters equation \ref{Hubbard_mean_field} simpl
 %\begin{IEEEeqnarray}{rCl}
 % H_{\mathrm{mf}} &=
 %		\sum_{\vec{p},\sigma} &
-%				      \left( \varepsilon_k - \mu + U n_{-\sigma} \right) 
+%				      \left( \varepsilon_{\vec k} - \mu + U n_{-\sigma} \right) 
 %					  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p},\sigma}
 %				      +\frac{U}2  m_{s,-\sigma}	 
 %					  \left( c^{\dagger}_{\vec{p}+\vec{Q},\sigma} c_{\vec{p},\sigma} +\mathrm{h.c.} %c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}+\vec{Q},\sigma} 
@@ -702,8 +719,7 @@ The poles are located at
  =
  \frac{\varepsilon_{\vec k }+\varepsilon_{\vec k +\vec{Q}}}2 -\mu + Un_{-\sigma}  \pm \sqrt{ \left(\frac{\varepsilon_{\vec k }-\varepsilon_{\vec k +\vec{Q}}}2\right)^2 + U^2m_{s,-\sigma}^2 }
 \end{equation}
-Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, when $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
-In this case we can reduce our expressions to the magnetic Brillouin zone, which is only half of the Brillouin zone. 
+Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
 Using these expressions the propagators can be expressed as
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec k +\vec{Q}} +\mu -Un_{-\sigma} }
@@ -712,6 +728,8 @@ Using these expressions the propagators can be expressed as
  F_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma} }
 					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-)}
 \end{IEEEeqnarray}
+We note that $F_{\vec k,\sigma}$ is invariant under a translation $\vec k \rightarrow \vec k +\vec Q$, 
+while $G_{\vec k,\sigma}$ changes depending on the dispersion $\varepsilon_{\vec k}$.
 
 
 %\begin{IEEEeqnarray}{rCl}
@@ -729,11 +747,24 @@ Using these expressions the propagators can be expressed as
 % \todo{ How to draw nice diagrams in \LaTeX?}
 
 There is an alternative approach from a diagrammatic point of view, that gives the same differential equation for the propagators.
-The diagrams for a self-consistent mean-field approximation are shown in figure \ref{Diagr_Props}.
-Following the notation of \ref{PhysRevB.65.132404}, we denote the bare propagator $G_0$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
+Following the notation of \ref{PhysRevB.65.132404}, 
+we denote the bare propagator $G^0_{\vec k,\sigma}$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
 The off-diagonal propagator $F_{\vec k ,\sigma}$ is marked with an doubled arrow head.
-Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}^{-1}=\im \omega_n +\varepsilon_{\vec k} - \mu$ as well as equations \ref{n_DEF} and \ref{m_DEF}
+The diagrams for a self-consistent mean-field approximation are shown in figure \ref{Diagr_Props}. 
+%
+By including only single loops we neglect again the possiblity of quantum fluctuations, i.e. there are no interactions with virtual states.
+Note that the particles on each site of the interaction have different spins and there is no spin transfer. 
+The straight arrows have therefore all the same spin, while all particles in the loops have the opposite spin.
+We reflect the sum up to infinite such interactions by using the mean-field propagator after the interaction. 
+%
+Self-consistency is achieved by using the mean-field propagators in the loops.
+This reflects the fact, that $m_{s,\sigma}$ and $n_{\sigma}$ itself depend on the sum over the respective mean-field propagator.
+As a result we have to solve the equations for $m_{s,\sigma}$ and $n_{\sigma}$ iteratively. % CHECK IF THIS SENTENCE APPEARS LATER AGAIN.
+%
+Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}=(\im \omega_n +\varepsilon_{\vec k} - \mu)^{-1}$ of the non interacting system
+as well as equations \ref{n_DEF} and \ref{m_DEF}
 reproduces the above expressions for $G_{\vec k, \sigma}$ and $F_{\vec k ,\sigma}$.
+
 
 \begin{fmffile}{prop}
 
@@ -792,55 +823,8 @@ enddef;}
 % effect of quantum fluctuations
 
 
-\subsection{Half-Filling}
-
-The materials investigated in this work are half-filled and have a spin independent Hamiltonian.
-% Antiferromagnetic symmetry breaking, that's why.
-
-Therefore we can assume symmetry between up and down states, and get as a result.
 
 
-
-$n=n_{\uparrow}+n_{\downarrow}=2\cdot n_{\uparrow}= 2\cdot n_{\downarrow} = 1$.
-
-This corresponds to a chemical potential of 
-\todo{explain the connection between half filling and $U$}
-$\mu=\frac{U}2$.
-We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$. 
-The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
-This relation does not hold in general, since double occupied states give a symmetric contribution to $m_{s,\sigma}$ rather than a asymmetric one.
-However, in an otherwise asymetric large system these contributions are expected to vanish, since they might be distributed evenly on even and odd sites 
-and therefore cancel on average.
-
-In order to calculate $m_ {s,\sigma}$ we solve equation \ref{Def_ms}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
-We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, since they depend only on $m_{\sigma}^2$ and because of the above symmetry between $n_{\uparrow}$ and $n_{\downarrow}$.
-This decouples the two equations for $\uparrow$ and $\downarrow$ and by using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we end up with
-\begin{equation}
- m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
-							      \frac { Um_{s,\sigma} }
-								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
-\end{equation}
-The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $m_{s,\sigma}$.
-To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as described in \ref{MFS}.
-The resulting equation
-\begin{equation}
- 1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
-\end{equation}
-is solved using the Newton-Raphson method.
-In the case of a square lattice with only nearest neighbour hopping terms the staggered magnetization as a function of the dimensionless parameter $\frac{U}{t}$ is shown in figure
-\ref{ms_nn}.
-
-\begin{figure}
- \label{ms_nn}
- \includegraphics[width=.9\textwidth]{../stagmag_T10.png}
- \caption{staggered magnetization as function of $\frac Ut$}
- 
-\end{figure}
-
-The number of particles per site is fixed by the chemical potential. It can be calculated in a similar way, summing up the diagonal propagator $G_{\vec{p}, \sigma}$. 
-However, in the materials we are looking at we have half-filling for spin up and down respectively, i.e. $n_{\uparrow}=n_{\downarrow}=\frac12$.
-It can be shown from particle-hole symmetrie that half filling occurs at $\mu=\frac U2$.\todo{include proof for $\mu=\frac U2 \Rightarrow n=1$}
-However, the sum has been calculated and found to be self-consistent.
 
 \section{Observables}
 
@@ -966,8 +950,8 @@ Taking only ladder and bubble diagrams into account is known as the random phase
 The contribution from these fluctuations vanish in the large $N$ limit.
 \todo{non-crossing approximation}
 The building blocks of each step in the ladder consists of a product of two propagators. 
-Momentum conversation limits the sum over momenta in each block to $\vec k^{\prime} = \vec k + \vec q$
 The building blocks for the ladder diagrams are listed in table \ref{blocks}.
+
 
 \begin{table}
 \centering
@@ -1016,17 +1000,19 @@ The building blocks for the ladder diagrams are listed in table \ref{blocks}.
 \caption{building blocks of ladder diagrams for $\chi^{+-}(\vec q, \im \omega_n)$}
 \end{table}
 
+Momentum conversation at each vertex limits the sum over momenta in each block to $\vec k^{\prime} = \vec k + \vec q$ or $\vec k^{\prime} = \vec k + \vec q + \vec Q$
+The second possibility is due to the off-diagonal propagator $F_{\vec k,\sigma}$, that adds $\vec Q$ to the momentum. 
+Each block consists of a sum over momenta, we can therefore shift the momentum in the product of propagators without changing the value of the sum.
+As mentioned above, only $G_{\vec k,\sigma}$ changes under a shift of $\vec Q$, $F_{\vec k,\sigma}$ however is invariant under such a transformation.
+Therefore only $x$ will change it's value for $\vec q \rightarrow \vec q + \vec Q$, in all other situations the sum is unchanged, 
+as the transformation can be absorbed in $F_{\vec k,\sigma}$,
+We will write $\bar x$ to denote the expression for $x$ with $\vec k - \vec k^{\prime} = \vec q + \vec Q$. 
 
-The off-diagonal propagator adds $\vec Q$, therefore we can have factors where $\vec k^{\prime} = \vec k + \vec q + \vec Q$ in some intermediate steps.
-This blocks are the same as the listed ones, except for the transition $\vec q \rightarrow \vec q + \vec Q$.
-They are denoted by a bar, that is $\bar x, \bar y, \bar z_1$ and $\bar z_2$.
-With the perfect nesting conditon $\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ we have $E^{\pm}_{\vec k} = E^{\pm}_{\vec k + \vec Q}$ and only $G_{\vec k, \sigma}$ depends on $\varepsilon_{\vec k}$ explicitly.
-In this special situation we have $\bar y = y$ and $\bar z_i = z_i$, since we can shift the sum over $\vec k$.
-
-The infinite sum of bubble diagrams builds a geometric series and has an analytical expression.
-In order to deal with the right momenta between upper and lower propagator we rewrite it as a $ \times 2$ matrix equation and pick the value that 
+The infinite sum of bubble diagrams represents a geometric series and has an analytical expression.
+In order to deal with the right momenta between upper and lower propagator we rewrite it as a $ 2 \times 2$ matrix equation and pick the value that 
 corresponds to having $\vec q$ as the external momentum on both sides of the diagram.
-The upper component corresponds to $\vec k - \vec k^{\prime} = \vec q$, while the lower one corresponds to $\vec k -\vec k^{\prime} = \vec q + \vec Q$.
+The upper component in this matrix equation corresponds to $\vec k - \vec k^{\prime} = \vec q$, 
+while the lower one corresponds to $\vec k -\vec k^{\prime} = \vec q + \vec Q$.
 The full equation reads then
 \begin{equation}
  \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
@@ -1035,9 +1021,10 @@ The full equation reads then
 with the matrix $M$ combining all the possibilities for one new step in the ladder for each order $m$,
 \begin{equation}
 M =  \left( \begin{array}{cc} x+y & z_1+z_2 \\
-			    \bar z_1+ \bar z_2 & \bar x + \bar y  \end{array} \right)
+			       z_1+ z_2 & \bar x +  y  \end{array} \right)
 \end{equation}
-The last vector makes sure we end up with the right external momentum and takes care of the minus sign, arising from the loop. 
+At the end of a ladder diagram however we have to fullfill $\vec k - \vec k^{\prime} = \vec q$. 
+The last vector ensures the right external momentum at the end and takes care of the minus sign, arising from the loop.
 Using the expression for geometric sums we can express the infinte sum through
 \begin{IEEEeqnarray}{l}
  \sum_{m=0}^{\infty} (-\lambda M)^m = \left( \mathbf{1} + \lambda M \right)^{-1}  
@@ -1046,10 +1033,10 @@ Using the expression for geometric sums we can express the infinte sum through
 The whole expression reads then
 \begin{equation}
  \chi_{\mathrm{RPA}}^{+-}(\vec q,\im \omega_n) = 
- \frac{ -(x+y)\left(1+\lambda(\bar x+ \bar y) \right) +(z_1 + z_2)(\bar z_1+\bar z_2) }
- {\left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + \bar y)\right) - (z_1 +z_2)(\bar z_1 + \bar z_2)} \label{ladder_sum}
+ \frac{ -(x+y)\left(1+\lambda(\bar x+ y) \right) +\lambda(z_1 + z_2)^2}
+ {\left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + y)\right) - \lambda^2(z_1 +z_2)^2} \label{ladder_sum}
 \end{equation}
-To deal with the infinite Matsubara frequency summation we use the procedure from Appendix \ref{MFS},
+In order to deal with the infinite Matsubara frequency summation we use the procedure from Appendix \ref{MFS},
 as we did for finding $m_s$.
 The remaining expression depends then only on $\im \omega_n$.
 We are interested in the dependence on real frequencies $\omega$. 
@@ -1080,84 +1067,338 @@ Furthermore, we expect a continuum at higher energies.
 
 \end{fmffile}
  
- \subsection{Corrections due to Quantum Fluctuations}
- 
- 
+\subsection{Corrections due to Quantum Fluctuations}
+  
+The simplifications we made in order to treat the Hubbard model in the mean-field approach,  
+eliminate any effects that are caused by quantum fluctuations.
+These effects may be small and we are able to cover the main features of the system with our simplified description,
+but their effect have to be taken into account, especially when comparing calculations to measurements, where they will always be present.
+One example is the staggered magnetization, that is overestimated in the mean-field treatment. 
+Fluctuations around the antiferromagnetic ground state act as a distortion to the ordering and lower therefore the expectation value of $m_s$.
+
+
+Calculating the full corrections is beyond the scope of this thesis, but we can account for some major corrections, that have no complicated dependencies.
+For the Heisenberg model, the corrections to the spin-wave-velocity, denoted by $\mathcal{Z}_c$, are well known.
+They are given by the higher order terms of the $\frac1S$ expansion. 
+The main contribution is independent of momentum and frequency, and the variation due to higher order terms are of order $10^{-2}$ \todo{varify} compared to the total correction.
+Usually one uses therefore a constant of $\mathcal{Z}_c=1.18$ value to renormalize the whole spin-wave dispersion [the reference in that paper].
+
+We will see that our calculation scheme provides the result of the uncorrected linear spin-wave theory in the limit of large U. 
+It is therefore reasonable to use the same corrections in this situation.
+Singh\todo{nameref?} calculated the corrections given by diagrams corresponding to quantum fluctuations and found a value consistent with $\mathcal{Z}_c$.
+
+
+
+% explain Z_c
+% justify value, if needed from Singh
+% staggered magnetization renormalization?
+
+% what did we leave out:
+% non-crossing approximation
+% things that are not 1P-irreducible.
 
  
  
 \chapter{Results}
 
-\subsection{Specifications} %of the Calculation}
+\section{Specifications} %of the Calculation}
 
-\subsection{Magnetization} % And Filling Factor
-
-\subsection{Large U Limit}
-
-In the limit $\frac{t}{U}\rightarrow 0$, that is increasing the energy needed to fill the same state, we arrive in a Heisenberg like system. 
-Taking only nearest neighbour interactions into account, the parameters of the two models are in the limit of large U related through
-\begin{equation}
- J=4\frac{t^2}{U}
-\end{equation}
-Terms proportional to to $\frac tU$ are neglegible in this limit. 
-Expanding our expression for the susceptibility we get, in agreement with linear spin wave theory\todo{explain LSW?},
-the dispersion
-\begin{equation}
- \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2} \label{DispULimit}
-\end{equation}\todo{calculation or reference}
-From this we see imediatly, that $\omega(\frac{\pi}2 , \frac{\pi}2) = \omega{\pi,0}$.
-The result agrees with calculations performed with large U.
-
-
-It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} plays the role of this renormalization factor \cite{PhysRevB.65.132404}
-However, we see from \ref{m_svsU} that $m_s$ tends to 1 for large $\frac Ut$ and is unable to provide such corrections for large U.
-In the region comparable to measurements on $\text{Sr}_2\text{IrO}_4$ have get a smaller $U$ than in cuprates and $\frac{1}{m_s}$ is not close to $Z_c$. 
-
-\begin{itemize}
- \item $m$ as renormalization factor? $\leftarrow$ seems ad hoc and works only for $U\approx 8$
- \item $m\rightarrow 1 (U\rightarrow\infty)$, so no effect there
- \item $Z_c$ still needed? Inludes quantum fluctuations, exactly what we dismissed by mean-field
-\end{itemize}
-
-
-
-\subsection{$t$-$U$-Model}
-
-\subsection{$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
-
-The calculations were performed with parameters for $\mathrm{Sr}_2 \mathrm{Ir} \mathrm{O}_4$.
-As a layered Pervoskite, it is effectively two-dimensional.
-Taken only nearest neighbour interactions into account, the model does not provide all the obeserved features of measurements on this material.
-However, further interactions up to third neighbours showed to be suffcient to describe the system. 
-
-The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from 
-\cite{PhysRevLett.106.136402}, based on fits to LDA+SO calculations of a tight binding model, that is then projected to a spin $\frac12$ subspace. 
-This results in a one-band model for the single particle Hamiltonian, based only on the effective $spin-\frac12$ states.
-The values used in this thesis were 
-
-\begin{center}{
-\begin{tabular}{|r@{=}l|r@{=}l|r@{=}l|}
-\hline
-$t$ & 0.258eV &
-$t^{\prime}$ & 0.06eV &
-$t^{\prime \prime}$ & 0.03eV \\
-\hline
-\end{tabular}
-}\end{center} 
-Without second and third neighbour interactions the same value for $t$ was used with $t^{\prime} = t^{\prime \prime} = 0$. 
-Calculations were the always performed with a dimensionless Hamiltonian by expressing all quantities in units of $t$.
-This does not only reduce the number of parameters, the ratio of neighbour interactions can be measured to a high precission, while 
-their absolute value has some uncertainty.\todo{where from?}
-\todo{how it is measured, zone boundary dispersion}
+For all calculations we use dimensionless quantities. 
+Firstly, we set the lattice spacing to unity, $a=1$. 
+The resulting momenta are therefore given by $(\frac{2\pi n}{N},\frac{2\pi m}{N})$ for $n,m \in [-\frac N2, \frac N2)$.
+Furthermore, we express all energy in units of $t$, reducing the number of free parameters in the Hamiltonian therfore by one.
+It depends now on only on the parameters $\nicefrac Ut$, $\nicefrac {\mu}t$ and eventually $\nicefrac{t^{\prime}}t$ and $\nicefrac{t^{\prime \prime}}t$.
+Temperatues are scaled accordingly with $k_b=1$.
+If not otherwise specified, we use only dimensionless units from now on and we will drop $\nicefrac{\cdot7}{t}$ and write just the corresponding symbol, 
+assuming it is in units of $t$.
 
 
 Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
 its only free parameter $U$ is treated as an adjustable parameter, without an external reference value from other calculations or measurements.	
-For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34}.
-and the interpretation of the final $U$ does not relate directly to an observable physical quantity.
+For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34},
+but rather an effective model, that extends a first principle method – the band structure – by introducing one adjustable parameter.
+The value of $U$ in materials is not directly obsevable, but relates to physical quantities as for example the in the eletrical excitation spectrum.
+% check this maybe. Find evtl. values and compare later.
+There are other methods using a Hubbard-like interaction, such as LDA+SO+U calculations.
+$U$ can then be used to methods. 
+Furthermore it allows us to compare the strength of interaction effects in similar materials in relation to each other.
+% We found that the interaction is substantially lower in iridates than in cuprates. 
+% w/o SOC we would have a metal for that U (e.g. in cuprates)
 
-We have chosen a widely used path for in the Brillouin zone $\vec q$ that covers the main features of these systems\todo{references to papers using the path and desctiption of path. 
-}.
+
+Numerical caluclations were performed in two dimensions due to the layered structure of Sr$_2$IrO$_4$, 
+using a grid of size $256\times256$.
+As a direct result from the discrete Fourier transformation, we get discretized momenta in the Brillouin zone.
+The sum over momenta in Greens functions is therefore restricted to $256\times256$ values.
+The magnetic susceptibility $\chi(\vec q,\omega)$ was calculated for different values of $\vec q$.
+% path
+We choose a path along the symmetry lines of the Brillouin zone, that covers the most interesting features of the dispersion.
+Due to symmetry in the band structure energies $\varepsilon_{\vec k}$ and therefore in the energies $E^{\pm}_{\vec k}$ as well,
+it is sufficient to restrict oneself to just a quarter of the Brillouin zone.
+The most basic dependence on $\vec q$ is through a cosine, $\cos (q_i)$ or $\cos(2q_i)$, that is independent of the sign of the components $q_i$.
+%
+The path choosen for analysis of $\chi$ is a standard way of presenting calculations and measurements and makes it easy to compare our results to related work.
+It covers the diagonal $(\frac12t,\frac12t)$, 
+the border of the magnetic Brillouin zone perpendicular to the diagonal, $(\frac14(2-t),\frac14t$, 
+the x-direction $(\frac12t,0)$ and the y-direction along the border of the Brillouin zone, $(0,\frac12t)$, with $t$ ranging from 0 to 1.
+The path is shown in figure \ref{path}.
+\begin{figure}
+ \label{path}
+ \begin{center}
+  \includegraphics[width=.9\textwidth]{../path}
+  \caption{path through the Brillouin zone (blue), connecting S-X-M-S-$\Gamma$-X. The grey dotted line is the boundary of the magnetic Brillouine zone.}
+ \end{center}
+\end{figure}
+It connects the points $\Gamma=(0,0)$, M=($\frac12,\frac12$), S$=(\frac14,\frac14)$ and X=($\frac12,0$) in the order S-X-M-S-$\Gamma$-X.
+
+The temperature was set to $T=0.0033$, corresponding to 10K at t=0.258eV.
+This is a temperature  typically encounterd in low-temperature experiments and was used in the measurements that provide our reference data. 
+The Néel temperature for Sr$_2$IrO$_4$ is at about 250K$^{\text{\cite{PhysRevB.49.9198}}}$.
+Beeing far below the Néel temperature is necessary for our assumption of an antiferromagnetic ground state.
+A low temperature is also needed in order to be able to describe the material with an one-band Hubbard model. 
+Comparison of calculations over a wide range of temperatures up to 200K showed no significant dependence on the temperature except for the broadness of peaks.
+
+
+In the calculation of the magnetic susceptibility $\chi$ we need to shift the frequencies infinitesimally above the real axis, 
+in order to get a retarded response function. 
+This ensures also that we can relate the imaginary part of $\chi$ to the differential cross section. 
+In the calculations we used complex frequencies $\omega^+ = \omega + \im \eta$ with a non-zero but small imaginary part $\eta$. 
+Choosing a non-infinitesimal value however smears out the delta function, that arises in the imaginary part.
+This can be used to compensate for discretization effects due to the finite sized grid. 
+% don't repeat yourself here, see derivation of $\chi$ in chapter before.
+%
+The value is rather arbitrary and was choosen small, but big enough to ensure a smooth result for the response function with pronounced features.
+Choosing this value to big would wash out the response function, making it hard to analyze.
+The frequency dependency of propagators and Greens functions is mostly given by $(\omega^+-E^{\pm}_{\vec k})^{-1}$ and combinations thereof.
+As a good starting point we can therefore take the maximum difference in the energies $E^{\pm}$ between to nearby points in the finite sized grid of momenta.
+For our simplest dispersion, this occurs for example  between the momenta $\vec k_1 = (\pm \frac14,\pm\frac14)$ and $\vec k_2 = \vec k_1 + (\frac1N,0)$.
+As an estimation we can take $U=4$ and $m=0.3$ at half filling as a set of typical values, see the discussion below.
+We get $|E^{\pm}_{\vec k_1} - E^{\pm}_{\vec k_2}| = 0.001$.
+Finally, we found $\eta=0.005$ to be an optimal value.
+This value is of order $10^{-3}$ compared to the maximum $\omega(\vec q)$ encountered for typical values of $U$ used in this thesis.
+
+
+
+\section{Staggered Magnetization At Half-Filling}
+We need to fix the parameters $n_{\sigma}$ and $m_{s,\sigma}$ of the propagators.
+They can be expressed through a sum of propagators itself, as shown in equations \ref{n_DEF} and \ref{m_DEF}.
+We are left with a system of four non-linear coupled equations.
+By using certain symmetries however, they become decoupled and can be solved in a easier way. 
+
+The number density is controlled by the chemical potential, which is another free parameter of the system.
+The effective spin-$\frac12$ states are half-filled, that is $n=1$. 
+Because of the symmetry between up and down spins we have furthermore $n_{\uparrow}=n_{\downarrow} = \frac12$
+This symmetrie is not broken but rather assured by the antiferromagnetic ground state.
+
+Due to particle-hole symmetry, the Hamiltonian should be invariant under the replacement 
+$c_{\vec k,\sigma} \leftrightarrow c_{\vec k,\sigma}^{\dagger}$
+% and $\varepsilon_{\vec k} \rightarrow -\varepsilon_{\vec k}$.
+In doing this replacement and using the anticommutation relations for creation and annihilation opeartors, the Hamilton operator in momentum space reads
+\begin{IEEEeqnarray}{rCl}
+ \hat H &=& \sum_{\vec k,\sigma} (-\varepsilon_{\vec k} + \mu) c_{\vec k ,\sigma}^{\dagger} c_{\vec k,\sigma} 
+ + \frac UN\sum_{\vec k,\vec k^{\prime}, \vec q} c_{\vec k,\uparrow}^{\dagger}c_{\vec k - \vec q,\uparrow}c_{\vec k^{\prime},\downarrow} c_{\vec k^{\prime} + \vec q,\downarrow} 
+ \nonumber \\ &&
+ -U\sum_{\vec k} \left( c_{\vec k,\uparrow}^{\dagger}c_{\vec k, \uparrow} +c_{\vec k,\downarrow}^{\dagger}c_{\vec k, \downarrow} \right)
+  + \sum_{\vec k} (2\varepsilon_{\vec k} + 2\mu + U) 
+\end{IEEEeqnarray}
+The energy dispersion for holes is given by $\varepsilon_{\vec k}^{\mathrm{holes}} = -\varepsilon_{\vec k}$ 
+and by this replacement we get back the original Hamiltonian plus a constant, that does not change our system.
+We can collect terms proportional to the total number of holes or particles, 
+$nN= \sum_{\vec k,\sigma} c_{\vec k,\sigma}^{\dagger} c_{\vec k,\sigma}$. 
+The prefactor of this terms corresponds to the chemical potential for holes. 
+At half-filling it should be the same as for particles, 
+we find therefore
+\begin{equation}
+ \mu = U-\mu \quad \Rightarrow \quad \mu = \frac{U}2.
+\end{equation}
+This allows us to insert $\mu = \frac U2$ and $n_{\sigma} = \frac12$ imediatly in the half filled case.
+
+
+
+
+We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$. 
+The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
+This relation holds in a perfect antiferromagnetic state. 
+With double occupied states present, there is also a symmetric contribution to $m_{s,\sigma}$ rather than a asymmetric one.
+The expression for $m_{s,\sigma}$ adds $(-1)^i$  whenever a particle with spin $\sigma$ is present at site $i$. 
+This is not affected by the simultanious presence of a particle with spin $-\sigma$, which will be counted by $m_{s,-\sigma}$ with the same factor of $(-1)^i$.
+However, double occupancies can be expected to be distributed evenly throughout the system. 
+Due to the alternating sign for the two sublattices we expect this contributions to cancel in the sum over all points in large systems, 
+restoring thereby the antisymmetric relation between $m_{s,\uparrow}$ and $m_{s,\downarrow}$. 
+
+In this situation $F_{\vec k,\sigma}$ depends only by an overall sign on $\sigma$, while $G_{\vec k,\sigma}$ becomes spin independent,
+\begin{equation}
+ G_{\vec k,\uparrow} = G_{\vec k,\downarrow} \qquad F_{\vec k,\uparrow} =-F_{\vec k,\downarrow}.
+\end{equation}
+
+
+
+
+In order to calculate $m_ {s,\sigma}$ we solve equation \ref{m_DEF}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
+We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, 
+since they depend only on the absolute value of $m_{\sigma}$ and $n_{\uparrow} = n_{\downarrow}$ as mentioned above.
+This decouples the two equations with respect to the spin label.
+By using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we end up with
+\begin{equation}
+ m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
+							      \frac { Um_{s,\sigma} }
+								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
+\end{equation}
+The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $|m_{s,\sigma}|$.
+To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as described in \ref{MFS}.
+The resulting equation
+\begin{equation}
+ 1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
+\end{equation}
+is solved using the Newton-Raphson method.
+Figure \ref{ms_nn} shows an example of the behaviour of $m_s$ for different values of $U$. The dispersion in this calculation is based 
+on nearest neighbour hoppings only, that is $t^{\prime} = t^{\prime \prime} = 0$ on a twodimensional square lattice.
+Introducing non-zero $t^{\prime}$ and $t^{\prime \prime}$ showed the same dependence. 
+%
+%
+\begin{figure}
+ \label{ms_nn}
+ \includegraphics[width=.9\textwidth]{../stagmag_T10.png}
+ \caption{staggered magnetization as function of $\frac Ut$}
+ 
+\end{figure}
+%
+In the limit of infinite $U$ we get $m_s=1$, corresponding to a fully antiferromagnetic ground state. 
+The strong repulsice interaction prevents double occupancies, because each of them adds $U$ to the energy of the ground state.
+We will find therefore one particle at each site.
+At the same time provide virtual states a possibility to furhter lower the ground state energy.
+Virtual hoppings are only possible for neighbouring sites, that are occupied by particles with opposite spin,
+since the Pauli principle prohibits double occupancies of particles with the same spin.
+Therefore is an antiferromagnetic ground state energetically preferable to a ferromagnetic one.
+
+Lowering $U$ yields a lower staggered magnetization, since the energy cost for double occupancy gets lower and might be outweighted by
+the reduce in kinetic energy due to hoppings.
+%
+At some point there will be an transition from the Mott insulator to a conducting state, since the gap produced by the Hubbard-$U$ vanishes. 
+For some $U \approx good \: question$ our assumption of a Hubbard gap and an antiferromagnetic groundstate are not longer valid. 
+Our optimization scheme for $m_s$ is not converging in this situation any longer due to the high sensitivity on the band gap through $(E^p_{\vec k} - E^-_{\vec k})^{-1}$.
+Calculations down to $U=0.5$ show that the staggered magnetization falls off very fast for low $U$.
+After finding $m_{s}$, the expression for $n_{\sigma}$ in terms of the propagator $G_{\vec k,\sigma}$ has also been calculated and found to be consistent with 
+the above derived relation between $\mu$ and $n$ at half-filling.
+
+
+
+\subsection{Large U Limit}
+
+A large $U$ creates an antiferromagnet as mentioned above. 
+Hopping at half-filling leads to double occupancies, which are supresed due to their high energetic cost. 
+Therefore, the system can be described as an Heisenberg antiferromagnet in this limit.
+The Heisenberg Hamiltonian with only nearest neighbour couplings is
+\begin{equation}
+ \hat H = J \sum_{\langle i,j\rangle} \vec{S}_i \cdot \vec{S}_j,
+\end{equation}
+which will be antiferromagnetic for positive J. 
+\todo{derivation of Heisenberg from Hubbard or reference}
+Hopping will be treated as a distortion to the system and yields the interaction of neighbouring spins.
+
+%
+% http://user.it.uu.se/~ngssc/ngssc_home/S2M2S2/pavarini1.pdf and notes from Morten
+% follow explanation, decide in what to include
+% include calculation of limit, independent of above considerations
+% how does it extend to higher order couplings, that is J^{\prime} and so on as well as t^{\prime}
+%
+
+We will expand our result in terms of $\frac{t^2}{U}$ and compare the resulting spin-wave dispersion to the one gained from a Heisenberg model.
+Since we are only interested in the position of the poles in $\chi$, it is sufficient to expand the denominator of equation \ref{ladder_sum} and solving for it's roots,
+\begin{equation}
+ \left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + y)\right) - \lambda^2(z_1 +z_2)^2 = 0
+\end{equation}
+We note first that the term $\lambda y$ is dominant in this limit, since $\lambda y \sim 1$, while $\lambda x \sim \frac1{U^2}$ and $\lambda z_i \sim \frac1U$
+for infinite $U$.
+Expanding this term
+up to first order in  $\frac{t^2}U$ we are left with the dispersion
+\begin{equation}\label{DispULimit}
+ \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2}. 
+\end{equation}
+This is exactly the spin wave dispersion one gets for linear spin waves in a Heisenberg antiferromagnet, 
+with the coupling $J=\frac{4t^2}{Um_s}$.
+Deriving the Heisenberg model from the Hubbard model yields $J=\frac{4t^2}{U}$, which differs by a factor of $\frac1{m_s}$ from the coupling we get in this expansion.
+The dependence of $m_s$ on $U$ shows, that we get a perfect antiferromagnet with $m_s=1$ for large $U$, 
+such that the two couplings will be identical in the case, where this approximations are valid. 
+%
+
+Linear spin waves are the first term in an $\frac1S$ expansion of the dispersion in a Heisenberg antiferromagnet.
+Higher orders renormalize the spin wave dispersion by allowing for quantum fluctuations.
+It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} 
+plays the role of this renormalization factor \cite{PhysRevB.65.132404}.
+Quantum fluctuations do lower the value of $m_s$, but in the mean-field scheme it tends to 1 for large $\frac Ut$ 
+and is unable to provide such corrections in the case of large $U$.
+
+The expression for $\omega(\vec q)$ tells us imediatly, that we get a constant dispersion along the 
+boundary of the magnetic Brillouin zone, $\omega(\frac12(1-t), \frac12t) =\mathrm{const.}$ for $t \in [0,1]$.
+% say sth. why \omega(\vec q = 0) = \omega(\vec q = \vec Q) = 0 is expected. 
+% \omega = 0, \vec q = 0: G^2-F^2 = (G-F)^2 - 2GF; (G-F)^2 = 1, GF = z1 = -z2 or similar
+% actually is z_1 = z_2 = 0, 1+\lambda(\bar x +y ) = 0 | \vec q =0
+
+
+By using a large value for $U$ in our calculations, we get results that agree well with the unrenormalized case.
+An example for $U=40$ can be seen in figure \ref{largeU}, together with the corresponding dispersion for linear spin waves.
+%
+\begin{figure}
+ \label{largeU}
+ \begin{center}
+  \includegraphics[width=\textwidth]{../U40}
+  \caption{spin wave dispersion for $U=40$ with linear spin-wave theory as comparison}
+ \end{center}
+\end{figure}
+%
+% higher order terms: t*(t/U)^n, n>1.
+% Heisenberg with J-J'-J''
+  
+
+\subsection{$t$-$U$-Model}
+
+As we lower the interaction strength, higher order effects becomer more important.
+They correspond to exchanges over multiple sites, beeing proportional to $t\cdot(\frac tU)^n$ for higher $n$.
+As one effect, the dispersion along the magnetic zone boundary is no longer constant.
+
+
+
+\subsection{$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
+
+
+Taken only nearest neighbour interactions into account, the mean-field model is not capable of reproducing all the obeserved features of this material.
+However, including further interactions up to third neighbours improves the system substantially.
+
+The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from 
+\cite{PhysRevLett.106.136402}. 
+Their values are based on fits to  the three orbital tight binding model in the local density approximation, including spin-orbit coupling (LDA+SO). 
+The resulting couplings were then projected on the spin-$\frac12$ subspace. 
+This results in the couplings for the one-band single particle Hamiltonian, containing only the effective $spin-\frac12$ states.
+The values used in this thesis were 
+%
+\begin{center}{
+\begin{tabular}
+%{|r@{=}l|r@{=}l|r@{=}l|}
+%\hline
+%$t$ & 0.258eV &
+%$t^{\prime}$ & 0.06eV &
+%$t^{\prime \prime}$ & 0.03eV \\
+%\hline
+{|c|c|c|}
+\hline
+$t$ & $t^{\prime}$ & $t^{\prime \prime}$ \\
+\hline
+0.258eV & 0.06eV & 0.03eV \\
+1 & 0.2326 & 0.1163 \\
+\hline
+\end{tabular}
+}\end{center} 
+%
+In the last line we normalized the couplings to $t$, 
+that has the same as in the previous situation without second- and third neighbour couplings, i.e. $t^{\prime} = t^{\prime \prime} = 0$.
+
+This does not only reduce the number of parameters, the ratio of neighbour interactions can be measured to a higher precission, while 
+their absolute value has some uncertainty.\todo{where from?}
+\todo{how it is measured, zone boundary dispersion}
+
+
+
 
 
 Excitations are given as the poles of $\chi(\vec q,\omega)$. 

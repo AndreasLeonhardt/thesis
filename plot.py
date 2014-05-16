@@ -15,10 +15,10 @@ A=loadtxt(filename, skiprows=0)
 f = figure()
 ad = f.add_subplot(111)
 
-plot(A[:,0],A[:,1])
+plot(A[:,0],2*A[:,1])
 
 xlabel('U/t')
-ylabel('m/2')
+ylabel('m')
 #title('blocking results')
 
 

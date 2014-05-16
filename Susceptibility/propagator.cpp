@@ -170,80 +170,85 @@ void propagator::calc_m() // using Newton-Raphson
 
     while (mdiff>1e-7)
     {
-        // calculate m_u and m_d
-        fm=0.0;
-        dfdm=0.0;
+            // calculate m_u and m_d
+            fm=0.0;
+            dfdm=0.0;
 
-        if (T==0.0)
-        {
-            for (int i=0;i<N_x;i++)
+            if (T==0.0)
             {
-                for (int j=0;j<N_y;j++)
+                for (int i=0;i<N_x;i++)
                 {
-                    if (Em(i,j)<0.0 && Ep(i,j)>0.0)
+                    for (int j=0;j<N_y;j++)
                     {
-                        fm+=1.0/(Ep(i,j)-Em(i,j));
-                        dfdm-=2.0/(pow(Ep(i,j)-Em(i,j),3));
-                    }
-                    else
-                    {
-                        // skip corresponding momentum
-                    }
+                        if (Em(i,j)<0.0 && Ep(i,j)>0.0)
+                        {
+                            fm+=1.0/(Ep(i,j)-Em(i,j));
+                            dfdm-=2.0/(pow(Ep(i,j)-Em(i,j),3));
+                        }
+                        else
+                        {
+                            // skip corresponding momentum
+                        }
 
+                    }
                 }
             }
-        }
-        else // T!=0
-        {
-            for (int i=0;i<N_x;i++)
+            else // T!=0
             {
-                for (int j=0;j<N_y;j++)
+                for (int i=0;i<N_x;i++)
                 {
-                    fm+= 1.0/(Ep(i,j)-Em(i,j))*
-                            ( -1.0/(1+exp(beta*Ep(i,j)))
-                              +1.0/(1+exp(beta*Em(i,j)))
-                             );
+                    for (int j=0;j<N_y;j++)
+                    {
+                        fm+= 1.0/(Ep(i,j)-Em(i,j))*
+                                ( -1.0/(1+exp(beta*Ep(i,j)))
+                                  +1.0/(1+exp(beta*Em(i,j)))
+                                 );
 
-                    dfdm+= 2.0/pow(Ep(i,j)-Em(i,j),3)
-                          *(
-                                1.0/( 1.0+exp(beta*Ep(i,j)) ) -1.0/( 1+exp(beta*Em(i,j)) )
-                            )
-                           +beta/(( Ep(i,j)-Em(i,j))*( Ep(i,j)-Em(i,j)))
-                           *(
-                               0.25/pow(cosh(beta*Ep(i,j)/2),2) + 0.25/pow(cosh(beta*Em(i,j)/2),2)
-                             );
+                        dfdm+= 2.0/pow(Ep(i,j)-Em(i,j),3)
+                            *(
+                                    1.0/( 1.0+exp(beta*Ep(i,j)) ) -1.0/( 1+exp(beta*Em(i,j)) )
+                                )
+                            +beta/(( Ep(i,j)-Em(i,j))*( Ep(i,j)-Em(i,j)))
+                            *(
+                                   0.25/pow(cosh(beta*Ep(i,j)/2),2) + 0.25/pow(cosh(beta*Em(i,j)/2),2)
+                                 );
+                    }
                 }
             }
+
+            // calculate new m
+            fm   *= U/(double)N;
+            dfdm *= 2.0*U*U*U*m/(double)N;
+
+            // next m with Newton-Raphson
+            // check difference, with infinite recursive filter, to not only rely on a single lucky jump
+            mdiff=0.1*mdiff+abs((fm-1)/dfdm);
+            // set new m, weighted with A/(A+abort) to avoid jumping forth and back
+            m-=(fm-1)/dfdm*100./(100.+(double)abort);
+            if(m>0.5 || m<0.0)
+            {
+                m=0.01;
+            }
+            set_E();
+
+            // check m for a start (remove later).
+            //cout<<m<<endl;
+
+            // break loop after a maximum limit of iterations
+            abort++;
+            if(abort>1e3)
+            {
+                cout<<"optimization of m reached limit"<<endl;
+                break;
+            }
+            else
+            {
+                // continue
+            }
+
+
         }
 
-        // calculate new m
-        fm   *= U/(double)N;
-        dfdm *= 2.0*U*U*U*m/(double)N;
-
-        // next m with Newton-Raphson
-        // check difference, with infinite recursive filter, to not only rely on a single lucky jump
-        mdiff=0.1*mdiff+abs((fm-1)/dfdm);
-        // set new m, weighted with A/(A+abort) to avoid jumping forth and back
-        m-=(fm-1)/dfdm*1.0e4/(1.0e4+(double)abort);
-        set_E();
-
-        // check m for a start (remove later).
-        //cout<<m<<endl;
-
-        // break loop after a maximum limit of iterations
-        abort++;
-        if(abort>1e4)
-        {
-            cout<<"optimization of m reached limit"<<endl;
-            break;
-        }
-        else
-        {
-            // continue
-        }
-
-
-}
 }
 
 
