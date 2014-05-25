@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{report}
+\documentclass[a4paper,12pt]{report}
 \usepackage[utf8]{inputenc}
 \input{/home/andi/Studium/LaTex/preambel.tex}
 
@@ -65,7 +65,7 @@ The term was coined in resemblance of cuprates, a similar group of materials wit
 Cuprates are intensively investigated since the 1980s, when high temperature superconductivity was first realized in Cuprates.
 
 
-Here we refer to a certain subclass of these materials, where ions of Iridium and Copper respectively are embedded in an octahedral of oxygen ions.
+Here we refer to a certain subclass of these materials, where ions of Iridium and Copper respectively are embedded in an octahedron of oxygen ions.
 Depending on their geometries, these materials show a wide range of interesting effects.
 They provide a realization of two-dimensional spin systems with strong interactions. 
 
@@ -88,7 +88,7 @@ The most interesting effect is the enhanced spin-orbit coupling due to the heavi
 By this, the replacement of Copper by Iridium might have drastic on the macroscopic behaviour. 
 One example is a transition from the conductor to an Mott-insulator in Sr$_2$XO$_4$, 
 
-Depending on the orientation of these octahedrals, the number of oxygen ions shared between two octahedrals varies for different materials. 
+Depending on the orientation of these octahedra, the number of oxygen ions shared between two octahedra varies for different materials. 
 
 
 
@@ -129,55 +129,57 @@ Depending on the orientation of these octahedrals, the number of oxygen ions sha
 
 
 
-\section{Outline \& Goals}
+\section{Outline}
 
 First the characteristic configuration of the crystal is  investigated.
-We will see, how Iridium embedded in an octahedral of oxygen ions  with strong  SOC
+We will see, how Iridium embedded in an octahedron of oxygen ions  with strong  SOC
 creates states with an effective total angular momentum of $J=\frac32$ and $J=\frac12$.
-While all $j=\frac32$- states are occupied, the later ones are half filled in the case of an undoped material.
-They form the active band, which allows us in a tight binding approximation to proceed to a pure spin model. 
-As a strongly correlated system it can be described with the Hubbard model. 
-This is the easiest way of including interactions in a spin system.
+While all $J=\frac32$- states are occupied, the later ones are half filled in the undoped case.
+They form the active band, which allows us to proceed to a pure spin model using the tight binding approximation.
+We introduce  correlations through on-site repulsions. 
+This so called Hubbard interaction is the simplest way of accounting for interactions 
+and has been shown to provide a good description in similar systems, e.g. the cuprates.
 % $t-U$ and $t-t^{\prime}-t^{\prime \prime}-U$
-
+% octa
 
 We then solve the Hubbard model in the mean-field approach.
 The goal is to calculate the dynamical magnetic susceptibility.
 From this we can extract the spin wave dispersion, which 
 can be directly compared to results from neutron and X-Ray scattering experiments.
-We follow the calculation scheme by XXYY \ref{cuprate paper} that was used for the cuprate LaCuO in 19XX.\todo{name, reference, material and year}
+We follow the calculation scheme by  \citet{PhysRevB.65.132404} that was used for the structurally similar cuprate La$_2$CuO$_4$.
 
-The actual calculations will be performed in the large U limit and compared to the Heisenberg model.
+The calculations will first be carried out in the large U limit and compared to the results of linear spin waves in a Heisenberg model.
 Since the Heisenberg model can be dervied from the Hubbard model in this limit, we can use this to validate the calculations.
-We calculate the dispersion with parameters from Sr$_2$IrO$_4$ for different band structures.
+
+We then calculate the dispersion with parameters from Sr$_2$IrO$_4$ for different band structures.
 The results were compared to measurements on this material. 
-The interaction parameter $U$ is the only adjustable parameter and will be fitted to give the best match to observations.
-We want to show that the approach outlined above provides results that agree well with measurements and is capable of reproducing the main features of the dispersion. 
+The interaction parameter $U$ is the only adjustable parameter in this approach and will be fitted to give the best match to observations.
+We show that the approach outlined above provides results that agree well with measurements and is capable of reproducing the main features of the dispersion.
 %
 % necessity of t-t'-t''?
 
 
   
 
-\chapter{Towards A Spin Hamiltonian}
+\chapter{???}
 
 \section{Iridates}
-% proper definition of iridates
+% proper definition of iridates in section above
 Iridium is one of the rarest metals on earth and highly corrision-resistant. 
-It belongs to the transition metals, i.e. it has a only partially filled $d$ shell.  
-The shell structure of atomic iridium is given by $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
+It belongs to the transition metals, i.e. its $d$ shell is only partially filled.  
+Iridium in the atomic configuration has the shell structure $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
 % ${\mathrm{Sr}}_{2}{\mathrm{IrO}}_{4}$
 In compunds it can be found in different oxidation states, ranging from -3 to +6.
 In the compounds treated in this thesis iridium is fourfold oxidized to $\mathrm{Ir}^{4+}$, 
-which removes the $6s^2$ electrons as well as two electrons from the $5d$ shell. 
-The outermost shell is therefore a the half-filled $5d$ shell ~\cite{Abragam70}.
+which removes the $6s^2$ electrons as well as two electrons from the $5d$ shell.
+The outermost shell is therefore the $5d$ shell, which is half-filled ~\cite{Abragam70}.
 
 
 %(the ion shell structure does not follow the Aufbau principle. 
 %Therefore has $\mathrm{Ir}^{4+}$ a different shell structure than Tantalum, even though they have the same number of electrons. 
 %This is because of the different charge of the nucleus, that leads to a greater seperation in energs levels with different quantum number n ($\propto \frac{Z}{n^2}$)).
 
-The other elements of the compunds treated in this thesis are oxygen and rare earth metals. 
+The other elements of the compounds treated in this thesis are oxygen and rare earth metals. 
 The oxygen is two fold ionized and has therefore only the closed shells $1s^2,2s^2,2p^6$.
 The same hold for the rare earth metals, strontium is reduced to 
 $\mathrm{Sr}^{2+}$ with the electron configuration of $\mathrm{Kr}$. 
@@ -185,30 +187,34 @@ Both the rare earth metal and oxygen have therefore zero total angular momentum 
 
 Iridates show a great variety of geometrical configurations. 
 We will focus on Sr$_2$IrO$_4$, which is part of the Ruddelson-Popper series of Iridium oxides, Sr$_{n+1}$Ir$_{n}$O$_{3n+1}$ with $n =1$. 
-Other possible values are 2 and $\infty$.
-Sr$_2$IrO$_4$ has the structure of a layered perovskite, that means it consists of layer with a structure similar to CaTiO$_3$.
-The later one is also called perovskite and lends this type of configuration its name.
-The main feature of the pervoskites is one ion, in this case Ir$^{+4}$  embedded in an octahedral of oxygen ions.
-The octahedra itself are situated on a square lattice, whith the oxygen ions on the face senters,
-while the rare earth metal contributes to the relative orientation of the octahedra. 
+Other possible values in this series are 2 and $\infty$.
+Sr$_2$IrO$_4$ has the structure of a layered perovskite, that means it consists of layers with a structure similar to CaTiO$_3$.
+The later one is also called perovskite and lends its name to the perovskite structure.
+It consists of a cubic unit cell, with one type of atom, here Ca on the edges. 
+The other atom, Ti, is embedded in an octahedron of 
+oxygen ions, which are located on the face centers.
 %
-In the case of Sr$_2$IrO$_4$ the octahedra share corners in the $x$-$y$-direction, while beeing separated by a Sr$^{2+}$ ion in the z-direction.
-Due to a shift between two subsequent layers, the square unit cell consists of two layers. 
-An octaheder of one layer matches an Sr ion of the other, perventing thereby corner sharing in the $z$-direction and yielding the separation of layers. 
 %
+In the case of Sr$_2$IrO$_4$ it is Ir$^{4+}$ that is located  inside the octahedra. 
+The type of rare earth metal as well as the ratio determine different geometrical setups of octahedra. 
+They share corners only in the $x$-$y$-direction while beeing separated by a Sr$^{2+}$ ion in the z-direction.
+Due to a shift between two subsequent layers, we have to include two layers in the unit cell in order to regain a cubic one.
+An octahedron of one layer matches an Sr ion of the other, perventing  corner sharing in the $z$-direction and providing thereby the separation of layers. 
+% 
 Furthermore, the octahedra are tilted in a staggered pattern by $\Theta = \pm 11^{\circ}$ \cite{PhysRevB.49.9198}.
 This enlarges the cubic unit cell to $\sqrt2 a\times\sqrt 2b \times 2c$.
-In $x$- and $y$-direction we have to take the diagonal translation vectors, while we get 4 layers in $z$-direction, until we reach the same pattern again. 
+In $x$- and $y$-direction we have to take two irdium ions into the unit cell. The translation vector corresponds now to the former diagonals.
+At the same time we get 4 layers in $z$-direction, until the same pattern of tilted octahedra is met again. 
 %
-We will neglect the rotations in proceeding to an model of effective spins, but regain the influences it has on the magnetic structure in the final interpretation of 
-measurable quantities. It shows that these rotations provide an explanation for a small ferromagnetic moment in an otherwise antiferromagnetic material. 
-\todo{picture of Sr2IrO4 unit cell, take from \cite{PhysRevLett.108.177003} if needed}
+We will neglect the rotations in proceeding to an model of effective spins, but regain the influence it has on the magnetic structure in the final interpretation of 
+response functions. It shows that these rotations provide an explanation for the small ferromagnetic moment in the otherwise antiferromagnetic material. 
+\todo{picture of Sr2IrO4 unit cell, take from \cite{PhysRevLett.108.177003} if needed, meausered ferromagnetic moment}
 
 \subsubsection{Ligand Field}
 
 The $5d$ states  in a free iridium ion are degenerate due to rotational symmetry of the atomic Hamiltonian. 
 We represent them by the states $x^2-y^2,z^2,xy,xz,yz$, which are related to the spherical harmonics $Y^2_m$ for $m=0,\pm1,\pm2$ by a unitarian transformation.
-As such, they all have angular momentum l=2. 
+As such, they all have angular momentum $l=2$. 
 and they form an irreducible representation of the rotation group.
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -223,23 +229,23 @@ and they form an irreducible representation of the rotation group.
 \end{center}
 %
 Embedding the ion in a crystal breaks the rotational symmetry and the degeneracy of these states will be lifted.
-Since the ion is now surrounded by oxygen ions, the so calles ligands, in the form of an octahedron, the 
+Since the ion is now surrounded by oxygen ions, the so called ligands, in the form of an octahedron, the 
 full rotational symmetry is reduced.
-Due to the geometry of the ligands, the poential is symmetric under transformations, that map an octahedron or equally a cube on itself.
+Due to the geometry of the ligands, the potential is symmetric under transformations, that map an octahedron or equally a cube on itself.
 These transformation build the group $O_h$.
-Comparing the characters of the irreducible presentations for the $O_h$ group with the ones for for the full rotation group, we find that 
+Comparing the characters of the irreducible presentations for  $O_h$ with the ones for for the full rotation group, we find that 
 the later one has to split up into two subgroups, 
-the three-fold degenerate $t_2g$ states consisting of the $xy,xz,yz$ orbitals and the two-fold degenerate $e_g$ states $z^2$ and $x^2-y^2$ \cite[p.70 et sqq.]{Tinkham64} 
+the three-fold degenerate $t_{2g}$ states consisting of the $xy,xz,yz$ orbitals and the two-fold degenerate $e_g$ states $z^2$ and $x^2-y^2$ \cite[Chapter~4]{Tinkham64} 
 % this is just a very short outline, can, but doesn't need to be explained further.
-% in the latter case, a nice reference woudn't hurt.
-Group theory alone does not provide the energtic order of this two subgroups. 
-From … \todo{where} we know, that the $e_g$ states correspond to a higher energy level.
+% in the latter case, a nice reference AND NUMBER would not hurt.
+\todo{quantify + reference, hybridization of orbitals} 
+The $e_g$ states are higher in energy than the $t_{2g}$.
+An intuitive way to see this is the form of the orbitals, where the $t_{2g}$ levels avoid the negative oxygen ions, reducing therefore repulsion. 
 For a strong crystal field, as we have in these materials, the $e_g$ states are well above the Fermi level and are therefore unpopulated,
-in contrast to a weak crystal field, where orbitals are filled according to Hund's rule. 
-For iridium we deal with the $5d$ states, which are more extended than $4d$ and $3d$ states. 
-This reduces the repulsion between eletrons, which further helps favouring double occupancies in the $t_{2g}$ over filling the $e_g$ states.
+in contrast to a weak crystal field, where orbitals are filled according to Hund's rule, i.e. one electron in each orbital with parallel spins.
+In the case of iridium we deal with  $5d$ states, which are more extended than the $4d$ and $3d$ states of lighter transition metals. 
+This reduces the repulsion between electrons, which further helps favouring double occupancies in the $t_{2g}$ over filling the $e_g$ states.
 Finally, the $t_{2g}$-states contain all 5 electrons belonging to the $d$-shell.
-The $xy,yz,xz$ states build have an effective angular momentum of $L=1$.
 
 
 
@@ -249,260 +255,389 @@ The $xy,yz,xz$ states build have an effective angular momentum of $L=1$.
 
 Until now we neglected interactions between angular momentum and spin. 
 The coupling $\lambda$ of total angular momentum $L$ and total Spin $S$ is proportional to the charge of the nucleus in 4th power, $Z^4$.
-Spin orbit coupling (SOC) is therefore more important in heavier elements and not negligible in iridates.
-Strong SOC is the main difference compared to the cuprates, which have a very similar structure otherwise.
+Spin orbit coupling (SOC) becomes therefore more important in heavier elements and is no longer negligible in iridates.
+Strong SOC is the main difference between iridates and cuprates.
 It is the reason for interesting new effects like the insulating behaviour up to high temperatures. 
 
-We introduce SOC by adding the term $\lambda \sum_{i} \hat{\vec L} \cdot \hat{\vec S}$ to the Hamiltonian.
-
+The total effective angular momentum of the $t_{2g}$-states is $L=1$. 
+There are five electrons in the three states, leaving one hole.
+Due to the Pauli principle, only three electrons can have the same spin, 
+the other two have the opposite spin. 
+The total spin $S$ is therefore $\frac12$.
+The total angular momentum and total spin can be coupled to
+$J=\frac32$ and $J=\frac12$.
+These states are energetically separated, depending on the strength of the coupling. 
 %
-% tight binding before that?
-%
-% How to introduce band structure, without introducing it twice?
-% qualitative description here, calculation later, or even in appendix?
-%
-% go through the stuff down there.
-
-% First: picking out some parts that are ready to send !!!!!!!!!!!!!!!!
-
-
-for LS-coupling: 
-\cite{PhysRevLett.105.216410}
-
-
-In the $5d$ elements spin orbit coupling (SOC) plays an important role since it increases with the charge of the nucleus.
-\todo{theoretical background for string SOC according to Z.}
-Since there is one hole in the $t_{2g}$ shell left, the total Spin is $S=\frac12$. 
-When coupled to the effective spin $L=1$ as mentioned above, 
-the sixfold degenerate $t_{2g}$ states (including spin degeneracy) split into a fourfold degenereate level with $J=\frac32$
-and twofold degenerate level with $J=\frac12$. The latter one is higher in energy, since we couple an \emph{effective} angular momentum to the spin,
-thus the paralell coupling is energetically favourable.
-In the ground state the $J=\frac32$ band will be filled, while the $J=\frac12$ band is half filled, leaving us with an effective Spin$\frac12$ system on each Iridium site in the grid.
-\todo{create/include graph similar to \cite{PhysRevLett.101.076402}}
-
-The two states are given by a linear combination of the molecular orbits and spin states,
+SOC is introduced by adding the term $\lambda \sum_{i} \hat{\vec L} \cdot \hat{\vec S}$ to the Hamiltonian.
+The matrix elements are given by 
 \begin{equation}
- \ket{J_{\mathrm{eff}} =\frac12, M_{J_{\mathrm{eff}}}= \pm \frac12}
- = 
- \frac{1}{\sqrt{3}} \left( \ket{yz,\pm \sigma} \mp \im \ket{zx,\pm \sigma} \mp \ket{xy,\mp \sigma} \right).
+\bra{\alpha,\sigma} \hat{\vec L} \cdot \hat{\vec S} \ket{\beta,\sigma^{\prime}} = \sum_{j=x,y,z}\bra{\alpha} \hat L_j \ket{\beta} \bra{\sigma} \hat S_j \ket{\sigma^{\prime}} 
 \end{equation}
-where $+\sigma = \uparrow, -\sigma = \downarrow$. The moelcular orbits are given by linear combinations of the spherical harmonics
+with $\alpha, \beta \in \{xy,xz,zy\}$ and the spin values $\sigma, \sigma^{\prime} \in \{\uparrow,\downarrow\}$.
+% notation of \sigma as number
+The angular momentum matrix elements can be easily calculated by the substitution $L_x=\frac12 (L^++L^-)$ and $L_y=\frac{-\im}2 (L^+-L^-)$.
+and expressing the $t_{2g}$-states through the spherical harmonics.
+The components of the angular momentum operators act on the spherical harmonics through 
+$L_z Y^m_l = m Y^m_l \:$, $L^+Y^m_l = \sqrt{(l-m)(l+m+1)}Y^{m+1}_l$ and $L^-Y^m_l = \sqrt{(l+m)(l-m+1)}Y^{m-1}_l$.
+The components of the spin operator are proportional to the Pauli matrices, $\tau_j = \frac12 \sigma_j$.
+We are left with a hermitian matrix with only six independent, non-zero components, namely
 \begin{IEEEeqnarray}{rCl}
-\ket{xz} &=& \frac{1}{\sqrt{2}} \left( Y_2^{-1} - Y_2^{1} \right) \\
-\ket{yz} &=& \frac{\im}{\sqrt{2}} \left( Y_2^{-1} + Y_2^{1} \right) \\
-\ket{xy} &=& \frac{\im}{\sqrt{2}} \left( Y_2^{-2} - Y_2^{2} \right) 
+ \bra{zx,\sigma} \hat{\vec L} \cdot \hat{\vec S} \ket{xy,-\sigma} &=& \frac{\im\lambda}2 \nonumber \\
+ \bra{yz,\sigma} \hat{\vec L} \cdot \hat{\vec S} \ket{xy,-\sigma} &=& -s_{\sigma}\frac{\lambda}2 \nonumber \\
+ \bra{zx,\sigma} \hat{\vec L} \cdot \hat{\vec S} \ket{zx,\sigma}  &=& s_{\sigma} \frac{\im \lambda}2,
 \end{IEEEeqnarray}
+where $s_{\uparrow}=+1$, $s_{\downarrow}=-1$ denote the signs of the spins.
+This matrix has two eigenvalues, $-\nicefrac{\lambda}2$ and $+\lambda$. The subspace for the lower one is 4 dimensional and corresponds to 
+the $J_{\mathrm{eff}}=\frac32$ state, the other one is the two-dimensional $J_{\mathrm{eff}}=\frac12$ subspace. 
+In the ground state the $J=\frac32$ band will be completly occupied, while the $J=\frac12$ band is half-filled.
+Figure \ref{split_states} shows the energetic split and the occupancy of energy levels in the ground state.
+%
+%for LS-coupling: 
+%\cite{PhysRevLett.105.216410}
+%
+\begin{figure}
+ \begin{center}
+ \begin{tikzpicture}[scale=1.9]
+ \draw[->] (-0.7,.8) -- (-.7,3.4) node[anchor =  west]{$E$};
+ \draw[-,black  ,thick] (-0.2,2)node[anchor=east] {$5d$} -- (1.0,2);
+ \foreach \f in {-0.1,0.0,...,0.4} \filldraw (\f,2.05) circle (0.03);
+ \foreach \f in {0.4,0.5,...,0.9} \draw (\f,2.05) circle (0.03);
+ %
+ \draw[-,black,dashed] (1.0,2) -- (1.5,3.0);
+ \draw[-,black,dashed] (1.0,2) -- (1.5,1.5);
+ %
+ \draw[-,black  ,thick] (1.5,3)node[anchor=south east] {$e_g$} -- (2.5,3);
+  \foreach \f in {1.6,1.7,...,1.9} \draw (\f,3.05) circle (0.03);
+ \draw[-,black  ,thick] (1.5,1.5)node[anchor=north east] {$t_{2g}$} -- (2.5,1.5);
+  \foreach \f in {1.6,1.7,...,2.0} \filldraw (\f,1.55) circle (0.03);
+  \draw (2.1,1.55) circle (0.03);
+ %
+ \draw[-,black,dashed] (2.5,1.5) -- (3,2.0);
+ \draw[-,black,dashed] (2.5,1.5) -- (3,1.25);
+ %
+  \draw[-,black  ,thick] (3,2.0) -- (4,2.0) node[anchor= west] {$J_{\mathrm{eff}}=\frac12$} ;
+  \draw (3.1,2.05) circle(0.03);
+  \filldraw (3.2,2.05) circle(0.03);
+ \draw[-,black  ,thick] (3,1.25) -- (4,1.25) node[anchor= west] {$J_{\mathrm{eff}}=\frac32$};
+  \foreach \f in {3.1,3.2,...,3.4} \filldraw (\f,1.3) circle (0.03);
+  \draw[<-,black, dashed] (3.7,1.25) -- (3.7,1.625) node[anchor = west]{$\frac32\lambda$};
+  \draw[->,black, dashed] (3.7,1.625) -- (3.7,2);
+  \draw (0.3,0.8) node[]{\small{\emph{atomic limit}}};
+  \draw (2.0,0.8) node[]{\small{\emph{ligand field}}};
+  \draw (3.5,0.8) node[]{\small{\emph{SOC}}};
+ \end{tikzpicture}
+\caption{scheme of the split-up of states due to the crystal field and spin orbit coupling. The circles indicate the available spaces and are filled if occupied.}
+\end{center}
+ \label{split_states}
+\end{figure}
 
-\todo{transformation properties of the ground state}
-
+%
+The two eigenstates are given by a linear combination of the molecular orbits and spin states,
+\begin{equation}
+ \ket{J_{\mathrm{eff}} =\frac12, M_{J_{\mathrm{eff}}}= \sigma}
+ = 
+ \frac{1}{\sqrt{3}} \left( \ket{yz,\sigma} -s_{\sigma} \im \ket{zx,\sigma} -s_{\sigma} \ket{xy,-\sigma} \right).
+\end{equation}
+%\todo{transformation properties of the ground state}
+% possible: construct J_eff first (3/2 and 5/2, the second splitting up to 1/2 and 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Spin System And The Hubbard Model}
-
-\subsubsection{Tight Binding Model} % in second quantization
 
 
 
 
-Energy eigenstates of the crystal must be Bloch states, defined by  the relation
+%\subsubsection{Relative Orientation Of Octahedra}
+% rotation by 11° in Sr$_2$IrO$_4$, corner sharing
+% edge sharing in other materials, non 2D setup
+
+\newpage
+\section{The Hubbard Model}
+
+So far we considered only ions and their immediate vicinity in limit of infinite separation from each other, i.e. without interactions between different sites in the crystal.
+In reality the orbitals will overlap and create thereby the possibility of transitions and interactions.
+In this chapter we provide an outline on how to construct a set of localized orthonormal states, that allow us to describe our system in second quantization.
+
+
+\subsection{Tight Binding Model} % in second quantization
+
+Electrons in iridates are localized, i.e. they are well described by wave functions, which are centred around sites in the crystal and vanish fast as one is moving away. 
+In this case, atomic orbitals provide a good starting point. 
+Since we are interested in dynamics at low temperatures we restrict ourself to the $J=\frac12$ orbital, that is situated at the Fermi level. 
+Other orbitals are either completely filled or well above the Fermi level and therefore not important in the dynamics of the system at low temperatures.
+
+
+We denote the $n$th orbital of the unit cell at site $\vec R_i$ with $\ket{\phi_I} = \phi^n(\vec r - \vec R_i)$.
+$I=(n,i)$ is the combined index of orbital number $n$ and site number $i$. $n$ runs over the relevant orbitals of all atoms in the unit cell. 
+%
+Even though the orbitals are localized, we have a non-zero overlap for different $I=(i,n)$ and $J=(j,m)$, $\braket{\phi_I}{\phi_J} = S_{IJ}\ne \delta_{IJ}$.
+This includes overlap in the unit cell and across sites. 
+%
+The potential in the Hamiltonian is now the sum over atomic potentials at all sites, and the total single-particle Hamiltonian reads
+\begin{IEEEeqnarray}{rCl}
+ \hat H &=& \frac{1}{2m}\nabla^2 - \sum_I V^n_{\mathrm{atom}}(\vec r - \vec R_i ) \nonumber \\
+ &=& H_{\mathrm{atom}}^n(\vec R_i) - \sum_{J\ne I} V^m_{\mathrm{atom}}(\vec r - \vec R_j )
+\end{IEEEeqnarray}
+In the last line we grouped the terms belonging to the single atom Hamiltonian at space $\vec R_i$, of which $\ket{\phi_I}$ is an eigenfunction with eigenvalue $E^n$.
+This allows us to easily identify different contributions the matrix elements of the Hamiltonian.
 \begin{equation}
- \Psi_{n,\vec{k}} \left( \vec{r}+\vec{t}\right) = \euler^{\im \vec{t} \vec{k} } u_{n,\vec{k}} \left( \vec{r} \right), \label{BlochDef}
+ \bra{ \phi_I} \hat H \ket{\phi_J} = E^{m}S_{IJ}-\beta^{m}\delta_{IJ} - T_{IJ}
 \end{equation}
-where $\vec{t}$ denotes a translation vector of the lattice, e.g. one that leaves the lattice unchanged, 
-and $u_{n,\vec{k}}$ is a periodic function with the same periodicity than the lattice.
-Using a Fourier transform on the Bloch states of different bands $n$, we get the so called Wannier states,
+$\beta^m$ corresponds to a shift of energy, due to the integral over the atomic potentials located on all sites apart $I$,
 \begin{equation}
- \Psi_{\vec{R}_i, n} \left( \vec{r} \right) = \frac1{\sqrt{N}} \sum_{\vec{k}} \euler^{\im \vec{k}\vec{R}_i } \Psi_{\vec{k}, n} 
+ \beta^m = \int \!\!\dint^3 r \:\: \phi^n(\vec r - \vec R_i)^* \sum_{I^{\prime}\ne I} V^{n^{\prime}}_{\mathrm{atom}}(\vec r - \vec R_{i^{\prime}} ) \phi^n(\vec r - \vec R_i)
 \end{equation}
-Those are no longer eigenstates of the Hamiltonian, but still orthonormal, since the transformation is unitarian. 
-Furthermore they are localized around the positions $\vec{R}_i$.
-Instead of the eigenfunctions of the single particle Hamiltonian, we can use linear combinations of them. 
-This gives us a different set of Wannier functions, that are related to the ones previously defined by another unitary transformation.
-The additional degrees of freedom can be used to optimize the Wannier functions according to certain criteria.
-The most common ones are maximal localization or symmetries of the crystal or the atomic orbitals.
+This contribution will be small, since the $\ket{\phi_I}(\vec r)$ is small at $\vec r$ where the potential is big. 
+The matrix $T_{IJ}$ consists of all non-diagonal integrals of this type, 
+\begin{equation}
+ T_{IJ} = \int \!\!\dint^3 r\:   \: \phi^{n*}(\vec r - \vec R_I) \sum_{I^{\prime}\ne I} V^{n^{\prime}}_{\mathrm{atom}}(\vec r - \vec R_{i^{\prime}} ) \phi^m(\vec r - \vec R_j)
+\end{equation}
+if $I \ne J$ and 0 otherwise. 
+The biggest contribution in the sum comes from the term with $I^{\prime}=J$, since one wave function has a central overlap with the potential.
+
+We want to transform our basis states such, that they are orthonormal but still located around lattice sites.
+Functions of this type are the Wannier functions $\Psi_I$. They are given by the Fourier transformation of Bloch functions.
+\begin{equation}
+ \Psi_I \left( \vec{r} \right) = \frac1{\sqrt{N}} \sum_{\vec{k}} \euler^{\im \vec{k}\vec{R}_i } \Psi_K(\vec r) 
+\end{equation}
+We introduced the combined index for $k$-space as well, $K=(n,\vec k)$
+Bloch functions are eigenfunctions of the translation operator of the lattice. 
+Under a symmetry translation of the lattice, they will only pick up a phase,
+\begin{equation}
+ \Psi_{K} \left( \vec{r}+\vec{T}\right) = \euler^{\im \vec{k} \vec{T} } u_{K} \left( \vec{r} \right). \label{BlochDef}
+\end{equation}
+$\vec T$ is a translation vector of the lattice and $u_{K} \left( \vec{r} \right)$ is a function with the same periodicity as the lattice. 
+As eigenfunctions of the translational operator the Bloch states are orthogonal, 
+which can also be seen by the completeness relation of $\sum_i \euler^{\im ( \vec k - \vec k^{\prime} ) \vec R_i} = N\delta (\vec k - \vec k^{\prime})$
+Since the transformation to Wannier states is a unitary transformation, it follows immediately that they are orthogonal as well.
+
+We can now construct Bloch functions from the atomic functions by means of Bloch sums.
+\begin{equation}
+  \Psi_K(\vec{r}) = N_K \sum_{i} \euler^{\im \vec{k}\vec{R}_i }  \phi^n(\vec{r}-\vec{R}_i). 
+\end{equation}
+$N_K$ is a $k$- and $n$-dependent normalization factor, which we choose to be real, since we need only it's absolute value.
+\begin{equation}
+ N_K^{-2}  = \big| \sum_{i,j} \euler^{\im \vec k (\vec R_i-\vec R_j)}  
+ \underbrace{\int \!\! \dint^3 r {\phi^n}^*(\vec r - \vec R_i) \phi^n(\vec r- \vec R_j)}_{S_{(n,i),(n,j)}} \big|
+\end{equation}
+Constructed in this way, the states fulfil the requirement of \ref{BlochDef}, since
+\begin{equation}
+ \Psi_{K}(\vec{r}+\vec{T}) 
+ = N_{K} \euler^{\im \vec{k} \vec{T} } \sum_{i} \euler^{\im \vec{k} (\vec{R}_i-\vec{T})} \phi^n (\vec{r}-\vec{R}_i+\vec{T}) 
+ = N_{K} \euler^{\im \vec{k} \vec{T} } \sum_{i} \euler^{\im \vec{k}\vec{R}_i }  \phi^{n}(\vec{r}-\vec{R}_i), 
+\end{equation}
+where the second step is simply done by a shift in the sum. 
+Using the Bloch sums to construct Wannier functions yields the states we are looking for.
+These so called Löwdin orbitals are given by
+\begin{equation}
+ \ket{\varphi_I} = \sum_{j}  \sum_{\vec k} \euler^{\im \vec k ( \vec R_i - \vec R_j ) } N_k \ket{\phi^J}\delta_{mn} = \sum_{J} \mathbf A_{IJ}\ket{\phi_J}\delta_{mn} .
+\end{equation}
+We introduced the transformation matrix $\mathbf A$, which can be expressed as a product of matrices itself.
+Therefore we write the Fourier transformation as 
+$\mathbf U_{IK} = \euler^{\im \vec k \vec R_i}\delta_{mn}$, which is unitarian. 
+We rewrite the normalization constant as a diagonal matrix, $\mathbf N_{KK^{\prime}}= N_{K} \delta_{KK^{\prime}}$. 
+The inverse is again a diagonal matrix with the inverse elements on the diagonal, which gives
+$\mathbf N^{-2} = \mathbf U \mathbf S \mathbf U^*$.
+The total expression for $\mathbf A$ is therefore
+\begin{equation}
+ \mathbf A = \mathbf U(\mathbf U^*\mathbf S\mathbf U)^{-\frac12}\mathbf U^* = \mathbf S^{-\frac12}.
+\end{equation}
+Finally, we can express the Löwdin states in term of atomic orbitals and their overlaps,
+\begin{equation}
+ \ket{\varphi_I} = \sum_J (\mathbf S^{-\frac12})_{IJ} \ket{\phi_J}\delta_{mn}.
+\end{equation}
+The matrix $\mathbf S^{-\frac12}$ is defined by a Taylor series of the matrix $\mathbf S$. 
+Therefore they commute and hermitian and $\mathbf S^{-\frac12}$ is hermitian.
+Since we have only small off-diagonal elements and 1 on the diagonal, we see that the Löwdin states are still
+localized around the centres. 
+In the limit of large separations, $\mathbf S$ approaches the identity, and we regain the atomic orbitals.
+The main difference between the Löwdin states and the atomic ones are imaginary oscillations, that ensure orthogonality.
 
 
+We can now express the matrix elements of the Hamiltonian in the new basis.
+\begin{IEEEeqnarray}{rCl}
+ \bra{ \varphi_I} \hat H \ket{\varphi_J} &=& (E^m-\beta^m)\delta_{IJ} - t_{IJ} \\
+ t_{IJ} &=& \left\{ 
+ \begin{array}{c@{\quad}l}
+ -\beta \mathbf S_{IJ} - (\mathbf{S}^{-\frac12}\mathbf T \mathbf S^{-\frac12})_{IJ} & I \ne J \\
+ 0 & I=J 
+ \end{array} \right. \nonumber 
+\end{IEEEeqnarray}
+%
+The calculation of $t_{IJ}$ requires detailed knowledge about the atomic states and the periodic potential.
+They are usually calculated through other approximation schemes, for example the local density approximation (LDA).
+In calculations we will use values from the literature, that were fitted to LDA + SO calculations.
 
-For atoms with a very large distance in between them the Wannier functions approach states of free atoms or linear combinations of them.
-Each band corresponds to a atomic orbital or a set set of degenerate orbitals.
-If the overlap of the potentials of the atoms building up the crystal is small, we might use atomic states as a starting point for our description of the system.
-We can construct a Bloch function by
-\begin{equation}
- \Psi_k(\vec{r}) = \sum_{\vec{R}} \euler^{\im \vec{k}\vec{R} }  \phi_{n}(\vec{r}-\vec{R}). 
-\end{equation}
-This construction fullfills the requirement of \ref{BlochDef}, since
-\begin{equation}
- \Psi_{n,k}(\vec{r}+\vec{t}) 
- = \euler^{\im \vec{k} \vec{t} } \sum_{\vec{R}} \euler^{\im \vec{k} (\vec{R}-\vec{t})} \phi_n (\vec{r}-\vec{R}+\vec{t}) 
- = \euler^{-\im \vec{k} \vec{t} } \sum_{\vec{R}} \euler^{\im \vec{k}\vec{R} }  \phi_{n}(\vec{r}-\vec{R}), 
-\end{equation}
-where the second step is due to invariance under a translation of the lattice $\vec{t}$.
-The Bloch functions constructed in this way are in general not orthogonal.
-By taking a relevant subset of atomic states, and defining for each $\vec{k}$
-\begin{equation}
- H_{nm} = \bra{\Psi_{n,\vec{k}}} H \ket{\Psi_{m,\vec{k}}} \text{  and  } S_{nm} = \braket{\Psi_{n,\vec{k}}}{\Psi_{m,\vec{k}}}
-\end{equation}
-we can set up the secular equation
-\begin{equation}
- \det(H_{nm}-E_kS_{nm})=0.
-\end{equation}
-This gives us the band energies. The corresponding eigenstates are called Löwedin functions.
+
+\subsubsection{Superexchange}
+% and how spin exchanges happen 
+
+The direct hopping terms between iridium orbitals are negligible, since the iridium sites are separated by oxygen ions.
+Transitions between iridium sites is still possible, but mediated through the $p$-orbitals of oxygen ions. 
+These two step hopping processes are called super exchange and give rise to an anti-ferromagnetic coupling.
+We will just sketch how to calculate the main contribution to an effective Ir-Ir hopping.
+
+We pick a subsystem of two $J_{\mathrm{eff}}=\frac12$ orbitals of Ir at lattice sites $i$ and $j$ 
+and take only hopping between neighbouring orbitals into account.
+From the oxygen ion in between we find a double occupied $p$-orbital in between and denote the hopping parameter $t_p$. 
+A scheme can be seen in figure \ref{superexchange}.
+%
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+ \draw[-,thick] (0,0) -- (2,0);
+ \draw[-,thick] (4,0) node[anchor = north west ]{$p$} -- (6,0) ;
+ \draw[-,thick] (8,0) -- (10,0);
+ %
+ \draw[->,thick] (.8,-.5) -- (.8,.5);
+ \draw[->,thick] (1.2,-.5) -- (1.2,.5);
+ %
+ \draw[->,thick] (4.8,-.5) -- (4.8,.5);
+ \draw[<-,thick] (5.2,-.5) -- (5.2,.5);
+ %
+ \draw[->,thick, gray] (9,-.5) -- (9,.5);
+ %
+ \draw[->,dashed] (5.2,.6) .. controls (4.2,1.3) and (2.2,1.3) .. node[above]{1.} (1.2,.6) ;
+ \draw[->,dashed] (9,.6) .. controls (8.2,1.3) and (6.2,1.3) .. node[above]{2.} (5.2,.6) ;
+\end{tikzpicture}
+ \caption{scheme of the two processes leading to superexchange, mediated through a $p$-orbital from the ligands}
+ \label{superexchange}
+ \end{center}
+\end{figure}
+%
+%
+The since this involves two hopping processes to and from the $p$-orbital, we get a factor of $t_p$ each time.
+We have to divide by the energy of the intermediate step, which is $U+(E_d-E_p)$.
+The effective hopping is then $t=\frac{t_p^2}{U+E_d-E_p}$.
+
+%The diagonal term is still given by the eigenvalues of the atomic Hamiltonian with a shift due to the presence of the other potentials. 
+%Since this term is proportional to unity, we can remove this factor from the Hamiltonian by shifting the energy scale.
+
+\subsection{Second Quantization}
+
+Having defined our single particle Hamiltonian in terms of orthonormal wave orbitals, 
+we can construct the many particle wave function in terms of creation and annihilation operators. 
+The operator $c^{\dagger}_{i,\sigma}$ creates a particle with spin $\sigma$ in the orbital $\ket{\varphi_i}$,
+while its hermitian conjugate $c_{i,\dagger}$ removes it.
+The particles have an effective spin of $\frac12$ and are therefore fermions. 
+We introduce the anti-commutation rules for the creation and annihilation operators at equal times.
+\begin{IEEEeqnarray}{rClrCl}
+ \Big\{c^{\dagger}_{i,\sigma}\:,\: c_{j,\sigma^{\prime}} \Big\} &=& \delta_{ij} \delta_{\sigma, \sigma^{\prime}} 
+ &\qquad
+ \Big\{c_{i,\sigma}\:,\: c_{j,\sigma^{\prime}} \Big\} &=& 0 \nonumber \\
+ \Big\{c_{i,\sigma}^{\dagger}\:,\: c^{\dagger}_{j,\sigma^{\prime}} \Big\} &=& 0 &&& \label{acomm_rules}
+\end{IEEEeqnarray}
+It follows immediately that  $-c^{\dagger}_{i,\sigma} c^{\dagger}_{j,\sigma} = c^{\dagger}_{j,\sigma} c^{\dagger}_{i,\sigma}$ and $(c^{\dagger}_{i,\sigma})^2 = 0$.
+These relations ensure the antisymmetry of the total wave function and thereby the Pauli principle.
+
+
+% looks like the same thing, but results in oscillations  at the overlapping tails, providing ON.
+% Overlap integrals are transformed with that, providing then t_ij
+% provides U_ijkl as well?
+% see Altmann pp. 177 and 222
+
+%Furthermore they are localized around the positions $\vec{R}_i$.
+%Instead of the eigenfunctions of the single particle Hamiltonian, we can use linear combinations of them. 
+%This gives us a different set of Wannier functions, that are related to the ones previously defined by another unitary transformation.
+%The additional degrees of freedom can be used to optimize the Wannier functions according to certain criteria.
+%The most common ones are maximal localization or symmetries of the crystal or the atomic orbitals.
+% By taking a relevant subset of atomic states, and defining for each $\vec{k}$
+%\begin{equation}
+% H_{nm} = \bra{\Psi_{n,\vec{k}}} H \ket{\Psi_{m,\vec{k}}} \text{  and  } S_{nm} = \braket{\Psi_{n,\vec{k}}}{\Psi_{m,\vec{k}}}
+%\end{equation}
+%we can set up the secular equation
+%\begin{equation}
+% \det(H_{nm}-E_kS_{nm})=0.
+%\end{equation}
+%This gives us the band energies. The corresponding eigenstates are called Löwedin functions.
 % BAD writing here, tsss. What is the poinit anyway?
 % resemble the Löwedin states the crystal symmetry? They should (--> see Slater et al.)
 
 
 
-In this picture we think of electrons as being in a certain state of an atom and hopping to other states rather then being delocalized over the whole crystal.
-In any real system the states will have some overlap, creating the possibility for electrons to hop between different sites.
+%In this picture we think of electrons as being in a certain state of an atom and hopping to other states rather then being delocalized over the whole crystal.
+%In any real system the states will have some overlap, creating the possibility for electrons to hop between different sites.
 
-Using second quantization, we can make the above transformation for creation and annihilation operators as well.
-The relation between creation and annihilation operators for Bloch states and Wannier states is then given by
+Creation and annihilation operators can be translated to momentum space as well.
+The corresponding operators represent the creation and annihilation operators of the Wannier states. 
 \begin{IEEEeqnarray}{rCl}
-  a^{\dagger}_{i , n}  =  \sum_{\vec{k}} \euler^{\im \vec{k}\vec{R}_i } a^{\dagger}_{\vec{k} , n}, 
+  c^{\dagger}_{i , \sigma}  =  \frac1{\sqrt N}\sum_{\vec{k}} \euler^{\im \vec{k}\vec{R}_i } c^{\dagger}_{\vec{k} , \sigma}, 
       &\quad&
-  a_{i , n}  =  \sum_{\vec{k}} \euler^{-\im \vec{k}\vec{R}_i } a_{\vec{k} , n},  \nonumber\\  
-  a^{\dagger}_{\vec{k} , n}  =  \sum_{i} \euler^{-\im \vec{k}\vec{R}_i } a^{\dagger}_{i , n}
+  c_{i , \sigma}  =  \frac1{\sqrt N} \sum_{\vec{k}} \euler^{-\im \vec{k}\vec{R}_i } c_{\vec{k} , \sigma},  \nonumber\\  
+  c^{\dagger}_{\vec{k} , \sigma}  =  \frac1{\sqrt N} \sum_{i} \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_{i , \sigma},
     &\quad&
-  a_{\vec{k} , n}  =  \sum_{i} \euler^{\im \vec{k}\vec{R}_i } a_{i , n}.
+  c_{\vec{k} , \sigma}  =  \frac1{\sqrt N}\sum_{i} \euler^{\im \vec{k}\vec{R}_i } c_{i , \sigma}. \label{FTc}
 \end{IEEEeqnarray}
-By construction they fullfill the anticommutation relations for fermion creation and annihilation operators. 
-The correlation is taken into account by introducing a two particle operator. 
-Since the single particel Hamiltonian $H_0$ is diagonal for the Bloch states, we can write
+They fulfil the same anti-commutation rules than in the operators in real space.
+
+The single particle Hamiltonian, from now on denoted by $\hat H_0$, reads in second quantization
 \begin{IEEEeqnarray}{rCl}
- H_0 &=& \sum_{\vec{k}} E_{\vec{k}} a^{\dagger}_{\vec{k}} a_{\vec{k}} \nonumber \\
-    &=& \sum_{ij} \underbrace{ \frac1N \sum_{\vec{k}} E_{\vec{k}} \euler^{\im \vec{k} ( \vec{R}_i -\vec{R}_j ) } }_{t_{ij}} a^{\dagger}_{i} a_{j},
+ \hat H_0 
+    &=& \sum_{\sigma} \sum_{ij} -t_{ij} \, c^{\dagger}_{i,\sigma} c_{j,\sigma},
 \end{IEEEeqnarray}
-defining the one particle operator $t_{ij}$. 
-The diagonal terms $t_{ii}$ are the single particle energys of the atomic sites, 
-while the off-diagonal elements provide the hopping.
-In cases where the tight binding is a good approximation those hopping elements will fall off quite fast and 
-we might include only interactions between close neighbours, usually between nearest neighbours and maybe next-to-nearest neighbours.
-So far we did not take electron-electron interactions into account. 
-This can be done by introducing the two particle operator
+where $t_{ij}$ are the off-diagonal matrix elements $\bra{\varphi_i} \hat H \ket{\varphi_j}$ defined above.
+
+%
+In cases where the tight binding approximation is valid, 
+these hopping terms might be very small for large distances between site $i$ and $j$.
+As a simplification we restrict the model to close neighbours only, setting all other elements of $\mathbf t$ to zero.
+More precisely, we will restrict ourselves to first, second and third nearest neighbours only. 
+Due to translational invariance, $t_{ij}$ depends only on the difference $\vec R_i - \vec R_j$.
+We further assume isotropy between neighbours in different directions but with the same distance.
+Then,  $t_{ij}$ depends only on three parameters,
 \begin{equation}
- H_{\text{int}} = \sum_{ijkl} U_{ijkl} a^{\dagger}_i a^{\dagger}_j a_k a_l
+ t_{ij} = \left\{ \begin{array}{l@{\quad}l@{\quad}l}
+ t  			& \text{for }\langle i,j\rangle, 					&\text{nearest neighbours} \\ 
+ t^{\prime}  		&\text{for } \langle \langle i,j \rangle \rangle, 			&\text{next nearest neighbours} \\
+ t^{\prime \prime} 	&\text{for } \langle \langle \langle i , j \rangle \rangle \rangle, 	&\text{ next to next nearest neighbours} 
+\end{array} \right.
 \end{equation}
-where the matrix elements $U_{ijkl}$ are given by
-\begin{equation}
- U_{ijkl} = \int \!  \dint^3 r \, \dint^3 r^{\prime} \,  \Psi_i^*(\vec{r}) \Psi_j^*(\vec{r}^{\prime}) V(\vec{r}-\vec{r}^{\prime} ) \Psi_k(\vec{r}) \Psi_l(\vec{r}) 
-\end{equation}
-Due to the small overlap of different states, usually only a few matrix elements are of relevant magnitude, a long range interaction is however possible.
-The diagonal matrix elements $U_{iii} = U$ account for the repulsion between electrons on the same site and are certainly the most important contribution.
-Because of the Pauli principle they have to have opposite spins. 
-This is guaranteed by the anticommutation relation of creation and annihilation operators.
-Including spin notation in the creation and annihilation operators, we can simplify the interaction contribution to 
-\begin{equation}
- H_{\text{int}} = U \sum_i n_{i,\uparrow} n_{i,\downarrow},
-\end{equation}
-using the number operator $n_{i,\sigma} = a^{\dagger}_{i,\sigma} a_{i,\sigma}$.
-This is the only term taken into account for the Hubbard model.
-However, reducing an interaction that is not necessarily local to only on-site interactions is a grave simplification, 
-neglecting the vast amount of parameters in the interaction matrix $U_{ijkl}$ and therefore long range repulsion.
-The interaction seems to be lower than what you would expect from an correlation integral of the corresponding orbitals.
-\todo{only when supportable with citation. Article about Hubbard in general?}
-It is not possible to link the parameter $U$ to a physical quantity directly
-and the Hubbard model is therefore not a first principle model. $U$ has to be seen as an effective parameter, that has to be adjusted according to experiments or calculations using
-other methods.
-The single particle part of the Hamiltonian however can be taken from first principle methods such as density funcitonal calculations\todo{DFT here?}.
-
-
-% other interactions 
-% U_{ijji}, Heisenberg
-% U_{iijj}, density fluctuations
-
-\subsubsection{Superexchange}
+and can be expressed as a summation over neighbouring pairs only. 
+\begin{IEEEeqnarray}{rCl}
+ \hat{H}_0 &=& 
+ - t \sum_{\langle i,j \rangle,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
+ - t^{\prime} \sum_{\langle \langle i,j \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} +c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) \nonumber \\ &&
+ - t^{\prime \prime} \sum_{\langle \langle \langle i,j \rangle \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma}   + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
+ -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
+\end{IEEEeqnarray}
+The sums are restricted such, that they count each pair $i,j$ only once. 
 
 
 
 
-
-
-\subsubsection{Relative Orientation Of Octahedra}
-
-% rotation by 11° in Sr$_2$IrO$_4$, corner sharing
-% edge sharing in other materials, non 2D setup
-
-
-
-To describe the above spin system there are several models. We assumed the tight binding approximation to be valid, i.e. atomic orbitals
-are still a good description for electrons and they are localized. However, their wavefunctions have a certain overlap and there is a correlation. 
-%In the Heisenberg model this correlation is not taken into account, the Hamiltonian describes only spin interaction. 
-%\begin{equation}
-% \hat{H} =  -J \sum_{<i,j>} \hat{\mathbf{S}}_i\hat{\mathbf{S}}_j
-%\end{equation}
-%where $<i,j>$ indicates a sum over nearest neighbours and the spin operator is $\hat{\mathbf{S}}_i = \frac12 \left( \sigma^x_i, \sigma^y_i, \sigma^z_i \right)^{\intercal}$.
-%The model can be extended to next-to-nearest neighbour interactions and so on. 
+\subsection{Band Structure In Momentum Space}
 
 
 
 
-\begin{comment}
-
-However, since electrons with opposite spin can occupy the same state and repell each other, this might have to be taken into account, depending on the 
-strength of the correlation in such a situation. 
-This can be done in the Hubbard model, given by
-\begin{equation}
- \hat{H} = \underbrace{U \sum_i c^{\dagger}_{i,\uparrow}c_{i,\uparrow} c^{\dagger}_{i,\downarrow}c_{i,\downarrow} }_{\text{correlation}}
-	    -\underbrace{t \sum_{<i,j>,\sigma} c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} }_{\text{hopping term}}
-\end{equation}
-with the creation operator 
-\begin{equation}
- c^{\dagger}_{i} = \euler^{-\im\pi \sum_{j<i} a^{\dagger}_j a_j } a^{\dagger}_i\quad ; \quad a^{\dagger}_i = \frac12 \left( \sigma^x_i + \im \sigma^y \right)
-\end{equation}
-and the corresponding annihilation operator. 
- this kind of creation operator phase correction is only needed when derived from the Heisenberg model, see Quantum Many Particle Systems by Negele
-In certain situations the Heisenberg model can be derived from the Hubbard model. 
-
-\end{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\section{Band Structure}
-
-% Mott Insulator (band splitup using U)
-% How U changes the picture
-
-\subsection{Momentum Space}
-
-The Hubbard model is defined by the Hamiltonian
-\begin{equation}
- \hat{H} = \hat{H}_0
-	   + U \sum_i c^{\dagger}_{i,\uparrow}c_{i,\uparrow} c^{\dagger}_{i,\downarrow}c_{i,\downarrow} 
-	    . \label{Hubbard_space}
-\end{equation}
-with a band structure single particle Hamiltonian $\hat{H}_0$.
-
-
-In the simplemost version only nearest neighbour hoppings are taken into account,
+In the simple-most version only nearest neighbour hopping is taken into account, setting $t^{\prime}$ and $t^{\prime \prime}$ to zero.
 \begin{equation}
  \hat{H}_0 = - t \sum_{\langle i,j \rangle,\sigma} \left (c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) 	    -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
 \end{equation}
-where $\langle i,j \rangle$ denotes a sum over pairs of nearest neighbours, counting each pair only once.
-The first term in $\hat{H}_0$represents the kinetic energy of particles, hopping from one site to a neighbouring site.
-The chemical potential is represented in the second term, showing the energetic cost to add a particle to the system.
+In the second term we introduced the chemical potential.
+It shows the energetic cost to add a particle to the system.
 As an external parameter it can be used to control the particle density $n$, that is the number of particles per site.
+$n$ ranges from 0 to 2, since we can occupy each state with at max two particles with opposite spin. 
 % \mu = \frac{U}{2} is explained later, when dealing with half filling in greater detail
 
-In order to represent the Hamiltonian in momentum space we use the relation between the representation of creation and annihilation operators in real space and momentum space,
-\begin{equation}
- c^{\dagger}_i=N^{-\frac12} \sum_k \euler^{-\im \vec{k}\vec{R}_i } c^{\dagger}_k, \qquad c_i= N^{-\frac12} \sum_k \euler^{\im \vec{k}\vec{R}_i } c_k.
-\end{equation}
-Inserting this relation and using 
-\mbox{$\sum_i \euler^{(\vec{k}-\vec{l})\vec{R}_i } = N\delta_{\vec{k}\vec{l}}$} 
-the chemical potential term translates to
+In order to represent the Hamiltonian in momentum space we insert the relation between the representation of creation and annihilation operators in real space and momentum space,
+as stated in equation \ref{FTc}.
+%
+First, we have a look at the chemical potential term. 
+Because of the completeness relation \mbox{$\sum_i \euler^{(\vec{k}-\vec{l})\vec{R}_i } = N\delta_{\vec{k}\vec{l}}$}, it is diagonal in $k$-space as well.
 \begin{equation}
  -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma} = 	-\mu \sum_{\vec{k},\sigma} c^{\dagger}_{\vec{k},\sigma}c_{\vec{k}\sigma}
 \end{equation}
-In a similar manner the first term in $\hat{H}_0$ turns into	
+%
+In a similar manner the hopping term turns into	
 \begin{IEEEeqnarray}{c}
- -\frac{t}{N} \sum_{\vec k \vec l ,\sigma} \sum_{<i,j>} 
+ -\frac{t}{N} \sum_{\vec k \vec l ,\sigma} \sum_{\langle i,j \rangle } 
 	      \left( 
 	      \euler^{-\im \left(  \vec{k}\vec{R}_i - \vec{l}\vec{R}_j\right)} c^{\dagger}_{\vec{k},\sigma} c_{\vec l, \sigma}  
 	      + \euler^{-\im \left(  \vec{k}\vec{R}_j - \vec{l}\vec{R}_i \right)} c^{\dagger}_{\vec{k},\sigma} c_{\vec l, \sigma} 
 	      \right)	      
 	      \label{ham_pspace}
 \end{IEEEeqnarray}
-We can now reparametrize the sum over nearest neighbours, using the translation vectors $\vec{T}_d$ between nearest neighbours,
+We can now re-parametrize the sum over nearest neighbours, using the translation vectors $\vec{T}_d$ between nearest neighbours.
+$d$ is an index, that runs over all nearest neighbours. 
 \begin{equation}
  \sum_{\langle i,j \rangle} = \sum_i \sum_d \quad; \quad \vec{R}_j = \vec{R}_i + \vec{T}_d
 \end{equation}
@@ -514,16 +649,22 @@ We can therefore write \ref{ham_pspace} as
     c^{\dagger}_{\vec{k},\sigma}c_{\vec{l},\sigma} \nonumber \\
     =& \sum_{\vec{k},\sigma}  c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma}  \underbrace{\sum_d -2t \cos( \vec{k} \vec{T}_d ) }_{\varepsilon_{\vec k} }
 \end{IEEEeqnarray}
-which shows that the single-particle Hamiltonian  is  diagonal in momentum space.
+which shows that the single-particle Hamiltonian  is  diagonal in momentum space with the Wannier functions as eigenstates 
+and momentum dependent eigenvalues $\varepsilon_{\vec k}$.
 
 In the case of a two dimensional square lattice, the translational vectors of nearest neighbours are given by the lattice constant $a$ times the unit vectors in 
-$x$- and $y$-direction, $T_d = a\cdot \vec{e}_d$, $ d \in \{x,y\}$ as shown in figure \ref{2d_square}.
+$x$- and $y$-direction, $T_d = a\cdot \vec{e}_d$, $ d \in \{x,y\}$, shown as green arrows in figure \ref{2d_square}.
 Using $a$ as the basic length unit, that is $a=1$, 
-and normalizing therefore the momentum to the intervall $[-\pi,\pi]\times [-\pi,\pi]$ 
+and normalizing therefore the momentum to the interval $[-\pi,\pi]\times [-\pi,\pi]$ 
 we get in this case
-$\varepsilon_{\vec k} = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$. 
+\begin{equation}
+\varepsilon_{\vec k} = -2t\cos(k_x)-2t\cos(k_y). 
+\end{equation}
+
+
 
 \begin{figure}
+\label{2d_square}
 \begin{center}
  \begin{tikzpicture}[scale=1.5]
  \foreach \x in {1,...,4}
@@ -537,41 +678,105 @@ $\varepsilon_{\vec k} = \mbox{$-2t\cos(k_x)-2t\cos(k_y)$}$.
  \draw[->,blue ,thick] (2,2) -- (3,1) node[anchor=north ] {$\vec e_x- \vec e_y$}; 
  \end{tikzpicture}
 \end{center}
-\caption{translation vectors $\vec T_d$ in a two dimensional square grid with first (green), second (blue) and third (red) neighbour interactions}
-\label{2d_square}
+\caption{translation vectors $\vec T_d$ in a two dimensional square lattice with first (green), second (blue) and third (red) neighbour interactions}
 \end{figure}
 
-In an more elaborate approach we might add second and third neighbour hoppings. 
-They can be treated in the same manner as nearest neighbours, simply by including the corresponding vectors $\vec T_d$ with their respective couplings.
-The vectors up to third neighbour interactions are shown in figure \ref{2d_square}. 
-We extend the single-particle Hamiltonian in real space to
-\begin{IEEEeqnarray}{rCl}
- \hat{H}_0 &=& 
- - t \sum_{\langle i,j \rangle,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
- - t^{\prime} \sum_{\langle \langle i,j \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma} +c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) \nonumber \\ &&
- - t^{\prime \prime} \sum_{\langle \langle \langle i,j \rangle \rangle \rangle ,\sigma} \left( c^{\dagger}_{i,\sigma}c_{j,\sigma}   + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right)
- -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i;\sigma}
-\end{IEEEeqnarray}
-Double and triple brackets denote second- and third-neighbour pairs respectively and again, the sum counts each pair only once.
-The resulting expression for the energy dispersion reads
+The additional term one gets for non-zero second and third neighbour interactions can be treated the same way. 
+One has to include the corresponding translational vectors $\vec T_d$ with their respective couplings.
+Figure \ref{2d_square} shows the vectors up to third neighbour interactions in the 2D square lattice.
+The third neighbours have the same type of translational vectors as the first neighbours, just with twice the length.
+The second neighbours are found at $\vec e_x \pm \vec e_y$.
+The resulting expression for the energy dispersion in this situation reads
 \begin{equation}
  \varepsilon_{\vec k } = -2t \left(\cos k_x + \cos k_y \right) -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
 \end{equation}
 
+We note that the hopping term represents the kinetic energy of particles moving between different sites. 
+It is the hopping parameter and the 
+geometry of the lattice, that provide the energy dispersion. 
+The energy dispersion for Sr$_2$IrO$_4$  with and without next-to-nearest neighbour interactions are shown in figure \ref{fig:energie_dispersion}.
 
 
 
-The interaction term translates to
+\begin{figure} \centering
+\begin{subfigure}{0.49\linewidth} \centering
+ \includegraphics[width=\textwidth]{../bandstructure_t.pdf}
+ \caption{$ t^{\prime}=t^{\prime \prime} =0$ }
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+  \includegraphics[width=\textwidth]{../bandstructure_ttt.pdf}
+  \caption{ $t^{\prime}= 0.2326t$, $t^{\prime \prime} = 0.1163t$}
+\end{subfigure}
+\caption{single particle energy dispersion in units of t with nesting vector $\vec Q$. }
+\label{fig:energie_dispersion}
+\end{figure}
+
+
+
+
+\subsection{Hubbard Interaction}
+
+So far we did not take any interactions between particles into account.
+The general form of a two particle operator is
+\begin{equation}
+ H_{\text{int}} = \sum_{\sigma_1 \sigma_2 \sigma_3 \sigma_4} \; \sum_{ijkl} U_{ijkl} \, c^{\dagger}_{i,\sigma_1} c^{\dagger}_{j,\sigma_2} c_{k,\sigma_3} c_{l,\sigma_4}
+\end{equation}
+%
+The matrix elements $U_{ijkl}$ are independent of spin and given by
+\begin{equation}
+ U_{ijkl} = \int \!  \dint^3 r  \, \dint^3 r^{\prime} \,  \varphi_i^*(\vec{r}) \varphi_j^*(\vec{r}^{\prime}) \frac{e^2}{|\vec{r}-\vec{r}^{\prime} |} \varphi_k(\vec{r}) \varphi_l(\vec{r}) 
+\end{equation}
+Due to the small overlap of different states $\varphi_i$, only a few matrix elements are of relevant magnitude.
+The diagonal matrix elements $U_{iii} = U$ account for the repulsion between electrons on the same site and are certainly the most important contribution.
+The fermionic operators ensure the Pauli principle. 
+The only non-zero term proportional to $U_{iiii}$ is therefore $c^{\dagger}_{i,\uparrow} c^{\dagger}_{i,\downarrow} c_{i,\uparrow} c_{i,\downarrow}$. 
+Using the number operator $n_{i,\sigma} = c^{\dagger}_{i,\sigma} c_{i,\sigma}$, the diagonal interaction term reads
+\begin{equation}
+ H_{\text{int}} = U \sum_i n_{i,\uparrow} n_{i,\downarrow}.
+\end{equation}
+Other terms count the interaction of density fluctuations at neighbouring sites through $U_{ijij}$ 
+or
+the exchange coupling $U_{ijji}$, which yields a Heisenberg like coupling $J_{ij}$.
+
+In the Hubbard model however we take only the diagonal terms $U_{iiii}$ into account.
+We choose therefore $U_{ijkl} = \delta_{ijkl} U$. 
+Reducing an interaction that is not necessarily local to only on-site interactions is a grave simplification, 
+neglecting the vast amount of parameters in the interaction matrix $U_{ijkl}$ and therefore long range repulsion and exchange effects.
+As a result, the optimal value for $U$, the only parameter left, does not any longer depend on the integral given above in a simple way.
+The interaction seems to be drastically lowered due to screening effects compared to the value one would expect from the correlation integral of the corresponding orbitals
+\cite{J.Phys.Cond.Matter.Vol21.34}.
+It is not possible to link the parameter $U$ to a physical quantity directly
+and the Hubbard model is therefore not a first principle model. 
+$U$ has to be seen as an effective parameter.
+
+
+
+% Mott Insulator (band split-up using U)
+% How U changes the picture
+
+
+%The Hubbard model is defined by the Hamiltonian
+%\begin{equation}
+% \hat{H} = \hat{H}_0
+%	   + U \sum_i c^{\dagger}_{i,\uparrow}c_{i,\uparrow} c^{\dagger}_{i,\downarrow}c_{i,\downarrow} 
+%	    . \label{Hubbard_space}
+%\end{equation}
+%with a band structure single particle Hamiltonian $\hat{H}_0$.
+
+\subsubsection{Hubbard Term In Momentum Space}
+
+We can express the interaction term through creation and annihilation operators in momentum space as well. 
+The summation over all sites in the transformation yields an overall $\delta$-function of momenta,
 \begin{IEEEeqnarray}{rl}
  &\frac{U}{N^2} \sum_{\vec{k}\vec{l}\vec{m}\vec{n}} \sum_i \euler^{-\im (\vec{k}-\vec{l}+\vec{m}-\vec{n})\vec{R}_i } 
     c^{\dagger}_{\vec{k},\uparrow}c_{\vec{l},\uparrow} c^{\dagger}_{\vec{m},\downarrow}c_{\vec{n},\downarrow} \nonumber \\
     =& \frac{U}{N} \sum_{\vec{k}\vec{l}\vec{m}\vec{n}} \delta(\vec{k}-\vec{l}+\vec{m}-\vec{n} )
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{l},\uparrow} c^{\dagger}_{\vec{m},\downarrow}c_{\vec{n},\downarrow} \nonumber \\
     =& \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
-	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
+	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow} \:.
  \end{IEEEeqnarray}
-where we choose a convenient parametrization for the sum over the momenta in the last line.
-This term is non-diagonal, but it ensures momentum conversation at each vertex.
+In the last line we choose a convenient parametrization of momenta. 
+The interaction is non-diagonal, but it ensures momentum conversation at each vertex.
 
 The total expression for the Hamiltonian in momentum space reads
  \begin{equation}
@@ -579,13 +784,21 @@ The total expression for the Hamiltonian in momentum space reads
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
  \end{equation} 
 
+
+
+
+
+
+
+
+
 \section{Mean Field Equations}
 
 \subsubsection{The Mean-Field Hamiltonian}
 
-We treat the Hubbard model in a pertubative approach at the mean-field level.
-The Hubbard term  $H_U$ acts as the pertubation.
-As a two-particle operator it can be read as a product of two single particle opearators.
+We treat the Hubbard model in a perturbative approach at the mean-field level.
+The Hubbard term  $H_U$ represents the perturbation.
+The two-particle operator can be read as a product of two single particle operators.
 We can rewrite any product of two operators $\hat{A}$ and $\hat{B}$ as
 \begin{IEEEeqnarray}{rCl}
  \hat{A}\cdot\hat{B} 
@@ -604,14 +817,14 @@ In the mean field approach we neglect the first term on the right hand side –t
 \end{equation}
 % RPA has nothing to do with this I think…
 %
-We use this relation on the single particle oparators 
+We use this relation on the single particle operators 
 $c^{\dagger}_{\vec k,\uparrow}c_{\vec k - \vec q,\uparrow}$
 and 
 $c^{\dagger}_{\vec k,\downarrow}c_{\vec k + \vec q,\downarrow}$
 in the Hubbard term of the Hamiltonian. 
 Furthermore, we drop the constant term corresponding to $\langle \hat A \rangle \langle \hat B \rangle$, since a constant in the Hamiltonian will not have any
 influence on the dynamic of the system. 
-The mean-field approxiamtion of the Hubbard term reads
+The mean-field approximation of the Hubbard term reads
 \begin{equation}
  H_U \stackrel{\mathrm{mf}}{\approx}  \frac{U}{N}
  \sum_{\vec{q}} \sum_{\sigma} 
@@ -623,9 +836,9 @@ First, for $\vec q = 0$ the expression yields the spin dependent filling factor,
 \begin{equation}
  n_{\sigma} = \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k, \sigma} \rangle.
 \end{equation}
-Due to the Pauli principle we can have only one particle with a certain spin at each site. This value is therefore restricted to the range $[0,1]$.
-The total number density is simply the sum of both spin dependent number densites, $n=n_{\uparrow}+n_{\downarrow}$ 
-and ranges from 0 for the empty case to 2, corresponding to a situation where each sites is occupied by two particles with opposite spin.
+A single  site can be empty or occupied by one particle, since we have spin-$\frac12$ particles. The possible values for $n_{\sigma}$ are therefore restricted to the range $[0,1]$.
+The total number density is simply the sum of both spin dependent number densities, $n=n_{\uparrow}+n_{\downarrow}$ 
+and ranges from the empty case $n=0$ to 2, corresponding to a situation where each sites is occupied by two particles with opposite spin.
 
 %
 %
@@ -642,46 +855,37 @@ and ranges from 0 for the empty case to 2, corresponding to a situation where ea
 %
 The second contribution comes from $\vec q = (\frac12, \frac12)$.
 This vector acts as a nesting vector for the Fermi surface of the band structure. 
-A square lattice with only nearest-neighbour interactions can be divided into two sublattices. 
-Hoppings occur only from one sublattice to the other and as a result we get a perfectly nested energy dispersion,
-that is
+The dispersion of a square lattice with only nearest-neighbour interactions 
+ %can be divided into two sublattices $A$ and $B$, 
+ %such that hopping occurs only from one sublattice to the other.
+%and as a 
+%The partition in sublattices can be understood as an enlargement of the unit cell, resulting in a reduced Brillouin zone of half the size.
+%At the same time, we have now to energy disperions, belonging to each sublattice. 
+%
+depends only on $\cos(k_x) + \cos(k_y)$.
+and is therefore perfectly nested.
+That means
 $\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ with the nesting vector $\vec Q = (\frac12,\frac12)$ in units of $2\pi$.
-The Fermi surface in this case is therefore a perfect square. 
-Introducing higher order hopping terms deforms it, but nesting with $\vec Q$ holds on a approximate level for small $t^{\prime}$ and $t^{\prime \prime}$.
-The Fermi surfaces with nesting vector $\vec Q$ for two different sets of parameters are shown in \ref{fig:energie_dispersion}.
+The Fermi surface at half filling is in this case a perfect square.
+Introducing higher order hopping terms deforms the Fermi surface, but nesting with $\vec Q$ holds on a approximate level for small $t^{\prime}$ and $t^{\prime \prime}$.
+The Fermi surfaces together with the nesting vector $\vec Q$ are shown for both cases in \ref{fig:energie_dispersion}.
 %
 %
-\begin{figure} \centering
-\begin{subfigure}{0.49\linewidth} \centering
- \includegraphics[width=\textwidth]{../bandstructure_t.pdf}
- \caption{$ t^{\prime}=t^{\prime \prime} =0$ }
- \label{fig:dispt}
-\end{subfigure}
-\begin{subfigure}{0.49\linewidth}
-  \includegraphics[width=\textwidth]{../bandstructure_ttt.pdf}
-  \caption{ $t^{\prime}= 0.2326t$, $t^{\prime \prime} = 0.1163t$}
-  \label{fig:dispttt}
-\end{subfigure}
-\caption{single particle energy dispersion in units of t with nesting vector $\vec Q$. }
-\label{fig:energie_dispersion}
-\end{figure}
 %
 %$\vec Q$ is the basis vector for antiferromagnetic ordering. 
 %This is observed in these materials \todo{how general, which ones} and expected % for what reason?
-Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a symmetrie broken ground state with an antiferromagnetic moment. 
-\todo{why do we expect SB? How does this arise from a nested Fermi surface?}
 
 
-reference for AF GS:
-\cite{PhysRevLett.62.591}
-
-
-The expectation value of the staggered magnetization, given by
+Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a non-zero expectation value for $\langle c^{\dagger}_{\vec k, \sigma} c_{\vec k + \vec Q ,\sigma}$
+and therefore to a symmetry broken ground state with an anti-ferromagnetic moment. 
+The staggered magnetization is the order parameter of an anti-ferromagnetic state.
+In momentum space it reads
 \begin{IEEEeqnarray}{lCl}
  m_{s} &=& m_{s, \uparrow} - m_{s, \downarrow}, \\
- m_{s, \sigma} &=& \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k , \sigma} c_{\vec k + \vec Q, \sigma} \rangle,
+ m_{s, \sigma} &=& \frac1N  \sum_i (-1)^i \langle c^{\dagger}_{i,\sigma} c_{i,\sigma} \nonumber \\ &&
+ \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k , \sigma} c_{\vec k + \vec Q, \sigma} \rangle .
 \end{IEEEeqnarray}
-is therefore non-zero. 
+
 
 In terms of the above defined parameters equation \ref{Hubbard_mean_field} simplifies finally to
 \begin{equation}
@@ -708,12 +912,12 @@ In terms of the above defined parameters equation \ref{Hubbard_mean_field} simpl
 %
 We are left with a Hamilton operator consisting only of single particle operators. 
 That shows the idea of the mean-field approach, describing non-interacting particles that are exposed to an averaged field.
-This averaged field is the result off these particles in the system. It's value will therefore be influenced by the particles itself.
+This field is the result off the sum of all particles in the system. It's value will therefore be influenced by the particles itself.
 As a result we have to solve the equations for the fields self-consistently, which will be done in the next section. 
 The first term in the above mean-field Hamiltonian represents the mean repulsion due to the equal charge of the electrons.
 It is proportional to the number density of particles with opposite spin due to the on-site interaction, that is only possible for particles with opposite spin.
 The second term corresponds to the coupling to a staggered magnetic field, that is a magnetic field with an alternating orientation on each site. 
-The field strength is proportional to the magentization of the ground state and given by $Um_s$.
+The field strength is proportional to the magnetization of the ground state and given by $Um_s$.
 
 \subsubsection{Mean-Field Propagators}
 
@@ -730,7 +934,7 @@ with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair
  -\Theta(\tau_1-\tau_2)\hat{A}(\tau_1) \hat{B}(\tau_2) + \Theta(\tau_2-\tau_1)\hat{B}(\tau_2) \hat{A}(\tau_1) \nonumber \\
  &=& \left\{ \begin{array}{r@{\text{ for }}l} -\hat{A}(\tau_1) \hat{B}(\tau_2) & \tau_1 \ge \tau_2 \\ \hat{B}(\tau_2) \hat{A}(\tau_1) & \tau_1 < \tau_2 \end{array} \right.
 \end{IEEEeqnarray}
-For the behaviour at $\tau=0$ as shown in the last line, we need the convetion of $\Theta(0)=\frac12$.
+%
 From this definition follows that $n_\sigma$ and $m_{s,\sigma}$ can be expressed in terms of propagators, namely through
 \begin{IEEEeqnarray}{lCl}
  n_{\sigma} &=& \frac1N \sum_{\vec k} \left( 1-G_{\vec k, -\sigma}(0) \right) \label{n_DEF}\\
@@ -738,7 +942,7 @@ From this definition follows that $n_\sigma$ and $m_{s,\sigma}$ can be expressed
 \end{IEEEeqnarray}
 
 
-From the definition of the propagtors in \ref{Def_Propagator} and the equation of motion for operators, 
+From the definition of the propagators in \ref{Def_Propagator} and the equation of motion for operators, 
 $\frac{\dint}{\dint \tau} \hat{A} = [H,\hat{A}] + \frac{\partial}{\partial_{\tau}} \hat{A}$,
 we get the differential equation
 \begin{IEEEeqnarray}{rCl}
@@ -749,8 +953,9 @@ we get the differential equation
  -  \Theta(-\tau) \langle c^{\dagger}_{ \vec k ,\sigma}(0) [\hat H , c_{\vec k ,\sigma}(\tau)]  \rangle \label{EOM_G}
 \end{IEEEeqnarray}
 Here we used $\partial_{\tau} \Theta(\tau) = \delta(\tau)$.
-The commutators can be evaluated using the identity $[AB,C] = A\{B,C\} - \{A,C\}B$ and the anticommutation rules for the creation and annihilation operators.
-\todo{give fermion commutation rules somewhere earlier}
+The commutators can be evaluated using the identity $[AB,C] = A\{B,C\} - \{A,C\}B$ and the anti-commutation rules for the creation and annihilation operators in
+equation \ref{acomm_rules}.
+%
 This leaves us with
 \begin{equation}
  [H,c_{\vec k ,\sigma}(\tau)]=-\left(\varepsilon_{\vec k}-\mu + Un_{-\sigma} \right) c_{\vec k ,\sigma}(\tau) - Um_{s,-\sigma} c_{\vec k +\vec{Q},\sigma}(\tau)
@@ -770,7 +975,7 @@ The Fourier transformed propagator is related to the propagator in imaginary tim
  G_{\vec k ,\sigma}(\im \omega_n) &=& \int_0^{\beta} \! \!\dint  \tau \: \euler^{\im \omega_n \tau} G_{\vec k ,\sigma}(\tau)
 \end{IEEEeqnarray}
 The so called Matsubara frequencies $\omega_n$ are given by $\omega_n = \frac{\pi}{\beta}(2n+1), \; n \! \in \! \mathbb{Z}$.
-This ensures the anti-periodicity of fermionic Greensfunctions, $G(\tau+\beta) = -G(\tau)$.
+This ensures the anti-periodicity of fermionic Green's functions, $G(\tau+\beta) = -G(\tau)$.
 Transforming equation \ref{EOM_G_II} to momentum space we get
 \begin{IEEEeqnarray}{rCl}
  \left( \im \omega_n -\varepsilon_{\vec k } +\mu - Un_{-\sigma} \right) G_{\vec k ,\sigma}(\im \omega_n) = 1 +Um_{s,-\sigma} F_{\vec k ,\sigma}(\im \omega_n)
@@ -779,7 +984,7 @@ In the same way, starting from $\frac{\dint}{\dint \tau} F_{\vec k ,\sigma}(\tau
 \begin{IEEEeqnarray}{rCl}
  \left( \im \omega_n -\varepsilon_{\vec k +\vec{Q}} +\mu - Un_{-\sigma} \right) F_{\vec k ,\sigma}(\im \omega_n) = Um_{s,-\sigma} G_{\vec k ,\sigma}(\im \omega_n)
 \end{IEEEeqnarray}
-There is no constant term, since the anticommutator in \ref{EOM_G_II} is zero for off-diagonal momenta. 
+There is no constant term, since the anti-commutator in \ref{EOM_G_II} is zero for off-diagonal momenta. 
 Putting the last two equations together we get the expressions for the propagators
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )}
@@ -826,23 +1031,10 @@ while $G_{\vec k,\sigma}$ changes depending on the dispersion $\varepsilon_{\vec
 % \todo{ How to draw nice diagrams in \LaTeX?}
 
 There is an alternative approach from a diagrammatic point of view, that gives the same differential equation for the propagators.
-Following the notation of \ref{PhysRevB.65.132404}, 
+Following the notation of \cite{PhysRevB.65.132404}, 
 we denote the bare propagator $G^0_{\vec k,\sigma}$ by a single line, the mean-field propagators by double lines and the interaction by a dashed line.
 The off-diagonal propagator $F_{\vec k ,\sigma}$ is marked with an doubled arrow head.
 The diagrams for a self-consistent mean-field approximation are shown in figure \ref{Diagr_Props}. 
-%
-By including only single loops we neglect again the possiblity of quantum fluctuations, i.e. there are no interactions with virtual states.
-Note that the particles on each site of the interaction have different spins and there is no spin transfer. 
-The straight arrows have therefore all the same spin, while all particles in the loops have the opposite spin.
-We reflect the sum up to infinite such interactions by using the mean-field propagator after the interaction. 
-%
-Self-consistency is achieved by using the mean-field propagators in the loops.
-This reflects the fact, that $m_{s,\sigma}$ and $n_{\sigma}$ itself depend on the sum over the respective mean-field propagator.
-As a result we have to solve the equations for $m_{s,\sigma}$ and $n_{\sigma}$ iteratively. % CHECK IF THIS SENTENCE APPEARS LATER AGAIN.
-%
-Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}=(\im \omega_n +\varepsilon_{\vec k} - \mu)^{-1}$ of the non interacting system
-as well as equations \ref{n_DEF} and \ref{m_DEF}
-reproduces the above expressions for $G_{\vec k, \sigma}$ and $F_{\vec k ,\sigma}$.
 
 
 \begin{fmffile}{prop}
@@ -857,7 +1049,7 @@ endshrink;
 enddef;}
 
 \begin{figure}
- \centering
+ \begin{center}
 \begin{IEEEeqnarray}{rCl}
  \parbox{20mm}{
 	      \begin{fmfgraph}(20mm,30mm)
@@ -887,10 +1079,27 @@ enddef;}
 	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2} \end{fmfgraph} }
 \end{IEEEeqnarray} 
-\label{Diagr_Props}
+\end{center}
 \caption{Self consistent mean-field equations for $G_{\vec k, \sigma}$ and $F_{\vec k, \sigma}$.}
+\label{Diagr_Props}
 \end{figure} 
- 
+% 
+%
+By including only single loops we neglect again the possibility of quantum fluctuations, i.e. there are no interactions with virtual states.
+Note that the particles on each site of the interaction have different spins and there is no spin transfer. 
+All straight arrows have therefore the same spin, while the propagators forming the loops have the opposite spin.
+We reflect the sum up to infinite such interactions by using the mean-field propagator after the interaction. 
+%
+Self-consistency is achieved by using the mean-field propagators in the loops.
+This reflects the fact, that $m_{s,\sigma}$ and $n_{\sigma}$ itself depend on the sum over the respective mean-field propagator.
+As a result we have to solve the equations for $m_{s,\sigma}$ and $n_{\sigma}$ iteratively. % CHECK IF THIS SENTENCE APPEARS LATER AGAIN.
+%
+Inserting the bare propagator ${G^0_{\vec k,\sigma}(\im \omega_n)}=(\im \omega_n +\varepsilon_{\vec k} - \mu)^{-1}$ of the non interacting system
+as well as equations \ref{n_DEF} and \ref{m_DEF}
+reproduces the above expressions for $G_{\vec k, \sigma}$ and $F_{\vec k ,\sigma}$.
+
+
+
 
 
 \subsubsection{Validity of Mean-Field Description}
@@ -907,42 +1116,147 @@ enddef;}
 
 \section{Observables}
 
-\subsection{Response Functions}
+In the chapters above we derived an effective Hamiltonian for the iridates.
+Furthermore we introduced the Green's functions of the mean-field approach. 
+We can use this formalism now, to calculate observable quantities.
+They can be compared to experiments to validate the calculations. 
+The interaction parameter $U$ has to be fitted to experiments as well.
 
-\subsection{X-Ray and Neutron Scattering Experiments}
+
+
+\subsubsection{X-Ray and Neutron Scattering Experiments}
+
+The main experimental techniques that resolve the magnetic structure of such materials are inelastic neutron and x-ray scattering experiments.
+Neutrons are uncharged and do therefore not  interact with the charges of atoms and electrons in the crystal.
+This allows them to penetrate thick probes and to interact well below the surface, which makes measurements of the bulk possible. 
+They interact solely through their intrinsic spin with the crystal, 
+which makes them good candidates for probing the magnetic excitation spectrum.
+
+During the last two decades, resonant inelastic x-ray scattering (RIXS) became an important alternative.
+It uses high energetic photons, whose energy is tuned to be resonant to an atomic transition in the system.
+The exited electron is lifted in the bands at the Fermi level, where they can interact with particles close to this band.
+When the whole created by the incident photon is filled with some electron from that band, a secondary photon is sent out. 
+The secondary photon might have a different energy and momentum due to the dynamics of particles in the relevant band,
+which is the reason, that this process is inelastic.
+
+
+In both cases, neutron and photon scattering,  we can measure the momentum transfer and energy transfer to the probe.
+The differential cross section $\frac{\dint^2 \sigma}{\dint \Omega \dint \omega}$ is the distribution of secondary particles with a certain momenta. 
+The difference to the momenta of the primary photon is passed to the probe as an excitation.
+At basic excitations of the system scattering becomes resonant and the differential cross section has a pole.
+The position $(\vec q, \omega)$ of these  poles reveal therefore the  dispersion of magnetic excitations in the material.
+
+\subsubsection{Response Functions}
+
+The reaction to an external distortion of the system is expressed through response functions. 
+To introduce a distortion to the system, there has to be some generalized external force $F$, for example an electromagnetic field.
+This force might be space and time dependent. 
+It needs to be coupled to the system through some interaction term in the Hamiltonian, $\hat H_F = \hat X(F)$ for some operator $\hat X$.
+In the simplest case, $X$ is linear in $F$, that is $X = X^{\prime} F$.
+A linear dependence provides a good description for week perturbations of the system, that is for $F\rightarrow 0$.
+$X^{\prime}$ is then just the first term of an expansion of $X$. 
+%
+The effect on the system will then be measured by the change in some observable $y=\langle Y \rangle$,
+which might coincide with the operator $X^{\prime}$.
+%
+The response of the system is then completely encoded in the linear response function $\chi$, which depends in $Y$ and $X^{\prime}$, 
+but is  independent of the external force $F$.
+
+
+The dynamic magnetic susceptibility is the linear response function to an external space and time dependent magnetic field $\vec B(\vec r,t)$.
+It couples to the  magnetic moment $\vec M$ in the system through $  \int \dint^3 r \hat{\vec M}(\vec r) \vec B(\vec r,t)$.
+The distortion is quantified through $ \vec M$ as well.
+The magnetic susceptibility is therefore proportional to the expectation value of magnetic structure factor. 
+\begin{equation}
+\chi^{ab}(\vec q,\omega) = \int \dint \tau \euler^{\im \omega \tau} \langle  M^a(q,\tau) M^b(-\vec q, 0) \rangle 
+\end{equation}
+Measurements are often performed on a poly-crystals or powder. 
+This leads to an average over all spatial directions. 
+The effective susceptibility is therefore diagonal with the components
+\begin{equation}
+ \chi^{ab}_{\mathrm{eff}} = \delta^{ab} \mathrm{Tr}(\chi) = \delta^{ab} \langle \vec M(q,\tau) \vec M(-\vec q, 0) \rangle \label{magnSuscI}
+\end{equation}
+
+
+
+In the simplest case, when the spin axes are parallel to the global axes, the  $\vec M$ is proportional to the spin $\vec J$. 
+The spin operator is a one-particle operator with the components $a=x,y,z$, defined as
+\begin{equation}
+ J^a(R_i)= J^a_i = \frac12\sum_{\sigma,\sigma^{\prime}} c^{\dagger}_{i,\sigma} \left(\sigma^a \right)_{\sigma\sigma^{\prime}} c_{i,\sigma},
+\end{equation}
+$\sigma^a$ are the Pauli matrices.
+%
+The momentum space  representation is
+\begin{IEEEeqnarray}{rCl}
+J^{a}(\vec q) &=& \frac12\sum_{i} \sum_{\sigma,\sigma^{\prime}}  \euler^{\im \vec q \vec R_i} c^{\dagger}_{i ,\sigma} \left(\sigma^a \right)_{\sigma\sigma^{\prime}} c_{i} \nonumber \\
+&=& \frac12\sum_{\vec k} \sum_{\sigma,\sigma^{\prime}} c^{\dagger}_{\vec k, \sigma} \left(\sigma^a \right)_{\sigma\sigma^{\prime}} c_{\vec k + \vec q,\sigma^{\prime}}
+\end{IEEEeqnarray}
+%
+
+In Sr$_2$IrO$_4$ the octahedra are rotated by $\pm \Theta$ in the $x$-$y$-plane in a staggered pattern.
+The octahedron is the frame, in which the spin is defined.
+The relation between the magnetic moment, expressed in the global axis of the crystal, and the spin $\vec J_i$  at site $i$ is therefore 
+related by a coordinate transformation.
+The transformation matrix  at site $i$ is
+\begin{equation}
+ \vec M_i = \left( \begin{array}{ccc} \cos(\Theta) & -(-1)^i \sin(\Theta) & 0 \\ (-1)^i \sin(\Theta) & \cos(\Theta) & 0 \\ 0&0&1 \end{array} \right) \vec J_i
+\end{equation}
+As with the staggered magnetization the alternating sign can be expressed through $(-1)^i = \euler^{\im \vec Q \vec R_i}$.
+In momentum space, the relation between magnetic moment and spin is therefore
+\begin{equation}
+ \left( \begin{array}{c} M^x_{\vec q} \\ M^y_{\vec q} \\ M^z_{\vec q} \end{array} \right) = 
+-2\mu_b \left( \begin{array}{c} \cos(\Theta) J^x_{\vec q} -\sin(\Theta) J^y_{\vec q + \vec Q} \\ \cos(\Theta) J^y_{\vec q} +\sin(\Theta) J^x_{\vec q + \vec Q} \\ J^z_{\vec q} \end{array} \right) 
+\end{equation}
+We can replace $\vec M$ in equation \ref{magnSuscI} and get
+\begin{IEEEeqnarray}{rCl}
+ \chi_{\mathrm{eff}}(\omega,\vec q) &=& \cos^2{\Theta} \left( \chi_J^{xx}(\omega,\vec q)+ \chi_J^{yy}(\omega,\vec q) \right) \nonumber \\ &&
+ + \sin^2\Theta \left(\chi_J^{xx} (\omega, \vec q + \vec Q) + \chi_J^{yy}(\omega,\vec p + \vec Q)\right)
+ + \chi_J^{zz}
+\end{IEEEeqnarray}
+Where we introduced the spin susceptibility $\chi_J^{ab}(\tau,\vec q = \langle J^a(\tau,\vec q) J^b(0,\vec q) \rangle$. 
+Based on the transformation of Pauli matrices $\sigma^{\pm} = \sigma^x \pm \im \sigma^y$ we get the spin components $J^{\pm}$, 
+which fulfil the relation $J^{\pm} = (J^{\mp})^{\dagger}$.
+Inserting this relation in the definition shows that
+\begin{equation}
+ \chi_J^{xx} + \chi_J^{yy} = \chi_J^{+-} + \chi_J^{-+} = 2\chi_J^{+-}
+\end{equation}
+This reduces the expression for the magnetic susceptibility to 
+\begin{equation}
+ \chi_{\mathrm{eff}}(\omega, \vec q) = 2\cos^2\Theta \chi_J^{+-}(\omega,\vec q)  + 2\sin^2\Theta\chi_J^{+-}(\omega,\vec q+ \vec Q) + \chi_J^{zz}(\omega, \vec q)
+\end{equation}
+
+
+
+  
+
+
+
+
+ 
+
+
+The magnetic susceptibility contains also the information about scattering effects. 
+The differential scattering cross section is given by the imaginary part of the magnetic susceptibility,
+\begin{equation}
+\frac{\dint^2 \sigma}{\dint \Omega \dint \omega} = -2\Im \left(\chi(\omega,\vec q)\right).
+\end{equation}
+
+\todo{derivation from Fermi's Golden Rule in Appendix}
+
+
+
+
+
+
+
+
 
 \subsection{Calculating the Dynamic Magnetic Susceptibility}
 
-In experiments revealing the properties of those materials, one usually measures response functions. 
-They describe the reaction of the material to a external parameter like a electromagnetic field.
-For sufficient weak fields the response will be linear.
-A linear response function can be expressed in term of four-point Greens functions.
 
-In X-Ray or neutron scattering experiments the obeservable quantity is the differential scattering cross section, which is related to the dynamic magnetic susceptibility via
-\begin{equation}
-\frac{\dint^2 \sigma}{\dint \Omega \dint \omega} = -2\Im \left(\chi(\omega,\vec q)\right)
-\end{equation}
-\todo{derivation from Fermis Golden Rule in Appendix}
-
-
-
-
-The dynamical spin susceptibility can be expressed as
-\begin{equation}
- \chi_{J}^{ab} = \delta_{ab} \langle \mathbf{J}(\vec q,\tau)\cdot \mathbf{J}(-\vec q,) \rangle
-\end{equation}
-with the components 
-\begin{equation}
-\mathbf{ J}^{a}(\vec q) = \sum_{\vec k} \sum_{\alpha,\beta} c^{\dagger}_{\vec k ,\alpha} \left(\sigma^a \right)_{\alpha\beta} c_{\vec k+\vec q,\beta}
-\end{equation}
-
-
-
-\begin{equation}
- \chi_J(\vec q,\omega)  = \chi_J^{+-}(\vec q,\omega) + \chi_J^{-+}(\vec q,\omega) + \chi_J^{zz}(\vec q,\omega)
-\end{equation}
-
-
+We can expand the spin susceptibility in terms of Green's functions. 
+We will first calculate the transverse susceptibility $\chi_J^{+-}$, by summing up the relevant diagrams.
+The longitudinal component $\chi_J^{zz}$ is then calculated in a similar manner.
 
 
 %The components of the magnetic susceptibility are defined by
@@ -952,21 +1266,14 @@ with the components
 %\end{equation}
 
 
-Expressing $\chi_J^{+-}$ and $\chi_J^{-+}$ in creation and destruction operators gives then
+Expressing $\chi_J^{+-}$ and $\chi_J^{-+}$ in creation and destruction operators gives
 \begin{IEEEeqnarray}{rCl}
  \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
-			  &=&  \sum_{\vec k \vec k^{\prime}} \langle c^{\dagger}_{\vec k,\downarrow}(\tau) c_{\vec k+\vec q, \uparrow}(\tau) 
-								    c^{\dagger}_{\vec k^{\prime}+\vec q,\downarrow}(0) c_{\vec k^{\prime},\uparrow}(0) \rangle
+			  &=&\int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} 
+			  \sum_{\vec k \vec k^{\prime}} \langle c^{\dagger}_{\vec k,\downarrow}(\tau) c_{\vec k+\vec q, \uparrow}(\tau) 
+								    c^{\dagger}_{\vec k^{\prime}+\vec q,\downarrow}(0) c_{\vec k^{\prime},\uparrow}(0) \rangle.
 \end{IEEEeqnarray}
-
-\begin{IEEEeqnarray}{rCl}
- \chi^{+-}(\vec q,\omega) &=& \int_0^{\beta} \!\!\dint \tau \euler^{\im \omega \tau} \langle \mathcal{T}_{\tau} S^+(\vec q,\tau) S^-(-\vec q,0) \rangle \nonumber \\
-			  &=&  \sum_{\vec k \vec{p}^{\prime}} \langle c^{\dagger}_{\vec k,\downarrow}(\tau) c_{\vec k+\vec q, \uparrow}(\tau) 
-								    c^{\dagger}_{\vec k^{\prime}+\vec q,\downarrow}(0) c_{\vec k^{\prime},\uparrow}(0) \rangle
-\end{IEEEeqnarray}
-
-can be expressed in terms of the above Greens functions.
-We expand the expression in terms of ladder diagrams.
+As a four point correlation function, it describes the propagation of a particle-hole pair with momentum $\vec q$.
 The first order bubble diagrams are shown in figure \ref{bubbles}.
 
 
@@ -1026,9 +1333,15 @@ The first order bubble diagrams are shown in figure \ref{bubbles}.
 
 
 Taking only ladder and bubble diagrams into account is known as the random phase approximation (RPA) which once again neglects quantum fluctuations. 
+
 The contribution from these fluctuations vanish in the large $N$ limit.
-\todo{non-crossing approximation}
-The building blocks of each step in the ladder consists of a product of two propagators. 
+This is due to the fact, that each interaction term brings a factor of $\frac{U}{N}$. 
+In the limit of large $N$ this means we have only a relevant contribution, when each of those factors is paired with 
+a sum over momenta. Crossing interaction lines restrict the momenta involved such, that there is only one free sum, but multiple interaction lines. 
+The contribution of those diagrams are therefore small,
+
+Each step in the ladder consists a product of two propagators, which can be the diagonal one $G_{\vec q, \sigma}$
+or the off-diagonal propagator $F_{\vec q, \sigma}$, as well as the interaction term $\frac{U}{N}$ times a delta function. 
 The building blocks for the ladder diagrams are listed in table \ref{blocks}.
 
 
@@ -1130,12 +1443,28 @@ In the actual limit of vanishing $\eta$ we expect a delta function, whose poles 
 Broadening the delta function ensures to not miss momenta due to a finite sized grid and yields a result closer to actual measurements, 
 where the response function also shows a finite line width. 
 
-The position of the poles finally yields the spin-wave dispersion relation $\omega(\vec q)$.
+The position of the poles finally yields the spin-wave dispersion $\omega(\vec q)$.
 Furthermore, we expect a continuum at higher energies. 
 
 
+The longitudinal spin susceptibility consists of particle-hole propagators with equal spin.
+This doesn't allow for interactions between particle and hole, but for recombination and creation of a new pair. 
+The diagrams are therefore bubbles and not a ladder any more.
+Two consecutive bubbles have opposite spin. 
+
+
+% basic expression for \chi^zz
+% diagrams, describe alternating spin
+% 
+% up down symmetry
+% x,y,z_i with equal spins
+% inverting the matrix. 
+% final expression.
+
 % $\chi^{+-},\chi^{zz}$, why is %\chi^{zz} not important?
-%
+% Paper that relates longit to transverse susceptibility. 
+
+
 % expectation from the formula: \omega(0,0) = 0 , \omega(\frac12,\frac12) = 0 etc.
 % for perfect nesting it a short calculation that shows why this is the case. (1+\lambda(x+y)) and (z_1 + z_2) will be zero independently.
 % without perfect nesting it should hold as well, but is not that easy to see.
@@ -1193,7 +1522,7 @@ Firstly, we set the lattice spacing to unity, $a=1$.
 The resulting momenta are therefore given by $(\frac{2\pi n}{N},\frac{2\pi m}{N})$ for $n,m \in [-\frac N2, \frac N2)$.
 Furthermore, we express all energy in units of $t$, reducing the number of free parameters in the Hamiltonian therfore by one.
 It depends now on only on the parameters $\nicefrac Ut$, $\nicefrac {\mu}t$ and eventually $\nicefrac{t^{\prime}}t$ and $\nicefrac{t^{\prime \prime}}t$.
-Temperatues are scaled accordingly with $k_b=1$.
+Temperatures are scaled accordingly with $k_b=1$.
 If not otherwise specified, we use only dimensionless units from now on and we will drop $\nicefrac{\cdot7}{t}$ and write just the corresponding symbol, 
 assuming it is in units of $t$.
 
@@ -1202,15 +1531,15 @@ Since the Hubbard model reduces electron-electron interactions in a very crude m
 its only free parameter $U$ is treated as an adjustable parameter, without an external reference value from other calculations or measurements.	
 For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34},
 but rather an effective model, that extends a first principle method – the band structure – by introducing one adjustable parameter.
-The value of $U$ in materials is not directly obsevable, but relates to physical quantities as for example the in the eletrical excitation spectrum.
+The value of $U$ in materials is not directly observable, but relates to physical quantities as for example the gap in the electrical excitation spectrum.
 % check this maybe. Find evtl. values and compare later.
 There are other methods using a Hubbard-like interaction, such as LDA+SO+U calculations.
-$U$ can then be used to methods. 
+The $U$ we found can then be compared to the one found through this methods. 
 Furthermore it allows us to compare the strength of interaction effects in similar materials in relation to each other.
 
-Numerical caluclations were performed in two dimensions due to the layered structure of Sr$_2$IrO$_4$, 
+Numerical calculations were performed in two dimensions due to the layered structure of Sr$_2$IrO$_4$, 
 using a grid of size $256\times256$.
-As a direct result from the discrete Fourier transformation, we get discretized momenta in the Brillouin zone.
+As a direct result from the discrete Fourier transformation, we get discrete momenta in the Brillouin zone.
 The sum over momenta in Greens functions is therefore restricted to $256\times256$ values.
 The magnetic susceptibility $\chi(\vec q,\omega)$ was calculated for different values of $\vec q$.
 % path
@@ -1219,7 +1548,7 @@ Due to symmetry in the band structure energies $\varepsilon_{\vec k}$ and theref
 it is sufficient to restrict oneself to just a quarter of the Brillouin zone.
 The most basic dependence on $\vec q$ is through a cosine, $\cos (q_i)$ or $\cos(2q_i)$, that is independent of the sign of the components $q_i$.
 %
-The path choosen for analysis of $\chi$ is a standard way of presenting calculations and measurements and makes it easy to compare our results to related work.
+The path chosen for analysis of $\chi$ is a standard way of presenting calculations and measurements and makes it easy to compare our results to related work.
 It covers the diagonal $(\frac12t,\frac12t)$, 
 the border of the magnetic Brillouin zone perpendicular to the diagonal, $(\frac14(2-t),\frac14t$, 
 the x-direction $(\frac12t,0)$ and the y-direction along the border of the Brillouin zone, $(0,\frac12t)$, with $t$ ranging from 0 to 1.
@@ -1234,9 +1563,9 @@ The path is shown in figure \ref{path}.
 It connects the points $\Gamma=(0,0)$, M=($\frac12,\frac12$), S$=(\frac14,\frac14)$ and X=($\frac12,0$) in the order S-X-M-S-$\Gamma$-X.
 
 The temperature was set to $T=0.0033$, corresponding to 10K at t=0.258eV.
-This is a temperature  typically encounterd in low-temperature experiments and was used in the measurements that provide our reference data. 
+This is a temperature  typically encountered in low-temperature experiments and was used in the measurements that provide our reference data. 
 The Néel temperature for Sr$_2$IrO$_4$ is at about 250K$^{\text{\cite{PhysRevB.49.9198}}}$.
-Beeing far below the Néel temperature is necessary for our assumption of an antiferromagnetic ground state.
+Being far below the Néel temperature is necessary for our assumption of an anti-ferromagnetic ground state.
 A low temperature is also needed in order to be able to describe the material with an one-band Hubbard model. 
 Comparison of calculations over a wide range of temperatures up to 200K showed no significant dependence on the temperature except for the broadness of peaks.
 
@@ -1246,10 +1575,10 @@ in order to get a retarded response function.
 This ensures also that we can relate the imaginary part of $\chi$ to the differential cross section. 
 In the calculations we used complex frequencies $\omega^+ = \omega + \im \eta$ with a non-zero but small imaginary part $\eta$. 
 Choosing a non-infinitesimal value however smears out the delta function, that arises in the imaginary part.
-This can be used to compensate for discretization effects due to the finite sized grid. 
+This can be used to compensate for discretisation effects due to the finite sized grid. 
 % don't repeat yourself here, see derivation of $\chi$ in chapter before.
 %
-The value is rather arbitrary and was choosen small, but big enough to ensure a smooth result for the response function with pronounced features.
+The value is rather arbitrary and was chosen small, but big enough to ensure a smooth result for the response function with pronounced features.
 Choosing this value to big would wash out the response function, making it hard to analyze.
 The frequency dependency of propagators and Greens functions is mostly given by $(\omega^+-E^{\pm}_{\vec k})^{-1}$ and combinations thereof.
 As a good starting point we can therefore take the maximum difference in the energies $E^{\pm}$ between to nearby points in the finite sized grid of momenta.
@@ -1270,12 +1599,12 @@ By using certain symmetries however, they become decoupled and can be solved in 
 The number density is controlled by the chemical potential, which is another free parameter of the system.
 The effective spin-$\frac12$ states are half-filled, that is $n=1$. 
 Because of the symmetry between up and down spins we have furthermore $n_{\uparrow}=n_{\downarrow} = \frac12$
-This symmetrie is not broken but rather assured by the antiferromagnetic ground state.
+This symmetry is not broken but rather assured by the anti-ferromagnetic ground state.
 
 Due to particle-hole symmetry, the Hamiltonian should be invariant under the replacement 
 $c_{\vec k,\sigma} \leftrightarrow c_{\vec k,\sigma}^{\dagger}$
 % and $\varepsilon_{\vec k} \rightarrow -\varepsilon_{\vec k}$.
-In doing this replacement and using the anticommutation relations for creation and annihilation opeartors, the Hamilton operator in momentum space reads
+In doing this replacement and using the anti-commutation relations for creation and annihilation operators, the Hamilton operator in momentum space reads
 \begin{IEEEeqnarray}{rCl}
  \hat H &=& \sum_{\vec k,\sigma} (-\varepsilon_{\vec k} + \mu) c_{\vec k ,\sigma}^{\dagger} c_{\vec k,\sigma} 
  + \frac UN\sum_{\vec k,\vec k^{\prime}, \vec q} c_{\vec k,\uparrow}^{\dagger}c_{\vec k - \vec q,\uparrow}c_{\vec k^{\prime},\downarrow} c_{\vec k^{\prime} + \vec q,\downarrow} 
@@ -1287,20 +1616,20 @@ The energy dispersion for holes is given by $\varepsilon_{\vec k}^{\mathrm{holes
 and by this replacement we get back the original Hamiltonian plus a constant, that does not change our system.
 We can collect terms proportional to the total number of holes or particles, 
 $nN= \sum_{\vec k,\sigma} c_{\vec k,\sigma}^{\dagger} c_{\vec k,\sigma}$. 
-The prefactor of this terms corresponds to the chemical potential for holes. 
+The pre-factor of this terms corresponds to the chemical potential for holes. 
 At half-filling it should be the same as for particles, 
 we find therefore
 \begin{equation}
  \mu = U-\mu \quad \Rightarrow \quad \mu = \frac{U}2.
 \end{equation}
-This allows us to insert $\mu = \frac U2$ and $n_{\sigma} = \frac12$ imediatly in the half filled case.
+This allows us to insert $\mu = \frac U2$ and $n_{\sigma} = \frac12$ immediately in the half filled case.
 
 
 
 
 We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$. 
 The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
-This relation holds in a perfect antiferromagnetic state. 
+This relation holds in a perfect anti-ferromagnetic state. 
 With double occupied states present, there is also a symmetric contribution to $m_{s,\sigma}$ rather than a asymmetric one.
 The expression for $m_{s,\sigma}$ adds $(-1)^i$  whenever a particle with spin $\sigma$ is present at site $i$. 
 This is not affected by the simultanious presence of a particle with spin $-\sigma$, which will be counted by $m_{s,-\sigma}$ with the same factor of $(-1)^i$.
@@ -1326,15 +1655,15 @@ By using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we e
 							      \frac { Um_{s,\sigma} }
 								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
 \end{equation}
-The $m_{s,\sigma}$ on the LHS is canceled by the one in the RHS, but $E^{\pm}$ is still dependent on $|m_{s,\sigma}|$.
-To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchys integral theorem as described in \ref{MFS}.
+The $m_{s,\sigma}$ on the LHS cancels the one in the RHS, but $E^{\pm}$ is still dependent on $|m_{s,\sigma}|$.
+To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchy's integral theorem as described in \ref{MFS}.
 The resulting equation
 \begin{equation}
  1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
 \end{equation}
 is solved using the Newton-Raphson method.
 Figure \ref{ms_nn} shows an example of the behaviour of $m_s$ for different values of $U$. The dispersion in this calculation is based 
-on nearest neighbour hoppings only, that is $t^{\prime} = t^{\prime \prime} = 0$ on a twodimensional square lattice.
+on nearest neighbour hopping only, that is $t^{\prime} = t^{\prime \prime} = 0$ on a two-dimensional square lattice.
 Introducing non-zero $t^{\prime}$ and $t^{\prime \prime}$ showed the same dependence. 
 %
 %
@@ -1345,23 +1674,30 @@ Introducing non-zero $t^{\prime}$ and $t^{\prime \prime}$ showed the same depend
  
 \end{figure}
 %
-In the limit of infinite $U$ we get $m_s=1$, corresponding to a fully antiferromagnetic ground state. 
-The strong repulsice interaction prevents double occupancies, because each of them adds $U$ to the energy of the ground state.
+In the limit of infinite $U$ we get $m_s=1$, corresponding to a fully anti-ferromagnetic ground state. 
+The strong repulsive interaction prevents double occupancies, because each of them adds $U$ to the energy of the ground state.
 We will find therefore one particle at each site.
-At the same time provide virtual states a possibility to furhter lower the ground state energy.
-Virtual hoppings are only possible for neighbouring sites, that are occupied by particles with opposite spin,
+At the same time provide virtual states a possibility to further lower the ground state energy.
+Virtual hopping is only possible for neighbouring sites, that are occupied by particles with opposite spin,
 since the Pauli principle prohibits double occupancies of particles with the same spin.
-Therefore is an antiferromagnetic ground state energetically preferable to a ferromagnetic one.
+Therefore, an anti-ferromagnetic ground state is energetically preferable to a ferromagnetic one.
 
-Lowering $U$ yields a lower staggered magnetization, since the energy cost for double occupancy gets lower and might be outweighted by
-the reduce in kinetic energy due to hoppings.
+Lowering $U$ yields a lower staggered magnetization, since the energy cost for double occupancy gets lower and might be out-weighted by
+the reduce in kinetic energy due to hopping.
 %
-At some point there will be an transition from the Mott insulator to a conducting state, since the gap produced by the Hubbard-$U$ vanishes. 
-For some $U \approx good \: question$ our assumption of a Hubbard gap and an antiferromagnetic groundstate are not longer valid. 
-Our optimization scheme for $m_s$ is not converging in this situation any longer due to the high sensitivity on the band gap through $(E^p_{\vec k} - E^-_{\vec k})^{-1}$.
-Calculations down to $U=0.5$ show that the staggered magnetization falls off very fast for low $U$.
-After finding $m_{s}$, the expression for $n_{\sigma}$ in terms of the propagator $G_{\vec k,\sigma}$ has also been calculated and found to be consistent with 
-the above derived relation between $\mu$ and $n$ at half-filling.
+At some point we will encounter a transition to an unordered metallic ground state with $m_s=0$. 
+The closing of the Hubbard gap leads to the transition from the insulating state to a conducting one.
+The critical value for this transition is sensitive to the parameters for second- and third-neighbour hoppings, 
+even though the dependence of $m_s$ on $U$ above the critical value was identical for non-zero and vanishing $t^{\prime}$ and $t^{\prime \prime}$.
+The critical value was reported by \citet{PhysRevB.88.035111} to be in the range $U_c \approx 0.7 - 2.2$.
+At this point, our assumption of a Hubbard gap and an anti-ferromagnetic ground state is not valid any more. 
+The iterative procedure for $m_s$ is not converging in this situation any longer due to the high sensitivity on the band gap through the factor $(E^p_{\vec k} - E^-_{\vec k})^{-1}$.
+This term is proportional to $\frac{1}{Um_s}$ for $\vec k$ for points on the Fermi surface with perfect nesting.
+Calculations down to $U=0.5$ show that the staggered magnetization falls off very fast for low $U$, this term diverges therefore in this limit.
+The limitation for this calculation appears therefore for numerical reasons, that appear roughly at the value, where the transition to the unordered state occurs. 
+
+After finding $m_{s}$, the expression for $n_{\sigma}$ in terms of the propagator $G_{\vec k,\sigma}$ has also been calculated and found to be $n=\frac12$, 
+consistent with the above derived condition for the chemical potential $\mu=\frac U2$ at half-filling.
 
 
 
@@ -1435,23 +1771,39 @@ An example for $U=40$ can be seen in figure \ref{largeU}, together with the corr
 
 \section{$t$-$U$-Model}
 
-As we lower the interaction strength, higher order effects becomer more important.
-They correspond to exchanges over multiple sites, beeing proportional to $t\cdot(\frac tU)^n$ for higher $n$.
-As one effect, the dispersion along the magnetic zone boundary is no longer constant.
 
+
+The main feature is the dispersion along the boundary of the reduced Brillouin zone,
+that is along $(\frac{\pi}2,\frac{\pi}2) \rightarrow (\pi,0)$ and the under the given symmetries corresponding lines in the other quadrants.
+$\omega(\vec q)$ increases along this line, a feature not present in the in the spin wave expansion of the Heisenberg model.
+The difference of $\omega(\frac{\pi}2,\frac{\pi}2)$ and $\omega(\pi,0)$ decreases for larger U as one would expect, since we approach the Heisenberg limit.
+As we lower the interaction strength, higher order effects become more important.
+They correspond to exchanges over multiple sites, being proportional to $t\cdot(\frac tU)^n$ and become non negligible even for higher $n$.
+
+
+However, a Hubbard model based on nearest neighbour hopping only is not capable of explaining the dispersion observed in experiments.
+
+
+
+% t= .258eV, Temperature
+%We used the same $t$ as in the previous situation without second- and third neighbour couplings, i.e. $t^{\prime} = t^{\prime \prime} = 0$, 
+%when converting values like the temperature.
 
 
 \section{$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
 
 
-Taken only nearest neighbour interactions into account, the mean-field model is not capable of reproducing all the obeserved features of this material.
-However, including further interactions up to third neighbours improves the system substantially.
+Taken only nearest neighbour interactions into account, the mean-field model is not capable of reproducing all the observed features of this material.
+However, including further interactions up to third neighbours improves the system substantially and provides a good description of the dispersion.
 
 The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed parameters, taken from 
-\cite{PhysRevLett.106.136402}. 
+\cite{PhysRevLett.106.136402}.
+We use $t$ as the energy unit, the new parameters in the calculations are therefore the ratios $\nicefrac{t^{\prime}}{t}$ and $\nicefrac{t^{\prime \prime}}{t}$
+
+
 Their values are based on fits to  the three orbital tight binding model in the local density approximation, including spin-orbit coupling (LDA+SO). 
-The resulting couplings were then projected on the spin-$\frac12$ subspace. 
-This results in the couplings for the one-band single particle Hamiltonian, containing only the effective $spin-\frac12$ states.
+The resulting orbital couplings were then projected on the spin-$\frac12$ subspace, 
+providing the effective coupling for neighbouring sites of the one-band single particle Hamiltonian build on the effective $spin-\frac12$ states.
 The values used in this thesis were 
 %
 \begin{center}{
@@ -1472,38 +1824,46 @@ $t$ & $t^{\prime}$ & $t^{\prime \prime}$ \\
 \end{tabular}
 }\end{center} 
 %
-The last line shows the dimensionless couplings, normalized to $t$, 
-We used the same $t$ as in the previous situation without second- and third neighbour couplings, i.e. $t^{\prime} = t^{\prime \prime} = 0$, 
-when converting values like the temperature.
+The last line shows the dimensionless ratios.
 
-Normalizing reduces not only the number of parameters, the ratio of neighbour interactions can be measured to a higher precission, while 
+
+Normalizing reduces not only the number of parameters, the ratio of neighbour interactions can be measured to a higher precision, while 
 their absolute value has some uncertainty.\todo{where from?}
 \todo{how it is measured, zone boundary dispersion}
 
 
 
 
-The main feature is the dispersion along the boundary of the reduced Brillouin zone, that is for example along $(\frac{\pi}2,\frac{\pi}2) \rightarrow (\pi,0)$.
-$\omega(\vec q)$ increases, a feature not present in the nearest neighbour Heisenberg model. 
-The difference of $\omega(\frac{\pi}2,\frac{\pi}2)$ and $\omega(\pi,0)$ decreases for larger U as one would expect approaching the Heisenberg limit.
-However, a Hubbard model based on nearest neighbour hopping only is not capable of explaining the dispersion observed in experiments.
 
 
 The $t-t^{\prime}-t^{\prime \prime}-$Hubbard model, 
-i.e. based on a bandstructure with next, next-to-next and third neighbour hopping terms 
+i.e. based on a band structure with next, next-to-next and third neighbour hopping terms 
 matches the observed shape of the dispersion relation to a high degree for $U=4.2$.
-The value was optimized in several runs, where the match was estimated by giudance of the eye.
+The value was optimized in several runs, where the match was estimated by guidance of the eye.
 After renormalizing the frequencies, the dispersion along the boundary is matched the measurements perfectly.
-Furthermore our description of the spin-wave velocity is more accurat around $\vec q = 0$ and by symmetry also at $\vec q = (\frac12,\frac12)$ than the one
+Furthermore our description of the spin-wave velocity is more accurate around $\vec q = 0$ and by symmetry also at $\vec q = (\frac12,\frac12)$ than the one
 provided by a fit of the Heisenberg model with up to third-neighbour couplings $J,J^{\prime},J^{\prime \prime}$. 
 
-Our optimal value for $U$ is substantiallys lower than the one known used for cuprates, which is usually set to 6-8 in units of the $t$ used in cuprates. 
+Our optimal value for $U$ is substantially lower than the one known used for cuprates, which is usually set to around 8$t_{Cu}$ in cuprates. 
 \todo{cuprate $U$ and $t$}.
 Such a low value for $U$ would result in a conducting state in cuprates, since it is not sufficient to split the $t_{2g}$ bands. 
-In iridates with stronger spin-orbit coupling, we get the insulatet state, since the degeneracy is lifted.
+In iridates with stronger spin-orbit coupling, we get the insulating state, since the degeneracy is lifted.
 This provides smaller bands, for which a smaller $U$ is sufficient.
 The metal-insulator takes place at $U \approx 2$, depending on the exact couplings of underlying orbits \cite{PhysRevB.88.035111}.
 Electron-electron interactions are therefore the reason that Sr$_2$IrO$_4$ is a Mott insulator. 
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=\textwidth]{../compare42.pdf}
+ \caption{ spin wave dispersion for $U=4.2$ (blue) compared to measurements (red) and a up to third neighbour Heisenberg model (green). 
+ The figure excluding our calculation is taken from \cite{PhysRevLett.108.177003} and recoloured.} 
+ \end{center}
+\label{tttU42}
+\end{figure}
+
+
+magnetization for $U=4.2$ is $m_s= 2\cdot 0.355$. Together with the above calculations on the rotated staggered spins, we get a net ferromagnetic moment,
+if the staggered pattern is made of spins in the $x$-$y$-plane. As shown in the derivation of the magnetic susceptibility and it's connection to the spin susceptibility
+we found that $m = \mu_b \sin \Theta m_s= .0135$. This is very close to the observed value of $0.14 \mu_b$.
 
 
 continuum
@@ -1526,6 +1886,15 @@ compare to J-J'-J'' Heisenberg. Can this explain those features? Advantage of th
 
 
 \section{Outlook}
+
+% can be improved: 
+% more elaborate quantum corrections
+% ways to introduce this into calculations
+% 
+% can be done:
+% extend to other materials
+% change filling factor
+% more detailed analysis of the continuum, broadness of peaks etc.
 
 
 
@@ -1608,7 +1977,7 @@ Starting from Fermi's Golden Rule, the scattering rate is given by
  \frac{\dint^2 \sigma}{\dint \Omega \dint \omega}(\vec q, \omega) = 2\pi \sum_{\beta} \left| \bra{\beta} \hat \rho(\vec q) \ket{0}\right|^2 \delta(\omega - E_{\beta}+E_0).
 \end{equation}
 
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{masterthesis}
 
 \end{document}

@@ -78,7 +78,7 @@ int main()
     q[0]=3*Q[0]/2;
     q[1]=3*Q[1]/2;
 
-    for (int t=0;t<=7*Q[0]/2;t++)
+    for (int t=0;t<=7*Q[0]/2;t+=2)
     {
         for(double w=w_min;w<=w_max+w_step;w+=w_step) // in units of t
         {
@@ -283,21 +283,21 @@ int main()
 
                 if (t<Q[0]/2)
                 {
-                    q[0] +=1;
-                    q[1] -=1;
+                    q[0] +=2;
+                    q[1] -=2;
                 }
                 else if (t<3*Q[0]/2)
                 {
-                    q[1]+=1;
+                    q[1]+=2;
                 }
                 else if (t<5*Q[0]/2)
                 {
-                    q[0]-=1;
-                    q[1]-=1;
+                    q[0]-=2;
+                    q[1]-=2;
                 }
                 else if(t<=7*Q[0]/2)
                 {
-                    q[0]+=1;
+                    q[0]+=2;
                 }
 
         // print progress (only dependent on t, e.g. the q in the walk through the BZ

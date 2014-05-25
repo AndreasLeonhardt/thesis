@@ -57,6 +57,7 @@ params=paramstext.split()
 # assign them to variables
 U=float(params[1])
 N=float(params[9])
+N_x = abs(np.sqrt(N))
 lmb=U/N
 m=float(params[7])
 
@@ -74,9 +75,25 @@ t3=0.1163
 
 theta = .191986 # =11 degree, angle of octahedral rotations (e.g. they are rotated \pm\theta, their relative angle is  2*theta)
 
+
+
 # fill with corresponding coordinates/values
+pos= 0.0
 for t in range (0,tmax):
-	T[t]=A[t*n_w,0]
+	#gradually rescale T in diagonal steps (divide by sqrt(2) and shift sum accordingly)
+	# diagonal in (0,1); (3,5) in terms of N_x/4=N/8
+	# straight in (1,3); (5,7)
+	T[t]=pos  #A[t*n_w,0]/np.sqrt(2)
+	if (t<N_x/4):
+		pos+=np.sqrt(2)
+	elif (t<3*N_x/4.):
+		pos+=1.
+	elif (t<5*N_x/4.):
+		pos+=np.sqrt(2)
+	else:
+		pos+=1.;
+
+
 # plotted values are selected (x,xb,y,z1,z2) /calculated (chi, denominator of chi) here.
 	for w in range(0,n_w):
 		tw=t*n_w+w
@@ -90,7 +107,7 @@ for t in range (0,tmax):
 		#z2b=complex(A[tw,n_z2br],A[tw,n_z2bi])
 
 		# calculate denominator of chi
-		#Val[t,w]=(1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b)
+		#Val[w,t]=(1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b)
 		
 		# calculate chi (imaginary part of the susceptibility
 		
@@ -106,7 +123,7 @@ for t in range (0,tmax):
 		Nb= N
 
 		# calculate imaginary part of longitudinal retarted susceptibility. Factor of 2 because of spin (change up and down)
-		#Val[t,w]=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
+		Val[t,w]+=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
 	
 	Qx.append(A[t*n_w,1]/(2*np.pi))
 	Qy.append(A[t*n_w,2]/(2*np.pi))
@@ -127,10 +144,11 @@ for t in range (0,tmax):
 
 # 4/(float(U))*(t-tt-ttt)*np.sqrt(4*(t-tt-ttt)**2-(t*(np.cos(A[t*n_w,1])+np.cos(A[t*n_w,2]))-2*tt*np.cos(A[t*n_w,1])*np.cos(A[t*n_w,2])-ttt*(np.cos(A[t*n_w,1]*2)+np.cos(A[t*n_w,2]*2)))**2))
 
+
 for w in range(n_w):
 	# scale frequency to Heisenberg model predictions, that is with 4t^2/U 
 	#(since w is in units of t or t=1, that would be divided by U/t, which is U here)
-	W[w]=1.00/1.0*float(A[w,3])*0.258#eV    , HB: /4*U
+	W[w]=1.18/1.0*float(A[w,3])*0.258#eV    , HB: /4*U
     
 # create 2D arrays for plot function using meshgrid (see doc)
 W,T=np.meshgrid(W,T)
@@ -142,8 +160,9 @@ fig = plt.figure()
 ad = fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
-#p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues') # RdBu, Blues
-#p.set_clim(-000,5000000)
+p=ad.pcolormesh(T,W,Val, cmap='Blues' )
+#p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues',interpolation ='none') # RdBu, Blues
+p.set_clim(-000,1000000)
 #p= ad.contour(T,W,Val)
 #cb = fig.colorbar(p,ax=ad)
 
@@ -157,16 +176,16 @@ ad = fig.add_subplot(1,1,1)
 
 # plot path through Brillouin zone
 #ad= fig.add_subplot(1,1,1)
-p=ad.plot(Qx,Qy)
-ad.set_xlim(-.502,.502)
-ad.set_ylim(-.502,.502)
-ad.set_xlabel('$k_x/2\pi$')
-ad.set_ylabel('$k_y/2\pi$')
-p=ad.plot([.5,0,-.5,0,.5],[0,.5,0,-.5,0],':',color='0.50')
-ad.text(0,0,'$\Gamma$',horizontalalignment='right',verticalalignment='top')
-ad.text(.52,.5,'M',horizontalalignment='left',verticalalignment='top')
-ad.text(.52,0,'X',horizontalalignment='left',verticalalignment='top')
-ad.text(.25,.25,'S',horizontalalignment='right',verticalalignment='bottom')
+#p=ad.plot(Qx,Qy)
+#ad.set_xlim(-.502,.502)
+#ad.set_ylim(-.502,.502)
+#ad.set_xlabel('$k_x/2\pi$')
+#ad.set_ylabel('$k_y/2\pi$')
+#p=ad.plot([.5,0,-.5,0,.5],[0,.5,0,-.5,0],':',color='0.50')
+#ad.text(0,0,'$\Gamma$',horizontalalignment='right',verticalalignment='top')
+#ad.text(.52,.5,'M',horizontalalignment='left',verticalalignment='top')
+#ad.text(.52,0,'X',horizontalalignment='left',verticalalignment='top')
+#ad.text(.25,.25,'S',horizontalalignment='right',verticalalignment='bottom')
 pylab.show(block=True)
 
 quit()
