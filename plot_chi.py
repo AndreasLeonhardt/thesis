@@ -106,8 +106,6 @@ for t in range (0,tmax):
 		z2=complex(A[tw,n_z2r],A[tw,n_z2i])
 		#z2b=complex(A[tw,n_z2br],A[tw,n_z2bi])
 
-		# calculate denominator of chi
-		#Val[w,t]=(1.0+lmb*(x+y))*(1.0+lmb*(xb+yb))-lmb**2*(z1+z2)*(z1b+z2b)
 		
 		# calculate chi (imaginary part of the susceptibility
 		
@@ -116,15 +114,10 @@ for t in range (0,tmax):
 		+(-(xb+y)*(1.0+lmb*(x+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(xb+y))*(1.0+lmb*(x+y))-lmb**2*(z1+z2)*(z1+z2))*(np.sin(theta)**2) ).imag*2
 		
 		# longotudinal (zz)
-		# define X,Xb,Y,Z1u,Z2u,Z1d,Z2d for usage below, spin is differentiated by u and d only when it matters.
-		K = +x-y
-		Kb= +xb-y
-		N = -z1+z2
-		Nb= N
-
-		# calculate imaginary part of longitudinal retarted susceptibility. Factor of 2 because of spin (change up and down)
-		Val[t,w]+=(-2*((1.0-lmb**2*(Kb*Kb-Nb*N))*(K+lmb*K*K)+lmb**3*(N*Nb*K*Kb-K*K*N*Nb)+lmb**2*N*Nb*(Kb-K)*(1.0+lmb*K)-lmb*(1.0+lmb**2*(N*Nb-K*K))*N*Nb)/((1.0+lmb**2*(N*Nb-Kb*Kb))*(1.0+lmb**2*(-K*K+N*Nb))-lmb**4*(-K*K*Nb*N+2*K*Kb*N*Nb-Kb*Kb*Nb*N))).imag
-	
+		temp  = 1 - lmb**2*(x-y)**2 + lmb**2*(z1-z2)**2
+		tempb = 1 - lmb**2*(xb-y)**2 + lmb**2*(z1-z2)**2
+		#Val[t,w]+= -(( tempb*(x-y)*(1+lmb*(x-y)) - temp*lmb*(z1-z2)**2 - lmb**2*(x-xb)*(z1-z2)**2*(1+2*lmb*(x-y)))/ (temp*tempb + lmb**4*(z1-z2)**2*(x-xb)**2) ).imag*4
+			
 	Qx.append(A[t*n_w,1]/(2*np.pi))
 	Qy.append(A[t*n_w,2]/(2*np.pi))
 	Heis.append(4.0/(float(U*1))*np.sqrt(4.0-(np.cos(A[t*n_w,1])+np.cos(A[t*n_w,2]))**2)*0.258)
@@ -148,27 +141,32 @@ for t in range (0,tmax):
 for w in range(n_w):
 	# scale frequency to Heisenberg model predictions, that is with 4t^2/U 
 	#(since w is in units of t or t=1, that would be divided by U/t, which is U here)
-	W[w]=1.18/1.0*float(A[w,3])*0.258#eV    , HB: /4*U
+	W[w]=1.18/2.0*float(A[w,3])*0.258#eV    , HB: /4*U
     
 # create 2D arrays for plot function using meshgrid (see doc)
 W,T=np.meshgrid(W,T)
 
 
 # create figure, subfigure and plot finally
-fig = plt.figure()
+fig  = plt.figure()
 #ad = fig.add_subplot(1,1,1,projection='3d')
-ad = fig.add_subplot(1,1,1)
+ad= fig.add_subplot(1,1,1)
 
 #p= ad.plot_wireframe(T,W,Val)
 p=ad.pcolormesh(T,W,Val, cmap='Blues' )
 #p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues',interpolation ='none') # RdBu, Blues
-p.set_clim(-000,1000000)
+p.set_clim(-000,1000)
 #p= ad.contour(T,W,Val)
 #cb = fig.colorbar(p,ax=ad)
 
 #p=ad.plot(T,Heis)
 
-
+N=64/4
+N=7/4*N
+pylab.xlabel('$\\vec q$')
+pylab.xlim([0,T.max()])
+pylab.ylabel('$\\omega$ [eV]')
+pylab.xticks([0,np.sqrt(2)*N,(2+np.sqrt(2))*N,(2+2*np.sqrt(2))*N,(2+3*np.sqrt(2))*N,(4+3*np.sqrt(2))*N],['S','X','M','S','$\\Gamma$','X'])
 #p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
 # limit z axis, since results may diverge

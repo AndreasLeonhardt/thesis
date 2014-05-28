@@ -6,9 +6,9 @@ tttnpchi*
 Chi_q_w*
 compare*
 Susceptibility-*
-Susceptibility/Susceptibility.pro.user
+Susceptibility/Susceptibility.pro.user*
 StaggeredMagnetization-*
-StaggeredMagnetization/StaggeredMagnetization.pro.user.000*
+StaggeredMagnetization/StaggeredMagnetization.pro.user*
 latex/Unbenanntes Dokument
 latex/masterthesis.bib.backup
 latex/masterthesis.bib~
@@ -25,6 +25,8 @@ latex/thesis0.0.tex.backup
 latex/thesis0.0.tex~
 latex/thesis0.0.toc
 latex/prop*
+latex/mfput.log
+latex/fmfdefault.mp
 bandstructure_t*
 reading_material/
 stagmagn.txt
@@ -34,6 +36,7 @@ energies.txt
 energiesU4.txt
 energiedispersion.txt
 *.swp
+measuredDispersion+Heisenberg.xcf
 
 
 
