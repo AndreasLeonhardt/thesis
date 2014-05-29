@@ -92,11 +92,11 @@ t=np.arange(np.floor(eps.min()),np.ceil(eps.max()),1.)
 
 f = figure()
 
-#ad = f.add_subplot(111,projection='3d')
-#ad.plot_wireframe(rX,rY,rEm )
-#ad.plot_wireframe(rX,rY,rEp,color='red')
-#xlabel('$k_x$')
-#ylabel('$k_y$')
+ad = f.add_subplot(111,projection='3d')
+ad.plot_wireframe(rX,rY,rEm )
+ad.plot_wireframe(rX,rY,rEp,color='red')
+xlabel('$k_x$')
+ylabel('$k_y$')
 #zlabel('E/t')
 
 
@@ -109,13 +109,13 @@ f = figure()
 #xlabel('j')
 #ylabel('E')
 
-ad = f.add_subplot(111)
-ad.plot(pT,pEp,color='red')
-ad.plot(pT,pEm,color='blue')
-xlabel('$\\vec{q}$')
-ylabel('$\\frac{E}{t}$')
-xticks([0,nxh/2*np.sqrt(2),(2+np.sqrt(2))*nxh/2,(2+2*np.sqrt(2))*nxh/2,(2+3*np.sqrt(2))*nxh/2,(4+3*np.sqrt(2))*nxh/2],['S','X','M','S','$\Gamma$','X'])
-ylim(-6,5)
+#ad = f.add_subplot(111)
+#ad.plot(pT,pEp,color='red')
+#ad.plot(pT,pEm,color='blue')
+#xlabel('$\\vec{q}$')
+#ylabel('$\\frac{E}{t}$')
+#xticks([0,nxh/2*np.sqrt(2),(2+np.sqrt(2))*nxh/2,(2+2*np.sqrt(2))*nxh/2,(2+3*np.sqrt(2))*nxh/2,(4+3*np.sqrt(2))*nxh/2],['S','X','M','S','$\Gamma$','X'])
+#ylim(-6,5)
 
 show(block=True)
 

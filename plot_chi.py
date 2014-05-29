@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import array
 import os
 
-plt.rcParams.update({'font.size':22})
+plt.rcParams.update({'font.size':26})
 
 # load data from file, using the first argument as filename.
 filename = pylab.sys.argv[1]
@@ -110,13 +110,12 @@ for t in range (0,tmax):
 		# calculate chi (imaginary part of the susceptibility
 		
 		# transversal (+-)
-		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+y))-lmb**2*(z1+z2)*(z1+z2))*(np.cos(theta))**2
-		+(-(xb+y)*(1.0+lmb*(x+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(xb+y))*(1.0+lmb*(x+y))-lmb**2*(z1+z2)*(z1+z2))*(np.sin(theta)**2) ).imag*2
+		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+y))-lmb**2*(z1+z2)*(z1+z2))*(np.cos(theta))**2+(-(xb+y)*(1.0+lmb*(x+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(xb+y))*(1.0+lmb*(x+y))-lmb**2*(z1+z2)*(z1+z2))*(np.sin(theta)**2) ).imag*4
 		
 		# longotudinal (zz)
 		temp  = 1 - lmb**2*(x-y)**2 + lmb**2*(z1-z2)**2
 		tempb = 1 - lmb**2*(xb-y)**2 + lmb**2*(z1-z2)**2
-		#Val[t,w]+= -(( tempb*(x-y)*(1+lmb*(x-y)) - temp*lmb*(z1-z2)**2 - lmb**2*(x-xb)*(z1-z2)**2*(1+2*lmb*(x-y)))/ (temp*tempb + lmb**4*(z1-z2)**2*(x-xb)**2) ).imag*4
+		Val[t,w]+= -(( tempb*(x-y)*(1+lmb*(x-y)) - temp*lmb*(z1-z2)**2 - lmb**2*(x-xb)*(z1-z2)**2*(1+2*lmb*(x-y)))/ (temp*tempb + lmb**4*(z1-z2)**2*(x-xb)**2) ).imag*4
 			
 	Qx.append(A[t*n_w,1]/(2*np.pi))
 	Qy.append(A[t*n_w,2]/(2*np.pi))
@@ -155,17 +154,18 @@ ad= fig.add_subplot(1,1,1)
 #p= ad.plot_wireframe(T,W,Val)
 p=ad.pcolormesh(T,W,Val, cmap='Blues' )
 #p=ad.imshow(Val.transpose(),extent = [T.min(),T.max(),W.min(),W.max()], aspect='auto',origin = 'lower',cmap = 'Blues',interpolation ='none') # RdBu, Blues
-p.set_clim(-000,1000)
+p.set_clim(-000,5000)
 #p= ad.contour(T,W,Val)
 #cb = fig.colorbar(p,ax=ad)
 
 #p=ad.plot(T,Heis)
 
-N=64/4
+N= 64/4
 N=7/4*N
 pylab.xlabel('$\\vec q$')
 pylab.xlim([0,T.max()])
-pylab.ylabel('$\\omega$ [eV]')
+#pylab.ylabel('$\\omega$ [eV]')
+pylab.ylim([0,1.0])
 pylab.xticks([0,np.sqrt(2)*N,(2+np.sqrt(2))*N,(2+2*np.sqrt(2))*N,(2+3*np.sqrt(2))*N,(4+3*np.sqrt(2))*N],['S','X','M','S','$\\Gamma$','X'])
 #p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
