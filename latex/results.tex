@@ -1,0 +1,652 @@
+
+ 
+\chapter{Results}
+
+\section{Specifications} %of the Calculation}
+
+For all calculations we use dimensionless quantities. 
+Firstly, we set the lattice spacing to unity, $a=1$. 
+The resulting momenta are therefore given by $(\frac{2\pi n}{N},\frac{2\pi m}{N})$ for $n,m \in [-\frac N2, \frac N2)$.
+Furthermore, we express all energy in units of $t$, reducing the number of free parameters in the Hamiltonian therfore by one.
+It depends now on only on the parameters $\nicefrac Ut$, $\nicefrac {\mu}t$ and eventually $\nicefrac{t^{\prime}}t$ and $\nicefrac{t^{\prime \prime}}t$.
+Temperatures are scaled accordingly with $k_b=1$.
+If not otherwise specified, we use only dimensionless units from now on and we will drop $\nicefrac{\cdot7}{t}$ and write just the corresponding symbol, 
+assuming it is in units of $t$.
+
+
+Since the Hubbard model reduces electron-electron interactions in a very crude manner by taking only on-site interactions into account,
+its only free parameter $U$ is treated as an adjustable parameter, without an external reference value from other calculations or measurements.	
+For this reason the Hubbard model cannot be seen as a first-principle method \cite{J.Phys.Cond.Matter.Vol21.34},
+but rather an effective model, that extends a first principle method – the band structure – by introducing one adjustable parameter.
+The value of $U$ in materials is not directly observable, but relates to physical quantities as for example the gap in the electrical excitation spectrum.
+There are other methods using a Hubbard-like interaction, such as LDA+SO+U calculations.
+The $U$ we found can then be compared to the one found through this methods. 
+Furthermore it allows us to compare the strength of interaction effects in similar materials in relation to each other.
+
+Numerical calculations were performed in two dimensions due to the layered structure of Sr$_2$IrO$_4$, 
+using a grid of size $256\times256$.
+As a direct result from the discrete Fourier transformation, we get discrete momenta in the Brillouin zone.
+The sum over momenta in Greens functions is therefore restricted to $256\times256$ values.
+The magnetic susceptibility $\chi(\vec q,\omega)$ was calculated for different values of $\vec q$.
+% path
+We choose a path along the symmetry lines of the Brillouin zone, that covers the most interesting features of the dispersion.
+Due to symmetry in the band structure energies $\varepsilon_{\vec k}$ and therefore in the energies $E^{\pm}_{\vec k}$ as well,
+it is sufficient to restrict oneself to just a quarter of the Brillouin zone.
+The most basic dependence on $\vec q$ is through a cosine, $\cos (q_i)$ or $\cos(2q_i)$, that is independent of the sign of the components $q_i$.
+%
+The path chosen for analysis of $\chi$ is a standard way of presenting calculations and measurements and makes it easy to compare our results to related work.
+It covers four directions, which can be parametrized by $t$ ranging from 0 to 1.
+First the border of the magnetic Brillouin zone perpendicular to the diagonal, $(\frac14(2-t),\frac14t$, 
+then the $k_y$-direction along the border of the Brillouin zone, $(0,\frac12t)$,
+the diagonal $(\frac12t,\frac12t)$
+and finally 
+the $k_x$-direction $(\frac12t,0)$ along the $k_y$-direction.
+The path is shown in figure \ref{path}, together with the boundary of the reduced Brillouin zone.
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=.9\textwidth]{../path}
+  \caption{path through the Brillouin zone (blue), connecting S-X-M-S-$\Gamma$-X. The grey dotted line is the boundary of the magnetic Brillouin zone.}
+ \label{path}
+ \end{center}
+\end{figure}
+It connects the points $\Gamma=(0,0)$, M=($\frac12,\frac12$), S$=(\frac14,\frac14)$ and X=($\frac12,0$) in the order S-X-M-S-$\Gamma$-X.
+
+The temperature was set to $T=0.0033$, corresponding to 10K at t=0.258eV.
+This is a temperature  typically encountered in low-temperature experiments and was used in the measurements that provide our reference data. 
+The Néel temperature for Sr$_2$IrO$_4$ is at about 250K$^{\text{\cite{PhysRevB.49.9198}}}$.
+Being far below the Néel temperature is necessary for our assumption of an anti-ferromagnetic ground state.
+A low temperature is also needed in order to be able to describe the material with an one-band Hubbard model. 
+Comparison of calculations over a wide range of temperatures up to 200K showed no significant dependence on the temperature except for the broadness of peaks.
+
+
+In the calculation of the magnetic susceptibility $\chi$ we need to shift the frequencies infinitesimally above the real axis, 
+in order to get a retarded response function. 
+The small imaginary part of the frequencies are responsible for the imaginary part of $\chi$, which we then relate to the differential cross section. 
+In the calculations we used complex frequencies $\omega^+ = \omega + \im \eta$ with a non-zero but small imaginary part $\eta$. 
+Choosing a non-infinitesimal value however smears out the delta function, that arises in the limit $\eta \rightarrow 0$ in the imaginary part.
+This can be used to compensate for discretisation effects due to the finite sized grid, because we get a contribution even if the delta function 
+doesn't match one of the discretised momentum.
+% don't repeat yourself here, see derivation of $\chi$ in chapter before.
+%
+The value has no physical meaning. It changes the broadness and height of the poles. 
+It was chosen as small as possible, but big enough to ensure a smooth result for the response function with pronounced features.
+Choosing this value to big would wash out the characteristic of the response function, making it hard to analyse.
+The frequency dependency of propagators and Greens functions is mostly given by $(\omega^+-E^{\pm}_{\vec k})^{-1}$ and combinations thereof.
+As a good starting point we can therefore take the maximum difference in the energies $E^{\pm}$ between to nearby points in the finite sized grid of momenta.
+For our simplest dispersion, this occurs for example  between the momenta $\vec k_1 = (\pm \frac14,\pm\frac14)$ and $\vec k_2 = \vec k_1 + (\frac1{\sqrt{N}},0)$.
+As an estimation we can take $U=4$ and $m=0.3$ at half filling as a set of typical values, see the discussion below.
+We get $|E^{\pm}_{\vec k_1} - E^{\pm}_{\vec k_2}| = 0.001$ for momenta on a $256\times256$ grid.
+Finally, we found $\eta=0.005$ to be an optimal value.
+This value is of order $10^{-3}$ compared to the maximum $\omega(\vec q)$ encountered for typical values of $U$ used in this thesis.
+
+In order to extract the spin wave dispersion, we calculated the imaginary part and plotted it as 
+a colour map over $\vec q$ and $\omega$. 
+The colour scale is dominated by the highest peaks of $\chi$.
+In order to visualize the whole dispersion we had to choose a cut off for the highest values. 
+The value was set individually for each calculation such, that it reveals the whole spectrum of possible excitations,
+but such, that the position of the peaks are well defined. 
+Areas that were set to the maximal value appear therefore slightly broader in the plot. 
+The broadness of the peaks in general is much smaller than in the measurements we compared it to. 
+
+\section{Staggered Magnetization At Half-Filling}
+We need to fix the parameters $n_{\sigma}$ and $m_{s,\sigma}$ of the propagators.
+They can be expressed through a sum of propagators itself, as shown in equations \ref{n_DEF} and \ref{m_DEF}.
+This results in a system of four non-linear coupled equations.
+At half filling with $\uparrow$-$\downarrow$-symmetry, they can be decoupled and therby be solved in a easier way. 
+
+The number density is controlled by the chemical potential, which is another free parameter of the system.
+The effective spin-$\frac12$ states in Sr$_2$IrO$_4$ are half-filled, that is $n=1$. 
+Because of the symmetry between up and down spins we have furthermore $n_{\uparrow}=n_{\downarrow} = \frac12$
+This symmetry is not broken but rather assured by the anti-ferromagnetic ground state.
+
+Due to particle-hole symmetry, the Hamiltonian should be invariant under the replacement 
+$c_{\vec k,\sigma} \leftrightarrow c_{\vec k,\sigma}^{\dagger}$
+% and $\varepsilon_{\vec k} \rightarrow -\varepsilon_{\vec k}$.
+In doing this replacement and using the anti-commutation relations for creation and annihilation operators, the Hamilton operator in momentum space reads
+\begin{IEEEeqnarray}{rCl}
+ \hat H &=& \sum_{\vec k,\sigma} (-\varepsilon_{\vec k} + \mu) c_{\vec k ,\sigma}^{\dagger} c_{\vec k,\sigma} 
+ + \frac UN\sum_{\vec k,\vec k^{\prime}, \vec q} c_{\vec k,\uparrow}^{\dagger}c_{\vec k - \vec q,\uparrow}c_{\vec k^{\prime},\downarrow} c_{\vec k^{\prime} + \vec q,\downarrow} 
+ \nonumber \\ &&
+ -U\sum_{\vec k} \left( c_{\vec k,\uparrow}^{\dagger}c_{\vec k, \uparrow} +c_{\vec k,\downarrow}^{\dagger}c_{\vec k, \downarrow} \right)
+  + \sum_{\vec k} (2\varepsilon_{\vec k} + 2\mu + U) 
+\end{IEEEeqnarray}
+The energy dispersion for holes is given by $\varepsilon_{\vec k}^{\mathrm{holes}} = -\varepsilon_{\vec k}$ 
+and by this replacement we get back the original Hamiltonian for particles plus a constant, that does not change our system.
+We can collect terms proportional to the total number of holes or particles, 
+$nN= \sum_{\vec k,\sigma} c_{\vec k,\sigma}^{\dagger} c_{\vec k,\sigma}$. 
+The pre-factor of this terms corresponds to the chemical potential for holes. 
+At half-filling it should be the same as for particles, 
+we find therefore
+\begin{equation}
+ \mu = U-\mu \quad \Rightarrow \quad \mu = \frac{U}2.
+\end{equation}
+This allows us to insert $\mu = \frac U2$ and $n_{\sigma} = \frac12$ immediately in the half filled case.
+
+
+
+
+We furthermore assume that $m_{s,\uparrow}=-m_{s,\downarrow}$. 
+The staggered magnetization may thus be expressed by $m_s=2\sigma \cdot m_{s,\sigma}$.
+This relation holds in a perfect anti-ferromagnetic state with at most one particle per site. 
+Double occupied states on the other hand yield  contribution to $m_{s,\sigma}$, that is symmetric under for $\uparrow \leftrightarrow \downarrow$ in contrast to the 
+otherwise asymmetric behaviour.
+The expression for $m_{s,\sigma}$ adds $(-1)^i$  whenever a particle with spin $\sigma$ is present at site $i$. 
+This is not affected by the simultaneous presence of a particle with spin $-\sigma$, 
+which will only be seen by $m_{s,-\sigma}$ and will be weighted with the same factor of $(-1)^i$.
+However, double occupancies can be expected to be distributed evenly throughout the system
+and we might find as many on the sub-lattice with negative pre-factor as on the positive on.
+For large systems we can therefore expect this contributions to vanish in the average over all sites.
+This restores the antisymmetric relation between $m_{s,\uparrow}$ and $m_{s,\downarrow}$. 
+
+As a direct result, $F_{\vec k,\sigma}$ depends only by an overall sign on $\sigma$, while the value of $G_{\vec k,\sigma}$ becomes spin independent,
+\begin{equation}
+ G_{\vec k,\uparrow} = G_{\vec k,\downarrow} \qquad F_{\vec k,\uparrow} =-F_{\vec k,\downarrow}.
+\end{equation}
+
+
+
+
+In order to calculate $m_ {s,\sigma}$ we solve equation \ref{m_DEF}, where we can replace $m_{s,\uparrow}$ by $-m_{s,\downarrow}$, as stated above.
+We furthermore drop the spin labels on $E_{\vec p,\sigma}^{\pm}$, 
+since they depend only on the absolute value of $m_{\sigma}$ and furthermore is $n_{\uparrow} = n_{\downarrow}$ as explained above.
+This decouples the two equations with respect to the spin label.
+By using the definition of the off-diagonal propagator $F_{\sigma,\vec{p}}$ we end up with
+\begin{equation}
+ m_{s,\sigma} = \frac1N \sum_{\vec{p}} \sum_{n\in \mathbb{Z}} 
+							      \frac { Um_{s,\sigma} }
+								    { (\im \omega_n - E_{\vec{p}}^+) (\im \omega_n - E_{\vec{p}})}
+\end{equation}
+The $m_{s,\sigma}$ on the LHS cancels the one in the RHS, but $E^{\pm}$ is still dependent on $|m_{s,\sigma}|$.
+To deal with the summation over the Matsubara frequencies $\im \omega_n$, we use Cauchy's integral theorem as described in \ref{MFS}.
+The resulting equation
+\begin{equation}
+ 1= \frac{U}{N}\sum_{\vec{p}} \frac{1}{E_{\vec p}^+ - E_{\vec{p}}^-} \left( \frac{1}{1+\euler^{\beta E_{\vec p}^+}} - \frac{1}{1+\euler^{\beta E_{\vec p}^-}} \right)
+\end{equation}
+is solved using the Newton-Raphson method.
+Figure \ref{ms_nn} shows an example of the behaviour of $m_s$ for different values of $U$. The dispersion in this calculation is based 
+on nearest neighbour hopping only, that is $t^{\prime} = t^{\prime \prime} = 0$ on a two-dimensional square lattice.
+Introducing non-zero $t^{\prime}$ and $t^{\prime \prime}$ showed the same dependency. 
+%
+%
+\begin{figure}
+ \includegraphics[width=.9\textwidth]{../stagmag_T10.png}
+ \caption{staggered magnetization as function of $\frac Ut$}
+ \label{ms_nn} 
+\end{figure}
+%
+In the limit of infinite $U$ we get $m_s=1$, corresponding to a fully anti-ferromagnetic ground state. 
+The strong repulsive interaction prevents double occupancies, because each of them adds $U$ to the energy of the ground state.
+We will find therefore at max one particle at each site. Half filling requieres then that there is actually a particle at each site. 
+At the same time there are virtual hopping processes to the states of higher energy, which create  a possibility to further lower the ground state energy.
+Virtual hopping between neighbouring sites is only possible if they are occupied by particles with opposite spin.
+Otherwise it would be forbidden by the Pauli principle, which holds for virtual processes as well. 
+Therefore, an anti-ferromagnetic ground state is energetically preferable to a ferromagnetic one.
+
+Lowering $U$ yields a lower staggered magnetization, since the energy cost for double occupancy gets lower and might be out-weighted by
+the reduce in kinetic energy due to hopping.
+%
+At some point we will encounter a transition to an unordered metallic ground state with $m_s=0$. 
+The closing of the Hubbard gap leads to the transition from the insulating state to a conducting one.
+The critical value for this transition is sensitive to the parameters for second- and third-neighbour hopping, 
+even though the dependence of $m_s$ on $U$ above the critical value of $U$ is identical for non-zero and vanishing $t^{\prime}$ and $t^{\prime \prime}$.
+The critical value was reported by \citet{PhysRevB.88.035111} to be in the range $U_c \approx 0.7 - 2.2$, depending of the precise set of parameters.
+For lower values of $U$, our assumption of a Hubbard gap and an anti-ferromagnetic ground state is not valid any more
+and our description is not capable of describing the physical situation any longer. 
+The iterative procedure for $m_s$ is not converging in this situation any longer due to the high sensitivity on the band gap through the factor $(E^p_{\vec k} - E^-_{\vec k})^{-1}$.
+This term is proportional to $\frac{1}{Um_s}$ for momenta with $\varepsilon_{\vec k} - \varepsilon_{\vec k+\vec Q} =0$.
+This is exactly the condition for nesting with nesting vector $\vec Q$, which is present at least at some points.
+Calculations down to $U=0.5$ show that the staggered magnetization falls off very fast for low $U$. 
+The term $(E^+_{\vec k} -E^-_{\vec k})^{-1}$ diverges in this case and the iteration procedure becomes numerically unstable. 
+The limitation for this calculation appears therefore for numerical reasons, that become dominant at roughly the value of the transition to the unordered state.
+
+After calculating $m_{s}$, the expression for $n_{\sigma}$ in terms of the propagator $G_{\vec k,\sigma}$ has also been evaluated 
+and found to be consistent with the above condition for the chemical potential at half-filling.
+
+
+
+\section{Large U Limit}
+
+A large $U$ drives the system in an anti-ferromagnet ground state as mentioned above. 
+Hopping at half-filling leads to double occupancies, which are suppressed due to the high energetic cost of $U$. 
+Therefore, the system can be described as an Heisenberg anti-ferromagnet in this limit.
+The Heisenberg Hamiltonian with only nearest neighbour coupling is
+\begin{equation}
+ \hat H = J \sum_{\langle i,j\rangle} \vec{S}_i \cdot \vec{S}_j,
+\end{equation}
+which will be an anti-ferromagnetic coupling for positive J. 
+\todo{derivation of Heisenberg from Hubbard or reference}
+Hopping will be treated as a distortion to the system and yields the interaction of neighbouring spins.
+
+%
+% http://user.it.uu.se/~ngssc/ngssc_home/S2M2S2/pavarini1.pdf and notes from Morten
+% follow explanation, decide in what to include
+% include calculation of limit, independent of above considerations
+% how does it extend to higher order couplings, that is J^{\prime} and so on as well as t^{\prime}
+%
+
+We will expand the expression for $\chi$ in terms of $\frac{t^2}{U}$ 
+and compare the resulting dispersion with the linear spin-wave dispersion gained from a $\frac1S$ expansion of the Heisenberg model.
+Since we are only interested in the position of the poles in $\chi$, it is sufficient to expand the denominator of equation \ref{ladder_sum} and solving for it's roots,
+\begin{equation}
+ \left(1+\lambda(x+y)\right)\left(1+\lambda(\bar x + y)\right) - \lambda^2(z_1 +z_2)^2 = 0
+\end{equation}
+We note first that the term $\lambda y$ is dominant in this limit, since $\lambda y \sim 1$, while $\lambda x \sim \frac1{U^2}$ and $\lambda z_i \sim \frac1U$
+for infinite $U$.
+Expanding this term
+up to first order in  $\frac{t^2}U$ we are left with the dispersion
+\begin{equation}\label{DispULimit}
+ \omega(\vec q) = \frac{4t^2}{Um_s}\sqrt{4-(\cos q_x+\cos q_y)^2}. 
+\end{equation}
+This is exactly the spin wave dispersion one gets for linear spin waves in a Heisenberg antiferromagnet, 
+with the coupling $J=\frac{4t^2}{Um_s}$.
+Deriving the Heisenberg model from the Hubbard model yields $J=\frac{4t^2}{U}$, which differs by a factor of $\frac1{m_s}$ from the coupling we get in this expansion.
+The dependence of $m_s$ on $U$ shows, that we get a perfect antiferromagnet with $m_s=1$ for large $U$, 
+such that the two couplings will be identical in the case, where this approximations are valid. 
+%
+
+Linear spin waves are the first term in an $\frac1S$ expansion of the dispersion in a Heisenberg antiferromagnet.
+Higher orders renormalize the spin wave dispersion by allowing for quantum fluctuations.
+It was claimed by Peres et al. that the staggered magnetization in the expression for $\omega$ in equation \ref{DispULimit} 
+plays the role of this renormalization factor \cite{PhysRevB.65.132404}.
+Quantum fluctuations do lower the value of $m_s$, but in the mean field scheme it tends to 1 for large $\frac Ut$ 
+and is unable to provide such corrections in the case of large $U$.
+
+The expression for $\omega(\vec q)$ tells us imediatly, that we get a constant dispersion along the 
+boundary of the magnetic Brillouin zone, $\omega(\frac12(1-t), \frac12t) =\mathrm{const.}$ for $t \in [0,1]$.
+% say sth. why \omega(\vec q = 0) = \omega(\vec q = \vec Q) = 0 is expected. 
+% \omega = 0, \vec q = 0: G^2-F^2 = (G-F)^2 - 2GF; (G-F)^2 = 1, GF = z1 = -z2 or similar
+% actually is z_1 = z_2 = 0, 1+\lambda(\bar x +y ) = 0 | \vec q =0
+
+
+By using a large value for $U$ in our calculations, we get results that agree well with the unrenormalized case.
+An example for $U=40$ can be seen in figure \ref{largeU}, together with the corresponding dispersion for linear spin waves.
+%
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=.8\textwidth]{../U40}
+  \caption{spin wave dispersion for $U=40$ with linear spin-wave theory as comparison}
+ \label{largeU}
+  \end{center}
+\end{figure}
+%
+% higher order terms: t*(t/U)^n, n>1.
+% Heisenberg with J-J'-J''
+  
+\newpage
+
+\section{$t$-$U$-Model}
+
+The $t$-$U$-Model is the simplest version of the Hubbard model.
+In dimensionless units it contains $U$ as the only free model parameter.
+The band structure is then only specified by the geometry of the lattice.
+In the case of a square lattice, the band structure fulfils $\varepsilon_{\vec k} = -\varepsilon_{\vec k+\vec Q}$.
+By this relation, the energies $E^{\pm}$ of the new bands reduce at half filling to a much simpler form,
+\begin{equation}
+ E^{\pm}_{\vec k} = \pm \sqrt{\varepsilon_{\vec k}^2 -U^2m_{s,\sigma}^2}.
+\end{equation}
+The energies along the path through the previously defined Brillouin zone are shown in figure \ref{Epmt47}.
+The two bands are split by a gap of width $Um_s$. 
+They are completely symmetric to the Fermi surface and the energy along the boundary of the reduced Brillouin zone is constant.
+%
+\begin{figure}
+ \centering
+ \includegraphics[width=.7\textwidth]{../Edispt47}
+ \caption{$E^{\pm}_{\vec q}$ for the $t$-$U$-model with $U=4.7t$. $\vec q$ follows the path in figure \ref{path}. }
+ \label{Epmt47}
+\end{figure}
+
+
+Such a model was used by \citet{PhysRevB.65.132404} to calculate the spin wave dispersion of La$_2$CuO$_4$, the cuprate analogue to Sr$_2$IrO$_4$.
+They could successfully reproduce the spin wave dispersion measured by inelastic neutron scattering. 
+The parameters found were $t_{\mathrm{cup}}=0.295$eV and $U_{\mathrm{cup}}=6.1\cdot t_{\mathrm{cup}}=1.8$eV. 
+We use an extended version of their calculation scheme and adjusted it to the specifications found in Sr$_2$IrO$_4$.
+In the first approach we  use the same simple one parameter band structure, based on nearest neighbour hopping only.
+
+The spin wave dispersions of both materials show a very similar qualitative behaviour.
+The most characteristic difference is the dispersion along the boundary of the reduced Brillouin zone, e.g. the line S-X in figure \ref{path}.
+The ratio of frequencies at S and X,
+\begin{equation} 
+r = \frac{ \omega(\frac14,\frac14) }{ \omega(\frac12,0) }. 
+\end{equation}
+provides a quantitative measure of this effect. 
+In the La$_2$CuO$_4$ the ratio is relatively large with an value of $r = 0.85$, compared to $r=0.54$ in
+Sr$_2$IrO$_4$.
+
+$r$ increases with $U$ and reaches eventually $r=1$ 
+in the Heisenberg limit.
+In this case, the dispersion is constant along this line.
+The Heisenberg model with nearest neighbour couplings corresponds to an expansion up to first order in $\frac tU$ only, 
+i.e. only terms proportional to $\frac {t^2}{U}$ are taken into account.
+As we lower the interaction strength, higher order terms become more important.
+The Heisenberg model can reproduce a lowered value for $r$ only if interactions between higher order neighbours are introduced.
+They arise from  hopping processes over multiple sites.
+They gain a pre-factor proportional to $t\cdot(\frac tU)^n$  for $n+1$ hopping processes.
+These terms become more important, as we lower $U$. 
+Expanding to second order yields  the couplings \cite{0022-3719-10-8-031} 
+\begin{equation}
+ J = 4\frac{t^2}{U} -24\frac{t^4}{U^3}; \qquad J^{\prime} = J^{\prime \prime} = 4\frac{t^4}{U^3}; \qquad J_c = 80 \frac{t^4}{U^3}.
+\end{equation}
+Primes denote second and third neighbours respectively.
+The index $c$ stands for cyclic exchange, 
+i.e. hopping of a particle over four sites such that it ends up at the site where it started. 
+Especially the ring exchange seems to contribute to the dispersion along the zone boundary \cite{PhysRevLett.86.5377}.
+Particles in the Hubbard model are mobile due to the hopping term and there is no restriction to certain exchanges.
+%
+%
+%
+Even though  hopping processes up to infinite order are taken into account,
+we found that the Hubbard model based on nearest neighbour hopping only is not capable of describing the dispersion observed in experiments.
+An explanation can be found in the constant band energy at the border of the reduced Brillouin zone.
+The most important contributions stem from areas close to the Fermi surface. 
+At the same time remains $E^{\pm}_{\vec k + \vec q}$ constant for $\vec q$ in this area.
+
+Choosing $U=4.7 = 1.2$eV provides the best description of the spin wave dispersion along most parts of the path.
+A comparison with measurements can be seen in figure \ref{tU47}. 
+%
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=.8\textwidth]{../compare_t47}
+  \caption{Renormalized spin wave dispersion for the $t$-$U$-model, $U=4.7$ (blue). Graphs for measurements (red) and $J$-$J^{\prime}$-$J^{\prime \prime}$-fit (green) are
+	    token from \cite{PhysRevLett.106.136402} and were recoloured.}
+ \label{tU47}
+ \end{center}
+\end{figure}
+%
+The spin wave velocity at $c=\left. \frac{\dint \omega}{\dint \vec k} \right|_{\vec k = 0}$ is well described after renormalization.
+With the same renormalization factor the dispersion along
+the zone boundary of the whole Brillouin zone, namely from X to M, is represented at a high level of agreement.
+The model fails however to catch the lowered dispersion at the Fermi surface, e.g. around $\vec q = (\frac 14, \frac14)$.
+The calculated dispersion is way to high, giving us therefore a ratio of $r=0.8$. 
+It is possible to get to lower values of $r$ for smaller $U$, but the resulting dispersion fails then to match the spin wave velocity and 
+the total energy scale. An value as low as the one found in the iridates will not be reached for any value of $U$ above the critical value.
+
+
+In addition to this excitations, where $\omega$ has a clear functional dependence on $\vec q$, 
+we find an area of continuous excitations.
+The continuum begins at energies, comparable to the band gap between $E^+_{\vec k}$ and $E^-_{\vec k}$ and 
+stretches mainly over an area of two times the band width of $E^{\pm}_{\vec k}$.
+The continuum corresponds to the excitation of an electron into the otherwise unoccupied upper energy band $E^+_{\vec k}$.
+The effect of the canted structure can be seen by the small intensities around the point M, that  shifted  from $\Gamma$ with 
+a weight of $\frac{\sin \theta}{\cos \Theta}$.
+The emergence of the continuum is closely related to mathematical expression of $\chi$. 
+In calculating bubble diagrams, one encounters sums over terms like $(E^{-}_{\vec p} +\omega - E^+_{\vec p + \vec q})^{-1}$.
+They are suppressed by an factor of $(1+\euler^{E^-_{\vec k} T})^{-1}$, but
+for $\omega$ larger than the band gap, but lower than the maximum difference between the bands, their denominator vanishes for certain $\omega$ 
+and they can give a big contribution to the sum over such expressions for different momenta. 
+In experiment the continuum begins around 0.5eV \cite{PhysRevLett.86.5377}, which is of the same magnitude, but less then the lower bound found in our calculations.
+Furthermore, the lower bound of continuous excitations is not a straight line as it is in our calculations. 
+This indicates that the model is to much simplified and missing therefore some essential features.
+At these energy scales there are further excitations possible, for example excitations to the $J=\frac32$ states, which are not covered by our calculation scheme.
+Around the critical value $U_c$, the continuum merges with the spin wave excitations. 
+In experiments we find a large gap between the low energy excitations and the continuum, which indicates a $U$ well above the critical value. 
+
+Looking at the contributions of the transversal ($\chi^{zz}$) and longitudinal ($\chi^{+-}$) component of the susceptibility separately reveals 
+that the spin wave dispersion at lower energies is determined by $\chi^{+-}$ completely.
+\begin{figure}
+ \centering
+ \begin{subfigure}{.49\linewidth}
+\includegraphics[width=\textwidth]{../tXpm.png}
+  \caption{transversal susceptibility $\chi^{+-}$}
+ \end{subfigure}
+\begin{subfigure}{.49\linewidth}
+ \includegraphics[width=\textwidth]{../tXzz.png}
+ \caption{longitudinal susceptibility $\chi^{zz}$}
+\end{subfigure}
+\caption{Transversal and longitudinal component of $\chi$ in the $t$-$U$-model for $U=4.7t$, including the continuum at higher energies $\omega$. 
+	 Both pictures use the same cut-off for the energy scale.}
+	 \label{Xcomponents}
+\end{figure}
+%
+As can be seen in figure \ref{Xcomponents}, contributions of $\chi^{zz}$ to the excitation spectrum lie solely in the continuum,
+where the longitudinal susceptibility actually dominates.
+Excitations in the longitudinal direction are only possible, when the anti-ferromagnetic ordering of the ground state 
+is distorted, which comes with a energetic cost, that increases with $U$.
+
+
+
+
+% explanation for the gap? Need excitations in the upper band cor \chi^zz?
+% What happens afterwards?
+
+% compare to measurements: Seen there as well, but  a little bit to high and sharp
+% doesnt fit to the band gap, that is overestimated anyway. 
+
+
+
+
+
+
+% continuum,
+% continuum in the case of very low $U$
+ 
+% effect of t' and t'' clearer around FS. 
+% more influnce...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% could elaborate on calculation details of x,y,z_i.
+% e.g. Wick rotation, Matsubara frequency summation etc. 
+% and how the final terms actually count, in order to justify the arguments made later.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% t= 0.258eV, Temperature
+%We used the same $t$ as in the previous situation without second- and third neighbour couplings, i.e. $t^{\prime} = t^{\prime \prime} = 0$, 
+%when converting values like the temperature.
+
+
+\section{$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
+
+In the previous chapter we saw that an approach with only nearest neighbour interactions  is not capable of reproducing all the observed features 
+in the magnetic excitations of this Sr$_2$IrO$_4$.
+In order to gain a better model, we improve the band structure by taking hopping terms to second and third neighbours into account. 
+This provides a more realistic description of the system and allows us to reproduce the observed spin wave dispersion.
+
+
+
+The hopping parameters $t,t^{\prime},t^{\prime \prime}$ were treated as fixed external parameters.
+This means they were taken from first principle calculations done by 
+\citet{PhysRevLett.106.136402} rather than adjusted to experiments.
+We use again $t$ as the basic  energy unit and express other parameters in terms of it.
+There are therefore to new parameters entering the calculations, the ratios $\nicefrac{t^{\prime}}{t}$ and $\nicefrac{t^{\prime \prime}}{t}$, further denoted by $t^{\prime}$ and 
+$t^{\prime \prime}$ only. 
+Normalizing reduces not only the number of parameters, the ratio of neighbour interactions can be calculated, while 
+their absolute value has to be fitted to measurements, producing a higher uncertainty \cite{PhysRevB.67.064504}.
+
+Their values are based on fits to a multi orbital tight binding model that includes all the $t_{2g}$ states together with the hybridization with the $p$ orbitals from the 
+ligands.
+The couplings between these orbitals were then fitted to reproduce the band dispersion that was calculated in the linear density approximation (LDA) including SOC. 
+After a projection to the spin-$\frac12$ subspace, we get the effective couplings of between sites in our one orbital Hubbard model.
+The values used in this thesis were 
+%
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$t$ & $t^{\prime}$ & $t^{\prime \prime}$ \\
+\hline
+0.258eV & 0.06eV & 0.03eV \\
+1 & 0.2326 & 0.1163 \\
+\hline
+\end{tabular}
+\end{center} 
+%
+The last line shows the normalized values.
+With those parameters the band structure of a square lattice is 
+\begin{equation}
+  \varepsilon_{\vec k } = -2t \left(\cos k_x + \cos k_y \right) -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
+\end{equation}
+as explained in chapter \ref{chapter_bandstructure}.
+
+
+
+The second and third neighbour hopping parameters are substantially smaller than $t$, but big enough to change the 
+results significantly. 
+ The most important feature is the removal of the degeneracy in $E^{\pm}_{\vec k}$ along the border of the reduced Brillouin zone.
+This was the reasons, why the $t$-$U$-model was not capable of reproducing the spin wave dispersion. 
+In figure \ref{tttE42} we plotted again the energies of $E^{\pm}_{\vec q}$ along the same path as before.
+\begin{figure}
+ \centering
+\includegraphics[width=.8\textwidth]{../Edispttt44}
+ \caption{$E^{\pm}_{\vec q}$ in the extended model ,that includes second and third neighbour hopping terms.
+ $U$ was chosen to be 4.4,
+ $\vec q$ follows the path through the Brillouin zone described in figure \ref{path}. }
+ \label{tttE42}
+\end{figure}
+The gap between the upper and lower band is smaller than in the previous case, where it was given by $Um_s$.
+At the same time the bands stretch over a larger energy range.
+
+
+
+
+
+The $t$-$t^{\prime}$-$t^{\prime \prime}-$Hubbard model, 
+is capable of describing all features of the measured dispersion to a high level of agreement. 
+The optimal value for the Hubbard interaction was found to be $U=4.4=1.1eV$.
+The value was optimized in several runs by guidance of the eye, until the experimental values were met.
+With the renormalization due to quantum fluctuations a very high level of agreement could be achieved, see figure \ref{tttU42}.
+%
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=\textwidth]{../compare42.pdf}
+ \caption{ spin wave dispersion for $U=4.4$ (blue) compared to measurements (red) and a up to third neighbour Heisenberg model (green). 
+ Experimental values and Heisenberg fit are taken from \cite{PhysRevLett.108.177003} and recoloured.} 
+ \end{center}
+\label{tttU42}
+\end{figure}
+%
+Again, the spin wave velocity and the dispersion along X-M and $\Gamma$-X is very well described. 
+Furthermore the ratio $r$ of energies at $\vec q = (\frac14,\frac14)$ and $(\frac12,0)$ is almost completely matched.
+At $\vec q = (\frac14,\frac14)$ and in its direct vicinity the dispersion is overestimated.
+This results in a larger value of $r$ as well, since $\omega(\frac12,0)$ is matched exactly.
+$\omega(\frac14,\frac14)$ and therefore $r$ is overestimated by 5\%, 
+which is small compared to the broadness of the peak in this measurements. 
+
+
+
+The staggered magnetization at $U=4.4$ was found to be $m_s= 0.73$. 
+As mentioned above, there is a net ferromagnetic moment proportional to the anti-ferromagnetic ordering 
+parameter $m_s$, because of the canted orientation of the oxygen octahedra. 
+We found for the magnetic ordering parameter $m =  \sin \Theta m_s= 0.139$. 
+It is related to the total magnetic moment by the magnetic moment of a single site, that is $g\mu_b J$,
+with the gyromagnetic ratio $g=2$ of an electron and the spin $J=\frac12$ as the total angular momentum. 
+The observed ferromagnetic moment is $0.14\mu_b$ \cite{PhysRevB.57.R11039}. 
+Our result is therefore in good agreement, given the magnetic moment of $1\mu_b$ at each Ir site. 
+The canted structure provides therefore a good explanation of the observed weak ferromagnetic moment 
+without any ferromagnetic ordering in the ground state.
+
+Another quantity, that is closely related to the Hubbard-$U$ is the width of the Mott gap.
+The Mott gap is the split of the $J=\frac12$-band due to the repulsive Hubbard interaction into the bands denoted by $E^{\pm}_{\vec k}$ respectively. 
+With the optimal value of $U$ found in  our calculation and the corresponding staggered magnetization $m_s$, 
+the width of the band gap is given by $\Delta_{\mathrm{Mott}}=1.6t=0.47\mathrm{eV}$.
+This is close to, but slightly lower than the experimental result of 0.54eV  at $T=10$K,
+as found through optical spectroscopic measurements by \citet{PhysRevB.80.195110}.
+
+
+With the changed dispersion the continuous excitations at higher energies show agree with experiment on a qualitative level. 
+The dispersion for both is compared in \ref{continuum}.
+\begin{figure}
+ \centering
+ \begin{subfigure}{0.49\linewidth}
+  \includegraphics[width=\textwidth]{../tttU44_longw}
+  \caption{calculated spin wave dispersion for $U=4.4$.}
+  \label{tttU44_longw}
+ \end{subfigure}
+\begin{subfigure}{.49\linewidth}
+ \includegraphics[width=\textwidth]{../measuredexit}
+ \caption{measured excitations, taken from \cite{PhysRevLett.108.177003} }
+ \label{experimental_longw}
+\end{subfigure}
+\caption{comparison of the excitation spectrum  form our calculations and RIXS measurements. The energy scale in both graphs is given in eV. 
+	  The measured excitations contain also spin orbit excitations between 0.4eV and 0.8eV}
+\label{continuum}	  
+\end{figure}
+Due to the changed energy bands, it has no longer a constant sharp boundary at the lower end, but shows $\vec k$-dependence as well.
+A quantitative comparison of the excitations is difficult, since the experimental data contains  spin orbit excitations as well. Those lie in the centre 
+of the continuous band.
+On a qualitative level we note that the bulges at the low energy end of the continuum are appear for the same momenta as in the measurements. 
+The lowest excitations are found at $\vec q = (\frac14,\frac14)$. This is the momentum transfer that connects the $\vec k$ for the highest value of $E^-_{\vec k}$ with the 
+momentum, where $E^+_{\vec k}$ is minimal, as one would expect for such excitations.
+
+
+
+
+% compare to J-J-J and explain why it is better
+% look up J in t-t'-t''-U expansion
+
+
+
+
+\citet{PhysRevLett.108.177003} did not only measure the inelastic scattering cross section, they provided also a model to describe the data.
+Their model is the Heisenberg model with up to third neighbour couplings, with the parameters $J$, $J^{\prime}$ and $J^{\prime \prime}$ for
+the first, second and third neighbour exchange couplings respectively, without an parameter for cyclic exchange. 
+All three parameters were treated as free parameters and fitted to the measured spin wave dispersion. 
+The values were found to be $J=60$meV, $J^{\prime}=-20$meV and $J^{\prime\prime}=15$meV. 
+The resulting dispersion reproduces the right energies at the points X and S and therefore the right $r$ as well,
+while the energies along the path connecting these points are systematically underestimated.
+
+
+
+In an effective model the effect of cyclic exchange can be absorbed in the other parameters.
+$J$ and $J^{\prime}$ will be lowered by that, while $J^{\prime \prime}$ remains unchanged. 
+As an expansion of the Hubbard model, these parameters are related through their dependence on $t,t^{\prime},t^{\prime \prime}$ and $U$.
+Up to second order, they are given by
+\begin{IEEEeqnarray}{ccc}
+ J= 4\frac{t^2}{U} - 64 \frac{t^4}{U^3} = 41\mathrm{meV} &
+ ,\qquad J^{\prime} =4\frac{t^{\prime 2}}{U}-16\frac{t^4}{U^3} = -38\mathrm{meV} \nonumber \\
+  J^{\prime \prime}= 4\frac{t^{\prime \prime 2}}{U}+  4\frac{t^3}{U^4} = 15\mathrm{meV}.&
+\end{IEEEeqnarray}
+where we the values found above for $U$ and $t,t^{\prime},t^{\prime \prime}$.
+These values do not agree very well with the fit and show that their parameters do not follow the functional dependence on the parameters of the Hubbard model.
+The Hubbard model shows to describe the dispersion with a higher accuracy. 
+At the same it has just one free parameter, while the other can be obtained by first principle calculations.
+
+
+% interpret value of U, compare to cuprates and literature: lower than usually 
+
+
+Our optimal value for $U=4.4$ corresponding to 1.1eV, is substantially lower than the one found in the similar cuprate compounds.
+In the cuprates $U$ is usually set to around 7$t_{\mathrm{Cu}}$ for the corresponding $t_{\mathrm{Cu}}=0.3$eV \cite{PhysRevB.65.132404}.
+This is expected, since the $5d$ orbitals are more extended, which reduces the intra orbital interaction.
+In the literature the Hubbard interaction is often estimated to be $U=2$eV \cite{PhysRevB.80.075112}. 
+Our calculations shows that the interaction is weaker and $U=1.1$eV yields a more realistic description of the system.
+
+The transition from a Mott insulator to a paramagnetic metal is dependent on the strength of the SOC. 
+With $\lambda = 1.1t$ the critical value of a multi orbit model is $U_c=3.3t$ \cite{PhysRevB.105.216410}, Sr$_2$IrO$_4$ is therefore 
+in the  anti-ferromagnetic phase, but close to the metal insulator transition. 
+Using Rh instead of Ir increases $U$, but reduces $\lambda$ at the same time. 
+A larger $U$ on the one hand increases the band gap, with a low lambda however we do not necessarily have the 
+effective spin-$\frac12$ states anymore. 
+This is the case in Sr$_2$RhO$_4$ and as a result it is a paramagnetic metal.
+This shows the importance of strong SOC for the properties of Sr$_2$IrO$_4$. 
+It further supports  the statement, that Sr$_2$IrO$_4$  experiences the effects of both types of mechanisms to create insulators,
+the charge interaction driven Mott type and the Slater type, which is based on magnetic ordering \cite{PhysRevB.89.165115}.
+A contribution from the Slater scenario might provide an explanation, why our calculated band gap is not big enough.
+
+
+
+
+
+
+
+
+\section{Outlook}
+
+% can be improved: 
+% more elaborate quantum corrections
+% ways to introduce this into calculations
+% 
+
+% can be done:
+% extend to other materials/geometries
+% include interlayer hopping
+% change filling factor
+% more detailed analysis of the continuum, broadness of peaks etc.
+% 
+
+% main result U=1.1eV can be used in other types of calculations.
+
+
+
+

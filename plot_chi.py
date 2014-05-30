@@ -110,7 +110,7 @@ for t in range (0,tmax):
 		# calculate chi (imaginary part of the susceptibility
 		
 		# transversal (+-)
-		Val[t,w]=((-(x+y)*(1.0+lmb*(xb+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+y))-lmb**2*(z1+z2)*(z1+z2))*(np.cos(theta))**2+(-(xb+y)*(1.0+lmb*(x+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(xb+y))*(1.0+lmb*(x+y))-lmb**2*(z1+z2)*(z1+z2))*(np.sin(theta)**2) ).imag*4
+		#Val[t,w]=((-(x+y)*(1.0+lmb*(xb+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(x+y))*(1.0+lmb*(xb+y))-lmb**2*(z1+z2)*(z1+z2))*(np.cos(theta))**2+(-(xb+y)*(1.0+lmb*(x+y))+lmb*(z1+z2)*(z1+z2))/((1.0+lmb*(xb+y))*(1.0+lmb*(x+y))-lmb**2*(z1+z2)*(z1+z2))*(np.sin(theta)**2) ).imag*4
 		
 		# longotudinal (zz)
 		temp  = 1 - lmb**2*(x-y)**2 + lmb**2*(z1-z2)**2
@@ -160,12 +160,12 @@ p.set_clim(-000,5000)
 
 #p=ad.plot(T,Heis)
 
-N= 64/4
+N=256/4
 N=7/4*N
 pylab.xlabel('$\\vec q$')
 pylab.xlim([0,T.max()])
-#pylab.ylabel('$\\omega$ [eV]')
-pylab.ylim([0,1.0])
+pylab.ylabel('$\\omega$ [eV]')
+#pylab.ylim([0,1.0])
 pylab.xticks([0,np.sqrt(2)*N,(2+np.sqrt(2))*N,(2+2*np.sqrt(2))*N,(2+3*np.sqrt(2))*N,(4+3*np.sqrt(2))*N],['S','X','M','S','$\\Gamma$','X'])
 #p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 
