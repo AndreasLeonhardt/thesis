@@ -11,7 +11,7 @@
 
 We treat the Hubbard model in a perturbative approach at the mean field level.
 The Hubbard term  $H_U$ represents the perturbation.
-The two-particle operator can be read as a product of two single particle operators.
+The two-particle operator can be written as a product of two single particle operators.
 We can rewrite any product of two operators $\hat{A}$ and $\hat{B}$ as
 \begin{IEEEeqnarray}{rCl}
  \hat{A}\cdot\hat{B} 
@@ -36,7 +36,7 @@ and
 $c^{\dagger}_{\vec k,\downarrow}c_{\vec k + \vec q,\downarrow}$
 in the Hubbard term of the Hamiltonian. 
 Furthermore, we drop the constant term corresponding to $\langle \hat A \rangle \langle \hat B \rangle$, since a constant in the Hamiltonian will not have any
-influence on the dynamic of the system. 
+influence on the dynamics of the system. 
 The mean field approximation of the Hubbard term reads
 \begin{equation}
  H_U \stackrel{\mathrm{mf}}{\approx}  \frac{U}{N}
@@ -45,29 +45,19 @@ The mean field approximation of the Hubbard term reads
 	\sum_{\vec p}  c^{\dagger}_{\vec{p},\sigma} c_{\vec{p}-\vec{q},\sigma}. \label{Hubbard_mean_field}
 \end{equation}
 The expectation value for the one particle operator is different from zero for only two values of $\vec q$.
-First, for $\vec q = 0$ the expression yields the spin dependent filling factor, i.e. the number of particles with spin $\sigma$ in relation to the total number of sites $N$.
+First, for $\vec q = 0$ the expression yields the spin dependent filling factor, i.e. the number of particles with spin $\sigma$ relative to the total number of sites $N$.
 \begin{equation}
  n_{\sigma} = \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k, \sigma} \rangle.
 \end{equation}
-A single  site can be empty or occupied by one particle, since we have spin-$\frac12$ particles. The possible values for $n_{\sigma}$ are therefore restricted to the range $[0,1]$.
+A single  site can be empty or occupied by one particle at a given spin $\sigma$. The possible values for $n_{\sigma}$ are therefore restricted to the range $[0,1]$.
 The total number density is simply the sum of both spin dependent number densities, $n=n_{\uparrow}+n_{\downarrow}$ 
-and ranges from the empty case $n=0$ to 2, corresponding to a situation where each sites is occupied by two particles with opposite spin.
+and ranges from the empty case $n=0$ to 2, corresponding to a situation where each site is occupied by two particles with opposite spin.
 
-%
-%
-% meaning of mean field
-%
-% symmetry bracking, antiferromagnetic ground state
-%
-%propagators: diagonal, offdiagonal
-%
-% validity range of the above assumptions: symmetrie, metal insulator transition; limits and corrections
-%
-%RPA
-%
-%
-The second contribution comes from $\vec q = (\frac12, \frac12)$.
-This vector acts as a nesting vector for the Fermi surface of the band structure. 
+
+The second contribution comes from $\vec q = (\frac12, \frac12)$ in units of $\frac{2\pi}a$, which we will use as the momentum unit throughout the whole thesis.
+This vector acts as a nesting vector $\vec Q$ for the Fermi surface of the band structure. 
+This means that large parts of the Fermi surface can be mapped onto itself by a translation of this vector. 
+
 The dispersion of a square lattice with only nearest-neighbour interactions 
  %can be divided into two sublattices $A$ and $B$, 
  %such that hopping occurs only from one sublattice to the other.
@@ -78,10 +68,10 @@ The dispersion of a square lattice with only nearest-neighbour interactions
 depends only on $\cos(k_x) + \cos(k_y)$.
 and is therefore perfectly nested.
 That means
-$\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$ with the nesting vector $\vec Q = (\frac12,\frac12)$ in units of $2\pi$.
+$\varepsilon_{\vec k} = -\varepsilon_{\vec k + \vec Q}$.
 The Fermi surface at half filling is in this case a perfect square.
 Introducing higher order hopping terms deforms the Fermi surface, but nesting with $\vec Q$ holds on a approximate level for small $t^{\prime}$ and $t^{\prime \prime}$.
-The Fermi surfaces together with the nesting vector $\vec Q$ are shown for both cases in \ref{fig:energie_dispersion}.
+The Fermi surfaces together with the nesting vector $\vec Q$ are shown for both cases in figure \ref{fig:energie_dispersion}.
 %
 %
 %
@@ -89,13 +79,15 @@ The Fermi surfaces together with the nesting vector $\vec Q$ are shown for both 
 %This is observed in these materials \todo{how general, which ones} and expected % for what reason?
 
 
-Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a non-zero expectation value for $\langle c^{\dagger}_{\vec k, \sigma} c_{\vec k + \vec Q ,\sigma}$
+Nesting with $\vec Q = (\frac 12, \frac12)$ leads to a non-zero expectation value for $\langle c^{\dagger}_{\vec k, \sigma} c_{\vec k + \vec Q ,\sigma} \rangle $
 and therefore to a symmetry broken ground state with an anti-ferromagnetic moment. 
-The staggered magnetization is the order parameter of an anti-ferromagnetic state.
-In momentum space it reads
+The staggered magnetization is the order parameter of an anti-ferromagnetic state. It counts spins with an alternating sign for each lattice site. 
+It is maximized for a perfect distribution of alternating spins. 
+Using $\euler^{\vec Q \vec R_i} = (-1)^i$ we can write the expectation value of the staggered magnetization 
+in momentum space,
 \begin{IEEEeqnarray}{lCl}
  m_{s} &=& m_{s, \uparrow} - m_{s, \downarrow}, \\
- m_{s, \sigma} &=& \frac1N  \sum_i (-1)^i \langle c^{\dagger}_{i,\sigma} c_{i,\sigma} \nonumber \\ &&
+ m_{s, \sigma} &=& \frac1N  \sum_i (-1)^i \langle c^{\dagger}_{i,\sigma} c_{i,\sigma} \nonumber \\ &=&
  \frac1N \sum_{\vec k} \langle c^{\dagger}_{\vec k , \sigma} c_{\vec k + \vec Q, \sigma} \rangle .
 \end{IEEEeqnarray}
 
@@ -128,7 +120,9 @@ That shows the idea of the mean field approach, describing non-interacting parti
 This field is the result off the sum of all particles in the system. It's value will therefore be influenced by the particles itself.
 As a result we have to solve the equations for the fields self-consistently, which will be done in the next section. 
 The first term in the above mean field Hamiltonian represents the mean repulsion due to the equal charge of the electrons.
-It is proportional to the number density of particles with opposite spin due to the on-site interaction, that is only possible for particles with opposite spin.
+The strength of the repulsion seen by a particle with a certain spin is proportional to the number density of particles with the opposite spin,
+since the on-site interaction couples only particles with different spin. 
+
 The second term corresponds to the coupling to a staggered magnetic field, that is a magnetic field with an alternating orientation on each site. 
 The field strength is proportional to the magnetization of the ground state and given by $Um_s$.
 
@@ -139,7 +133,7 @@ First we get the diagonal contribution, second an off-diagonal one from the stag
 The propagators are defined by
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec k         ,\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \\
- F_{\vec k}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec k +\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \\ \label{Def_Propagator}
+ F_{\vec k}(\tau) &=& -\langle \mathcal{T}_{\tau} c_{\vec k +\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \label{Def_Propagator}
 \end{IEEEeqnarray}
 with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair of fermion operators according to
 \begin{IEEEeqnarray}{rCl}
@@ -148,16 +142,17 @@ with the imaginary time ordering operator $\mathcal{T}_{\tau}$, acting on a pair
  &=& \left\{ \begin{array}{r@{\text{ for }}l} -\hat{A}(\tau_1) \hat{B}(\tau_2) & \tau_1 \ge \tau_2 \\ \hat{B}(\tau_2) \hat{A}(\tau_1) & \tau_1 < \tau_2 \end{array} \right.
 \end{IEEEeqnarray}
 %
-From this definition follows that $n_\sigma$ and $m_{s,\sigma}$ can be expressed in terms of propagators, namely through
+From this definition it follows that $n_\sigma$ and $m_{s,\sigma}$ can be expressed in terms of propagators, namely through
 \begin{IEEEeqnarray}{lCl}
  n_{\sigma} &=& \frac1N \sum_{\vec k} \left( 1-G_{\vec k, -\sigma}(0) \right) \label{n_DEF}\\
  m_{s,\sigma} &=& -\frac1N \sum_{\vec k} F_{\vec k, -\sigma}(0)		\label{m_DEF}
 \end{IEEEeqnarray}
 
 
-From the definition of the propagators in \ref{Def_Propagator} and the equation of motion for operators, 
-$\frac{\dint}{\dint \tau} \hat{A} = [H,\hat{A}] + \frac{\partial}{\partial_{\tau}} \hat{A}$,
-we get the differential equation
+The equation of motion for operators, $\frac{\dint}{\dint \tau} \hat{A} = [H,\hat{A}] + \frac{\partial}{\partial_{\tau}} \hat{A}$,
+determines the dependence of the propagators on imaginary time. 
+Using the definition of propagators in Eq. (\ref{Def_Propagator})  and the equation of motion,
+we get the differential equation.
 \begin{IEEEeqnarray}{rCl}
  \partial_{\tau} G_{\vec k ,\sigma}(\tau) 
  &=&
@@ -169,11 +164,11 @@ Here we used $\partial_{\tau} \Theta(\tau) = \delta(\tau)$.
 The commutators can be evaluated using the identity $[AB,C] = A\{B,C\} - \{A,C\}B$ and the anti-commutation rules for the creation and annihilation operators in
 equation \ref{acomm_rules}.
 %
-This leaves us with
+This results in
 \begin{equation}
  [H,c_{\vec k ,\sigma}(\tau)]=-\left(\varepsilon_{\vec k}-\mu + Un_{-\sigma} \right) c_{\vec k ,\sigma}(\tau) - Um_{s,-\sigma} c_{\vec k +\vec{Q},\sigma}(\tau)
 \end{equation}
-Putting this back in \ref{EOM_G} together with the definitions for $G$ and $F$, we get
+Putting this back in equation (\ref{EOM_G}) together with the definitions for $G$ and $F$, we get
 \begin{IEEEeqnarray}{rCl}
   \partial_{\tau} G_{\vec k ,\sigma}(\tau) 
 &=&
@@ -181,15 +176,15 @@ Putting this back in \ref{EOM_G} together with the definitions for $G$ and $F$, 
 - \left( \varepsilon_{\vec k }-\mu+ Un_{-\sigma} \right) G_{\vec k ,\sigma}(\tau)  \nonumber \\ &&
  -Um_{s,-\sigma} F_{\vec k ,\sigma}(\tau) \label{EOM_G_II}
 \end{IEEEeqnarray}
-In a next step we take the Fourier transform of this equation. 
+In the next step we take the Fourier transform of this equation. 
 The Fourier transformed propagator is related to the propagator in imaginary time through
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\tau) &=& \frac{1}{\beta} \sum_n \euler^{-\im \omega_n \tau} G_{\vec k ,\sigma}(\im \omega_n) \\
  G_{\vec k ,\sigma}(\im \omega_n) &=& \int_0^{\beta} \! \!\dint  \tau \: \euler^{\im \omega_n \tau} G_{\vec k ,\sigma}(\tau)
 \end{IEEEeqnarray}
-The so called Matsubara frequencies $\omega_n$ are given by $\omega_n = \frac{\pi}{\beta}(2n+1), \; n \! \in \! \mathbb{Z}$.
-This ensures the anti-periodicity of fermionic Green's functions, $G(\tau+\beta) = -G(\tau)$.
-Transforming equation \ref{EOM_G_II} to momentum space we get
+The so called fermionic Matsubara frequencies $\omega_n$ are given by $\omega_n = \frac{\pi}{\beta}(2n+1), \; n \! \in \! \mathbb{Z}$.
+By this definition, the fermionic Greens's functions are anti-periodic with respect to shifts in $\tau$ by $\beta$, $G(\tau+\beta) = -G(\tau)$.
+Transforming equation (\ref{EOM_G_II}) to momentum space we get
 \begin{IEEEeqnarray}{rCl}
  \left( \im \omega_n -\varepsilon_{\vec k } +\mu - Un_{-\sigma} \right) G_{\vec k ,\sigma}(\im \omega_n) = 1 +Um_{s,-\sigma} F_{\vec k ,\sigma}(\im \omega_n)
 \end{IEEEeqnarray}
@@ -204,10 +199,11 @@ Putting the last two equations together we get the expressions for the propagato
 			      { ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )
 			        ( \im \omega_n - \varepsilon_{\vec k }         + \mu -Un_{-\sigma} )
 			      - U^2m_{s,-\sigma}^2 } \nonumber \\
+			      &&\nonumber  \\ && \\
  F_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma}}
 			    { ( \im \omega_n - \varepsilon_{\vec k +\vec{Q}} + \mu -Un_{-\sigma} )
 			      ( \im \omega_n - \varepsilon_{\vec k }         + \mu -Un_{-\sigma} )
-			      - U^2m_{s,-\sigma}^2 }			      
+			      - U^2m_{s,-\sigma}^2 }			\nonumber      
 \end{IEEEeqnarray}
 We can rewrite this in a more appealing way by factorizing the denominator of both propagators. 
 The poles are located at
@@ -219,27 +215,48 @@ The poles are located at
 \end{equation}
 Note that $E_{\vec k ,\sigma}^{\pm}=E_{\vec k +\vec{Q},\sigma}^{\pm}$, since $\varepsilon_{\vec k +2\vec{Q}}=\varepsilon_{\vec k }$.
 These energies correspond to the formation of two bands, defined over the reduced or magnetic Brillouin zone.
+The antiferromagnetic ordering loweres the symmetry of the crystal, and enlarges therfore the unit cell.
+At the same time the Brillouin zone is reduced, which explains the periodicity in $\vec Q$. 
 The band structure is shown in figure \ref{EpmDisp}. 
 \begin{figure}
  \begin{center}
   \includegraphics[width=.9\textwidth]{../EpEm_tttU44}
-  \caption{$E^+_{\vec k}$ and $E^-_{\vec k}$ band for $U=4.4$ and $(t,t^{\prime},t^{\prime \prime})=(1.0,0.22,0.12)$.}
+  \caption{$E^+_{\vec k}$ and $E^-_{\vec k}$ band for $U=4.4$ and $(t,t^{\prime},t^{\prime \prime})=(1.0,0.22,0.12)$ in dimensionless units.}
 \label{EpmDisp}
   \end{center}
  \end{figure}
 %
-It be seen clearly, that the bands are well separated.
+It can be seen clearly, that the bands are well separated.
 It is conclusive form their expression, that the bands are separated by approximately $Um_s$ for large enough $U$.
 The split up is a result of the repulsive interaction and the symmetry breaking of the anti-ferromagnet ground state.
-The split of the half filled $J=frac12$-band in one band below the Fermi surface and the other one above it makes Sr$_2$IrO$_4$ an insulator.
-This only possible since, because the $t_{2g}$ states were already split into two smaller bands by the strong SOC. 
-Sr$_2$RhO$_4$ is similar to Sr$_2$IrO$_4$ in structure and electron configuration,
-just with the $4d$ orbitals, which are less extended and have therefore stronger electron-electron interactions,
-but a lower SOC. 
-Therefore it shows metallic behaviour in the ground state \cite{PhysRevLett.96.246402}. 
+The $J=\frac12$-band is half filled, the lower of the split bands $E^-_{\vec k}$ is therefore fully occupied, while 
+$E^+_{\vec k}$ is remains empty. 
+This makes Sr$_2$IrO$_4$ an insulator.
+This only possible since, because the $t_{2g}$ states were already split into two smaller bands by the strong SOC.
+Changing the parameters for SOC and electron-electron repulsion a little changes the situation significantly.
+Sr$_2$RhO$_4$, which  is equal to Sr$_2$IrO$_4$ in structure and electron configuration,
+just with the $4d$ orbital is metallic\cite{PhysRevLett.96.246402}. 
+The interaction in the $4d$ orbitals is stronger, while at the same time the SOC is to weak, to create the same bands 
+as in the Ir case. The interaction is then not strong enough, to split the rather broad $t_{2g}$ band.
+As a result Sr$_2$RhO$_4$ is a paramagnetic metal.
+This shows the importance of strong SOC for the properties of Sr$_2$IrO$_4$. 
+%
+It further supports  the statement, that Sr$_2$IrO$_4$  experiences the effects of both types of mechanisms to create insulators,
+the charge interaction driven Mott type and the Slater type, which is based on magnetic ordering \cite{PhysRevB.89.165115},
+since its and gap depends on the repulsion as well as the antiferromagnetic ordering.
 
 
-Using these expressions the propagators can be expressed in terms of the new bands,
+%The transition from a Mott insulator to a paramagnetic metal is dependent on the strength of the SOC. 
+%With $\lambda = 1.1t$ the critical value of a multi orbit model is $U_c=3.3t$ \cite{PhysRevLett.105.216410}, Sr$_2$IrO$_4$ is therefore 
+%in the  anti-ferromagnetic phase, but close to the metal insulator transition. 
+%Using Rh instead of Ir increases $U$, but reduces $\lambda$ at the same time. 
+%A larger $U$ on the one hand increases the band gap, with a low lambda however we do not necessarily have the 
+%effective spin-$\frac12$ states anymore. 
+
+
+
+
+Using the expressions for the energies $E^{\pm}_{\vec k}$, the propagators can be expressed in terms of the new bands,
 \begin{IEEEeqnarray}{rCl}
  G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec k +\vec{Q}} +\mu -Un_{-\sigma} }
 					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-) },
@@ -285,34 +302,33 @@ enddef;}
 
 \begin{figure}
  \begin{center}
-\begin{IEEEeqnarray}{rCl}
+ \begin{IEEEeqnarray}{rCl}
+%\vcenter{ \hbox{
  \parbox{20mm}{
 	      \begin{fmfgraph}(20mm,30mm)
 		\fmfleft{i1}
 		\fmfright{o1}
 		\fmf{dbl_plain_arrow}{i1,o1}
-	      \end{fmfgraph}
-	      }
-&=& \parbox{15mm}{\begin{fmfgraph}(15mm,30mm) \fmfleft{i} \fmfright{o} \fmf{plain_arrow}{i,o} \end{fmfgraph}} 
+	      \end{fmfgraph}}
+&=& \parbox[][][t]{15mm}{\begin{fmfgraph}(15mm,30mm) \fmfleft{i} \fmfright{o} \fmf{plain_arrow}{i,o} \end{fmfgraph}} 
    + \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_dbl_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2}
-                \end{fmfgraph} }
+                \end{fmfgraph}}
 	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
-					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2} \end{fmfgraph} }
-\end{IEEEeqnarray}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2} \end{fmfgraph}}
+ \end{IEEEeqnarray}
  \begin{IEEEeqnarray}{rCl}
  \parbox{20mm}{
 	      \begin{fmfgraph}(20mm,30mm)
 		\fmfleft{i1}
 		\fmfright{o1}
 		\fmf{dbl_plain_dbl_arrow}{i1,o1}
-	      \end{fmfgraph}
-	      }
+	      \end{fmfgraph}}
 &=& \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{dbl_plain_dbl_arrow}{i1,v1} \fmf{plain_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2}
-                \end{fmfgraph} }
+                \end{fmfgraph}}
 	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
-					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2} \end{fmfgraph} }
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2} \end{fmfgraph}}
 \end{IEEEeqnarray} 
 \end{center}
 \caption{Self consistent mean field equations for $G_{\vec k, \sigma}$ and $F_{\vec k, \sigma}$.}
@@ -518,18 +534,6 @@ The magnetic susceptibility gets therefore the form
 \end{equation}
 
 
-
-  
-
-
-
-
-
-
-
-
-
-
 \subsection{Dynamic Magnetic Susceptibility In The Green's Function Formalism}
 
 
@@ -566,6 +570,7 @@ The first order bubble diagrams of the RPA expansion are shown in figure \ref{1o
 %
 %
 \begin{figure}
+\centering
 \begin{tabular}{cc}
  \begin{fmfgraph*}(120,45)
   \fmfleft{i1} \fmfright{o1} \fmf{dots_arrow,tension=2,label=$\vec q$}{i1,v1} \fmf{dbl_plain_arrow,left=.35}{v1,v2,v4} 
@@ -927,7 +932,7 @@ with the denominator
 
 \end{fmffile}
 
-\subsection{Corrections due to Quantum Fluctuations}
+\subsection{Corrections due to Quantum Fluctuations} \label{corrections}
   
 The simplifications we made in order to treat the Hubbard model in the mean field approach,  
 eliminate any effects that are caused by quantum fluctuations.

@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import array
 import os
 
-plt.rcParams.update({'font.size':22})
+plt.rcParams.update({'font.size':26})
 
 filename = sys.argv[1]
 A=loadtxt(filename, skiprows=0)
@@ -88,26 +88,29 @@ for i in range(pTmax):
 		 
 
 
-t=np.arange(np.floor(eps.min()),np.ceil(eps.max()),1.)
+t=np.arange(-6,4,1.)
 
 f = figure()
 
-ad = f.add_subplot(111,projection='3d')
-ad.plot_wireframe(rX,rY,rEm )
-ad.plot_wireframe(rX,rY,rEp,color='red')
-xlabel('$k_x$')
-ylabel('$k_y$')
+#ad = f.add_subplot(111,projection='3d')
+#ad.plot_wireframe(rX,rY,rEm )
+#ad.plot_wireframe(rX,rY,rEp,color='red')
+#xlabel('$k_x$')
+#ylabel('$k_y$')
 #zlabel('E/t')
 
 
-#ad = f.add_subplot(111)
-#ad.arrow(-.405,-.095,.5-0.04/np.sqrt(2),.5-0.04/np.sqrt(2),head_width=.02,head_length=.04,fc="k", ec="k" )
-#p=ad.contour(X,Y,eps,t)
-#cb=f.colorbar(p,ax=ad)
-#plt.xticks(np.arange(-.5,.6,.25))
-#plt.yticks(np.arange(-.5,.6,.25))
-#xlabel('j')
-#ylabel('E')
+ad = f.add_subplot(111)
+ad.arrow(-.405,-.095,.5-0.04/np.sqrt(2),.5-0.04/np.sqrt(2),head_width=.02,head_length=.04,fc="k", ec="k" )
+p=ad.contour(X,Y,eps,t,linewidth=3.0)
+cb=f.colorbar(p,ax=ad)
+plt.xticks(np.arange(-.5,.6,.25))
+plt.yticks(np.arange(-.5,.6,.25))
+xlabel('$k_x$')
+ylabel('$k_y$')
+ax=f.add_axes([-6,-3,0,3])
+
+
 
 #ad = f.add_subplot(111)
 #ad.plot(pT,pEp,color='red')
