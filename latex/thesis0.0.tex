@@ -1,7 +1,7 @@
 \documentclass[a4paper,12pt]{uiofysmaster}
 \usepackage[utf8]{inputenc}
 \input{/home/andi/Studium/LaTex/preambel.tex}
-\newcommand{\Sriro}{$\mathrm{Sr}_2\mathrm{Ir}\mathrm{O}_4$}
+\newcommand{\Sriro}{$\mathrm{Sr}_2\mathrm{Ir}\mathrm{O}_4$\:}
 
 %opening
 \title{Magnetic Excitations In The Iridate $\mathrm{Sr}_2\mathrm{IrO}_4$}
@@ -9,20 +9,44 @@
 
 \begin{document}
 
-\maketitle
+\pagenumbering{roman}
+\includepdf{frontpage.pdf}
+\cleardoublepage
 
 \begin{abstract}
-In this thesis we investigate magnetic properties of Iridates, 
-compounds that contain orthorombic Iridium and can be described by the Hubbard model for effective spins.
-We use a mean field approach to calculate the dynaimc magnetic susceptibility for certain components.
-They are compared to measurements and other models, mainly Heisenberg models. 
-
-We found the Hubbard model with up to third-neighbour interactions to provide results that agree well with experiment.
-% U as only free parameter
-%quantum corrections
+In this thesis we investigated magnetic excitations in the iridate compound \Sriro.
+As a layered strongly correlated system it can be described by the two-dimensional one-band Hubbard model, 
+describing interacting particles in effective spin-$\frac12$ states.
+Based on the previously calculated band structure, it becomes an effective model with one free parameter, the one-site interaction strength $U$.
+Using Green's functions at the mean field level, we calculated the dynamic magnetic susceptibility
+and thereby the spin wave dispersion.
+We compared the spin wave dispersion with resonant inelastic X-ray scattering experiments and used it to fit the Hubbard interaction strength $U$. 
+We found the $t$-$t^{\prime}$-$t^{\prime\prime}$-$U$-Hubbard model based on the band structure energies
+to provide a good description of the spin wave dispersion for $U=1.1\mathrm{eV}$. 
 \end{abstract}
 
-% ABSTRACT IN NORWEGIAN??? 
+%\begin{dedication}
+ %To Sir Nils Olav II
+%\end{dedication}
+
+\begin{acknowledgements}
+ Many thanks to my supervisor, Professor Olav Fredrik Syljuåsen, for making this thesis possible.
+ Especially for all the tips and ideas, endurance in finding mistakes and confronting my occasional confusion, and for the fast and flexible revision.
+
+ Furthermore, I want to thank my parents a lot for supporting me in every possible way and making my studies in Oslo possible in the first place and enjoyable on top of that.
+ Thank you a lot for backing me all the way, no matter where I go and what I do and giving me the freedom and support to live my life this way. 
+ 
+ Thanks to all my friends, who made my time during my masters so much better. 
+ Thanks for all the discussions, new experiences and laughters, coffees and beautiful moments we could enjoy together.
+ Special thanks to my fellow students, for making discussions about physics and the world  not only instructive, but also entertaining and motivating.
+ Tony, thanks for being both of the above through the whole time and for rocking the final phase together. 
+ Thank you Süße for being on my side and being always supportive in stressful times. 
+ A special thanks to all my friends for pardoning me ignoring you lately.
+ 
+ Last and least I want to thank Bixit for making great cookies and keeping me somehow nourished on long evenings at the university. 
+ 
+\end{acknowledgements}
+
 
 \tableofcontents
 
@@ -43,9 +67,7 @@ We found the Hubbard model with up to third-neighbour interactions to provide re
 
 \appendix
 
-\chapter{Mathematical techniques}
-
-\section{Matsubara Frequency Summation} \label{MFS}
+\chapter{Matsubara Frequency Summation} \label{MFS}
 
 In the calculations above we encounter functions of the type 
 $ \sum_{n \in \mathbb{Z}} f(\im \omega_n)$.
@@ -63,9 +85,9 @@ h(z) = \frac{\beta}{\euler^{\beta z} \pm 1}
 with the positive sign for fermions and the negative one for bosonic frequencies. 
 Using Cauchys integral theorem, we can express the sum over the frequencies as an integral. 
 We choose a contour $\gamma_1$ that encloses the imaginary axis counterclockwise in a way, that it avoids any other poles not on the axis.
-This means running paralell to the axis on a very small distance and closing it at infinity.
+This means running parallel to the axis on a very small distance and closing it at infinity.
 % reference to picture. green?
-We can now blow up this countour to a circel with inifinite radius which we shall call $\gamma_2$.
+We can now blow up this contour to a circle with infinite radius which we shall call $\gamma_2$.
 Since the function vanishes fast, the integral will be 0, but we have to pick up the Residual of every pole we encounter in deforming the countour. 
 The poles will be encircled clockwise, which gives rise to a minus sign.
 % reference to the blown up contour. blue?
@@ -88,18 +110,9 @@ In total we get
  = \sum_{\mathrm{Res}_f} \left. \frac{f(z)\beta}{1+\euler^{\beta z }}\right|_{z=z_{\mathrm{Res}_f}}
 \end{equation}
 
-\section{Wick Rotation}
 
-\section{Relation between Differential Cross Section and Spectral Density Function}
 
-% follows Altland and Simons p 388-389
-
-Starting from Fermi's Golden Rule, the scattering rate is given by 
-\begin{equation} \label{FGR}
- \frac{\dint^2 \sigma}{\dint \Omega \dint \omega}(\vec q, \omega) = 2\pi \sum_{\beta} \left| \bra{\beta} \hat \rho(\vec q) \ket{0}\right|^2 \delta(\omega - E_{\beta}+E_0).
-\end{equation}
-
-\bibliographystyle{plainnat}
+\bibliographystyle{unsrtnat}
 \bibliography{masterthesis}
 
 \end{document}

@@ -312,7 +312,7 @@ enddef;}
 	      \end{fmfgraph}}
 &=& \parbox[][][t]{15mm}{\begin{fmfgraph}(15mm,30mm) \fmfleft{i} \fmfright{o} \fmf{plain_arrow}{i,o} \end{fmfgraph}} 
    + \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_dbl_arrow}{v1,o1}
-					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow}{v2,v2}
+					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow,tension=0.3}{v2,v2}
                 \end{fmfgraph}}
 	+    \parbox{25mm}{\begin{fmfgraph}(25mm,30mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow}{v2,v2} \end{fmfgraph}}
@@ -432,7 +432,7 @@ The magnetic susceptibility is therefore proportional to the expectation value o
 \chi^{ab}(\vec q,\omega) = \int \dint \tau \euler^{\im \omega \tau} \langle  M^a(q,\tau) M^b(-\vec q, 0) \rangle 
 \end{equation}
 Measurements are often performed on a poly-crystals or powder. 
-Therefore we don't have a fixed crystall orientation, but rather an average over all spatial orientations.
+Therefore we don't have a fixed crystal orientation, but rather an average over all spatial orientations.
 The effective susceptibility is therefore diagonal with the components
 \begin{equation}
  \chi^{ab}_{\mathrm{eff}} = \delta^{ab} \mathrm{Tr}(\chi) = \delta^{ab} \langle \vec M(q,\tau) \vec M(-\vec q, 0) \rangle \label{magnSuscI}
@@ -722,7 +722,7 @@ The remaining expression depends then only on $\im \omega_n$.
 We are interested in the dependence on real frequencies $\omega$. 
 Expression \ref{ladder_sum} possesses poles on the real axis, making a simple replacement of $\im \omega_ n$ with $\omega \in \mathbb{R}$ impossible. 
 We perform the analytical continuation $\im \omega_n \rightarrow \omega + \im \eta$ with $\omega, \eta \in \mathbb{R}$ and for a small $\eta >0$.
-By choosing $\eta$ to be positive we get the retarded response function. \todo{elaborate on that?}
+By choosing $\eta$ to be positive we get the retarded response function. 
 The expression can then be evaluated by carrying out the sum over the momenta using a small numerical value for $\eta$.
 This allows us not only to calculate the imaginary part, a finite value of $\eta$ smoothes the resulting response function.
 In general, for a function of the type $(\omega+\im \eta - E)^{-1}$, the imaginary part is 
@@ -890,45 +890,6 @@ with the denominator
  We want to evaluate the expressions for real frequencies, but we have to keep an infinitesimal imaginary part due to poles on the 
  real frequency axis. This leads to a vanishing imaginary part, except for a vanishing denominator, where it resembles a delta function. 
  In order to find the poles it is therefore sufficient to evaluate the denominator to 0.
- % total matrix. 
-\begin{comment}
-\begin{equation} 
- \left( \begin{array}{cc} \mathbf 1 &  -\lambda \mathbf M_{\downarrow} \\ -\lambda \mathbf M_{\uparrow} & \mathbf 1 \end{array} \right)^{-1} 
- = 
- \left( \begin{array}{cc} (\mathbf 1 -\lambda^2 \mathbf M_{\downarrow} \mathbf M_{\uparrow} )^{-1} &
-			  \lambda \mathbf M_{\downarrow} (\mathbf 1 -\lambda^2 \mathbf M_{\uparrow} \mathbf M_{\downarrow} )^{-1} \\
-  \lambda \mathbf M_{\uparrow} (\mathbf 1 -\lambda^2 \mathbf M_{\downarrow} \mathbf M_{\uparrow} )^{-1} &
-(\mathbf 1 -\lambda^2 \mathbf M_{\uparrow} \mathbf M_{\downarrow} )^{-1}
-        \end{array} \right ) 
-\end{equation}
-\end{comment}
-
-% basic expression for \chi^zz
-
-
-% set up as matrix according to q, q+Q
-% additional spin matrix.
-% 
-% up down symmetry
-% check signs for z_i
-% define matrix M^{\prime}_{\sigma}
-% inverting the matrix. 
-% final expression.
-% 
-% first order chain?
-%
-
-% $\chi^{+-},\chi^{zz}$, why is %\chi^{zz} not important?
-% Paper that relates longit to transverse susceptibility. 
-
-
-% expectation from the formula: \omega(0,0) = 0 , \omega(\frac12,\frac12) = 0 etc.
-% for perfect nesting it a short calculation that shows why this is the case. (1+\lambda(x+y)) and (z_1 + z_2) will be zero independently.
-% without perfect nesting it should hold as well, but is not that easy to see.
-% 
-% what about the continuum.
-
-%$A=\Im(C^+)$
 
 \end{fmffile}
 
@@ -937,9 +898,9 @@ with the denominator
 The simplifications we made in order to treat the Hubbard model in the mean field approach,  
 eliminate any effects that are caused by quantum fluctuations.
 These effects may be small and we are able to cover the main features of the system with our simplified description,
-but their effect have to be taken into account, especially when comparing calculations to measurements, where they will always be present.
+but their effect have to be taken into account, especially when comparing calculations to measurements, where absolute values of observables are relevant.
 One example is the staggered magnetization, that is overestimated in the mean field treatment. 
-Fluctuations around the antiferromagnetic ground state act as a distortion to the ordering and lower therefore the expectation value of $m_s$.
+Fluctuations around the anti-ferromagnetic ground state act as a distortion to the ordering and lower therefore the expectation value of $m_s$.
 
 
 Calculating the full corrections is beyond the scope of this thesis, but we can account for some major corrections, that have no complicated dependencies.
@@ -949,11 +910,13 @@ The main contribution is independent of momentum and frequency.
 Higher order terms are an order of magnitude smaller and their momentum dependence changes the correction factor by $2\%$ at max.
 Usually one uses therefore a constant of $\mathcal{Z}_c=1.18$ value to renormalize the whole spin-wave dispersion \cite{PhysRevB.45.10131}.
 
-We will see that our calculation scheme provides the result of the uncorrected linear spin-wave theory in the limit of large U. 
-The fact that the Heisenberg model is the large-$U$ limit of the Hubbard model suggests using the same correction factor.
+We will see that our calculation scheme provides the result of linear spin-wave theory without further corrections in the limit of large U. 
+The Hubbard model can be expanded in this limit. The correction factor is the same as in the Heisenberg model, as one would except. 
 In reference \cite{PhysRevB.43.3617}, Singh calculated corrections in the Hubbard model, 
 given by diagrams corresponding to quantum fluctuations,
 and found a value consistent with $\mathcal{Z}_c$.
+We asume that the correction does not change substantially for smaller $U$ and correct $\omega$ in the expression for the dynamic magnetic susceptibility
+by the constant $\mathcal Z_c = 1.18$.
 
 % example of usage of Z_c in Heisenberg \cite{PhysRevB.43.3617}
 

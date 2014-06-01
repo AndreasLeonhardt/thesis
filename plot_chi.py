@@ -165,7 +165,7 @@ N=7/4*N
 pylab.xlabel('$\\vec q$')
 pylab.xlim([0,T.max()])
 pylab.ylabel('$\\omega$ [eV]')
-pylab.ylim([0,1.000])
+pylab.ylim([-.10,1.000])
 pylab.xticks([0,np.sqrt(2)*N,(2+np.sqrt(2))*N,(2+2*np.sqrt(2))*N,(2+3*np.sqrt(2))*N,(4+3*np.sqrt(2))*N],['S','X','M','S','$\\Gamma$','X'])
 #p=ad.plot(W[0,:],Val[0,:],W[96,:],Val[96,:])
 

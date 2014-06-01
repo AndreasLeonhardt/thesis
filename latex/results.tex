@@ -208,14 +208,15 @@ and found to be consistent with the above condition for the chemical potential a
 
 A large $U$ drives the system in an anti-ferromagnet ground state as mentioned above. 
 Hopping at half-filling leads to double occupancies, which are suppressed due to the high energetic cost of $U$. 
-Therefore, the system can be described as an Heisenberg anti-ferromagnet in this limit.
+The spins will therefore be evenly distributed at half filling and the system can be described as an Heisenberg anti-ferromagnet in this limit.
+By projecting out states with double occupancies we arrive at the Heisenberg model.
+By downfolding the Hamiltonian to the subspace of only single occupied sites, couplings between sites arise, which can be expanded in orders of 
+$t(\frac{t}U)^n$. These terms can then be interpreted as hopping processes over multiple sites, resulting in the Heisenberg exchange interaction.
 The Heisenberg Hamiltonian with only nearest neighbour coupling is
 \begin{equation}
  \hat H = J \sum_{\langle i,j\rangle} \vec{S}_i \cdot \vec{S}_j,
 \end{equation}
-which will be an anti-ferromagnetic coupling for positive J. 
-\todo{derivation of Heisenberg from Hubbard or reference}
-Hopping will be treated as a distortion to the system and yields the interaction of neighbouring spins.
+which will be an anti-ferromagnetic coupling for positive J, as in this case. 
 
 %
 % http://user.it.uu.se/~ngssc/ngssc_home/S2M2S2/pavarini1.pdf and notes from Morten
@@ -239,7 +240,8 @@ up to first order in  $\frac{t^2}U$ results in the dispersion
 \end{equation}
 This is exactly the spin wave dispersion one gets for linear spin waves in a Heisenberg antiferromagnet, 
 with the coupling $J=\frac{4t^2}{Um_s}$.
-Deriving the Heisenberg model from the Hubbard model yields $J=\frac{4t^2}{U}$, which differs by a factor of $\frac1{m_s}$ from the coupling we get in this expansion.
+Deriving the Heisenberg model from the Hubbard model yields $J=\frac{4t^2}{U}$ in the first order expansion, 
+which gives a spin wave dispersion that differs by a factor of $\frac1{m_s}$ from our result.
 The dependence of $m_s$ on $U$ shows, that we get a perfect antiferromagnet with $m_s=1$ for large $U$, 
 such that the two couplings will be identical in the case, where this approximations are valid. 
 %
@@ -259,7 +261,7 @@ boundary of the magnetic Brillouin zone, $\omega(\frac12(1-t), \frac12t) =\mathr
 
 
 By using a large value for $U$ in our calculations, we get results that agree well with the unrenormalized case.
-An example for $U=40$ can be seen in figure \ref{largeU}, together with dispersion for linear spin waves according to equation (\ref{DispULimit})ö.
+An example for $U=40$ can be seen in figure \ref{largeU}, together with dispersion for linear spin waves according to equation (\ref{DispULimit}).
 %
 \begin{figure}
  \begin{center}
@@ -572,13 +574,13 @@ The calculated dispersion is compared to the measured one in \ref{continuum}.
 \begin{figure}
  \centering
  \begin{subfigure}{0.49\linewidth}
-  \includegraphics[width=\textwidth]{../tttU44_longw}
+  \includegraphics[width=\textwidth]{../fuck}
   \caption{calculated spin wave dispersion for $U=4.4$.}
   \label{tttU44_longw}
  \end{subfigure}
 \begin{subfigure}{.49\linewidth}
  \includegraphics[width=\textwidth]{../measuredexit}
- \caption{measured excitations, taken from \cite{PhysRevLett.108.177003} }
+ \caption{measured excitations, \\taken from \cite{PhysRevLett.108.177003} }
  \label{experimental_longw}
 \end{subfigure}
 \caption{comparison of the excitation spectrum  form our calculations and RIXS measurements. The energy scale in both graphs is given in eV. 
@@ -663,10 +665,11 @@ In further work this model can be extended to other crystals with anti-ferromagn
 like the other elements of the Ruddelson-Popper series, namely SrIrO$_3$ and the bilayer iridate Sr$_3$Ir$_2$O$_7$.
 The different geometric set-up gives a different band structure due to changed geometry and hopping parameters. 
 It can be further improved by introducing hopping between layers, which will be more important in multi-layered iridates. 
+The calculation scheme might also be used for honeycomb lattices such as for example Na$_2$IrO$_3$.
 
 Another interesting application for this type of calculation is the doped case, e.g. a filling factor that is shifted away from $n=1$. 
-It is yet an open question, if iridates can be doped such that they show superconductivity as found in the cuprates.
-
+It is yet an open question, if iridates can be doped such that they show superconductivity as found in the cuprates and understanding the 
+doped case could shed light on this question from a theoretical point of view.
 
 
 

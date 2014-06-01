@@ -1,6 +1,58 @@
+ \begin{comment}
+
+The same structures can be found in cuprates. 
+The cuprates form a class of materials equivalent to the iridates, where Ir is replaced by Cu. 
+Chemically these two elements behave similar.
+They have the same type of active orbitals, but from different shells. 
+This results in slightly changed parameters. 
+Otherwise the same types of compounds as in the iridates can be found. 
+Cuprates are best known for their high temperature superconductivity (HTSC).
+The discovery of HTSC in cuprates 
+started a still on-going era of intensive research on cuprates and their theoretical description through effective models.
+The most important ones  among those  are and the Hubbard model and spin models such as the Heisenberg model, whereas the latter one can 
+derived from the Hubbard model for a large interaction strength. 
+
+
+The electrons in iridates are correlated due to strong interactions.
+This leads to new physical effects such as long range ordering,
+which itself influences magnetic and electrical properties,
+such as anti-ferromagnetic ground states and changes in the conductivity. 
+
+Even though Ir and Cu behave almost identical in terms of chemical bonding, 
+their difference in the atomic number changes some parameters that influence the dynamics of the crystal. 
+Firstly, Ir is bigger in the sense, that its orbitals are spatially more extended. 
+This alters the crystal structure in some of the materials, but more importantly enhances spin orbit coupling.
+Stronger SOC is the main difference between iridates and cuprates and leads to new physical phenomenon. 
+\end{comment}
+%Iridiates have been synthesized as early as , 
+%investigations on its structure started in the 90's and intensified 
+%even more after 2009, when resonant inelastic X-ray scattering (RIXS) was used to 
+%reveal the structure of cuprates and similar compounds \ref{RIXS}. 
+
+%proposed HTSC, dispute
+
+% most important examples of iridates
+% The most important examples of iridates 
+%are the effectively two dimensional single and double layered perovskites Sr$_2$IrO$_4$ and Sr$_3$Ir$_2$O$_7$, which are insulating.
+%Together with the metallic SrIrO$_3$ they form the Ruddlesden-Popper series.
+%There are more components of the same structure, which use another type of rare earth metal instead of strontium. 
+%Another famous iridate configuration is the honeycomb lattice, which is for example found in Na$_2$IrO$_3$ and Li$_2$IrO$_3$.
+
   
 
 \chapter{Deriving The Hubbard Model}
+
+Iridates is a loosely defined group of TMOs, which contain iridium in  its anionic component. 
+A more stringent definition classifies every material containing the salt $(\mathrm{Ir}_2\mathrm{O}_7)^{6-}$ as iridate.
+However, the ratio of iridium compared to oxygen might change due to the exact configuration of the component and how many oxygen ions are shared between neighbouring IrO complexes.
+Its main features are strong electron interactions, which makes it a correlated system as well as strong spin-orbit interactions in iridium.
+The last property is the most important difference to the otherwise similar cuprates and leads to interesting new physics.
+In this chapter we will derive an effective model, the one-band Hubbard model. 
+We start from the different constituents and their relative  geometrical structure in the crystal
+and describe the effects of the above mentioned interactions. 
+We show then how we can get orthonormal states based on the previously found atomic states.
+These states build the basis for the Hubbard model, which is formulated in second quantization.
+
 
 \section{Iridates}
 % proper definition of iridates in section above
@@ -12,8 +64,8 @@ As part of the heavier elements in the platinum group the $d$ orbitals belong to
 Like many transition metals its $s$-shell of the next atomic number, the $6s$-shell, is filled as well.
 In the atomic configuration the shell structure is $[\mathrm{Xe}]4f^{14}5d^7 6s^2$.
 % ${\mathrm{Sr}}_{2}{\mathrm{IrO}}_{4}$
-In compunds it can be found in different oxidation states, ranging from -3 to +6.
-In the compounds treated in this thesis iridium is fourfold oxidized to $\mathrm{Ir}^{4+}$, 
+In compounds it can be found in different oxidation states, ranging from -3 to +6.
+In \Sriro iridium is fourfold oxidized to $\mathrm{Ir}^{4+}$, 
 which removes the $6s^2$ electrons as well as two electrons from the $5d$ shell.
 The outermost shell is therefore the $5d$ shell, which is half-filled ~\cite{Abragam70}.
 
@@ -28,16 +80,21 @@ The same hold for the rare earth metals, strontium is reduced to
 $\mathrm{Sr}^{2+}$ with the electron configuration of $\mathrm{Kr}$. 
 Both the rare earth metal and oxygen have therefore zero total angular momentum and spin. 
 
-Iridates show a great variety of geometrical configurations. 
-We will focus on Sr$_2$IrO$_4$, which is part of the Ruddelson-Popper series of Iridium oxides, Sr$_{n+1}$Ir$_{n}$O$_{3n+1}$ with $n =1$. 
-$n$ counts the layers of perovskite structure that are stacked directly on top of each other, 
+Iridates show a great variety of geometrical configurations.
+Important examples are the layered perovskite of the Ruddelson-Popper series of Iridium oxides, Sr$_{n+1}$Ir$_{n}$O$_{3n+1}$ with $n =1$,
+honeycomb lattices and more complex three dimensional configuration.
+
+
+We will focus on Sr$_2$IrO$_4$, which  belongs to the Ruddelson-Popper series for $n=1$.
+$n$ counts the layers that are stacked directly on top of each other, 
 before being separated by Sr ions. 
-Other possible values in this series are 2 and $\infty$, where the last one means there is no separation anymore and we have SrIrO$_3$. 
-Sr$_2$IrO$_4$ has the structure of a layered perovskite, that means it consists of single layers with a structure similar to CaTiO$_3$.
-The later one is also called perovskite and lends its name to the perovskite structure.
+Other possible values in this series are 2 and $\infty$, where the last one means there is no separation any more and we have SrIrO$_3$. 
+
+As a layered perovskite, Sr$_2$IrO$_4$ consists of single layers with a structure similar to CaTiO$_3$.
+The latter one is also called perovskite and lends its name to the perovskite structure.
 It consists of a cubic unit cell, with one type of atom (Ca in perovskite) on the edges, 
 the  atom of the other element (Ti) is embedded in an octahedron of 
-oxygen ions, which are located on the face centers, see figure \ref{pervoskite} for an illustration.
+oxygen ions, which are located on the face centres, see figure \ref{perovskite} for an illustration.
 %
 % picture perovskite unit cell
 \begin{figure}[!htbp]
@@ -48,16 +105,15 @@ oxygen ions, which are located on the face centers, see figure \ref{pervoskite} 
 	  \label{perovskite}
 \end{figure}
 %
-In the case of Sr$_2$IrO$_4$ it is Ir$^{4+}$ that is located  inside the octahedra. 
-The type of rare earth metal as well as the ratio determine different geometrical setups of octahedra. 
-They share corners only in the $x$-$y$-direction while beeing separated by a Sr$^{2+}$ ion in the z-direction.
+In the case of Sr$_2$IrO$_4$ it is Ir$^{4+}$ that is located  inside the oxygen octahedron. 
+The octahedra share corners in the $x$-$y$-direction while being separated by a Sr$^{2+}$ ion in the z-direction.
 Due to a shift between two subsequent layers, we have to include two layers in the unit cell in order to regain a cubic one.
-An octahedron of one layer matches an Sr ion of the other, perventing  corner sharing in the $z$-direction and providing thereby the separation of layers. 
+An octahedron of one layer matches an Sr ion of the other, preventing  corner sharing in the $z$-direction and providing thereby the separation of layers. 
 % 
 Furthermore, the octahedra are tilted in a staggered pattern by $\Theta = \pm 11^{\circ}$ \cite{PhysRevB.49.9198}.
 This enlarges the cubic unit cell to $\sqrt2 a\times\sqrt 2b \times 2c$.
 In $x$- and $y$-direction we have to take two irdium ions into the unit cell. The translation vector corresponds now to the former diagonals.
-At the same time we get 4 layers in $z$-direction, until the same pattern of tilted octahedra is met again. The unit cell is shown in figure \ref{unitcell}
+At the same time we get four layers in $z$-direction, until the same pattern of canted octahedra is met again. The unit cell is shown in figure \ref{unitcell}
 %
 \begin{figure}
 \centering
@@ -66,13 +122,13 @@ At the same time we get 4 layers in $z$-direction, until the same pattern of til
 \label{unitcell}
 \end{figure}
 %
-We will neglect the rotations in proceeding to an model of effective spins, but regain the influence it has on the magnetic structure in the final interpretation of 
-response functions. It shows that these rotations provide an explanation for the small ferromagnetic moment in the otherwise antiferromagnetic material. 
+We will first neglect the rotations in the further scheme, but discuss the influence it has on the magnetic structure in the final interpretation of 
+response functions. It shows that these rotations are the cause of the small ferromagnetic moment in the otherwise anti-ferromagnetic material. 
 
 \subsubsection{Ligand Field}
 
 The $5d$ states  in a free iridium ion are degenerate due to rotational symmetry of the atomic Hamiltonian. 
-We choose the cubic harmonics as a basis and  denote the states by according to their transformation symmetry with respect to the coordinat axes, namely 
+We choose the cubic harmonics as a basis and  denote the states  according to their transformation symmetry with respect to the coordinate axes, namely 
 $\ket{x^2-y^2},\ket{z^2},\ket{xy},\ket{xz}$ and $\ket{yz}$.
 The cubic harmonics are related to the spherical harmonics  of the $d$-orbitals, $Y^2_m$ for $m=0,\pm1,\pm2$, by a unitarian transformation, shown in table \ref{sphericHarmonics}.
 As such, the cubic harmonics have all angular momentum $l=2$. 
@@ -97,7 +153,7 @@ and they form an irreducible representation of the rotation group.
 Embedding the iridium ion in a crystal breaks the rotational symmetry of the potential due to anisotropic contributions from its neighbours.
 As a result, the degeneracy of the $5d$ states will be lifted. 
 Since the ion is now surrounded by the ligands in the form of an octahedron, the 
-full rotational symmetry is reduced to transformation symmetries of the octahedron or equally a cube. 
+full rotational symmetry is reduced to the transformation symmetry of the octahedron or equally a cube. 
 These are the 48 transformation of the point group $O_h$.
 One can tell from group theory alone, that reducing the symmetry splits an irreducible representation of the rotational group into subgroups, that form irreducible representations 
 corresponding to the lowered symmetry. 
@@ -107,20 +163,20 @@ The degeneracy of the $5d$ states is thereby partially lifted and we get the
 three-fold degenerate $t_{2g}$ states consisting of the $xy,xz,yz$ orbitals and the two-fold degenerate $e_g$ states formed by $z^2$ and $x^2-y^2$ \cite[Chapter~4]{Tinkham64} 
 
 The value of the energetic split due to the crystal field depends on the form and strength of the potential generated by the ligands. 
-In \Sriro it is of order $\Delta_c  = E(e_g) - E(t_{2g})\approx 5$eV \cite{PhysRevB.80.075112}. 
+In \Sriro  it is of order $\Delta_c  = E(e_g) - E(t_{2g})\approx 5$eV \cite{PhysRevB.80.075112}. 
 The sign is such that the $e_g$ states lie at a  higher energy than the $t_{2g}$,
 which can be understand in an intuitive way from the form of the orbitals.
 The $e_g$ states fill the space closer to the ligands, requiring therefore 
 energy to overcome the repulsion from the negatively charged oxygen ions,
 while the $t_{2g}$ orbitals avoid the ligands by being extended along the diagonals of the unit cell. 
 % neglect stretching in z-direction and hybridization with e_g due to rotations
-The orbitals are then not filled according to Hund's rule,
+The large energy split leads to a filling, that breaks Hund's rule,
 which decreases the inter-particle interaction by filling all orbitals with particles of the same spin,
 before filling orbitals with two particles of opposite spin. 
-The resulting spatially antisymmetric wave function reduces then the overlap of wavefunctions.
+The resulting spatially antisymmetric wave function reduces then the overlap of wave functions.
 
 In the case of iridium we deal with  $5d$ states, which are more extended than the $4d$ and $3d$ states of lighter transition metals. 
-This reduces the overall amplitude of the wavefunction and therefore  the repulsion between electrons on different sites. 
+This reduces the overall amplitude of the wave function and therefore  the repulsion between electrons on different sites. 
 The energy split due to the crystal field is strong enough to favour double occupancies in the $t_{2g}$ states over populating the $e_g$ states. 
 As a result, the $e_g$ states are empty, while all five electrons will be distributed over the $t_{2g}$ states. 
 
