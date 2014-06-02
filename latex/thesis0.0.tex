@@ -3,6 +3,14 @@
 \input{/home/andi/Studium/LaTex/preambel.tex}
 \newcommand{\Sriro}{$\mathrm{Sr}_2\mathrm{Ir}\mathrm{O}_4$\:}
 
+
+\usetikzlibrary{shapes.misc}
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+
+
 %opening
 \title{Magnetic Excitations In The Iridate $\mathrm{Sr}_2\mathrm{IrO}_4$}
 \author{Andreas Karl Leonhardt}
@@ -17,7 +25,7 @@
 In this thesis we investigated magnetic excitations in the iridate compound \Sriro.
 As a layered strongly correlated system it can be described by the two-dimensional one-band Hubbard model, 
 describing interacting particles in effective spin-$\frac12$ states.
-Based on the previously calculated band structure, it becomes an effective model with one free parameter, the one-site interaction strength $U$.
+Based on the previously calculated band structure model, it becomes an effective model with one free parameter, the one-site interaction strength $U$.
 Using Green's functions at the mean field level, we calculated the dynamic magnetic susceptibility
 and thereby the spin wave dispersion.
 We compared the spin wave dispersion with resonant inelastic X-ray scattering experiments and used it to fit the Hubbard interaction strength $U$. 
@@ -83,12 +91,40 @@ The Matsubara frequencies are the poles of the function
 h(z) = \frac{\beta}{\euler^{\beta z} \pm 1} 
 \end{equation}
 with the positive sign for fermions and the negative one for bosonic frequencies. 
-Using Cauchys integral theorem, we can express the sum over the frequencies as an integral. 
-We choose a contour $\gamma_1$ that encloses the imaginary axis counterclockwise in a way, that it avoids any other poles not on the axis.
+Using Cauchy's integral theorem, we can express the sum over the frequencies as an integral. 
+We choose a contour $\gamma_1$ that encloses the imaginary axis counterclockwise in a way, that it avoids any other poles not on the axis, see figure \ref{cont}.
 This means running parallel to the axis on a very small distance and closing it at infinity.
+\begin{figure}
+ \centering
+ \begin{tikzpicture}
+  \draw[->] (-3.0,0) -- (3.0,0); 
+  \draw[->] (0,-3.0) -- (0,3.0);
+  \foreach \f in {-3.0,-2.6,...,3.0}
+    \draw (0,\f) node[cross=2pt]{};
+    \draw[->,dashed,green] (.3,-3.2) -- (.3,0.5);
+    \draw[-,dashed,green] (.3,.5) -- (.3,3.2);
+    \draw[-,dashed,green] (-.3,-3.2) -- (-.3,-0.5);
+    \draw[<-,dashed,green] (-.3,-.5) -- (-.3,3.2);
+    %
+    \draw (1.2,0.9) node[cross=2pt]{};
+    \draw (-1.,-0.4) node[cross=2pt]{};
+    \draw [<-,dashed,blue](1.2,.9) circle (6pt);
+    \draw [<-,dashed,blue](-1,-.4) circle (6pt);
+    \draw [<-,dashed,blue] (1.4,.92) -- (3.4,.92);
+    \draw [->,dashed,blue] (1.4,.88) -- (3.4,.88);
+    %
+    \draw [<-,dashed,blue] (-1.2,-.42) -- (-3.4,-.42);
+    \draw [->,dashed,blue] (-1.2,-.38) -- (-3.4,-.38);
+    %
+    \draw [->,dashed,blue](0,0) circle (3.5);
+ \end{tikzpicture}
+ \caption{Contour $\gamma_1$ (green) enclosing the poles close to the axis, $\gamma_2$ (blue) at infinite radius, but encircling the poles not on the imaginary axis.}
+ \label{cont}
+\end{figure}
+
 % reference to picture. green?
 We can now blow up this contour to a circle with infinite radius which we shall call $\gamma_2$.
-Since the function vanishes fast, the integral will be 0, but we have to pick up the Residual of every pole we encounter in deforming the countour. 
+Since the function vanishes fast, the integral will be 0, but we have to pick up the Residual of every pole we encounter in deforming the contour. 
 The poles will be encircled clockwise, which gives rise to a minus sign.
 % reference to the blown up contour. blue?
 In doing so, we get the relation
