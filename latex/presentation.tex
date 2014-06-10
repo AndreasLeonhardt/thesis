@@ -74,23 +74,29 @@ enddef;}
 \begin{frame}
  \frametitle{Motivation}
  \begin{itemize}
-  \item Similar to cuprates, which are best known for HTSC
-  \item Extend parameter range: enhanced SOC
+  \item Similar to cuprates, which are best known for HTSC % structure wise, d-orbitals, layout 
+  % THERE IS A CONFERENCE THIS VERY WEEK WHICH DEALS WITH Fe AND Ir BASED SC. 
+  \item Enhanced SOC in iridates
   \item Spin-$\frac12$ states
-  \item Realization of theoretical models: Spin models, Kitaev model,\dots
-  
+  \item Realization of theoretical models: Spin models, 2D systems, Kitaev model,\dots % Kitaev model is exactly solvable, might be useful for quantum computing
  \end{itemize}
-
 \end{frame}
 
-% what it is
-% link to cuprates
-% common structure
+\begin{frame}
+ \frametitle{Open questions}
+ \begin{itemize}
+  \item Superconductivity in iridates
+  \item Metal-insulator transition
+  \item Effective models % and parameters
+ \end{itemize}
+\end{frame}
 
 
 \subsection{\Sriro}
 
+
 % structure: layered perovskite (maybe not that expression), effectively 2D
+% iridate basic building block. 
 \begin{frame}
  \frametitle{Crystal Field}
  \begin{center}
@@ -154,12 +160,10 @@ enddef;}
  \frametitle{Properties Of \Sriro}
  \begin{itemize}
   \item strongly correlated
-  \item insulating up to ???K
+  \item insulating up to $T_{\text{Néel}}=240$K)
   \item small ferromagnetic moment
   \item antiferromagnetic ground state
-  \item $\sum_i \langle (-1)^i n_{i,\sigma} \rangle = \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k+\vec Q, \sigma} \rangle= \frac{s_{\sigma}}2 m_s \ne 0$
  \end{itemize}
-
 \end{frame}
 
 
@@ -172,10 +176,10 @@ enddef;}
 % give Hubbard model
 \begin{frame}
 \frametitle{The Hubbard Hamiltonian}
-\begin{equation}
+\begin{equation*}
  \hat{H} = - t \sum_{\langle i,j \rangle,\sigma} \left (c^{\dagger}_{i,\sigma}c_{j,\sigma} + c^{\dagger}_{j,\sigma}c_{i,\sigma} \right) 	 
  -\mu \sum_{i,\sigma} c^{\dagger}_{i,\sigma}c_{i,\sigma} +U \sum_i n_{i,\uparrow} n_{i,\downarrow}.
-\end{equation}
+\end{equation*}
 \end{frame}
 
 % t term and bandstructure, relation to geometry, further interactions (i.e. t' and t'')?
@@ -185,15 +189,15 @@ enddef;}
 % in momentum space:
 \begin{frame}
 \frametitle{The Hubbard Hamiltonian in momentum space}
- \begin{equation}
+ \begin{equation*}
   \hat{H} = \sum_{\vec{k},\sigma} \left(\varepsilon_{\vec k} - \mu\right) c^{\dagger}_{\vec{k},\sigma}c_{\vec{k},\sigma} + \frac{U}{N} \sum_{\vec{k}\vec{k}^{\prime}\vec{q}}
 	c^{\dagger}_{\vec{k},\uparrow}c_{\vec{k}-\vec{q},\uparrow} c^{\dagger}_{\vec{k}^{\prime},\downarrow}c_{\vec{k}^{\prime}+\vec{q},\downarrow}
- \end{equation} 
+ \end{equation*} 
 with the dispersion
 \onslide<2->
-\begin{equation}
+\begin{equation*}
  \varepsilon_{\vec k} = -2t\left( \cos k_x + \cos k_y \right) \onslide<3-> -4t^{\prime} \cos k_x \cos k_y  -2t^{\prime \prime} \left( \cos 2k_x + \cos 2k_y \right)
-\end{equation}
+\end{equation*}
 \end{frame}
 
 \subsection{Mean Field Equations} % or Mean Field Treatement?
@@ -205,28 +209,32 @@ with the dispersion
  \begin{itemize}
   \item<1-> neglect fluctuations
   \item<2-> each particle sees only the averaged field created by all particles
- \only<3> { \item \begin{IEEEeqnarray} {rCl}
+ \only<3> { \item \begin{IEEEeqnarray*} {rCl}
 	      U \sum_i n_{i,\uparrow} n_{i,\downarrow} &=& U \sum_i (n_{i,\uparrow}-\langle n_{i,\uparrow} \rangle ) (n_{i,\downarrow}-\langle n_{i,\downarrow} \rangle) 
 	      \nonumber \\&&
 	      + n_{i,\uparrow} \langle n_{i,\downarrow}\rangle + n_{i,\downarrow} \langle n_{i,\uparrow} \rangle -\langle n_{i,\uparrow} \rangle \langle n_{i,\downarrow} \rangle          
-        \end{IEEEeqnarray}}
- \only<4>{  \item \begin{IEEEeqnarray} {rCl}
+        \end{IEEEeqnarray*}}
+ \only<4>{  \item \begin{IEEEeqnarray*} {rCl}
 	      U \sum_i n_{i,\uparrow} n_{i,\downarrow} 
 	      \only<4>  &\approx& U \sum_{i,\sigma} n_{i,\sigma} \langle n_{i,-\sigma}\rangle +\mathrm{const.}
-        \end{IEEEeqnarray}}
+        \end{IEEEeqnarray*}}
         \item<5-> in momentum space: \\ $ \frac UN \sum_{\vec q} \sum_{\vec k, \vec k^{\prime}, \sigma}  c^{\dagger}_{\vec k + \vec q, \sigma} 
 					    c_{\vec k, \sigma} \langle c^{\dagger}_{\vec k^{\prime} - \vec q, \sigma} c_{\vec k^{\prime}, \sigma} \rangle $
- \item<5-> uniform repulsion for $\vec q = 0$, \\ staggered magnetic field for $\vec q = \vec Q = (\pi,\pi)$. 
+ \item<5-> uniform repulsion for $\vec q = 0$, $\sum_i \langle c^{\dagger}_{\vec k,\sigma} c{\vec k, \sigma} \rangle= n_{\sigma} $
+   \item staggered magnetic field for $\vec q = \vec Q = (\pi,\pi)$.  
+   $\sum_i \langle (-1)^i n_{i,\sigma} \rangle 
+   = \sum_{\vec k} \langle c^{\dagger}_{\vec k, \sigma} c_{\vec k+\vec Q, \sigma} \rangle
+   = \frac{s_{\sigma}}2 m_s \ne 0$
  \end{itemize}
  \end{frame}
 
 
 \begin{frame}
 \frametitle{Propagators}
- \begin{IEEEeqnarray}{rCl}
+ \begin{IEEEeqnarray*}{rCl}
  G_{\vec k}(\tau) &=& \langle c_{\vec k         ,\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \\
  F_{\vec k}(\tau) &=& \langle c_{\vec k +\vec{Q},\sigma}(\tau)  c^{\dagger}_{\vec k ,\sigma}(0) \rangle \label{Def_Propagator}
-\end{IEEEeqnarray}
+\end{IEEEeqnarray*}
 \end{frame}
 
 
@@ -234,7 +242,7 @@ with the dispersion
 \begin{frame}
  \frametitle{Mean Field Propagators}
   \begin{center}
- \begin{IEEEeqnarray}{rCl}
+ \begin{IEEEeqnarray*}{rCl}
 %\vcenter{ \hbox{
  \scalebox{.5}{\parbox{40mm}{
 	      \begin{fmfgraph}(40mm,60mm)
@@ -248,8 +256,8 @@ with the dispersion
                 \end{fmfgraph}}}
 	+   \scalebox{.5}{ \parbox{50mm}{\begin{fmfgraph}(50mm,60mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_arrow,tension=0.7}{v2,v2} \end{fmfgraph}}}
- \end{IEEEeqnarray}
- \begin{IEEEeqnarray}{rCl}
+ \end{IEEEeqnarray*}
+ \begin{IEEEeqnarray*}{rCl}
  \scalebox{.5}{\parbox{40mm}{
 	      \begin{fmfgraph}(40mm,60mm)
 		\fmfleft{i1}
@@ -261,7 +269,7 @@ with the dispersion
                 \end{fmfgraph}}}
 	+    \scalebox{.5}{\parbox{50mm}{\begin{fmfgraph}(50mm,60mm) \fmfleft{i1} \fmfright{o1} \fmf{plain_arrow}{i1,v1} \fmf{dbl_plain_arrow}{v1,o1}
 					   \fmf{dashes,tension=0}{v2,v1} 	 \fmfforce{0.5w,.8h}{v2}     \fmf{dbl_plain_dbl_arrow,tension=0.7}{v2,v2} \end{fmfgraph}}}
-\end{IEEEeqnarray} 
+\end{IEEEeqnarray*} 
 \end{center}
 \end{frame}
 
@@ -273,17 +281,17 @@ with the dispersion
 
 \begin{frame}
 \frametitle{Propagators}
-\begin{IEEEeqnarray}{rCl}
+\begin{IEEEeqnarray*}{rCl}
  G_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ \im \omega_n - \varepsilon_{\vec k +\vec{Q}} +\mu -Un_{-\sigma} }
 					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-) },
 \\
  F_{\vec k ,\sigma}(\im \omega_n) &=& \frac{ Um_{s,-\sigma} }
 					    { (\im \omega_n - E_{\vec k ,\sigma}^+) (\im \omega_n - E_{\vec k ,\sigma}^-)}.
-\end{IEEEeqnarray}
+\end{IEEEeqnarray*}
 with the poles located at
-\begin{equation}
+\begin{equation*}
  E^{\pm}_{\vec k, \sigma} = \frac{\varepsilon_{\vec k }+\varepsilon_{\vec k +\vec{Q}}}2 -\mu + Un_{-\sigma}  \pm \sqrt{ \left(\frac{\varepsilon_{\vec k }-\varepsilon_{\vec k +\vec{Q}}}2\right)^2 + U^2m_{s,-\sigma}^2 }
-\end{equation}
+\end{equation*}
 \end{frame}
 
 
@@ -323,16 +331,16 @@ with the poles located at
   \item low energy excitations only by transversal component.
  \end{itemize}
 
- \begin{equation}
+ \begin{equation*}
   \chi^{+-}(\tau) = \sum_{\vec k \vec k^{\prime}} \langle c^{\dagger}_{\vec k+\vec q, \uparrow}\!(\tau)\: c_{\vec k, \downarrow}\!(\tau)\: 
 		      c^{\dagger}_{\vec k^{\prime}, \downarrow}\!(0)\: c_{\vec k^{\prime}+\vec q, \uparrow}\!(0)\: \rangle
- \end{equation}
+ \end{equation*}
 \end{frame}
 
 % diagrammatic expansion
 \begin{frame}
  \frametitle{Diagrammatic Expansion}
- \begin{IEEEeqnarray}{rCl}
+ \begin{IEEEeqnarray*}{rCl}
   \chi^{+-} &=& 
  \scalebox{.5}{ \parbox{60pt}{ \begin{fmfgraph*}(60,50)
   \fmfleft{i1} \fmfright{o1}  \fmf{dbl_plain_arrow,left=.55}{i1,o1} \fmf{dbl_plain_arrow,left=.55}{o1,i1}
@@ -381,7 +389,7 @@ with the poles located at
  \fmfdot{i1,o1}
 \end{fmfgraph*}}} 
 \:+\: \cdots\nonumber
- \end{IEEEeqnarray}
+ \end{IEEEeqnarray*}
 \end{frame}
 
 
@@ -394,8 +402,9 @@ with the poles located at
 \begin{frame}
  \frametitle{Random Phase Approximation}
  \begin{itemize}
-  \item Only terms with $\vec k - \vec k^{\prime} = \vec q$ contribute
-  \item No relative phase
+  \item sum subclass of diagrams to infinite order
+  %\item Only terms with $\vec k - \vec k^{\prime} = \vec q$ contribute
+  %\item No relative phase
   \item Each occurrence of $\frac UN$ is paired with a summation over $N$ momenta
   \item Closed form expression
   \item Neglecting quantum fluctuations requires rescaling 
@@ -407,10 +416,63 @@ with the poles located at
 
 
 \section{Results}
-\subsection{}
+
+\begin{frame}
+ \frametitle{Specifications}
+ \begin{itemize}
+  \item Band structure given
+  \item $U$ as only adjustable parameter
+  \item calculate dispersion along symmetry lines of dispersion
+ \end{itemize}
+ \end{frame}
+ 
+ \begin{frame}
+ \framtitle{Brillouin zone}
+ % =============================================================================================
+ % Explain concept of discretized and periodic momenta in a crystal. 
+ % =============================================================================================
+ % Show dispersion for the models
+ % =============================================================================================
+\begin{center}
+ \includegraphics[width=.4\textwidth]{../path}
+\end{center}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Heisenberg model}
+ \begin{itemize}
+  \item<1-> Spin model: no kinetic terms
+  \item<2-> Large $U$ limit of Hubbard model
+  \item<3-> Heisenberg Hamiltonian
+  \only<3>{  \begin{equation*}H = J \sum_{\langle i,j\rangle} \vec S_i \vec S_j  
+   \: \:\phantom{
+   +J^{\prime} \!\!\sum_{\langle\langle i,j\rangle\rangle}\!\! \vec S_i \vec S_j
+	+J^{\prime \prime} \!\! \!\!\sum_{\langle \langle\langle i,j\rangle \rangle\rangle} \!\!\!\! \vec S_i \vec S_j 
+	}
+  \end{equation*} }
+  \only<4-5>{  \begin{equation*} 
+  H = J \sum_{\langle i,j\rangle} \vec S_i \vec S_j  
+      +J^{\prime} \!\!\sum_{\langle\langle i,j\rangle\rangle}\!\! \vec S_i \vec S_j
+	+J^{\prime \prime} \!\!\!\!\sum_{\langle \langle\langle i,j\rangle \rangle\rangle}\!\!\!\! \vec S_i \vec S_j
+      \end{equation*}}
+      \item<5-> $J \longrightarrow 4\frac{t^2}U \quad (\frac tU\rightarrow 0)$
+ \end{itemize}
+\end{frame}
+
+% limit, rerun plot in order to get a nices labeling. Or remove numbers by hand.
+\begin{frame}
+ \frametitle{Large U limit}
+ \begin{center}
+  \includegraphics[width=.5\textwidth]{../U40} \\
+  \small{$U=40t$} \\ \\ $\omega(\vec q) = 4\frac{t^2}U \sqrt{1-\frac12(\cos q_x + \cos q_y)}$.
+ \end{center}
+\end{frame}
+
+
+\subsection{t-U-Hubbard Model}
 % t-U-model
 \begin{frame}
- \frametitle{Results for the $t$-$U$-Model}
+ \frametitle{Results for the t-U-Model}
  \begin{center}
   \includegraphics[width=.7\textwidth]{../compare_t47} \\
  Spin wave dispersion for the $t$-$U$-model with $U=4.7t$
@@ -419,10 +481,10 @@ with the poles located at
 % not capable of explaining everything
 % why even showing it? 
  
- 
+ \subsection{t-t'-t''-U-Hubbard Model} %$t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-
 % t-t'-t''-U-model 
  \begin{frame}
- \frametitle{Results for the $t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-Model}
+ \frametitle{Results for the t-t'-t''-U-Model}
  \begin{center}
   \includegraphics[width=.7\textwidth]{../tttU44c} \\
  Spin wave dispersion for the $t$-$t^{\prime}$-$t^{\prime \prime}$-$U$-model with $U=4.4t$
